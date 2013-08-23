@@ -1,0 +1,126 @@
+import "C"
+Calling C From Go
+27 Mar 2013
+Tags: go c
+
+Miki Tebeka
+Technical Lead, Adconion
+miki.tebeka@gmail.com
+http://mikitebeka.com
+@tebeka
+
+* Why C?
+
+After all we have Go, which is much better :)
+
+However, there is a *huge* volume of software written in C.
+We'd like to re-use it and not re-write it.
+
+* import "C" (A.K.A cgo)
+
+Provides an easy bridge between Go and C
+
+The Downside
+- Hard to find docs (see reference slide)
+- Pay attention to memory leaks
+- Compilation time grows
+- For C++ you need `extern`"C"` and C like wrapper
+- Users need C compilers and libraries installed
+- Cross compilation [[https://code.google.com/p/go/issues/detail?id=4714][does not work]]
+
+Note that are other options (such as [[http://www.swig.org/][swig]])
+
+
+
+* Minimal Example
+
+.play import-c/sqrt.go
+
+
+* Strings
+
+.play import-c/str.go
+
+* Ahhhhhh!
+
+.image import-c/picard1.jpg 400 600
+
+* Strings
+
+.play import-c/str2.go
+
+* But ...
+
+.image import-c/picard2.jpg 400 600
+
+* Strings
+
+.play import-c/str3.go
+
+* Structs
+
+.play import-c/struct.go
+
+* Calling Go from C
+
+`callback.c`
+
+.code import-c/callback/callback.c
+
+`callback.h`
+
+.code import-c/callback/callback.h
+
+* Calling Go from C
+
+`callback.go`
+
+.code import-c/callback/callback.go
+
+* Go Style Errors
+
+.play import-c/err.go
+
+* Case Study - snowball
+
+- [[https://bitbucket.org/tebeka/snowball]]
+- Port of [[http://snowball.tartarus.org/][snowball]] stemmer to Go
+- Had to flatten directories and rewrite #include
+- Wasn't that painful
+
+.play import-c/stem.go
+
+* snowball - imports and definition
+
+.code import-c/snowball.go  /START_IMPORT/,/END_IMPORT/
+
+* snowball - New and free
+
+.code import-c/snowball.go  /START_NEW/,/END_NEW/
+
+
+* snowball - Stem
+
+snowball uses `sb_symbol*` for string
+
+.code import-c/snowball.go  /START_STEM/,/END_STEM/
+
+* snowball - List
+
+The list of languages is a `static`char*` array with a `NULL` sentinal
+
+.code import-c/snowball.go  /START_LIST/,/END_LIST/
+
+
+* References
+
+- [[http://golang.org/cmd/cgo/][cgo docs]]
+- [[http://golang.org/doc/articles/c_go_cgo.html][C? Go? Cgo!]]
+- [[http://golang.org/misc/cgo/][cgo examples]]
+- [[https://code.google.com/p/go-wiki/wiki/cgo][cgo wiki]]
+- [[http://stackoverflow.com/search?q=%5Bgo%5D+cgo][StackOverflow]]
+
+* Lets Hack!
+
+.image import-c/real-programmers.jpg 400 600
+

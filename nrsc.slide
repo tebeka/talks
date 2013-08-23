@@ -1,0 +1,77 @@
+nrsc
+Packing Resource in Go Executables
+Tags: go
+
+Miki Tebeka
+Lead Software Engineer, Demand Media
+miki.tebeka@gmail.com
+http://mikitebeka.com
+@tebeka
+
+* The Good, the Bad and the Ugly
+- Good:  Go is statically linked, we need to ship *one* binary.
+- Bad: Web application (and others) need some external resources
+- Ugly: `nrsc` lets you embed resources in Go executables
+
+* Method
+- Use `cat` to append zipped resource to executable
+- Use `zip`-A` to "fix" offset
+- Use `nrsc` library to access resources
+
+(Original idea from [[http://bit.ly/SmYXXm][Carlos Castillo in golang-nuts list]])
+
+* nrsc shell script
+.code nrsc/nrsc  /START/,/END/
+
+* Resource
+.code nrsc/nrsc.go  /START_DEF/,/END_DEF/
+
+* Loading (1)
+.code nrsc/nrsc.go  /START_MAP_1/,/END_MAP_1/
+
+* Loading (2)
+.code nrsc/nrsc.go  /START_MAP_2/,/END_MAP_2/
+
+* Get
+.code nrsc/nrsc.go  /START_GET/,/END_GET/
+
+* Masking
+.code nrsc/nrsc.go  /START_MASK/,/END_MASK/
+
+* Serving (1)
+.code nrsc/nrsc.go  /START_SERVE1/,/END_SERVE1/
+
+* Serving (2)
+.code nrsc/nrsc.go  /START_SERVE2/,/END_SERVE2/
+
+* Handle
+.code nrsc/nrsc.go  /START_HANDLE/,/END_HANDLE/
+
+
+* Testing
+
+- Create an executable with embedded resources in /tmp
+- Run it (it's a web server)
+- Test methods (hit, miss, mask ...)
+- Kill server
+
+See [[https://bitbucket.org/tebeka/nrsc/src/tip/nrsc_test.go][nrsc_test.go]]
+
+
+* Future Work
+
+Help is highly appreciated :)
+
+- Convert nrsc bash script to Go code ([[https://bitbucket.org/tebeka/nrsc/issue/2][issue #2]])
+    - Make it "go gettable"
+- Remove external depedency on zip ([[https://bitbucket.org/tebeka/nrsc/issue/4][issue #4]])
+    - Windows anyone?
+- Use `fuse` and provide file system API to resource ([[https://bitbucket.org/tebeka/nrsc/issue/3][issue #3]])
+    - Simplify a lot of things (LoadTemplate ...)
+    - However totally different API
+- Get rid of `Initialize` ([[https://bitbucket.org/tebeka/nrsc/issue/5][issue #5]])
+    - `loadMap` in `init` does not work
+
+* References
+- [[https://bitbucket.org/tebeka/nrsc]]
+

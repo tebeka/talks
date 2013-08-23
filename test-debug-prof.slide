@@ -1,0 +1,283 @@
+Testing, Debugging and Profiling
+23 Apr 2013
+Tags: go test profile debug
+
+Fabrizio Milo, Miki Tebeka
+@fabmilo 
+@tebeka
+
+* Testing
+
+* Testing Recipe
+
+- Write `test_<module>.go` (discovery based test system)
+- With the same package as the one being tested
+- import [[http://golang.org/pkg/testing/][testing]]
+- Write `TestFoo(t`*testing.T)` functions
+- Use `init` for setup
+- Use `defer` for poor mans teardown (in *every* test function)
+- Run `go`test`-v`
+- Run `go`test`-run='.*Mul.*'`-v` to select tests
+- Read `go`help`testflag` output for more options
+
+* math.go
+
+.code test-debug-prof/math/math.go
+
+* math_test.go
+
+.code test-debug-prof/math/math_test.go /START1/,/END1/
+
+.code test-debug-prof/math/math_test.go /START2/,/END2/
+
+* Table Driven Testing
+
+.code test-debug-prof/table/math_test.go /START1/,/END1/
+
+* Parallel Execution
+
+.code test-debug-prof/parallel/math_test.go /START1/,/END1/
+
+- `time`go`test` (~2sec)
+- `time`go`test`-parallel`2` (~1sec)
+- If you have CPU intensive tests try `go`test`-parallel`2`-cpu`2`
+
+
+* Benchmarks
+
+.code test-debug-prof/bench/math_test.go /START1/,/END1/
+
+- `go`test`-bench`'.*'`
+
+
+* Debugging
+
+
+* GDB 7.5 on Mac 
+
+- You need GDB 7.5 OS X has a branch of 6.X 
+
+	$gdb --version
+
+	GNU gdb (GDB) 7.5
+	Copyright (C) 2012 Free Software Foundation, Inc.
+	License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+	This is free software: you are free to change and redistribute it.
+	There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+	and "show warranty" for details.
+	This GDB was configured as "x86_64-apple-darwin11.4.2".
+	For bug reporting instructions, please see:
+	<http://www.gnu.org/software/gdb/bugs/>.
+
+* If you need to upgrade on OS X 
+
+- Download latest stable release source code from
+	http://sourceware.org/gdb/download/
+
+- Unpack and compile:
+
+	tar xjvf gdb-7.4.tar.bz2
+	cd gdb-7.4
+	less gdb/README
+	./configure
+	make
+
+- Sign GDB (more info in the link)
+
+.link http://sourceware.org/gdb/wiki/BuildingOnDarwin
+
+
+* Compiling go programs for debugging
+
+- you can build a development version of dependent pkgs.
+
+	go install -a -v -gcflags "-N -l" <pkgs-list>
+
+
+Load GDB golang extensions:
+
+	(gdb)source http://golang.org/src/pkg/runtime/runtime-gdb.py
+
+* Gdb Configuration
+
+    (gdb)source <go-installation>/src/pkg/runtime/runtime-gdb.py 
+    (gdb)skip malloc.goc:436
+
+you can add commands in your .gdbinit inside your GOPATH
+
+	(GOPATH)$cat .gdbinit
+	source runtime-gdb.py 
+	skip malloc.goc:436
+
+* If GDB is properly configured for go if you read these lines:
+
+.code test-debug-prof/debug/gdbout
+
+
+* Let's use gdb on geodns:
+
+	mkdir gdbex
+	cd gdbex
+	mkdir bin lib src
+	export GOPATH=`pwd`
+	brew install geoip # OSX
+	yum install geoip-devel # RedHat / CentOs
+	go get github.com/abh/geodns
+	go build -a -v -gcflags "-N -l" github.com/abh/geodns
+
+.link https://github.com/abh/geodns
+
+
+*  Configure Environment
+
+- How to set an environemnt variable:
+
+	set environment GOGCTRACE=1
+	set environmnet GOMAXPROCS=1
+	set environment GOTRACEBACK=2
+
+note that we can add these variables to the `.gdbinit` file as well
+
+- How to set arguments:
+
+	set args -port=5300
+
+
+* Breakpoints
+
+- Breakpoint on module function:
+
+	(gdb) b main.main
+
+- Breakpoint on file line:
+
+	(gdb) b serve.go:212
+
+- Breakpoint on library function
+
+	(gdb) b net/http.ListenAndServe
+
+* How to inspect variables
+
+- info locals  // locals only 
+- info variables  // all variables including globals / static
+- info args
+- whatis <variablename>
+- info variables <regexp>
+- p <variablename>
+
+
+* GDB Commands
+
+- list
+- list line
+
+- list file.go:line
+- break line
+- break file.go:line
+- disas
+
+* Go Extensions (2)
+
+- bt
+- frame n
+- p var
+- p $len(var)
+- p $dtype(var)
+- iface var
+
+- info goroutines
+- goroutine n cmd
+- help goroutine
+
+
+* NOTE: You can't call a Go function
+
+	(gdb) call 'main.greet'("hello")
+	infrun.c:5777: internal-error: normal_stop: Assertion `get_frame_type (frame) == DUMMY_FRAME' failed.
+	A problem internal to GDB has been detected,
+	further debugging may prove unreliable.
+	Quit this debugging session? (y or n) y
+
+This is due to the differences on how Go calls a function and the way GDB does
+
+* User Interfaces for GDB
+
+- gdb -tui
+- ddd
+- Affinic's
+
+* Hopwatch
+
+.play test-debug-prof/hopwatch.go
+
+* Go Manual
+
+- import "runtime/debug"
+
+.link http://golang.org/pkg/runtime/debug/#PrintStack
+
+	func PrintStack()
+
+.link http://golang.org/pkg/runtime/#Stack
+
+	func Stack(buf []byte, all bool) int
+
+- import "runtime"
+
+.link http://golang.org/pkg/runtime/#Breakpoint
+
+	func Breakpoint()
+
+* Example
+
+.code test-debug-prof/debug/break.go
+
+* Custom Exceptions: Extending Error's interface
+
+.link https://code.google.com/p/biogo/source/browse/errors/errors.go
+
+
+* Profiling
+* Running the Memory Profiler
+
+* Notes
+
+in pre Go 1.0 the memory profiler requires that the garbage collection has run at least once.
+To force the GC use runtime.GC() i.e:
+
+    DumpHeapProfile("pre-gc-mem.prof")
+	runtime.GC() // force Garbage Collection
+	DumpHeapProfile("post-gc-mem.prof")
+
+The value of runtime.MemProfileRate is important to tweak as it adjusts the granularity of the stats, the default is to only consider allocations of 512kb or bigger. 
+
+.link http://golang.org/pkg/runtime/#pkg-variables
+
+	go tool pprof <Executable> executable.prof
+
+install graphviz
+
+.link http://www.graphviz.org/
+
+
+
+* Testing References
+
+- [[http://golang.org/pkg/testing/][testing]]
+- [[http://golang.org/doc/code.html#Testing][Testing]] section in "How To Write Go Code"
+- [[http://labix.org/gocheck][gocheck]]
+- [[https://bitbucket.org/tebeka/go2xunit][go2xunit]] Jenkins integration
+
+
+* Debugging References
+
+- [[http://golang.org/doc/gdb][gdb]]
+- [[http://www.affinic.com/?page_id=109][Visual GDB Debugger]]
+- [[https://github.com/emicklei/hopwatch][HopWatch]]
+
+
+
+
+
+
