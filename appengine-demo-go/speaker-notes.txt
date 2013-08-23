@@ -1,0 +1,124 @@
+Why AppEngine?
+==============
+
+"It's all fun and games until you have a scaling issue."
+    - Me, just now
+
+What you get
+* Scaling (doh!)
+* Deploy without downtime
+* Versioning
+* Data store (GQL)
+* Users
+* Memcached
+* Mail
+* Task Queue
+* XMPP
+* Logging
+* Admin console
+* ...
+
+
+What you loose
+* Freedom to use whatever you want
+* Money (arguably)
+
+Go
+* No horrible async code
+* Saves you money (vs Python & Java)
+
+
+Getting Started
+===============
+* Download the SDK from https://developers.google.com/appengine/downloads#Google_App_Engine_SDK_for_Go
+* Unpack somewhere
+
+
+The App
+=======
+We're going to build a URL shortener (like bit.ly)
+
+
+We'll cover
+* Serving HTTP
+* Templates
+* Users
+* Data store
+* Memcached
+* Task Queue
+
+Parts
+=====
+
+1-hello-appengine
+-----------------
+app.yaml
+    - Note about versioning
+
+shortie.go
+    - No main (use init)
+
+./run-local.sh
+    - Do a change a show it picks it up
+    - http://localhost:8080/_ah/admin
+
+2-template
+----------
+html.go
+    - Can use html files uploaded
+
+3-user
+------
+shortie.go
+    - appengine.Context
+    - Login/Logout URL
+    - defer idiom
+
+html.go
+    - Using params
+
+4-counter
+---------
+shortie.go
+    - counter
+    - urlCount
+
+html.go
+
+5-short
+-------
+shortie.go
+    - base62 encode
+    - newShortUrl
+
+html.go
+    - Adding short url
+
+6-redirect
+----------
+shortie.go
+    - redirectHandler
+    - incHits (runInTransaction)
+
+7-memcached
+-----------
+shortie.go
+    - redirectHandler
+
+8-delay
+-------
+shortie.go
+    - delayedInc
+
+9-user-urls
+-----------
+html.go
+    - Template + formatting
+
+shortie.go
+    - Formatters (in init)
+    - userURLs
+        - query
+
+Note about index.yaml created (also about quota and indexes).
+Note about index building takes time.

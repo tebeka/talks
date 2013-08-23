@@ -1,0 +1,48 @@
+body {
+    margin: 20px;
+    border: 2px solid blue;
+    padding: 1px;
+}
+
+input[name=url] {
+    width: 80%;
+    margin-left: 4px;
+}
+
+span.right {
+    float: right;
+    margin-right: 5px;
+}
+
+div.header {
+    padding: 2px;
+    background: silver;
+    border-bottom: 1px solid gray;
+    margin-bottom: 10px;
+}
+
+table.urls {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px dashed blue;
+}
+
+table.urls th {
+    text-align: left;
+}
+
+div.footer {
+    margin-top: 10px;
+    padding-top: 5px;
+    border-top: 1px dashed gray;
+    padding-left: 10px;
+    font-family: Monospace;
+}
+
+div.error {
+    color: red;
+}
+
+tr.even {
+    background: #DCDCDC;
+}
