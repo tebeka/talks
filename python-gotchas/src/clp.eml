@@ -1,0 +1,31 @@
+Received: by 10.68.129.169 with SMTP id nx9mr726769pbb.2.1333578860561;
+        Wed, 04 Apr 2012 15:34:20 -0700 (PDT)
+Path: r9ni19129pbh.0!nntp.google.com!news2.google.com!postnews.google.com!glegroupsg2000goo.googlegroups.com!not-for-mail
+From: Miki Tebeka <miki.teb...@gmail.com>
+Newsgroups: comp.lang.python
+Subject: Python Gotcha's?
+Date: Wed, 4 Apr 2012 15:34:20 -0700 (PDT)
+Organization: http://groups.google.com
+Lines: 10
+Message-ID: <7367295.815.1333578860181.JavaMail.geo-discussion-forums@ynpp8>
+NNTP-Posting-Host: 207.171.18.139
+Mime-Version: 1.0
+X-Trace: posting.google.com 1333578860 6170 127.0.0.1 (4 Apr 2012 22:34:20 GMT)
+X-Complaints-To: groups-abuse@google.com
+NNTP-Posting-Date: Wed, 4 Apr 2012 22:34:20 +0000 (UTC)
+Complaints-To: groups-abuse@google.com
+Injection-Info: glegroupsg2000goo.googlegroups.com; posting-host=207.171.18.139;
+ posting-account=uo-8fwoAAACKsFzFX78JHudx1V7WDXZ0
+User-Agent: G2/1.0
+Content-Type: text/plain; charset=ISO-8859-1
+
+Greetings,
+
+I'm going to give a "Python Gotcha's" talk at work.
+If you have an interesting/common "Gotcha" (warts/dark corners ...) please share.
+
+(Note that I want over http://wiki.python.org/moin/PythonWarts already).
+
+Thanks,
+--
+Miki

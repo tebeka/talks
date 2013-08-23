@@ -1,0 +1,421 @@
+Python Gotchas
+==============
+:author: Miki Tebeka <miki.tebeka@gmail.com>
+:backend: slidy
+:max-width: 45em
+:data-uri:
+:icons:
+
+
+[big]#``Computers have enabled people to make more mistakes faster than almost any
+invention in history, with the possible exception of tequila and hand guns.''#
+
+    - Mitch Ratcliffe
+
+[big]#``Experience is that marvelous thing that enables you to recognize a
+mistake when you make it again.''
+    
+    - Franklin P. Jones
+
+Compare
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/compare.py[]
+---------------------------------------------------
+
+nums.py
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/nums.py[]
+---------------------------------------------------
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/compare_fixed.py[]
+---------------------------------------------------
+
+Scope
+-----
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/scope.py[]
+---------------------------------------------------
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/scope_fixed.py[]
+---------------------------------------------------
+
+<1> Default argument are evaluated at function definition time.
+<2> `i` is passed as argument.
+
+Default Arguments
+-----------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/defarg.py[]
+---------------------------------------------------
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/defarg_fixed.py[]
+---------------------------------------------------
+
+WARNING: Never use mutable default arguments.
+
+
+Constructor
+-----------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/ctor.py[]
+---------------------------------------------------
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/ctor_fixed.py[]
+---------------------------------------------------
+
+<1> Need to call parent class constructor explicitly.
+
+Sequence
+--------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/seq.py[]
+---------------------------------------------------
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/seq_fixed.py[]
+---------------------------------------------------
+
+<1> Use a list of you need to keep items around.
+<2> Use link:http://docs.python.org/library/itertools.html#itertools.tee[tee]
+    to multiplex iterators.
+
+Print
+-----
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/print.py[]
+---------------------------------------------------
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/print_fixed.py[]
+---------------------------------------------------
+
+<1> In Python 3 `print` is a function.
+<2> Prefer functions over lambdas.
+
+Closure
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/closure.py[]
+---------------------------------------------------
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/closure_fixed.py[]
+---------------------------------------------------
+
+<1> You can *mutate* "non local" variables.
+
+Fix (Python 3)
+--------------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/closure_fixed3.py[]
+---------------------------------------------------
+
+<1> Python 3 introduced
+    link:http://docs.python.org/release/3.0.1/reference/simple_stmts.html#nonlocal[nonlocal]
+
+Float
+-----
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/float.py[]
+---------------------------------------------------
+
+Fix
+---
+
+----
+"Floating point is sort of like quantum physics: the closer you look,
+the messier it gets." 
+    - Grant Edwards 
+----
+
+Read link:http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html[
+What Every Computer Scientist Should Know About Floating-Point Arithmetic]
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/float_fixed.py[]
+---------------------------------------------------
+
+<1> Use link:http://docs.python.org/library/decimal.html[decimal] whenever you
+    care about precision.
+
+Except
+------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/except.py[]
+---------------------------------------------------
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/except_fixed.py[]
+---------------------------------------------------
+
+<1> Use the new `as` syntax.
+
+Reload
+------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/reload.py[]
+---------------------------------------------------
+
+Fix
+---
+Don't do that :) +
+
+Restart your program.
+
+Decorators
+----------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/dec.py[]
+---------------------------------------------------
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/dec_fixed.py[]
+---------------------------------------------------
+
+<1> link:http://docs.python.org/library/functools.html#functools.wraps[functools.wraps] 
+    copies all the interesting bits for us.
+
+For
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/for.py[]
+---------------------------------------------------
+
+items.py
+--------
+[source,python,numbered]
+---------------------------------------------------
+include::src/items.py[]
+---------------------------------------------------
+
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/for_fixed.py[]
+---------------------------------------------------
+
+<1> Always initialize
+<2> `sum([]) => 0`
+
+Import
+------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/imp.py[]
+---------------------------------------------------
+
+<1> But ... link:http://docs.python.org/library/email.parser.html#email.message_from_file[
+it's there]
+
+
+Fix
+---
+Never call your modules in the name of standard library modules.
+
+
+However
+-------
+Dude, it doesn't work!
+
+----
+$ mv src/email.py src/better_email.py
+$ python src/imp.py 
+Traceback (most recent call last):
+  File "src/imp.py", line 2, in <module>
+    message = email.message_from_file('/tmp/1.eml')
+AttributeError: 'module' object has no attribute 'message_from_file'
+----
+
+
+Fix 2
+-----
+
+----
+$ rm src/email.py[co]
+----
+
+It's a good idea to have the following at the top of your test script:
+
+----
+find . -name '*.py[co]' -exec rm {} \;
+----
+
+
+Find
+----
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/find.py[]
+---------------------------------------------------
+
+
+Fix
+---
+link:http://docs.python.org/library/stdtypes.html#str.find[RTFM].
+----
+Return the lowest index in the string where substring sub is found, ...
+Return -1 if sub is not found.
+
+Note
+The find() method should be used only if you need to know the position 
+of sub.
+To check if sub is a substring or not, use the in operator ...
+----
+
+Fix (2)
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/find_fixed.py[]
+---------------------------------------------------
+
+Equal
+-----
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/eq.py[]
+---------------------------------------------------
+
+ae.py
+-----
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/ae.py[]
+---------------------------------------------------
+
+<1> `AE` stands for "Always Equal"
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/eq_fixed.py[]
+---------------------------------------------------
+
+<1> Note that `1 is not 1.0`
+
+StringIO
+--------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/strio.py[]
+---------------------------------------------------
+
+<1> But ... it's
+link:http://docs.python.org/library/stringio.html#module-StringIO[there]
+
+Fix
+---
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/strio_fixed.py[]
+---------------------------------------------------
+
+<1> link:http://docs.python.org/library/io.html[io] is a backport from 3.x
+
+
+Length
+------
+FIXME: missing , at end of list of strings
+
+
+References
+----------
+* link:http://wiki.python.org/moin/PythonWarts[Python Warts]
+* link:https://groups.google.com/d/topic/comp.lang.python/5HiOEB9oZnk/discussion[
+    comp.lang.python thread]
+* link:https://www.destroyallsoftware.com/talks/wat[WAT]
+* link:http://www.infoq.com/presentations/Java-Puzzlers[
+    Java Puzzlers: Scraping the Bottom of the Barrel]
+
+This presentation was made with
+link:http://www.methods.co.nz/asciidoc/[asciidoc] using the
+link:http://www.w3.org/Talks/Tools/Slidy2/Overview.html[slidy] backend and
+link:http://pygments.org/[Pygments] syntax highlighter.
+
+Thank You
+---------
+image:pypy_logo.png[]
+
+// vim: ft=asciidoc spell

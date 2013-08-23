@@ -1,0 +1,6 @@
+/* Vertical lines between line numbers and code */
+div.linenodiv {
+    border-right:1px solid gray;
+    padding-right:2px;
+    margin-right:2px;
+}
