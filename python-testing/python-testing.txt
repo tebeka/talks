@@ -1,0 +1,352 @@
+Testing in Python (nose)
+========================
+:author: Miki Tebeka <miki.tebeka@gmail.com>
+:backend: slidy
+:max-width: 45em
+:data-uri:
+:icons:
+
+
+nose
+----
+* There are many other testing frameworks, but we'll use
+  link:https://nose.readthedocs.org/en/latest/testing.html[nose]
+* Nose is a
+  link:https://nose.readthedocs.org/en/latest/finding_tests.html[discovery
+  based] system.
+** Any Python file under root directory that starts with `test` will be included
+** Any function that starts with `test` will be ran
+* Use `assert` to make test fail
+** And write a *good* error message
+** You can use `print` since nose will hide stdout of passed tests
+* Use `setup` and `teardown` for fixtures
+** For functions specific fixture there's the
+    link:https://nose.readthedocs.org/en/latest/writing_tests.html#test-functions[with_setup]
+    decorator
+* There are
+  link:https://nose.readthedocs.org/en/latest/plugins/builtin.html[many plugins], 
+  we'll talk about some of them later
+
+Example
+-------
+[source,python,numbered]
+---------------------------------------------------
+include::tests/test_simple.py[]
+---------------------------------------------------
+
+<1> By default, nose hides `stdout`
+
+Running
+-------
+[source,bash,numbered]
+---------------------------------------------------
+    $ nosetests tests/test_simple.py
+    Let the games begin!
+    .F
+    Are we there yet?
+
+    ======================================================================
+    FAIL: simple.test_bad
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/nose/case.py", line 197, in runTest
+        self.test(*self.arg)
+      File "/Users/mikitebeka/work/talks/python-testing/tests/test_simple.py", line 6, in test_bad
+        assert 1 == 2, 'please reinstall universe and reboot'
+    AssertionError: please reinstall universe and reboot
+
+    ----------------------------------------------------------------------
+    Ran 2 tests in 0.001s
+
+    FAILED (failures=1)
+---------------------------------------------------
+
+We're Done
+----------
+That's about all you need to know. Now go and write some tests...
+
+image:question.png[]
+
+
+More Advanced Topics
+--------------------
+OK, since you asked so nicely :)
+
+
+Going Verbose
+-------------
+* Use the `-v` switch for verbose
+** `nosetests` will print the docstring
+* Use `-d` for detailed errors
+
+The Test
+--------
+[source,python,numbered]
+---------------------------------------------------
+include::tests/test_verbose.py[]
+---------------------------------------------------
+
+Regular Run
+-----------
+[source,bash,numbered]
+---------------------------------------------------
+    $ nosetests tests/test_verbose.py
+    F
+    ======================================================================
+    FAIL: Hello, My name is Inigo Montoya...
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/nose/case.py", line 197, in runTest
+        self.test(*self.arg)
+      File "/Users/mikitebeka/work/talks/python-testing/tests/test_verbose.py", line 7, in test_verbose
+        assert sword == 'sharp', 'sharpen sword please'
+    AssertionError: sharpen sword please
+    -------------------- >> begin captured stdout << --------------------- <1>
+    How many finger do you have?
+
+    --------------------- >> end captured stdout << ----------------------
+
+    ----------------------------------------------------------------------
+    Ran 1 test in 0.001s
+
+    FAILED (failures=1)
+---------------------------------------------------
+<1> `stdout` of failed test
+
+Adding -v
+---------
+[source,bash,numbered]
+---------------------------------------------------
+$ nosetests -v tests/test_verbose.py
+    Hello, My name is Inigo Montoya... ... FAIL <1>
+
+    ======================================================================
+    FAIL: Hello, My name is Inigo Montoya...
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/nose/case.py", line 197, in runTest
+        self.test(*self.arg)
+      File "/Users/mikitebeka/work/talks/python-testing/tests/test_verbose.py", line 7, in test_verbose
+        assert sword == 'sharp', 'sharpen sword please'
+    AssertionError: sharpen sword please
+    -------------------- >> begin captured stdout << ---------------------
+    How many finger do you have?
+
+    --------------------- >> end captured stdout << ----------------------
+
+    ----------------------------------------------------------------------
+    Ran 1 test in 0.001s
+
+    FAILED (failures=1)
+---------------------------------------------------
+<1> Test docstring and full name
+
+Adding -d
+---------
+[source,bash,numbered]
+---------------------------------------------------
+    $ nosetests -vd tests/test_verbose.py
+    Hello, My name is Inigo Montoya... ... FAIL
+
+    ======================================================================
+    FAIL: Hello, My name is Inigo Montoya...
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/nose/case.py", line 197, in runTest
+        self.test(*self.arg)
+      File "/Users/mikitebeka/work/talks/python-testing/tests/test_verbose.py", line 7, in test_verbose
+        assert sword == 'sharp', 'sharpen sword please'
+    AssertionError: sharpen sword please
+        '''Hello, My name is Inigo Montoya...'''
+        print('How many finger do you have?')
+    >>  assert 'dull' == 'sharp', 'sharpen sword please' <1>
+    ...
+
+---------------------------------------------------
+<1> See actual assert
+
+Bad `-d`
+--------
+[source,python,numbered]
+---------------------------------------------------
+include::tests/test_verbose2.py[]
+---------------------------------------------------
+
+
+Output
+------
+
+[source,bash,numbered]
+---------------------------------------------------
+    $ nosetests -vd tests/test_verbose2.py
+    test_verbose2.test_range ... FAIL
+
+    ======================================================================
+    FAIL: test_verbose2.test_range
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/nose/case.py", line 197, in runTest
+        self.test(*self.arg)
+      File "/Users/mikitebeka/work/talks/python-testing/tests/test_verbose2.py", line 2, in test_range
+        assert len(range(10)) == 11, 'bad range'
+    AssertionError: bad range
+    >>  assert len(range(10)) == 11, 'bad range' <1>
+
+
+    ----------------------------------------------------------------------
+    Ran 1 test in 0.021s
+
+    FAILED (failures=1)
+---------------------------------------------------
+<1> Can't see the actual length
+
+Good `-d`
+---------
+[source,python,numbered]
+---------------------------------------------------
+include::tests/test_verbose3.py[]
+---------------------------------------------------
+
+
+Output
+------
+
+[source,bash,numbered]
+---------------------------------------------------
+    $ nosetests -vd tests/test_verbose3.py
+    test_verbose3.test_range ... FAIL
+
+    ======================================================================
+    FAIL: test_verbose3.test_range
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/nose/case.py", line 197, in runTest
+        self.test(*self.arg)
+      File "/Users/mikitebeka/work/talks/python-testing/tests/test_verbose3.py", line 5, in test_range
+        assert size == expected, 'bad range' <1>
+    AssertionError: bad range
+    >>  assert 10 == 11, 'bad range' <2>
+
+
+    ----------------------------------------------------------------------
+    Ran 1 test in 0.021s
+
+    FAILED (failures=1)
+---------------------------------------------------
+<1> Source line
+<2> Values
+
+
+Selecting Tests
+---------------
+* By default nose will run everything it collects
+* If you specify a file, only tests in this file will run
+* You can specify a specific function with `nosetests test_simple.py:test_ok`
+* There's also the
+  link:https://nose.readthedocs.org/en/latest/plugins/attrib.html[attrib] plugin
+  for test groups
+* raise `SkipTest` to skip a test/module "manually"
+** Usually check environment variables, but ...
+
+
+Test Generators
+---------------
+Sometimes we want to run the same test with different input, nose has
+link:https://nose.readthedocs.org/en/latest/writing_tests.html#test-generators[test
+generators] for this.
+
+[source,python,numbered]
+---------------------------------------------------
+include::tests/test_gen.py[]
+---------------------------------------------------
+
+<1> *Don't* start the name with `test`, otherwise nose will try running it
+
+Output
+------
+[source,bash,numbered]
+---------------------------------------------------
+    $ nosetests -v tests/test_gen.py
+    test_gen.test_add(0, 1) ... ok <1>
+    test_gen.test_add(1, 2) ... ok
+    test_gen.test_add(2, 3) ... ok
+
+    ----------------------------------------------------------------------
+    Ran 3 tests in 0.001s
+
+    OK
+---------------------------------------------------
+<1> Name with parameters
+
+
+Jenkins
+-------
+* Use `--with-xunit` to get detailed reports in Jenkins
+** Default output is `nosetests.xml` can be changed with `--xunit-file`
+* Don't forget to enable the `xUnit` plugin in Jenkins
+* Have *one* script/makefile rule to run the tests
+** As opposed to complex Jenkins run script
+** If you change the way you run the tests, you'll do it in the code
+
+Mocking
+-------
+* The First Rule Of Mocking: Don't do it. The Second Rule of Mocking (for
+  experts only!): Don't do it yet!
+** Stolen from the "Rules of Optimization"
+* Every time you mock - you cheat, and you should see it as a "red flag"
+** You also need to "play catch" with the code you're mocking
+* Since Python is dynamic - you can mock with a regular function/class/module
+  that has the minimal signature used by the test
+** Don't forget to update the mock when the object being mocked changes
+* To mock services, span a new process on `setup` and kill it in `teardown`
+** You can have a package level `setup` and `teardown` at package `__init__.py`
+
+Debugging
+---------
+* Most of modern IDE's (like link:http://www.aptana.com/[Aptana]) support
+  breakpoints in tests
+* For dinosaurs like me, you can add a manual breakpoint in the test and re-run
+  it
+** `import pdb; pdb.set_trace()`
+** `from IPython.core.debugger import Pdb; Pdb().set_trace()` (if you have
+   IPython)
+* Run `nosetests -s`, otherwise this won't work
+** `-s, --nocapture       Don't capture stdout`
+
+Misc
+----
+* It's usually a good idea to run pep8 and pylint/pyflakes before the tests and
+  *fail* if they don't pass
+** Nobody reads the report unless they fail the tests
+* `find tests -name \'*.py[co]\' -exec rm {} \;` before testing is a good habit
+** Covers the case you renamed a module, forgot to update the import but the
+    `.pyc` is still there. The test will succeed even though it should fail
+* Cleanup on test start, not end
+** This way when it fails, you'll have all the data there
+* Write code with testing in mind
+** Functional code (no side effects) is the easiest to test
+** link:http://en.wikipedia.org/wiki/Test-driven_development[TDD] anyone?
+* Make sure you're tests don't make it to production
+* Don't name your test directory `test`, there is a builtin module with that
+  name
+
+References
+----------
+* link:https://nose.readthedocs.org/en/latest/writing_tests.html[nose
+  documentation]
+* link:https://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin[Jenkins xUnit
+  plugin]
+* link:http://pythonwise.blogspot.com/2012/10/cleanup-after-your-tests-but-be-lazy.html[Cleanup
+  After Your Tests] blog post
+
+
+This presentation was made with
+link:http://www.methods.co.nz/asciidoc/[asciidoc] using the
+link:http://www.w3.org/Talks/Tools/Slidy2/Overview.html[slidy] backend and
+link:http://pygments.org/[Pygments] syntax highlighter.
+
+Thank You
+---------
+image:question.png[]
+
+// vim: ft=asciidoc spell
