@@ -1,0 +1,267 @@
+Error Handling in Python
+========================
+:author: Miki Tebeka <miki.tebeka@gmail.com>
+:backend: slidy
+:max-width: 45em
+:data-uri:
+:icons:
+
+The Zen Master Said
+-------------------
+* ...
+* Errors should never pass silently.
+* Unless explicitly silenced.
+* ...
+
+Tim Peters in ``link:http://www.python.org/dev/peps/pep-0020/[The Zen of
+    Python]''
+
+General Rules
+-------------
+* Python uses exceptions to signal errors
+* It also uses them for control flow (`StopIteration`), use `XXXError` naming
+* Always inherit from `Exception`
+** *Not* from `BaseException`
+* In some cases return values will signal error code
+** Mostly interfacing with C libraries, but ... RTFM
+
+Tracebacks Are Useful
+---------------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/traceback.py[]
+---------------------------------------------------
+<1> Note order
+<2> Line number and function name
+<3> Reason
+
+The Common Case
+---------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/common.py[]
+---------------------------------------------------
+<1> Use new `as` syntax
+
+The Common Mistake
+------------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/all.py[]
+---------------------------------------------------
+* This will catch *all* exceptions
+* Even the ones you didn't want to catch
+
+The Uncommon Mistake
+--------------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/comma.py[]
+---------------------------------------------------
+
+Fix
+---
+[source,python,numbered]
+---------------------------------------------------
+include::src/comma_fix.py[]
+---------------------------------------------------
+<1> Use the new `as` syntax.
+
+Re-Raise
+--------
+[source,python,numbered]
+---------------------------------------------------
+include::src/reraise.py[]
+---------------------------------------------------
+<1> Original line
+
+Raise Other
+-----------
+[source,python,numbered]
+---------------------------------------------------
+include::src/other.py[]
+---------------------------------------------------
+<1> "Wrong" line number
+
+Raise Other (II)
+----------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/other2.py[]
+---------------------------------------------------
+<1> Use original exception
+<2> Still "wrong" line number
+
+Raise Other (III)
+-----------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/other3.py[]
+---------------------------------------------------
+<1> `raise from` is Python 3 only
+
+Catch Many
+----------
+[source,python,numbered]
+---------------------------------------------------
+include::src/many.py[]
+---------------------------------------------------
+
+try/finally
+-----------
+[source,python,numbered]
+---------------------------------------------------
+include::src/finally.py[]
+---------------------------------------------------
+
+<1> Will always be executed
+
+try/else
+--------
+[source,python,numbered]
+---------------------------------------------------
+include::src/else.py[]
+---------------------------------------------------
+
+<1> Will be called if no exception raised
+
+Inspecting Errors
+-----------------
+* link:http://docs.python.org/2/library/sys.html#sys.exc_info[sys.exc_info] 
+  return information about the exception currently being handled
+* However it can be tedious to find data, hence use
+  link:http://docs.python.org/2/library/traceback.html[traceback] module
+** `print_exc`, `format_exc` and friends
+
+crashlog
+--------
+* Module for reporting unhandled exceptions via email and logs
+* Uses link:http://docs.python.org/2/library/sys.html#sys.excepthook[sys.excepthook]
+** `sys.excepthook` is called when an exception is raised and uncaught
+
+Usage:
+
+[source,python,numbered]
+---------------------------------------------------
+import crashlog
+crashlog.install(
+    emails=['daffy@duck.com'],
+    logfile='/path/to/logfile.log',
+)
+---------------------------------------------------
+
+crashlog (I)
+------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/crashlog1.py[]
+---------------------------------------------------
+
+crashlog (II)
+-------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/crashlog2.py[]
+---------------------------------------------------
+
+crashlog (III)
+--------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/crashlog3.py[]
+---------------------------------------------------
+
+<1> `format_exception` is from the
+link:http://docs.python.org/2/library/traceback.html[traceback] module
+
+Logging
+-------
+* Use link:http://docs.python.org/2/library/logging.html#logging.Logger.exception[
+      logging.exception]
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/log.py[]
+---------------------------------------------------
+<1> Provide context
+<2> Context
+<3> Traceback
+
+with
+----
+[source,python,numbered]
+---------------------------------------------------
+include::src/with.py[]
+---------------------------------------------------
+
+<1> `file` is a
+link:http://docs.python.org/2/tutorial/errors.html#predefined-clean-up-actions[
+context manager]
+
+atexit & signals
+----------------
+link:http://docs.python.org/2/library/atexit.html[atexit] handlers are not
+called when program is terminated via signal. You need to exit cleanly from a
+link:http://docs.python.org/2/library/signal.html#signal.signal[signal handler].
+[source,python,numbered]
+---------------------------------------------------
+include::src/atexit.py[]
+---------------------------------------------------
+
+
+Async
+-----
+When doing async operation, we don't want to block to get an exception. The
+common way is to provide success/fail continuations. (1)
+
+link:http://twistedmatrix.com/documents/12.3.0/core/howto/tutorial/protocol.html[Example]
+from link:http://twistedmatrix.com/[Twisted]:
+[source,python,numbered]
+---------------------------------------------------
+class FingerProtocol(basic.LineReceiver):
+    def lineReceived(self, user):
+        d = self.factory.getUser(user)
+
+        def onError(err):  # Error handler
+            return 'Internal error in server'
+        d.addErrback(onError)
+
+        def writeResponse(message):  # Success handler
+            self.transport.write(message + '\r\n')
+            self.transport.loseConnection()
+        d.addCallback(writeResponse)
+---------------------------------------------------
+
+(1) Should be familiar if you do AJAX or program with node.js
+
+Generators
+----------
+We'd like to signal a generator to resume/stop on error. Since if it will raise
+an exception we can't resume it.
+
+Lucky for us, Python 2.5 introduced a way to send values to generators.
+
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/it.py[]
+---------------------------------------------------
+
+References
+----------
+* link:http://docs.python.org/2/tutorial/errors.html[Errors and Exceptions]
+* link:http://wiki.python.org/moin/HandlingExceptions[Handling Exceptions] Wiki 
+* link:http://docs.python.org/2/library/traceback.html[traceback] module
+* link:http://docs.python.org/2/library/exceptions.html[Built-in exceptions]
+
+
+This presentation was made with
+link:http://www.methods.co.nz/asciidoc/[asciidoc] using the
+link:http://www.w3.org/Talks/Tools/Slidy2/Overview.html[slidy] backend and
+link:http://pygments.org/[Pygments] syntax highlighter.
+
+Thank You
+---------
+image:question.png[]
+
+// vim: ft=asciidoc spell
