@@ -1,0 +1,5 @@
+syntax: glob
+
+python-logging/kibana-latest/
+python-logging/data
+python-logging/logstash*.jar

@@ -1,0 +1,225 @@
+Python Logging
+==============
+:author: Miki Tebeka <miki.tebeka@gmail.com>
+:backend: slidy
+:max-width: 45em
+:data-uri:
+:icons:
+
+The "logging" Module
+---------------------
+* Modeled after `log4j` and friends
+* Main objects are
+** link:http://docs.python.org/2/library/logging.html#logging.Logger[Loggers]  
+** link:http://docs.python.org/2/library/logging.html#handler-objects[Handlers]
+** link:http://docs.python.org/2/library/logging.html#formatter-objects[Formatters]
+** link:http://docs.python.org/2/library/logging.html#logrecord-objects[LogRecord]
+* Log levels: DEBUG, INFO, WARNING, ERROR, FATAL
+** Have corresponding functions: `debug`, `info` ...
+** `log.exception` will also print stack trace (`ERROR` level)
+
+
+OOTB
+----
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/quickstart.py[]
+---------------------------------------------------
+
+<1> To standard error
+<2> Default level if `WARNING`, default format `%(levelname)s:%(name)s:%(message)s`
+
+Is it Thread Safe?
+------------------
+image::tweet-thread.png[]
+
+Lucky for us, the logging module *is* thread safe.
+
+The Easy Way
+------------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/basiccfg.py[]
+---------------------------------------------------
+
+<1> Will be appended
+
+The Hard Way
+------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/hard_way.py[]
+---------------------------------------------------
+
+What should we log?
+-------------------
+Everything?
+
+image:xkcd_379.png[]
+
+Srsly Though
+------------
+* Err on the side of
+  link:http://www.urbandictionary.com/define.php?term=tmi[TMI]
+** Think about the poor soul who'll need this information at 3am
+** Contrary to popular belief, we value DP's sleeping time :)
+* `log.exception` is there - use it
+* *Think* about log levels
+* Think about the machine that parses the logs
+
+loggings.handlers
+-----------------
+Provides link:http://docs.python.org/2/library/logging.handlers.html[many]
+handlers, including:
+
+* link:http://docs.python.org/2/library/logging.handlers.html#streamhandler[StreamHandler]
+   for stderr/stdout
+* http://docs.python.org/2/library/logging.handlers.html#filehandler[FileHandler]
+   for files
+* link:http://docs.python.org/2/library/logging.handlers.html#timedrotatingfilehandler[TimedRotatingFileHandler]
+   when you don't want to use `logrotate`
+* link:http://docs.python.org/2/library/logging.handlers.html#sysloghandler[SyslogHandler]
+   to spam syslog
+
+And please don't use
+link:http://docs.python.org/2/library/logging.handlers.html#smtphandler[SMTPHandler]
+:)
+
+
+logging.config
+--------------
+* We already saw
+  link:http://docs.python.org/2/library/logging.html#logging.basicConfig[basicConfig]
+* link:http://docs.python.org/2/library/logging.config.html#logging.config.dictConfig[dictConfig]
+  from a dictionary
+* link:http://docs.python.org/2/library/logging.config.html#logging.config.fileConfig[fileConfig]
+  to be used with .ini files
+
+isEnabledFor
+------------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/enabled.py[]
+---------------------------------------------------
+
+
+Changing Configuration on-the-fly
+---------------------------------
+Use
+link:http://docs.python.org/2.7/library/logging.config.html#logging.config.listen[logging.config.listen],
+then send over a .ini file prefixed with size encoded as big-endian, 4 byte
+unsigned long - easy peasy :)
+
+Huh?
+----
+
+image:miracle.jpg[]
+
+log.conf
+--------
+
+[source,ini,numbered]
+---------------------------------------------------
+include::src/log.conf[]
+---------------------------------------------------
+
+logsrv.py
+---------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/logsrv.py[]
+---------------------------------------------------
+
+chcfg.py
+--------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/chcfg.py[]
+---------------------------------------------------
+<1> Change level to `INFO`
+<2> Size of data
+
+
+Demo
+----
+[source,sh,numbered]
+---------------------------------------------------
+$ ./src/logsrv.py
+>>> error ouch
+2013-10-01 05:51:06,901 - ERROR - logsrv.py:17: ouch
+>>> info hello  <1>
+>>>
+---------------------------------------------------
+<1> Default level is `ERROR`
+
+[source,sh,numbered]
+---------------------------------------------------
+./src/chcfg.py
+---------------------------------------------------
+
+[source,sh,numbered]
+---------------------------------------------------
+>>> info hello
+2013-10-01 05:51:27,876 - INFO - logsrv.py:17: hello
+---------------------------------------------------
+
+
+json logging
+------------
+JSON (structured) logging is excellent when you build some tooling around your
+logs. Usually a combination of "traditional" logs and structured logs is used.
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/jlog.py[]
+---------------------------------------------------
+
+logstash + kibana
+-----------------
+image:logstash.png[height=64,width=64,align="right"]
+
+* link:http://logstash.net/[logstash] (now part of
+link:http://www.elasticsearch.org/[elasticsearch] family) is an open source log collector.
+* link:http://www.elasticsearch.org/overview/kibana/[kibana] is a UI over logstash
+for searching and visualization.
+* Use link:https://pypi.python.org/pypi/python-logstash[python-logstash] to log.
+
+A prayer for the
+link:http://localhost:8000/index.html#/dashboard/file/logstash.json[demo] gods
+... :)
+
+What Didn't We Cover?
+---------------------
+* Nested logs
+* link:http://docs.python.org/2/library/logging.html#filter-objects[Filters] 
+* ???
+
+
+Resources
+---------
+* link:http://docs.python.org/2/library/logging.html[logging documentation]
+** link:http://docs.python.org/2/howto/logging.html#logging-basic-tutorial[Basic
+   tutorial]
+** link:http://docs.python.org/2/howto/logging.html#logging-advanced-tutorial[Advanced
+   tutorial]
+** link:http://docs.python.org/2/howto/logging-cookbook.html#logging-cookbook[logging
+   cookbook]
+* link:http://kibana3.prod.demandstudios.com/#/dashboard[Studio Kibana]
+
+
+Thank You
+---------
+image:question.png[]
+
+This presentation was made with
+link:http://www.methods.co.nz/asciidoc/[asciidoc] using the
+link:http://www.w3.org/Talks/Tools/Slidy2/Overview.html[slidy] backend and
+link:http://pygments.org/[Pygments] syntax highlighter.
+
+
+// vim: ft=asciidoc spell
