@@ -181,7 +181,7 @@ include::src/jlog.py[]
 
 logstash + kibana
 -----------------
-image:logstash.png[height=64,width=64,align="right"]
+image:logstash.png[logstash]
 
 * link:http://logstash.net/[logstash] (now part of
 link:http://www.elasticsearch.org/[elasticsearch] family) is an open source log collector.
