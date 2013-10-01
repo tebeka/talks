@@ -1,0 +1,297 @@
+Python Serialization
+====================
+:author: Miki Tebeka <miki.tebeka@gmail.com>
+:backend: slidy
+:max-width: 45em
+:data-uri:
+:icons:
+
+
+What?
+-----
+Python has many ways to serialize data to disk (and other storage).
+We're going to cover many of them.
+
+Many of the serialization modules implement the same API:
+
+* `dump(object, stream)` - dump to stream
+* `load(stream)` - load from stream
+* `dumps(object)` - dump to string
+* `loads(str)` - load from string
+
+marshal
+-------
+* link:http://docs.python.org/2/library/marshal.html[marshal] can serialize
+    "basic" types (e.g. Can't handle user defined classes).
+* The format is machine independent (dump on x86, load in ARM).
+* Format can change between Python versions
+
+Example
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/marshal_example.py[]
+---------------------------------------------------
+
+<1> Always good idea to open in binary mode
+
+pickle
+-------
+
+* link:http://docs.python.org/2/library/pickle.html[pickle] can serialize
+    almost anything.
+* The format is machine independent (dump on x86, load in ARM).
+* Python version compatible
+** You can specify `protocol` for faster load/store (-1 = latest)
+* cPickle is faster but a bit more restricted
+
+Example
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/pickle_example.py[]
+---------------------------------------------------
+
+<1> User defined type
+<2> Load several objects from stream
+
+shelve
+------
+
+* link:http://docs.python.org/2/library/shelve.html[shelve] simple dictionary
+  like database
+* Uses `pickle` and `bsddb` under the hood
+* Looks like a dictionary
+** Only string keys though
+* Note the
+  link:http://docs.python.org/2/library/shelve.html#shelve.open[writeback] flag
+** Otherwise manually `sync`
+
+Example
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/shelve_example.py[]
+---------------------------------------------------
+<1> Will create first time
+
+json
+----
+
+* link:http://docs.python.org/2/library/json.html[json] can serialize
+    basic types
+** You can register specific type handlers though (`object_hook`)
+* Not all Python types can be mapped to JSON (sets ...)
+* Pretty fast (written in C)
+* Can serialize only one object
+** Though you can use
+    link:http://docs.python.org/2/library/json.html#json.JSONDecoder.raw_decode[JSONDecoder.raw_decode]
+
+Example
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/json_example.py[]
+---------------------------------------------------
+
+yaml
+----
+
+* link:http://pyyaml.org/wiki/PyYAMLDocumentation[yaml] can serialize almost anything
+** Not in the standard library
+** Object hooks via YAML tags
+** YAML is a superset of JSON
+* Not all Python types can be mapped to YAML (sets ...)
+* Dog slow compared to JSON
+** However YAML is much more readable (IMO)
+* Can serialized several objects
+** Use `load_all`
+
+Example
+-------
+[source,python,numbered]
+---------------------------------------------------
+include::src/yaml_example.py[]
+---------------------------------------------------
+
+<1> Supports `datetime` OOTB
+<2> Pretty YAML
+
+Python
+------
+You can use Python files as configuration. Mostly for reading (you can probably
+write, but it's harder).
+
+config.py
+---------
+[source,python,numbered]
+---------------------------------------------------
+include::src/config.py[]
+---------------------------------------------------
+
+* You have all the power of Python (environment, reading files ...)
+* Try to limit yourself to native types 
+* You can "pass down" functions, parameters ... (via
+  link:http://docs.python.org/2/library/functions.html#execfile[execfile]
+  `globals`)
+
+
+Example
+-------
+[source,python,numbered]
+---------------------------------------------------
+include::src/py_example.py[]
+---------------------------------------------------
+<1> `execfile` is gone in Python 3
+
+csv
+---
+
+* link:http://docs.python.org/2/library/csv.html[csv] read and write CSV files
+** Support different dialects, quoting, delimiters ...
+* Avoid CSVs at all cost
+** Horrible quoting problems
+** No built in schema (see
+link:http://pandas.pydata.org/pandas-docs/stable/generated/pandas.io.parsers.read_csv.html[pandas.read_csv] if you need that
+* Has both `reader` which return lines and `DictReader` which return dicts
+* Same for `writer` and `DictWriter`
+
+
+Example
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/csv_example.py[]
+---------------------------------------------------
+
+ini files
+---------
+
+* link:http://docs.python.org/2/library/configparser.html[ConfigParser] read and
+  write `.ini` files
+* Two levels: section > option
+* Can read several files
+
+
+Example
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/ini_example.py[]
+---------------------------------------------------
+<1> Explicit cast
+
+SQLite
+------
+* link:http://docs.python.org/2/library/sqlite3.html[sqlite3] is full featured
+  embedded SQL library
+** Installed everywhere (comes with Firefox, Chrome ...)
+* Not all Python types can be mapped to SQLite types
+** However you can use
+link:http://docs.python.org/2/library/sqlite3.html#using-adapters-to-store-additional-python-types-in-sqlite-databases[adapters]
+* As many other database libraries, implements
+  link:http://www.python.org/dev/peps/pep-0249/[dbapi 2]
+
+Example
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/sqlite_example.py[]
+---------------------------------------------------
+<1> In memory database
+<2> Will automatically commit or rollback
+<3> `cursor` objects are iterable
+
+Example 2
+---------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/sqlite_example2.py[]
+---------------------------------------------------
+<1> Yummy dicts
+<2> link:http://docs.python.org/2/library/sqlite3.html#row-objects[sqlite3.Row]
+    behaves like a dict and a tuple
+<3> By name, not position
+
+SQLAlchemy
+----------
+link:http://www.sqlalchemy.org/[SQLAlchemy] is an ORM mapper.
+(There's also link:http://www.sqlalchemy.org/[SQLObject]).
+
+Example
+-------
+[source,python,numbered]
+---------------------------------------------------
+include::src/sqlalchemy_example.py[]
+---------------------------------------------------
+
+Example (cont.)
+---------------
+[source,python,numbered]
+---------------------------------------------------
+include::src/sqlalchemy_example2.py[]
+---------------------------------------------------
+
+XML
+---
+* Python has many modules to handle XML
+* We'll go over
+  link:http://docs.python.org/2/library/xml.etree.elementtree.html[ElementTree]
+
+Example
+-------
+
+[source,python,numbered]
+---------------------------------------------------
+include::src/xml_example.py[]
+---------------------------------------------------
+<1> Values must be strings
+<2> xpath support
+
+Honorable Mentions
+------------------
+* link:http://docs.python.org/2/library/stringio.html[StringIO] - Great for
+  debugging
+* link:http://docs.python.org/2/library/bsddb.html[bsddb] - Super fast database
+* link:http://avro.apache.org/docs/current/gettingstartedpython.html[Avro] - Did
+  anyone said "Hadoop"?
+** There's also link:https://bitbucket.org/tebeka/fastavro[faster] version :)
+* link:https://developers.google.com/protocol-buffers/docs/pythontutorial[Protocol
+  Buffers], and link:http://thrift.apache.org[Thrift]
+* link:https://github.com/msgpack/msgpack-python[msgpack] - Claims to be fast
+* link:https://github.com/mongodb/mongo-python-driver[bson] - Fast as well
+* link:http://docs.python.org/2/library/struct.html[sturct] and
+  link:http://docs.python.org/2/library/array.html[array] if you decide to write
+  your own binary format
+
+A Word Of Caution
+-----------------
+Many of these modules are vulnerable to code injection (they use some form of
+`eval`).
+
+If you don't know where the data is coming from - try to use the `safe`
+functions/objects of the serialization module (if provided).
+
+* `yaml.safe_load`
+* `SafeConfigParser`
+
+
+Thank You
+---------
+image:question.png[]
+
+This presentation was made with
+link:http://www.methods.co.nz/asciidoc/[asciidoc] using the
+link:http://www.w3.org/Talks/Tools/Slidy2/Overview.html[slidy] backend and
+link:http://pygments.org/[Pygments] syntax highlighter.
+
+
+// vim: ft=asciidoc spell
