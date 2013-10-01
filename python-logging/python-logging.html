@@ -4,8 +4,8 @@
 <head>
 <title>Python Logging</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="copyright" content="Copyright &#169; Miki Tebeka &lt;miki.tebeka@demandmedia.com&gt;" />
-<meta name="generator" content="AsciiDoc 8.6.8" />
+<meta name="copyright" content="Copyright &#169; Miki Tebeka &lt;miki.tebeka@gmail.com&gt;" />
+<meta name="generator" content="AsciiDoc 8.6.7" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -88,14 +88,10 @@ ul, ol, li > p {
 ul > li     { color: #aaa; }
 ul > li > * { color: black; }
 
-.monospaced, code, pre {
-  font-family: "Courier New", Courier, monospace;
-  font-size: inherit;
-  color: navy;
+pre {
   padding: 0;
   margin: 0;
 }
-
 
 #author {
   color: #527bbd;
@@ -420,6 +416,12 @@ div.unbreakable { page-break-inside: avoid; }
  *
  * */
 
+tt {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+}
+
 div.tableblock {
   margin-top: 1.0em;
   margin-bottom: 1.5em;
@@ -452,6 +454,12 @@ div.tableblock > table[frame="vsides"] {
  * html5 specific
  *
  * */
+
+.monospaced {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+}
 
 table.tableblock {
   margin-top: 1.0em;
@@ -977,7 +985,6 @@ li {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
-
 /*
   pygmentize filter
 */
@@ -1043,7 +1050,6 @@ li {
 .highlight .vg { color: #B8860B } /* Name.Variable.Global */
 .highlight .vi { color: #B8860B } /* Name.Variable.Instance */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
-
 
 /* Vertical lines between line numbers and code */
 div.linenodiv {
@@ -3905,7 +3911,7 @@ setTimeout(w3c_slidy.hide_slides, 50);
 <body class="article" style="max-width:45em">
 <div id="header" class="slide">
 <h1>Python Logging</h1>
-<span id="author">Miki Tebeka &lt;miki.tebeka@demandmedia.com&gt;</span><br />
+<span id="author">Miki Tebeka &lt;miki.tebeka@gmail.com&gt;</span><br />
 </div>
 <div class="sect1 slide">
 <h1 id="_the_logging_module">The "logging" Module</h1>
@@ -3913,7 +3919,7 @@ setTimeout(w3c_slidy.hide_slides, 50);
 <ul class="">
 <li>
 <span>
-Modeled after <code>log4j</code> and friends
+Modeled after <tt>log4j</tt> and friends
 </span>
 </li>
 <li>
@@ -3950,12 +3956,12 @@ Log levels: DEBUG, INFO, WARNING, ERROR, FATAL
 <ul class="">
 <li>
 <span>
-Have corresponding functions: <code>debug</code>, <code>info</code> &#8230;
+Have corresponding functions: <tt>debug</tt>, <tt>info</tt> &#8230;
 </span>
 </li>
 <li>
 <span>
-<code>log.exception</code> will also print stack trace (<code>ERROR</code> level)
+<tt>log.exception</tt> will also print stack trace (<tt>ERROR</tt> level)
 </span>
 </li>
 </ul>
@@ -4009,7 +4015,7 @@ Js+PtSZTMHe+L8IAUXeGAZd8DYbArB3C5FbXiBNThSMzcxelM4DI1l0zxtge1f0HVNk1YLFij6sA
 AABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlz
 dGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1MjljOTRhN2Y0N2Rl
 Y2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
-Default level if <code>WARNING</code>, default format <code>%(levelname)s:%(name)s:%(message)s</code>
+Default level is <tt>WARNING</tt>, default format <tt>%(levelname)s:%(name)s:%(message)s</tt>
 </td></tr>
 </table></div>
 </div>
@@ -6570,7 +6576,7 @@ Contrary to popular belief, we value DP&#8217;s sleeping time :)
 </li>
 <li>
 <span>
-<code>log.exception</code> is there - use it
+<tt>log.exception</tt> is there - use it
 </span>
 </li>
 <li>
@@ -6607,7 +6613,7 @@ handlers, including:</p></div>
 <li>
 <span>
 <a href="http://docs.python.org/2/library/logging.handlers.html#timedrotatingfilehandler">TimedRotatingFileHandler</a>
-   when you don&#8217;t want to use <code>logrotate</code>
+   when you don&#8217;t want to use <tt>logrotate</tt>
 </span>
 </li>
 <li>
@@ -7200,7 +7206,8 @@ XuaBr3P60DY13NCykgggEHyI3VAykHpoD0A1VQ2Ad7NX61QVWlKUpX//2Q==" />
 14
 15
 16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
 
 <span class="kn">import</span> <span class="nn">logging</span> <span class="kn">as</span> <span class="nn">log</span>
 <span class="kn">import</span> <span class="nn">logging.config</span> <span class="kn">as</span> <span class="nn">logcfg</span>
@@ -7210,6 +7217,7 @@ XuaBr3P60DY13NCykgggEHyI3VAykHpoD0A1VQ2Ad7NX61QVWlKUpX//2Q==" />
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">logcfg</span><span class="o">.</span><span class="n">fileConfig</span><span class="p">(</span><span class="s">&#39;src/log.conf&#39;</span><span class="p">)</span>
     <span class="n">thr</span> <span class="o">=</span> <span class="n">logcfg</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+    <span class="n">thr</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="bp">True</span>  <span class="c"># Don&#39;t hangup</span>
     <span class="n">thr</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -7269,7 +7277,7 @@ gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
 ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
-Change level to <code>INFO</code>
+Change level to <tt>INFO</tt>
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABvSURBVAgd
 BcGhAcJADADAky8rsZXIyK7AGkgksiu8RNYyAiswAhIbiYwMd7rrsS3LdlS3zuC8EtkqrJ/8vRdR
@@ -7310,7 +7318,7 @@ gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
 ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII=" /></td><td>
-Default level is <code>ERROR</code>
+Default level is <tt>ERROR</tt>
 </td></tr>
 </table></div>
 <div class="listingblock">

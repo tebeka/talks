@@ -28,7 +28,7 @@ include::src/quickstart.py[]
 ---------------------------------------------------
 
 <1> To standard error
-<2> Default level if `WARNING`, default format `%(levelname)s:%(name)s:%(message)s`
+<2> Default level is `WARNING`, default format `%(levelname)s:%(name)s:%(message)s`
 
 Is it Thread Safe?
 ------------------
