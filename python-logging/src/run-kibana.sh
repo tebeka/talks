@@ -7,6 +7,6 @@ case $1 in
     -h | --help ) echo "usage: $(basename $0) [KIBANA_DIR]"; exit;;
 esac
 
-root=${1-.}
+root=${1-kibana-latest}
 cd ${root}
 python -m SimpleHTTPServer
