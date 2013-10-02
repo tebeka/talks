@@ -66,7 +66,11 @@ Srsly Though
 ** Think about the poor soul who'll need this information at 3am
 ** Contrary to popular belief, we value DP's sleeping time :)
 * `log.exception` is there - use it
-* *Think* about log levels
+* However ... link:http://www.urbandictionary.com/define.php?term=TNSTAAFL[TNSTAAFL]
+** Can cripple performance
+*** On my machine logging to file was about 37ms (SSD)
+** Logs can get big
+** *Think* about log levels
 * Think about the machine that parses the logs
 
 loggings.handlers
