@@ -32,7 +32,7 @@ include::src/quickstart.py[]
 
 Is it Thread Safe?
 ------------------
-image::tweet-thread.png[]
+image::tweet-thread.png[link="https://twitter.com/davidlohr/status/288786300067270656"]
 
 Lucky for us, the logging module *is* thread safe.
 
@@ -57,7 +57,7 @@ What should we log?
 -------------------
 Everything?
 
-image:xkcd_379.png[]
+image::xkcd_378.png[link="http://xkcd.com/378/"]
 
 Srsly Though
 ------------
@@ -120,7 +120,7 @@ unsigned long - easy peasy :)
 Huh?
 ----
 
-image:miracle.jpg[]
+image::miracle.jpg[]
 
 log.conf
 --------
@@ -185,7 +185,7 @@ include::src/jlog.py[]
 
 logstash + kibana
 -----------------
-image:logstash.png[logstash]
+image::logstash.png[logstash]
 
 * link:http://logstash.net/[logstash] (now part of
 link:http://www.elasticsearch.org/[elasticsearch] family) is an open source log collector.
@@ -217,7 +217,7 @@ Resources
 
 Thank You
 ---------
-image:question.png[]
+image::question.png[]
 
 This presentation was made with
 link:http://www.methods.co.nz/asciidoc/[asciidoc] using the
