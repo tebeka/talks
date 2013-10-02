@@ -213,7 +213,6 @@ Resources
    tutorial]
 ** link:http://docs.python.org/2/howto/logging-cookbook.html#logging-cookbook[logging
    cookbook]
-* link:http://kibana3.prod.demandstudios.com/#/dashboard[Studio Kibana]
 
 
 Thank You
