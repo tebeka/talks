@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shorty - URL Shortener</title>
+        <link rel="stylesheet" 
+              href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="page-header"><h3>Shorty - URL Shortener</h3></div>
+            <form>
+                <div class="input-group">
+                    <input type="text" class="form-control" 
+                    placeholder="Paste URL here">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">+</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

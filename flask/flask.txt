@@ -1,0 +1,160 @@
+Flask Workshop
+==============
+:author: Miki Tebeka <miki.tebeka@demandmedia.com>
+:backend: slidy
+:max-width: 45em
+:data-uri:
+:icons:
+
+Flask
+-----
+* One of the many web frameworks out there
+* Gaining popularity
+* Simple to use
+* Comes "fully loaded"
+** RESTful link:http://flask.pocoo.org/docs/quickstart/#routing[request dispatching]
+** Integrated link:http://flask.pocoo.org/docs/quickstart/#debug-mode[debugger]
+** Integrated link:http://flask.pocoo.org/docs/testing/[unit testing]
+** Templating via link:http://jinja.pocoo.org/[Jinja2]
+** link:http://flask.pocoo.org/extensions/[Many extensions]
+
+This Workshop
+-------------
+We'll build a URL shortener service (like link:http://bit.ly[bit.ly])
+
+[1] Hello World
+----------------
+Create a web server that return "Hello Flask!" when you issue a GET request.
+
+[source,bash]
+---------------------------------------------------
+$ curl localhost:5000
+Hello Flask!
+$
+---------------------------------------------------
+
+Tips
+~~~~
+* `pip install Flask`
+
+[2] Template
+------------
+Have the web server return a page for submitting URL.
+
+image:form.png[]
+
+
+Tips
+~~~~
+* Enable debugging mode in the server so you won't need to restart it
+* By default, flaks looks for templates in the `templates` directory
+* You can grab the template HTML from
+  link:http://dm-miki.s3.amazonaws.com/talks/flask/index.html[here] 
+** If you don't want to write it yourself
+
+[3] Static Files
+----------------
+Serve static files from `static` directory.
+
+Tips
+~~~~
+* To test you can place `style.css` there and make the header blue.
+* You might want to use
+  link:http://flask.pocoo.org/docs/api/#flask.url_for[url_for] in the template
+
+
+[4] JavaScript
+--------------
+Have a click on the [+] button submit the form.
+
+Tips
+~~~~
+* jQuery is link:https://developers.google.com/speed/libraries/devguide#jquery[hosted on google]
+* Again, you can get the JS file from
+  link:http://dm-miki.s3.amazonaws.com/talks/flask/index.js[here] 
+
+
+[5] Database
+------------
+We'll use link:http://www.sqlalchemy.org/[SQLAlchemy] and
+link:http://pythonhosted.org/Flask-SQLAlchemy[flask-sqlalchemy] extension.
+
+Schema:
+
+    * `short`: short url, text, primary key
+    * `long`: long (original) url, text
+    * `hits`: number of hits, integer
+
+Add a line to the output HTML showing how many links we've shortened so far.
+
+Tips
+~~~~
+* `pip install flask-sqlalchemy`
+* `count` link:http://j.mp/1nzu6DA[example]
+
+
+[6] Handling Form Data
+----------------------
+Handle the form data and store and short URL in the database.
+
+For short URLs, we store a global counter and
+link:http://de.wikipedia.org/wiki/Base62[base62] to encode it as the short URL.
+
+Tips
+~~~~
+* link:http://flask.pocoo.org/docs/quickstart/#the-request-object[Getting form
+  data]
+* Use link:https://bitbucket.org/tebeka/base62-py/raw/tip/base62.py[base62.py]
+  to encode link
+* Use a link:http://docs.python.org/2/library/threading.html#lock-objects[Lock]
+  to guard the counter
+
+
+[7] Redirecting Short Links
+---------------------------
+Redirect to original URL from short links. Increment the counter in the database
+for each hit.
+
+Tips
+~~~~
+* Check how to link:http://flask.pocoo.org/docs/quickstart/#routing[route] with
+  variables
+* Use link:http://flask.pocoo.org/docs/api/#flask.redirect[redirect]  
+
+
+[8] Dynamically Loading Data
+----------------------------
+Add a list of the 10 most populate links at the bottom of the page.
+Populate the list by AJAX call the get JSON object back.
+
+image:top10.png[]
+
+Tips
+~~~~
+* You need to create a container in the HTML with a known id
+* See jQuery link:http://api.jquery.com/jquery.getjson/[.getJSON]
+* See jQuery link:https://api.jquery.com/append/[.append]
+* You can get fancy with an link:http://www.ajaxload.info/[AJAX loader] gif
+* link:http://docs.sqlalchemy.org/en/rel_0_9/orm/query.html[SQLAlchemy query
+  guide]
+  
+
+References
+----------
+* link:http://flask.pocoo.org[Flask main site]
+* link:http://flask.pocoo.org/docs/tutorial/[Flask Tutorial]
+* link:http://jinja.pocoo.org/[Jinja2]
+* link:http://www.sqlalchemy.org/[SQLAlchemy]
+* link:http://pyvideo.org/search?models=videos.video&q=flask[Some Videos]
+
+
+This presentation was made with
+link:http://www.methods.co.nz/asciidoc/[asciidoc] using the
+link:http://www.w3.org/Talks/Tools/Slidy2/Overview.html[slidy] backend and
+link:http://pygments.org/[Pygments] syntax highlighter.
+
+Thank You
+---------
+image:question.svg[height=500]
+
+// vim: ft=asciidoc spell
