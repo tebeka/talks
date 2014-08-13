@@ -286,7 +286,7 @@ functions/objects of the serialization module (if provided).
 
 Thank You
 ---------
-image:question.png[]
+image::question.png[]
 
 This presentation was made with
 link:http://www.methods.co.nz/asciidoc/[asciidoc] using the

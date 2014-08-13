@@ -4,8 +4,8 @@
 <head>
 <title>Python Serialization</title>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="copyright" content="Copyright &#169; Miki Tebeka &lt;miki.tebeka@demandmedia.com&gt;" />
-<meta name="generator" content="AsciiDoc 8.6.8" />
+<meta name="copyright" content="Copyright &#169; Miki Tebeka &lt;miki.tebeka@gmail.com&gt;" />
+<meta name="generator" content="AsciiDoc 8.6.9" />
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
 
@@ -95,7 +95,9 @@ ul > li > * { color: black; }
   padding: 0;
   margin: 0;
 }
-
+pre {
+  white-space: pre-wrap;
+}
 
 #author {
   color: #527bbd;
@@ -224,7 +226,7 @@ div.exampleblock > div.content {
 }
 
 div.imageblock div.content { padding-left: 0; }
-span.image img { border-style: none; }
+span.image img { border-style: none; vertical-align: text-bottom; }
 a.image:visited { color: white; }
 
 dl {
@@ -978,19 +980,16 @@ li {
   margin-bottom: 0.5em;
 }
 
-/*
-  pygmentize filter
-*/
 .highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f4f4f4; }
-.highlight .c { color: #008800; font-style: italic } /* Comment */
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
-.highlight .k { color: #AA22FF; font-weight: bold } /* Keyword */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
-.highlight .cm { color: #008800; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #008800 } /* Comment.Preproc */
-.highlight .c1 { color: #008800; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #008800; font-weight: bold } /* Comment.Special */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
 .highlight .gr { color: #FF0000 } /* Generic.Error */
@@ -1001,49 +1000,48 @@ li {
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
 .highlight .gt { color: #0040D0 } /* Generic.Traceback */
-.highlight .kc { color: #AA22FF; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #AA22FF; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #AA22FF; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #AA22FF } /* Keyword.Pseudo */
-.highlight .kr { color: #AA22FF; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #00BB00; font-weight: bold } /* Keyword.Type */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
 .highlight .m { color: #666666 } /* Literal.Number */
-.highlight .s { color: #BB4444 } /* Literal.String */
-.highlight .na { color: #BB4444 } /* Name.Attribute */
-.highlight .nb { color: #AA22FF } /* Name.Builtin */
-.highlight .nc { color: #0000FF } /* Name.Class */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
 .highlight .no { color: #880000 } /* Name.Constant */
 .highlight .nd { color: #AA22FF } /* Name.Decorator */
 .highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
 .highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #00A000 } /* Name.Function */
+.highlight .nf { color: #0000FF } /* Name.Function */
 .highlight .nl { color: #A0A000 } /* Name.Label */
 .highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
 .highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #B8860B } /* Name.Variable */
+.highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sb { color: #BB4444 } /* Literal.String.Backtick */
-.highlight .sc { color: #BB4444 } /* Literal.String.Char */
-.highlight .sd { color: #BB4444; font-style: italic } /* Literal.String.Doc */
-.highlight .s2 { color: #BB4444 } /* Literal.String.Double */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight .sh { color: #BB4444 } /* Literal.String.Heredoc */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
 .highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
 .highlight .sx { color: #008000 } /* Literal.String.Other */
 .highlight .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight .s1 { color: #BB4444 } /* Literal.String.Single */
-.highlight .ss { color: #B8860B } /* Literal.String.Symbol */
-.highlight .bp { color: #AA22FF } /* Name.Builtin.Pseudo */
-.highlight .vc { color: #B8860B } /* Name.Variable.Class */
-.highlight .vg { color: #B8860B } /* Name.Variable.Global */
-.highlight .vi { color: #B8860B } /* Name.Variable.Instance */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
-
 
 /* Vertical lines between line numbers and code */
 div.linenodiv {
@@ -3905,7 +3903,7 @@ setTimeout(w3c_slidy.hide_slides, 50);
 <body class="article" style="max-width:45em">
 <div id="header" class="slide">
 <h1>Python Serialization</h1>
-<span id="author">Miki Tebeka &lt;miki.tebeka@demandmedia.com&gt;</span><br />
+<span id="author">Miki Tebeka &lt;miki.tebeka@gmail.com&gt;</span><br />
 </div>
 <div class="sect1 slide">
 <h1 id="_what">What?</h1>
@@ -5110,8 +5108,10 @@ functions/objects of the serialization module (if provided).</p></div>
 <div class="sect1 slide">
 <h1 id="_thank_you">Thank You</h1>
 <div class="sectionbody" style="max-width:45em">
-<div class="paragraph"><p><span class="image">
-<img alt="question.png" src="data:image/png;base64,
+<div class="imageblock">
+<div class="content">
+<img alt="question.png"
+src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAyAAAAJJCAYAAABS/FNOAAAgAElEQVR4nOzdeXyV5Z3//1dCCIiR
 bQAREVGpBRWHxaos1dYFBRlx3Eal7Sitdakdq522WqfT1mXaTlu3Vvvr4vJVqWOtFlEEUcG6ABVE
 ZFMRKSICjcrWNIQAye+PKzEBkpz7JOc+6+v5eJxHzgnXfZ0PBPF+n2sDSZIkSZIkSZIkSZIkSZIk
@@ -5863,7 +5863,8 @@ ERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERER
 ERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERER
 EREREREREREREREREREREREREREREREREREREREREREREREREREREREREQmx/weQKZfK259qRQAA
 AABJRU5ErkJggg==" />
-</span></p></div>
+</div>
+</div>
 <div class="paragraph"><p>This presentation was made with
 <a href="http://www.methods.co.nz/asciidoc/">asciidoc</a> using the
 <a href="http://www.w3.org/Talks/Tools/Slidy2/Overview.html">slidy</a> backend and
