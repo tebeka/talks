@@ -3,21 +3,9 @@ Introduction To Go
 Tags: go
 
 Miki Tebeka
-Lead Software Developer, Demand Media
-miki.tebeka@demandmedia.com
+CEO, 353Solutions
+miki@353solutions.com
 @tebeka
-
-* Meta
-
-- "If I had eight hours to chop down a tree, I'd spend six sharpening my axe." -Abraham Lincoln
-- (A.K.A [[http://c2.com/cgi/wiki?SharpenTheSaw][Sharpen The Saw]])
-- "If all you have is a hammer, everything looks like a nail." -Mark Twain(?)
-
-Please join the [[https://groups.google.com/a/groups.demandmedia.com/forum/#!forum/sharper]["sharper" Google Group]].
-
-Oh, and we're hosting [[http://www.meetup.com/Los-Angeles-Gophers/events/127123632/][L.A. Gophers]] Thursday at 6pm (Hollywood room)
-[Can I bribe you with some Pizza?]
-
 
 * Go
 
@@ -88,6 +76,8 @@ Other changes/oddities
 .code deferr.go /START_SLURP/,/END_SLURP/
 .play deferr.go /START_MAIN/,/END_MAIN/
 
+Deferred are executed in LIFO order.
+
 There's also [[http://golang.org/doc/effective_go.html#panic][panic]] and [[http://golang.org/doc/effective_go.html#recover][recover]] - I won't cover them here.
 
 * Goroutines
@@ -151,6 +141,7 @@ Some notable packages
 - [[http://golang.org/pkg/expvar/][expvar]] - Metrics
 - [[http://golang.org/pkg/flag/][flag]] - Command line parsing
 - [[http://golang.org/pkg/database/sql/][database/sql]] - Database spec
+- [[http://golang.org/pkg/testing/][testing]] - Testing
 
 * The "go" Tool
 

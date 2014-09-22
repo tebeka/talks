@@ -1,4 +1,9 @@
-// forward proxies traffic between local socket and remote backend
+import (
+	"io"
+	"log"
+	"net"
+)
+
 func forward(local net.Conn, remoteAddr string) {
 	remote, err := net.Dial("tcp", remoteAddr)
 	if remote == nil {
