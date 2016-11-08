@@ -1,0 +1,125 @@
+import "C"
+Calling C From Go
+19 Mar 2015
+Tags: go c
+
+Miki Tebeka
+CEO, 353solutions
+miki@353solution
+http://353solutions.com
+@tebeka
+
+* Why C?
+
+After all we have Go, which is much better :)
+
+However, there is a *huge* volume of software written in C.
+We'd like to re-use it and not re-write it.
+
+* import "C" (A.K.A cgo)
+
+Provides an easy bridge between Go and C
+
+The Downside
+- Hard to find docs (see reference slide)
+- Pay attention to memory leaks
+- Compilation time grows
+- For C++ you need `extern`"C"` and C like wrapper
+- Users need C compilers and libraries installed
+
+Note that are other options (such as [[http://www.swig.org/][swig]])
+
+
+
+* Minimal Example
+
+.play sqrt.go
+
+
+* Strings
+
+.play str.go
+
+* Ahhhhhh!
+
+.image picard1.jpg 400 600
+
+* Strings
+
+.play str2.go
+
+* But ...
+
+.image picard2.jpg 400 600
+
+* Strings
+
+.play str3.go
+
+* Structs
+
+.play struct.go
+
+* Calling Go from C
+
+`callback.c`
+
+.code -numbers callback/callback.c
+
+`callback.h`
+
+.code -numbers callback/callback.h
+
+* Calling Go from C
+
+`callback.go`
+
+.code -numbers callback/callback.go
+
+* Go Style Errors
+
+.play err.go
+
+* Case Study - snowball
+
+- [[https://bitbucket.org/tebeka/snowball]]
+- Port of [[http://snowball.tartarus.org/][snowball]] stemmer to Go
+- Had to flatten directories and rewrite #include
+- Wasn't that painful
+
+.play stem.go
+
+* snowball - imports and definition
+
+.code -numbers snowball.go  /START_IMPORT/,/END_IMPORT/
+
+* snowball - New and free
+
+.code -numbers snowball.go  /START_NEW/,/END_NEW/
+
+
+* snowball - Stem
+
+snowball uses `sb_symbol*` for string
+
+.code -numbers snowball.go  /START_STEM/,/END_STEM/
+
+* snowball - List
+
+The list of languages is a `static`char*` array with a `NULL` sentinal
+
+.code -numbers snowball.go  /START_LIST/,/END_LIST/
+
+
+* References
+
+- [[http://golang.org/cmd/cgo/][cgo docs]]
+- [[http://golang.org/doc/articles/c_go_cgo.html][C? Go? Cgo!]]
+- [[http://golang.org/misc/cgo/][cgo examples]]
+- [[https://github.com/golang/go/wiki/cgo][cgo wiki]]
+- [[http://stackoverflow.com/search?q=%5Bgo%5D+cgo][StackOverflow]]
+
+* Now Go Hack!
+
+.image real-programmers.jpg 400 600
+

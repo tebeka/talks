@@ -1,0 +1,300 @@
+Python 3.5.1 (default, Dec  7 2015, 12:58:09) 
+[GCC 5.2.0] on linux
+Type "copyright", "credits" or "license()" for more information.
+>>> # Defining and Calling Python Functions
+>>> ## Miki Tebkea :: 353Solutions - world class Python, Scientific Python and Go workshops
+>>> def sub(x, y):
+	"""Return's the y's predecessor of x"""
+	return x - y
+
+>>> sub(1, 7)
+-6
+>>> sub(y=7, x=1)
+-6
+>>> sub(1, y=7)
+-6
+>>> sub(x=1, y)
+SyntaxError: positional argument follows keyword argument
+>>> sub(x=1, 7)
+SyntaxError: positional argument follows keyword argument
+>>> args = (1, 7)
+>>> args = 1, 7
+>>> sub(*args)
+-6
+>>> # * in function calls unpacks sequence to positional arguments
+>>> a, b = (1,), (7,)
+>>> sub(*(a + b))
+-6
+>>> a + b
+(1, 7)
+>>> sub(*a, *b)
+-6
+>>> def vargs(*args):
+	print(args)
+
+	
+>>> vargs()
+()
+>>> vargs(1, 2, 3)
+(1, 2, 3)
+>>> # * in function definition packs positional to tuple
+>>> kw = {'x': 1, 'y': 7}
+>>> sub(**kw)
+-6
+>>> k, w = {'x': 1}, {'y': 7}
+>>> # Python < 3.5
+>>> kw = k.copy()
+>>> kw.update(w)
+>>> sub(**kw)
+-6
+>>> sub(**k, **w)
+-6
+>>> sub(**k, **k, **w)
+Traceback (most recent call last):
+  File "<pyshell#33>", line 1, in <module>
+    sub(**k, **k, **w)
+TypeError: sub() got multiple values for keyword argument 'x'
+>>> def kwargs(**kw):
+	print(kw)
+
+	
+>>> kwargs()
+{}
+>>> kwargs(x=1, y=7)
+{'x': 1, 'y': 7}
+>>> # ** in function definition packs keyword arguments to a dict
+>>> def eat_all(*args, **kw):
+	print(args)
+	print(kw)
+
+	
+>>> eat_all()
+()
+{}
+>>> eat_all(1,2)
+(1, 2)
+{}
+>>> eat_all(1, 2, z=17)
+(1, 2)
+{'z': 17}
+>>> def sub(x, y=1):
+	return x - y
+
+>>> sub(1, 7)
+-6
+>>> sub(1)
+0
+>>> # var=value in function definition is a default value and is evaluated at function definition time
+>>> # NEVER USE MUTABLE DEFAULT ARGUMENTS
+>>> def append(obj, items=[]):
+	items.append(obj)
+	print(items)
+
+	
+>>> append(1)
+[1]
+>>> append(2)
+[1, 2]
+>>> append(3)
+[1, 2, 3]
+>>> def append(obj, items=None):
+	items = items if items is None else []
+	items.append(obj)
+	print(items)
+
+	
+>>> append(3)
+Traceback (most recent call last):
+  File "<pyshell#66>", line 1, in <module>
+    append(3)
+  File "<pyshell#65>", line 3, in append
+    items.append(obj)
+AttributeError: 'NoneType' object has no attribute 'append'
+>>> def append(obj, items=None):
+	items = [] if items is None else items
+	items.append(obj)
+	print(items)
+
+	
+>>> append(3)
+[3]
+>>> append(2)
+[2]
+>>> class subber:
+	def __init__(self, n):
+		self.n = n
+	def __call__(self, x):
+		return x - self.n
+
+	
+>>> sub3 = subber(3)
+>>> sub3(1)
+-2
+>>> sub
+<function sub at 0x7f5170f89048>
+>>> sub.__call__(1, 7)
+-6
+>>> def sub(x, y, verbose=False):
+	if verbose:
+		print('%s - %s' % (x, y))
+	return x - y
+
+>>> sub(1, 7)
+-6
+>>> sub(1, 7, True)
+1 - 7
+-6
+>>> sub(1, 7, verbose=True)
+1 - 7
+-6
+>>> def sub(x, y, *, verbose=False):
+	if verbose:
+		print('%s - %s' % (x, y))
+	return x - y
+
+>>> sub(1, 7, verbose=True)
+1 - 7
+-6
+>>> sub(1, 7, True)
+Traceback (most recent call last):
+  File "<pyshell#92>", line 1, in <module>
+    sub(1, 7, True)
+TypeError: sub() takes 2 positional arguments but 3 were given
+>>> sub(1, 7, 9, True)
+Traceback (most recent call last):
+  File "<pyshell#93>", line 1, in <module>
+    sub(1, 7, 9, True)
+TypeError: sub() takes 2 positional arguments but 4 were given
+>>> def sub(*, x, y):
+	return x-y
+
+>>> sub(1, 2)
+Traceback (most recent call last):
+  File "<pyshell#97>", line 1, in <module>
+    sub(1, 2)
+TypeError: sub() takes 0 positional arguments but 2 were given
+>>> sub(x=1, y=7)
+-6
+>>> cat = ''.join
+>>> cat(['a', 'b', 'c'])
+'abc'
+>>> import re
+>>> match_comment = re.compile('#.*').match
+>>> match_comment('hi there')
+>>> match_comment('# hi there')
+<_sre.SRE_Match object; span=(0, 10), match='# hi there'>
+>>> if match_comment('# hi there'):
+	print('comment')
+
+	
+comment
+>>> from functools import partial
+>>> compact_ws = partial(re.compile('\s+').sub, ' ')
+>>> compact_ws('hello    there PyWeb ')
+'hello there PyWeb '
+>>> sub = lambda x, y: x - y
+>>> sub(1, 7)
+-6
+>>> fns = [lambda: n for n in range(5)]
+>>> [fn() for fn in fns]
+[4, 4, 4, 4, 4]
+>>> n
+Traceback (most recent call last):
+  File "<pyshell#115>", line 1, in <module>
+    n
+NameError: name 'n' is not defined
+>>> fns = [lambda n=n: n for n in range(5)]
+>>> [fn() for fn in fns]
+[0, 1, 2, 3, 4]
+>>> async def sub(x, y):
+	return x - y
+
+>>> sub (1, 7)
+<coroutine object sub at 0x7f5170f8f048>
+>>> def sub(x: int, y: int) -> int:
+	return x - y
+
+>>> sub(1, 7)
+
+Warning (from warnings module):
+  File "/usr/lib/python3.5/idlelib/rpc.py", line 610
+    builtins._ = None
+RuntimeWarning: coroutine 'sub' was never awaited
+-6
+>>> sub.__annotations__
+{'x': <class 'int'>, 'y': <class 'int'>, 'return': <class 'int'>}
+>>> ncalls =  0
+>>> def sub(x, y):
+	ncalls -= 1
+	return x - y
+
+>>> sub(1, 7)
+Traceback (most recent call last):
+  File "<pyshell#132>", line 1, in <module>
+    sub(1, 7)
+  File "<pyshell#131>", line 2, in sub
+    ncalls -= 1
+UnboundLocalError: local variable 'ncalls' referenced before assignment
+>>> def sub(x, y):
+	global ncalls
+	
+	ncalls -= 1
+	return x - y
+
+>>> sub(1, 7)
+-6
+>>> ncalls
+-1
+>>> from functools import wraps
+>>> def timed(fn):
+	@wraps(fn)
+	def wrapper(*args, **kw):
+		start = time()
+		try:
+			return fn(*args, **kw)
+		finally:
+			print('%s took %ssec' % (fn.__name__, time() - start))
+
+			
+>>> from time import time
+>>> @timed
+def sub(x, y):
+	sleep(0. 1)
+	
+SyntaxError: invalid syntax
+>>> @timed
+def sub(x, y):
+	sleep(0.1)
+	return x - y
+
+>>> from time import sleep
+>>> sub(1, 7)
+Traceback (most recent call last):
+  File "<pyshell#155>", line 1, in <module>
+    sub(1, 7)
+TypeError: 'NoneType' object is not callable
+>>> def timed(fn):
+	@wraps(fn)
+	def wrapper(*args, **kw):
+		start = time()
+		try:
+			return fn(*args, **kw)
+		finally:
+			print('%s took %ssec' % (fn.__name__, time() - start))
+	return wrapper
+
+>>> @timed
+def sub(x, y):
+	sleep(0.1)
+	return x - y
+
+>>> sub(1, 7)
+sub took 0.10054755210876465sec
+-6
+>>> help(sub)
+Help on function sub in module __main__:
+
+sub(x, y)
+
+>>> # nonlocal
+>>> 
