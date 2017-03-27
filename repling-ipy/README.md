@@ -4,7 +4,7 @@ Given at [PyWeb-IL](https://www.meetup.com/PyWeb-IL/) on May 2017
 
 ## History & Misc
 * In, Out
-* Completion (os.)
+* Completion `os.<TAB>`, `d['x<TAB>`
 * path.isdir?, path.isdir??, ?path.isdir
 
 
@@ -37,3 +37,4 @@ Given at [PyWeb-IL](https://www.meetup.com/PyWeb-IL/) on May 2017
 * %reset
 * %store a, %store -r
 * %who, %whos
+* %% for cell
