@@ -37,4 +37,12 @@ Given at [PyWeb-IL](https://www.meetup.com/PyWeb-IL/) on May 2017
 * %reset
 * %store a, %store -r
 * %who, %whos
-* %% for cell
+* %%time for multi line cell
+
+## Config
+
+* jupyter console --generate-config
+* confirm_exit
+* editing_mode
+* highlighting_style    
+
