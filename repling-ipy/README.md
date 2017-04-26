@@ -19,14 +19,24 @@ Given at [PyWeb-IL](https://www.meetup.com/PyWeb-IL/) on May 2017
     def log_dir():
 	return '/var/log'
     !ls {log_dir()}
-    In [21]: !bzcat track.csv.bz2 | head | xsel -b
-    In [22]: df = pd.read_clipboard()
+
+    files = !ls -lth /var/log
+    files, len(files), files[-1]
+    type(files)
+    files.grep('Xorg')
+    files.grep(lambda v: 'xo' in v.lower())
+    files.fields(5, 6, 7)
+    _exit_code
+
+    !xzcat track.csv.bz2 | head | xsel -b
+    df = pd.read_clipboard(sep=',', parse_dates=['time'])
 
 ## Magic
 * %pwd
 * %time
 * %timeit
 * %edit
+* %env
 * %run, %run -n
 * %hist -o -n -f hist.log
 * %logstart -ro, %logstop
@@ -45,4 +55,3 @@ Given at [PyWeb-IL](https://www.meetup.com/PyWeb-IL/) on May 2017
 * confirm_exit
 * editing_mode
 * highlighting_style    
-
