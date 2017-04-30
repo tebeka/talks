@@ -26,5 +26,6 @@ Talk at Checkpoint to managers 2017-06-22
     - With HTTP 2.0 support
 * Efficient & Fast
     - iron.io from 30 RoR to 2 Go servers
+* Community
 
 https://groups.google.com/d/msg/golang-nuts/X22CkcV-IWA/o-ZDQHxqAgAJ
