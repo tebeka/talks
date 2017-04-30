@@ -10,9 +10,10 @@ Talk at Checkpoint to managers 2017-06-22
     - Easy to learn
 * Simple C based syntax
     - Easy to understand
+    - Example: Export rules
+* Robust
     - Static typing
-* Forces you to check errors
-    - Stable code
+    - Forces you to check errors
 * import "C"
     - Integration with legacy code
 * "go fmt" and tooling in general
@@ -26,6 +27,8 @@ Talk at Checkpoint to managers 2017-06-22
     - With HTTP 2.0 support
 * Efficient & Fast
     - iron.io from 30 RoR to 2 Go servers
+* GC
+* Module system
 * Community
 
 https://groups.google.com/d/msg/golang-nuts/X22CkcV-IWA/o-ZDQHxqAgAJ
