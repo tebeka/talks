@@ -28,7 +28,9 @@ Talk at Checkpoint to managers 2017-06-22
 * Efficient & Fast
     - iron.io from 30 RoR to 2 Go servers
 * GC
+    - Solves a lot of ownership problems
 * Module system
+    - Fit for large projects
 * Community
 
 https://groups.google.com/d/msg/golang-nuts/X22CkcV-IWA/o-ZDQHxqAgAJ
