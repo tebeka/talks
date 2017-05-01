@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+    redis:
+        image: redis:alpine
+
+    happy:
+        build: .
+        ports:
+            - "8080:8080"
+        links:
+            - redis:db1
+        environment:
+            HAPPY_REDIS: db1
