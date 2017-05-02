@@ -32,5 +32,7 @@ Talk at Checkpoint to managers 2017-06-22
 * Module system
     - Fit for large projects
 * Community
+* Stable API
+* Cross compilation
 
 https://groups.google.com/d/msg/golang-nuts/X22CkcV-IWA/o-ZDQHxqAgAJ
