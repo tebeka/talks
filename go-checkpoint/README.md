@@ -6,6 +6,7 @@ Talk at Checkpoint to managers 2017-06-22
 ## Go's Selling Points
 * The free lunch is over
     - threads/async are difficult to work with
+    - C10k Problem (https://en.wikipedia.org/wiki/C10k_problem)
 * Small language
     - Easy to learn
 * Simple C based syntax
