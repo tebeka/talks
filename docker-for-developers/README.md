@@ -1,3 +1,7 @@
+# Go For Developers
+
+Given at [Go Israel](https://www.meetup.com/Go-Israel/) Meetup. May 3, 2017.
+
 # Overview
 * Why?
     * Isolated environment
@@ -6,19 +10,19 @@
     * Standard way of shipping
 	* Container metaphor
     * Written in Go
-	* See https://www.youtube.com/watch?v=HPuvDm8IC-4
+	* See [What is a container, really?](https://www.youtube.com/watch?v=HPuvDm8IC-4)
     * Go static exec - but we have assets, templates ...
 * Based on LXC, layered FS, cgroups ...
     * FreeBSD jails
 * images and containers
-    * https://docs.docker.com/engine/docker-overview/#docker-engine
+    * [overview](https://docs.docker.com/engine/docker-overview/#docker-engine)
     * image - read only template (executable)
     * registry - holds images
-	* https://hub.docker.com
+	* [https://hub.docker.com](https://hub.docker.com)
     * container - running image (process)
 * Suite of application - engine, compose, swarm, kubernetes ...
 * Problems
-    * https://www.youtube.com/watch?v=PivpCKEiQOQ
+    * [See here :)](https://www.youtube.com/watch?v=PivpCKEiQOQ)
     * Orchestration
     * Size
 
@@ -64,7 +68,7 @@
 * `docker run --rm -it --link redis:db1 redis:alpine /bin/sh`
     * `redist-cli -h db1`
 	* `GET hi`
-	    * https://www.youtube.com/watch?v=119Gn8a6eiw&t=1m7s :)
+	    * [See other definition :)](https://www.youtube.com/watch?v=119Gn8a6eiw&t=1m7s)
 	* `SET hi there`
 	* `GET hi`
     * Exit, re-run and `GET hi`
