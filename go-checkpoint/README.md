@@ -37,3 +37,4 @@ Talk at Checkpoint to managers 2017-06-22
 * Cross compilation
 
 https://groups.google.com/d/msg/golang-nuts/X22CkcV-IWA/o-ZDQHxqAgAJ
+https://groups.google.com/forum/m/#!topic/golang-nuts/Fg1I34HrtqU
