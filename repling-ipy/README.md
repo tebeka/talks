@@ -85,6 +85,8 @@ Given at [PyWeb-IL](https://www.meetup.com/PyWeb-IL/) on May 2017
 * df - see lat/lng
 
 * %load_ext sql
+    * pip install ipython-sql
+    * https://github.com/catherinedevlin/ipython-sql
 * %sql sqlite:///weather.db
 * %sql SELECT MIN(TMAX), MAX(TMAX) FROM weather
     * same with %%sql
