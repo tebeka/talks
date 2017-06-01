@@ -15,7 +15,7 @@
 * conda list
 * conda env export
 * cheatsheet - https://conda.io/docs/using/cheatsheet.html
-* conda create --name flowers --clone snowflakes
+* conda create --name flowers --clone snonwflakes
 * pip when can't find
 * conda-forge
 * Explicit
@@ -24,3 +24,12 @@
     * Not cross platform
 * env vars for install
     - https://conda.io/docs/using/envs.html#saved-environment-variables
+* anaconda search folium
+    * conda install anaconda-client
+* build
+    * conda install conda-build
+    * python setup.py bdist_conda
+    * cd /opt/anaconda3/conda-bld/ && python -m http.server
+    * source activate pycon
+    * conda install --channel http://localhost:8000 hw
+    * python -c 'import hw; hw.pycon()'
