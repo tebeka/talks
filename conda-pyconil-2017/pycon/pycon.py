@@ -1,4 +1,7 @@
+import webbrowser
 class il:
     @staticmethod
     def current():
-        print('2017')
+        url = 'http://il.pycon.org/2017/'
+        print(url)
+        webbrowser.open(url)
