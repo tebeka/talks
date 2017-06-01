@@ -1,4 +1,6 @@
 import webbrowser
+
+
 class il:
     @staticmethod
     def current():
