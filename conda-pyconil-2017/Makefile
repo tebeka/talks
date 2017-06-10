@@ -6,3 +6,6 @@ docker:
 
 docker-ub:
 	docker build -t pyconil-ub -f Dockerfile.ubuntu .
+
+docker-ub-pre:
+	docker build -t pyconil-ub -f Dockerfile.ubuntu.pre-installed .

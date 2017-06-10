@@ -1,0 +1,15 @@
+FROM ubuntu:16.04
+
+RUN apt update
+RUN apt install -y bzip2 vim curl
+
+
+RUN curl -LO https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN bash Miniconda3-latest-Linux-x86_64.sh -b -p /miniconda
+RUN /miniconda/bin/conda install -y \
+    pyodbc \
+    flask \
+    boto3
+
+RUN /miniconda/bin/conda install -y --channel conda-forge fastavro
+RUN /miniconda/bin/pip install timeat
