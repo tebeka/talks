@@ -1,1 +1,1 @@
-# Go Introduction in PyWeb IL
+# Go Introduction - PyWeb IL 8/2017
