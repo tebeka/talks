@@ -1,0 +1,163 @@
+Introduction To Go
+11 June 2017
+Tags: go
+
+Miki Tebeka
+CEO, 353Solutions
+miki@353solutions.com
+@tebeka
+
+* Go
+
+- Developed at Google
+- Open sourced November 2009 (Robert Griesemer, Rob Pike and Ken Thompson)
+- Version 1 March 2012 (currently at 1.8.3)
+- Used by Google (dl.google.com, vitess.io), Docker, Dropbox, Facebook, Netflix ...
+
+
+
+* Why Go?
+
+- The free lunch is over
+- Small language, static yet feels dynamic
+- Tooling
+- Fast compilation & static executable
+- Production grade HTTP server
+- Efficient & Fast
+- GC
+- Designed for large projects
+- Great Community
+
+* Hello World
+
+.play hw.go
+
+* Hello World 2.0
+
+.play hw2.go
+
+See it at [[https://localhost:8080][http://localhost:8080]].
+
+* Declaration
+
+.code decl.go  /START_CONST/,/END_CONST/
+
+.play decl.go  /START_MAIN/,/END_MAIN/
+
+* Syntax
+
+.code syn.go /START_FUNC/,/END_FUNC/
+
+.play syn.go /START_FOR/,/END_FOR/
+
+Other changes/oddities
+
+- The default in `switch` is to `break`
+- Switch cases don't have to be int or constants
+- Function can return multiple values (more on this later)
+- Unused imports/variables are compilation error (use _ to ignore)
+
+* range
+
+.play range.go /START/,/END/
+
+`range` works on channels as well.
+
+* Defer and Errors
+
+.code deferr.go /START_SLURP/,/END_SLURP/
+.play deferr.go /START_MAIN/,/END_MAIN/
+
+Deferred are executed in LIFO order.
+
+There are also [[https://golang.org/doc/effective_go.html#panic][panic]] and [[http://golang.org/doc/effective_go.html#recover][recover]] - Don't use them for error handling :)
+
+* Goroutines
+
+- Lightweight execution unit (can span 10K+ on single core)
+- Runtime will multiplex to threads/cores (see [[https://golang.org/pkg/runtime/#GOMAXPROCS][GOMAXPROCS]])
+- Expandable stack
+- Shared memory
+
+.play gr.go /START_GR/,/END_GR/
+
+* A TCP Proxy
+
+(taken from [[https://bitbucket.org/tebeka/seamless][seamless]])
+
+.code fwd.go
+
+
+* Channels
+
+- Types pipes
+- Preferred synchronization (though you can use [[https://golang.org/pkg/sync/]["regular" methods]])
+- Blocks on read/write
+- Can be buffered (not by default)
+
+"Don't communicate by sharing memory; share memory by communicating."
+
+* Example
+
+.play chan.go /START/,/END/
+
+* Select
+
+.play select.go /START/,/END/
+
+* Methods
+
+.play point.go /START/,/END/
+
+* Interfaces
+
+.code iface.go /START_IFACE/,/END_IFACE/
+.play iface.go /START_MAIN/,/END_MAIN/
+
+* Packages
+
+- Files in same directory with same `package` directive
+- Names starting with uppercase are exported
+
+* A Peek At The Standard Library
+
+[[https://golang.org/pkg/][Main Page]]
+
+Some notable packages
+
+- [[https://golang.org/pkg/net/http/][net/http]] - HTTP server and client
+- [[https://golang.org/pkg/html/template/][html/template]] - Templating
+- [[https://golang.org/pkg/fmt/][fmt]] - Formating (printf ++)
+- [[https://golang.org/pkg/os/][os]] - Open files ...
+- [[https://golang.org/pkg/io/][io]] - `io.Writer`, `io.Reader`
+- [[https://golang.org/pkg/expvar/][expvar]] - Metrics
+- [[https://golang.org/pkg/flag/][flag]] - Command line parsing
+- [[https://golang.org/pkg/database/sql/][database/sql]] - Database spec
+- [[https://golang.org/pkg/testing/][testing]] - Testing & Benchmarking
+
+* The "go" Tool
+
+- `GOPATH` is your environment ("go install" or vendor)
+- `build` will build your project
+- `test` will test it (all `_test.go` files)
+- `fmt` formats the code
+- `get` will fetch packages (decentralized, however there's an [[https://godoc.org/][http://godoc.org/]])
+- `run` will compile and run
+
+
+* References
+
+- [[https://golang.org/][Main Site]]
+- [[https://tour.golang.org][Go Tour]] - Learn Go in your browser
+- [[https://golang.org/doc/effective_go.html][Effective Go]] - Read it!
+- [[https://golang.org/doc/code.html][How To Write Go Code]]
+- [[https://golang.org/pkg/][Package Documentation]]
+- [[https://godoc.org/][3'rd Party Packages]]
+- [[https://groups.google.com/forum/#!forum/golang-nuts][Google Group]] (can also try [[https://stackoverflow.com/questions/tagged/go][stackoverflow]])
+- [[https://github.com/dariubs/GoBooks][Books]]
+
+Tip: Use `golang` when googling
+
+* Questions?
+
+.image gopher.jpg
