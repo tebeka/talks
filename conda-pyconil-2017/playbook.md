@@ -1,4 +1,5 @@
 http://mutt.org/ - credits
+
 What's wrong with pip? Let's SSH to a machine and try to install `pyodbc`
 
     $ docker run --rm -it pycoil
@@ -39,7 +40,7 @@ conda and is about 134MB unpacked.
 On linux you download a .sh file and then execute. It even has a batch mode.
 
 
-    $ docker run -it --rm -v ${HOME}/Downloads/:/dl pyconil-ub
+    $ docker run -it --rm -v ${PWD}:/dl pyconil-ub
 
 Just one important tweak
     $ set -o vi
@@ -50,13 +51,17 @@ Just one important tweak
 Let's update the system
     $ conda update --all -y
     $ python --version
+    $ conda info
 
-We use conda both to create environment and install packages.
+We use conda both to create environment and install packages. If you don't work
+in environments (docker for example) you can install directly to the root
+environment.
 
     $ conda create -n pyconil
     $ ls /miniconda/envs/pyconil
 
-Not even python! Let's fix that. First we activate the environment
+Not even python! conda environments system levels, not just Python. Let's add
+Python. First we activate the environment
     $ source activate pyconil
     $ which conda
 
@@ -211,15 +216,15 @@ Now we can create a package
 We can either give conda the file name to install. If you'd like to have your
 own server to serve packages you can easily do that as well.
 
-    $ tmux
     $ cd /miniconda/conda-bld
     $ python -m http.server
 
-(in another terminal CTRL-B c)
-    
-    $ cd
+(open another terminal)
+
+    $ docker exec -it $(docker ps -q) bash
     $ source activate pycon
     $ conda install --channel http://localhost:8000 pycon
     $ python -c 'import pycon; pycon.il.current()'
 
-# vim:ft=yaml
+Another tip is that if you're building docker containers you'd probably want to
+run `conda clean` to delete downloaded files.
