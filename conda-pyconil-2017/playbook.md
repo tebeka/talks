@@ -1,3 +1,9 @@
+setup: slides, mutt.org and white background terminal. Silence phone
+    open slides in other shell
+
+Hi I'm Miki Tebeka from 353solutions. I'd like to start by giving the proper
+credits.
+
 http://mutt.org/ - credits
 
 What's wrong with pip? Let's SSH to a machine and try to install `pyodbc`
@@ -8,9 +14,10 @@ You didn't think I'll anger the demo gods with going to the internet :)
 
     $ which python
 
-"The first rule of Python is you don't use system python." - Kelsey Hightower
+As Kelsey Hightower said - "The first rule of Python club is you don't use
+system python."
 
-I actually have a Python from python.org install at /opt as well. So you want
+I actually have a Python from python.org install at /opt as well. So you won't
 say I'm cheating :)
 
     $ /opt/bin/pip3 install pyodbc
@@ -18,10 +25,10 @@ say I'm cheating :)
 We need `sql.h`, we need a C compiler ...
 Even when we manage to build, we can install on another machine and find out
 we're missing system libraries and then install them with `apt`, `yum`,
-`pacman` ...
+`pacman` - pick your own poison.
 
-To be fair, `manylinux1` distribution is a big help here. But it uses CentOS 5
-as the build system. You're missing about 10 years of compiler advances, bug
+To be fair, the `manylinux1` platform is a big help here. But it uses CentOS 5
+as the build system. So you're missing about 10 years of compiler advances, bug
 fixes ...
 
     $ conda install pyodbc
@@ -29,9 +36,11 @@ fixes ...
 Note the we got unixodbc as well.
 
     $ ls /miniconda/lib/*odbc*
+
+conda install not just Python packages but also system libraries - and more...
     $ exit
 
-OK. So how do we work with conda?
+OK. So now that you're convinced - How do we work with conda?
 
 We have two options, install Anaconda or Miniconda. Anaconda comes bundled with
 many packages and unpacked is about 1.9GB. Miniconda comes with Python and
@@ -39,13 +48,17 @@ conda and is about 134MB unpacked.
 
 On linux you download a .sh file and then execute. It even has a batch mode.
 
-
     $ docker run -it --rm -v ${PWD}:/dl pyconil-ub
+    $ cat /etc/lsb-release
 
 Just one important tweak
     $ set -o vi
 
     $ bash /dl/Miniconda3-latest-Linux-x86_64.sh -p /miniconda -b
+
+There also a Python 2 miniconda, but conda can create environment both for 2 &
+3.
+
     $ export PATH=/miniconda/bin:$PATH
 
 Let's update the system
@@ -53,19 +66,23 @@ Let's update the system
     $ python --version
     $ conda info
 
-We use conda both to create environment and install packages. If you don't work
-in environments (docker for example) you can install directly to the root
+We use conda both to create environments and install packages. If you don't
+work in environments (docker for example) you can install directly to the root
 environment.
 
-    $ conda create -n pyconil
+    $ conda create --name pyconil
     $ ls /miniconda/envs/pyconil
+    $ ls /miniconda/envs/pyconil/bin
 
-Not even python! conda environments system levels, not just Python. Let's add
-Python. First we activate the environment
+Not even python! conda environments system level environment, not just Python.
+Let's add Python. First we activate the environment
+
     $ source activate pyconil
     $ which conda
 
     $ conda install python
+
+As I said before you pick the version of Python to install.
 
 You can specify the Python version you want.
 
@@ -81,14 +98,14 @@ What's nice about these environments is that you can copy them around and
 they'll work.
 
     $ source deactivate
-    $ cp -r /miniconda/envs/pycon/ ~/pycon-env
+    $ cp -r /miniconda/envs/pyconil/ ~/pycon-env
     $ ~/pycon-env/bin/python
     >>> import flask
     flask
 
 Let's get back to our environment
 
-    $ source activate pycon
+    $ source activate pyconil
 
 We can install specific versions, let's see which are available
 
@@ -97,7 +114,8 @@ We can install specific versions, let's see which are available
 
 It's always a good idea to keep your dependencies in a file and keep it in
 version control so we can recreate environments. In the pip world we use a
-requirements file. In conda we use an environment file, which is YAML based.
+requirements file. In the conda world we use an environment file, which is YAML
+based.
 
 Once you have a working environment, you can export what you have.
 
@@ -115,13 +133,17 @@ have people working on different OS this will save you some headache.
 And now let's re-create the environment
 
     $ source deactivate
-    $ conda env create -n pycon2 -f environment.yml
-    $ source activate pycon2
+    $ conda env create --name pyconil-1 --file environment.yml
+
+Note that nothing was downloaded, conda uses cached versions.
+
+Let's double check
+    $ source activate pyconil-1
     $ python -c 'import boto3; print(boto3.__version__)'
 
 We can also clone an existing environment if you want to test a new package.
 
-    $ conda create --name pycon6 --clone pycon
+    $ conda create --name pyconil-2 --clone pyconil
 
 Not all packages hosted on PyPI are available in the default anaconda channel.
 If you don't find a package you need on the default channel you have two
@@ -130,14 +152,15 @@ which deals with the Avro file format.
 
     $ conda search fastavro
 
-To search in other channels we're going to use the anaconda client. And since it's a global tool we'll install it to the root environment.
+To search in other channels we're going to use the anaconda client. And since
+it's a global tool we'll install it to the root environment.
 
-    $ conda install -y -n root anaconda-client
+    $ conda install -y --name root anaconda-client
     $ which anaconda
     $ anaconda search fastavro | more
 
-A good once to go with is conda-forge which is a community effort to add many
-more packages. Let's install from there
+A good channel to go with is conda-forge which is a community effort to add
+more packages to the default anaconda channel. Let's install from there
 
     $ conda install --channel conda-forge fastavro
 
@@ -154,14 +177,22 @@ prefixing the package with the channel.
     - flask=0.12.2
     - python=3.6.1
 
-    $ conda env create -n pycon3 -f environment.yml
+Make sure to sort your dependencies, we humans deal much better with sorted
+data.
 
-By the way - I'm looking for a new maintainer to `fastavro`. If you use avro
+conda will first search the defaults channel and then conda-forge. It follows
+the order of channels in the files.
+
+
+    $ conda env create --name pyconil-2 --file environment.yml
+    $ ls /miniconda/envs/pyconil-2/lib/python3.6/site-packages/
+
+By the way - I'm looking for a new maintainer for `fastavro`. If you use Avro
 and would like to help in open source - let me know. I'll throw in some
 mentoring as well.
 
-Sometime you can't even find the package on any channel. conda plays nice with
-pip so you can also install packages from PyPI.
+Sometime you can't even find the package you want on any channel. conda plays
+nice with pip so you can also install packages from PyPI.
 
     $ anaconda search timeat
     $ conda install timeat
@@ -169,6 +200,8 @@ pip so you can also install packages from PyPI.
     $ pip install timeat
     $ which timeat
     $ timeat london
+
+... which was cool and nice last week.
 
 Let's add this to the environment file
     
@@ -184,14 +217,14 @@ Let's add this to the environment file
     - pip:
       - timeat==1.0.1
     
-    $ conda env create -n pycon4 -f environment.yml
+    $ conda env create --name pyconil-3 --file environment.yml
 
 That's about it for the basic functionality. 
 
 You can set some settings in `~/.condarc` configuration file, which is in YAML
 format as well. You can set channels and several other features. For example I
-have my prompt detect environments so I'd like to disable the change of prompt
-by `source activate`
+have my prompt detect environments so I'd like to disable prompt change that 
+`source activate` does.
 
     $ source deactivate
     $ vim ~/.condarc
@@ -205,16 +238,21 @@ package call "pycon" with an existing setup.py
     $ cd /dl/pycon/
     $ cat setup.py
 
-First we need to install conda-build
-
+First we need to install conda-build. Building can be done in root directory
+only.
+    $ source deactivate
     $ conda install conda-build
 
 Now we can create a package
 
     $ python setup.py bdist_conda
 
+This is the easiest way if you have simple packages. For more complicated setup
+RTFM.
+
 We can either give conda the file name to install. If you'd like to have your
-own server to serve packages you can easily do that as well.
+own server to serve packages you can easily do that as well. This is super easy
+to do:
 
     $ cd /miniconda/conda-bld
     $ python -m http.server
@@ -222,7 +260,15 @@ own server to serve packages you can easily do that as well.
 (open another terminal)
 
     $ docker exec -it $(docker ps -q) bash
-    $ source activate pycon
+
+Let's change the settings to show the environment in the prompt.
+    $ rm ~/.condarc
+
+And also set the path
+    $ export PATH=/miniconda/bin:$PATH
+    $ set -o vi
+
+    $ source activate pyconil
     $ conda install --channel http://localhost:8000 pycon
     $ python -c 'import pycon; pycon.il.current()'
 
