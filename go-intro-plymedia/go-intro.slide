@@ -1,5 +1,5 @@
 Introduction To Go
-11 June 2017
+June 11, 2017
 Tags: go
 
 Miki Tebeka
@@ -9,8 +9,8 @@ miki@353solutions.com
 
 * Go
 
-- Developed at Google
-- Open sourced November 2009 (Robert Griesemer, Rob Pike and Ken Thompson)
+- Developed at Google (Robert Griesemer, Rob Pike and Ken Thompson)
+- Open sourced November 2009
 - Version 1 March 2012 (currently at 1.8.3)
 - Used by Google (dl.google.com, vitess.io), Docker, Dropbox, Facebook, Netflix ...
 
@@ -18,9 +18,10 @@ miki@353solutions.com
 
 * Why Go?
 
-- The free lunch is over
+- [[http://www.gotw.ca/publications/concurrency-ddj.htm][The free lunch is over]]
+- [[https://en.wikipedia.org/wiki/C10k_problem][The C10K problem]]
 - Small language, static yet feels dynamic
-- Tooling
+- The _go_ tool
 - Fast compilation & static executable
 - Production grade HTTP server
 - Efficient & Fast
@@ -79,7 +80,8 @@ There are also [[https://golang.org/doc/effective_go.html#panic][panic]] and [[h
 - Expandable stack
 - Shared memory
 
-.play gr.go /START_GR/,/END_GR/
+#.play gr.go /START_GR/,/END_GR/
+.play sleep_sort.go /START_SS/,/END_SS/
 
 * A TCP Proxy
 
@@ -139,7 +141,7 @@ Some notable packages
 
 - `GOPATH` is your environment ("go install" or vendor)
 - `build` will build your project
-- `test` will test it (all `_test.go` files)
+- `test` will test and benchamark (all `_test.go` files)
 - `fmt` formats the code
 - `get` will fetch packages (decentralized, however there's an [[https://godoc.org/][http://godoc.org/]])
 - `run` will compile and run
