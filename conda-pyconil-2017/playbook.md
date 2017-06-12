@@ -4,7 +4,9 @@ setup: slides, mutt.org and white background terminal. Silence phone
 Hi I'm Miki Tebeka from 353solutions. I'd like to start by giving the proper
 credits.
 
-http://mutt.org/ - credits
+http://mutt.org/ - credits (joke on me)
+
+Why do we care about packaging? Joke "works on my machine".
 
 What's wrong with pip? Let's SSH to a machine and try to install `pyodbc`
 
@@ -23,13 +25,14 @@ say I'm cheating :)
     $ /opt/bin/pip3 install pyodbc
 
 We need `sql.h`, we need a C compiler ...
+
 Even when we manage to build, we can install on another machine and find out
 we're missing system libraries and then install them with `apt`, `yum`,
-`pacman` - pick your own poison.
+`pacman` - pick your poison.
 
-To be fair, the `manylinux1` platform is a big help here. But it uses CentOS 5
-as the build system. So you're missing about 10 years of compiler advances, bug
-fixes ...
+To be fair, the `manylinux1` pip platform is a big help here. But it uses
+CentOS 5 as the build system. So you're missing about 10 years of compiler
+advances, bug fixes ...
 
     $ conda install pyodbc
 
@@ -43,8 +46,8 @@ conda install not just Python packages but also system libraries - and more...
 OK. So now that you're convinced - How do we work with conda?
 
 We have two options, install Anaconda or Miniconda. Anaconda comes bundled with
-many packages and unpacked is about 1.9GB. Miniconda comes with Python and
-conda and is about 134MB unpacked.
+many packages and unpacked is about 2GB. Miniconda comes with Python and
+conda and is about 130MB unpacked.
 
 On linux you download a .sh file and then execute. It even has a batch mode.
 
@@ -122,7 +125,7 @@ Once you have a working environment, you can export what you have.
     $ conda env export > environment.yml
     $ vim environment.yml
 
-Now let's trip it down. I prefer to leave the top level dependencies. If you
+Now let's strip it down. I prefer to leave the top level dependencies. If you
 have people working on different OS this will save you some headache.
 
     dependencies:
@@ -157,7 +160,7 @@ it's a global tool we'll install it to the root environment.
 
     $ conda install -y --name root anaconda-client
     $ which anaconda
-    $ anaconda search fastavro | more
+    $ anaconda search fastavro
 
 A good channel to go with is conda-forge which is a community effort to add
 more packages to the default anaconda channel. Let's install from there
@@ -274,3 +277,5 @@ And also set the path
 
 Another tip is that if you're building docker containers you'd probably want to
 run `conda clean` to delete downloaded files.
+
+The vacuum cleaner paradox: it sucks when it doesn't and doesn't when it does.
