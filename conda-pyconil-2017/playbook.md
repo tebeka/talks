@@ -1,5 +1,7 @@
-setup: slides, mutt.org and white background terminal. Silence phone
-    open slides in other shell
+# All package managers suck, conda suck less
+
+setup: slides, mutt.org and white background terminal. Silence phone, open
+slides in other shell
 
 Hi I'm Miki Tebeka from 353solutions. I'd like to start by giving the proper
 credits.
