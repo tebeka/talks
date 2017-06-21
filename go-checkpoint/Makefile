@@ -1,5 +1,5 @@
 html/%.html: code/%.go
-	pygmentize -Ofull,linenos=1 -l go -f html -o $@ $<
+	pygmentize -Ofull -l go -f html -o $@ $<
 
 
 gofiles=$(wildcard code/*.go)
@@ -11,3 +11,5 @@ clean:
 	rm -f html/*.html
 
 fresh: clean all
+
+.PHONY: all clean fresh
