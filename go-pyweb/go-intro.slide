@@ -18,7 +18,7 @@ Looked at
 .image clojure.png
 .image go.png
 
-* And the Winner Was
+* And the Winner Was ...
 
 * Clojure
 
@@ -38,8 +38,8 @@ After a while, the JVM pushed me away :)
 - Small, simple language
 - Static yet feels dynamic
 - Tooling
-- Fast compilation & static executable
-- Production grade HTTP server
+- Fast compilation, static executable
+- Production grade HTTP server (HTTPS, HTTP 2.0)
 - GC
 - Designed for large projects
 - Great Community
@@ -170,6 +170,27 @@ Some notable packages
 - `fmt` formats the code
 - `get` will fetch packages (decentralized, however there's an [[https://godoc.org/][http://godoc.org/]])
 - `run` will compile and run
+
+* Interact with Python [1]
+
+Write a services, use HTTP(2)/TCP with JSON/msgpack/protobuf ... (gRPC?)
+
+* Interact with Python [2]
+
+.code sqrt.go
+
+* Interact with Python [3]
+
+.code sqrt.py
+
+* Interact with Python [4]
+
+However, watch our for:
+- Memory allocation
+- panics
+- ...
+
+Take a look at [[https://github.com/go-python/gopy][gopy]]
 
 
 * References
