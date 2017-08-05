@@ -7,6 +7,7 @@ import "C"
 
 //export sqrt
 func sqrt(n float64) float64 {
+	// Newton's square root algorithm
 	guess := 1.0
 	epsilon := 0.0001
 
