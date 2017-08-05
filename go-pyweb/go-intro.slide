@@ -1,11 +1,30 @@
 Introduction To Go
-August 3, 2017
+August 7, 2017
 Tags: go
 
 Miki Tebeka
 CEO, 353Solutions
 miki@353solutions.com
 @tebeka
+
+* A Personal Journey
+
+- [[http://www.gotw.ca/publications/concurrency-ddj.htm][The free lunch is over]]
+- [[https://en.wikipedia.org/wiki/C10k_problem][The C10K problem]]
+
+Looked at
+
+.image erlang.png
+.image clojure.png
+.image go.png
+
+* And the Winner Was
+
+* Clojure
+
+.image clojure.png
+
+After a while, the JVM pushed me away :)
 
 * Go
 
@@ -14,19 +33,17 @@ miki@353solutions.com
 - Version 1 March 2012 (currently at 1.8.3)
 - Used by Google (dl.google.com, vitess.io), Docker, Dropbox, Facebook, Netflix ...
 
-
-
 * Why Go?
 
-- The free lunch is over
-- Small language, static yet feels dynamic
+- Small, simple language
+- Static yet feels dynamic
 - Tooling
 - Fast compilation & static executable
 - Production grade HTTP server
-- Efficient & Fast
 - GC
 - Designed for large projects
 - Great Community
+- ...
 
 * Hello World
 
@@ -81,13 +98,6 @@ There are also [[https://golang.org/doc/effective_go.html#panic][panic]] and [[h
 
 .play gr.go /START_GR/,/END_GR/
 
-* A TCP Proxy
-
-(taken from [[https://bitbucket.org/tebeka/seamless][seamless]])
-
-.code fwd.go
-
-
 * Channels
 
 - Types pipes
@@ -113,6 +123,23 @@ There are also [[https://golang.org/doc/effective_go.html#panic][panic]] and [[h
 
 .code iface.go /START_IFACE/,/END_IFACE/
 .play iface.go /START_MAIN/,/END_MAIN/
+
+* Interfaces are Small
+
+.code io.go
+
+Interfaces in stdlib has an average of 1.3 methods
+
+* sha256
+
+.play hash.go /START_MAIN/,/END_MAIN/
+
+
+* A TCP Proxy
+
+(taken from [[https://bitbucket.org/tebeka/seamless][seamless]])
+
+.code fwd.go
 
 * Packages
 
