@@ -12,11 +12,9 @@ miki@353solutions.com
 - [[http://www.gotw.ca/publications/concurrency-ddj.htm][The free lunch is over]]
 - [[https://en.wikipedia.org/wiki/C10k_problem][The C10K problem]]
 
-Looked at
+I've looked at
 
-.image erlang.png
-.image clojure.png
-.image go.png
+.html langs.html
 
 * And the Winner Was ...
 
@@ -24,14 +22,18 @@ Looked at
 
 .image clojure.png
 
-After a while, the JVM pushed me away :)
+* But ...
+
+* Java
+
+After a while, Java/JVM pushed me away :)
 
 * Go
 
 - Developed at Google
 - Open sourced November 2009 (Robert Griesemer, Rob Pike and Ken Thompson)
 - Version 1 March 2012 (currently at 1.8.3)
-- Used by Google (dl.google.com, vitess.io), Docker, Dropbox, Facebook, Netflix ...
+- Used by Google (dl.google.com, vitess.io, Grumpy), Docker, Dropbox, Facebook, Netflix ...
 
 * Why Go?
 
@@ -113,7 +115,7 @@ There are also [[https://golang.org/doc/effective_go.html#panic][panic]] and [[h
 
 * Select
 
-.play select.go /START/,/END/
+.play -edit select.go /START/,/END/
 
 * Methods
 
@@ -205,6 +207,13 @@ Take a look at [[https://github.com/go-python/gopy][gopy]]
 - [[https://github.com/dariubs/GoBooks][Books]]
 
 Tip: Use `golang` when googling
+
+* And of course
+
+.image go-israel.jpeg
+
+[[https://www.meetup.com/Go-Israel/][Go Israel]] meetup
+
 
 * Questions?
 
