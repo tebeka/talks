@@ -1,5 +1,2 @@
-fetch.h
-fetch.so
-gmath.h
-gmath.so
 _sqrt.*
+sqrt.h
