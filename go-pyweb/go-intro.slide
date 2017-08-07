@@ -53,7 +53,7 @@ After a while, Java/JVM pushed me away :)
 
 * Hello World 2.0
 
-.play hw2.go
+.play -edit hw2.go
 
 See it at [[https://localhost:8080][http://localhost:8080]].
 
