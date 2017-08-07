@@ -43,7 +43,7 @@ After a while, Java/JVM pushed me away :)
 - Fast compilation, static executable
 - Production grade HTTP server (HTTPS, HTTP 2.0)
 - GC
-- Designed for large projects
+- Linux, OSX, Window$
 - Great Community
 - ...
 
@@ -85,7 +85,7 @@ Other changes/oddities
 * Defer and Errors
 
 .code deferr.go /START_SLURP/,/END_SLURP/
-.play deferr.go /START_MAIN/,/END_MAIN/
+.play -edit deferr.go /START_MAIN/,/END_MAIN/
 
 Deferred are executed in LIFO order.
 
@@ -111,7 +111,7 @@ There are also [[https://golang.org/doc/effective_go.html#panic][panic]] and [[h
 
 * Example
 
-.play chan.go /START/,/END/
+.play -edit chan.go /START/,/END/
 
 * Select
 
@@ -175,7 +175,7 @@ Some notable packages
 
 * Interact with Python [1]
 
-Write a services, use HTTP(2)/TCP with JSON/msgpack/protobuf ... (gRPC?)
+Write a (micro)service, use HTTP(2)/TCP with JSON/msgpack/protobuf ... (gRPC?)
 
 * Interact with Python [2]
 

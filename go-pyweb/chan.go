@@ -21,7 +21,7 @@ func producer(n int, out chan int) {
 
 func main() {
 	in, out := make(chan int), make(chan int)
-	go producer(3, in)
+	go producer(8, in)
 	go worker(7, in, out)
 
 	for v := range out {
