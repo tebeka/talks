@@ -8,13 +8,13 @@ import (
 
 // START_SLURP OMIT
 func slurp(filename string) ([]byte, error) {
-	fo, err := os.Open(filename)
+	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
 	}
-	defer fo.Close()
+	defer file.Close()
 
-	return ioutil.ReadAll(fo)
+	return ioutil.ReadAll(file)
 }
 
 // END_SLURP OMIT

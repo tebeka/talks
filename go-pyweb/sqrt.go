@@ -1,4 +1,5 @@
-// go build -buildmode=c-shared -o _sqrt.so sqrt.go
+// go build -buildmode=c-shared -o libsqrt.so sqrt.go
+// This will also generate libsqrt.h
 package main
 
 import "math"

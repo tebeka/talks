@@ -15,13 +15,13 @@ func NewPoint(x, y float64) *Point {
 	return &Point{x, y}
 }
 
-func (p *Point) Abs() float64 {
-	return math.Sqrt(p.X*p.X + p.Y*p.Y)
+func (pt *Point) Abs() float64 {
+	return math.Sqrt(pt.X*pt.X + pt.Y*pt.Y)
 }
 
 func main() {
-	p := NewPoint(4, 3)
-	fmt.Println(p.Abs())
+	pt := NewPoint(4, 3)
+	fmt.Println(pt.Abs())
 }
 
 // END OMIT

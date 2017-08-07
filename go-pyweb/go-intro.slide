@@ -12,7 +12,7 @@ miki@353solutions.com
 - [[http://www.gotw.ca/publications/concurrency-ddj.htm][The free lunch is over]]
 - [[https://en.wikipedia.org/wiki/C10k_problem][The C10K problem]]
 
-I've looked at
+* I've looked at
 
 .html langs.html
 
@@ -30,8 +30,8 @@ After a while, Java/JVM pushed me away :)
 
 * Go
 
-- Developed at Google
-- Open sourced November 2009 (Robert Griesemer, Rob Pike and Ken Thompson)
+- Developed at Google (Robert Griesemer, Rob Pike and Ken Thompson)
+- Open sourced November 2009
 - Version 1 March 2012 (currently at 1.8.3)
 - Used by Google (dl.google.com, vitess.io, Grumpy), Docker, Dropbox, Facebook, Netflix ...
 
@@ -93,8 +93,8 @@ There are also [[https://golang.org/doc/effective_go.html#panic][panic]] and [[h
 
 * Goroutines
 
-- Lightweight execution unit (can span 10K+ on single core)
-- Runtime will multiplex to threads/cores (see [[https://golang.org/pkg/runtime/#GOMAXPROCS][GOMAXPROCS]])
+- Lightweight execution unit (can span 100K+ on single machine)
+- Runtime will multiplex to threads/cores
 - Expandable stack
 - Shared memory
 
@@ -103,8 +103,8 @@ There are also [[https://golang.org/doc/effective_go.html#panic][panic]] and [[h
 * Channels
 
 - Types pipes
-- Preferred synchronization (though you can use [[https://golang.org/pkg/sync/]["regular" methods]])
-- Blocks on read/write
+- Preferred synchronization (though you can use [[https://golang.org/pkg/sync/]["regular"]] methods)
+- Blocks on read/write (there's a built in race detector)
 - Can be buffered (not by default)
 
 "Don't communicate by sharing memory; share memory by communicating."
@@ -169,7 +169,7 @@ Some notable packages
 - `GOPATH` is your environment ("go install" or vendor)
 - `build` will build your project
 - `test` will test it (all `_test.go` files)
-- `fmt` formats the code
+- `fmt` formats the code (most editors use it on save)
 - `get` will fetch packages (decentralized, however there's an [[https://godoc.org/][http://godoc.org/]])
 - `run` will compile and run
 
@@ -188,7 +188,7 @@ Write a services, use HTTP(2)/TCP with JSON/msgpack/protobuf ... (gRPC?)
 * Interact with Python [4]
 
 However, watch our for:
-- Memory allocation
+- Memory allocation (`GODEBUG=cgocheck=0` comes in handy)
 - panics
 - ...
 
