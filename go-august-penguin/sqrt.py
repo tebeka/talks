@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import ctypes
 
 _sqrt_dll = ctypes.cdll.LoadLibrary('./libsqrt.so')

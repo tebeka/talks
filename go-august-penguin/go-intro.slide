@@ -12,7 +12,7 @@ miki@353solutions.com
 - [[http://www.gotw.ca/publications/concurrency-ddj.htm][נגמרה ארוחת החינם]]
 - [[https://en.wikipedia.org/wiki/C10k_problem][C10K בעיית]]
 
-* על מה הסתכלתי
+* שפות שניסיתי
 
 .html langs.html
 
@@ -42,7 +42,7 @@ miki@353solutions.com
 - כלים
 - הידור מהיר לבינארי סטטי 
 - (HTTPS, HTTP 2.0) שרת ווב
-- ניהול זכרון אוטומטי
+- ניהול זיכרון אוטומטי
 - עובד על כל מערכות ההפעלה
 - תאימות אחורה
 - קהילה
@@ -55,7 +55,7 @@ miki@353solutions.com
 
 .play -edit hw2.go
 
-See it at [[https://localhost:8080][http://localhost:8080]].
+See it at [[http://localhost:8080][http://localhost:8080]].
 
 * הכרזות
 
@@ -71,8 +71,8 @@ See it at [[https://localhost:8080][http://localhost:8080]].
 
 שינויים נוספים
 
-- הוא ברירת המחדל break 
 - התנאים לא חייבים להיות קבועים switch ב
+- הוא ברירת המחדל break 
 - פונקציות יכולות להחזיר מספר ערכים
 - משתנים שלא בשימוש הם שגיאת הידור
 
@@ -92,7 +92,7 @@ See it at [[https://localhost:8080][http://localhost:8080]].
 
 - יחידת עבודה קלת משקל
 - מחסנית התחלתית קטנה גדלה עם הצורך
-- מרחב זכרון משותף
+- מרחב זיכרון משותף
 
 .play gr.go /START_GR/,/END_GR/
 
@@ -101,9 +101,9 @@ See it at [[https://localhost:8080][http://localhost:8080]].
 - מוליך מידע עם טיפוס
 - הדרך הממולצת לסינכרון
 - נחסם בקריאה/כתיבה
-- יכולים להיות נאגרים
+- (buffered) יכולים להיות נאגרים
 
-"אל תתקשר באמצאות שיתוף זכרון, שתף זכרון על ידי תיקשורת"
+"אל תתקשר באמצאות שיתוף זיכרון, שתף זיכרון על ידי תיקשורת"
 
 * דוגמא
 
@@ -140,8 +140,11 @@ See it at [[https://localhost:8080][http://localhost:8080]].
 
 * חבילות
 
-- package קבצים האותה ספרייה עם אותו
+- package קבצים באותה ספרייה עם אותו
 - שמות שמתחילים באות גדולה מיוצאים
+- GOROOT
+- GOPATH, vendor
+- dep
 
 
 * מבט על הספריה הסטנדרטית
@@ -151,24 +154,25 @@ See it at [[https://localhost:8080][http://localhost:8080]].
 חבילות מענינות
 
 
-- [[https://golang.org/pkg/net/http/][net/http]] - HTTP server and client
-- [[https://golang.org/pkg/html/template/][html/template]] - Templating
-- [[https://golang.org/pkg/fmt/][fmt]] - Formating (printf ++)
-- [[https://golang.org/pkg/os/][os]] - Open files ...
+- [[https://golang.org/pkg/net/http/][net/http]] - שרת ולקוח ווב
+- [[https://golang.org/pkg/html/template/][html/template]] - תבניות
+- [[https://golang.org/pkg/fmt/][fmt]] - כתיבת מחרוזות
+- [[https://golang.org/pkg/os/][os]] - ... עבודה עם מערכת ההפעלה - פתיחת קבצים
 - [[https://golang.org/pkg/io/][io]] - `io.Writer`, `io.Reader`
-- [[https://golang.org/pkg/expvar/][expvar]] - Metrics
-- [[https://golang.org/pkg/flag/][flag]] - Command line parsing
-- [[https://golang.org/pkg/database/sql/][database/sql]] - Database spec
-- [[https://golang.org/pkg/testing/][testing]] - Testing & Benchmarking
+- [[https://golang.org/pkg/expvar/][expvar]] - מטריקות
+- [[https://golang.org/pkg/flag/][flag]] - שורת הפקודה
+- [[https://golang.org/pkg/database/sql/][database/sql]] - עבודה עם מסדי נתונים
+- [[https://golang.org/pkg/testing/][testing]] - בדיקות וזמני ריצה
 
 * "go" כלי
 
-- `GOPATH` הוא סביבת העבודה
+- הוא סביבת העבודה `GOPATH` 
 - יבנה את הפרויקט `build` 
 - יריץ את הבדיקות `test`
 - יעמד את הקוד `fmt`
-- יתקין חבילות צד שלישל `get`
+- יתקין חבילות צד שלישי `get`
 - יהדר ויריץ `run`
+- ...
 
 * קישור לשפות אחרות
 
