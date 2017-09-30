@@ -165,3 +165,7 @@ before you write your own DSL
 # slide
 Just use Python
 
+# slide
+questions
+
+code contains a simulator as well
