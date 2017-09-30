@@ -8,3 +8,5 @@ def fib(n):
 
 from dis import dis
 dis(fib)
+
+print(fib(10))
