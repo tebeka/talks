@@ -1,17 +1,20 @@
+>>> from fib import fib
 >>> from dis import dis
 >>> dis(fib)
-  4           8 SETUP_LOOP              30 (to 40)
+  4           8 SETUP_LOOP              34 (to 44)
         >>   10 LOAD_FAST                0 (n)
-             12 POP_JUMP_IF_FALSE       38
-  5          14 LOAD_FAST                2 (b)
-             16 LOAD_FAST                1 (a)
-             18 LOAD_FAST                2 (b)
-             20 BINARY_ADD
-             22 ROT_TWO
-             24 STORE_FAST               1 (a)
-             26 STORE_FAST               2 (b)
-  6          28 LOAD_FAST                0 (n)
-             30 LOAD_CONST               1 (1)
-             32 INPLACE_SUBTRACT
-             34 STORE_FAST               0 (n)
-             36 JUMP_ABSOLUTE           10
+             12 LOAD_CONST               2 (0)
+             14 COMPARE_OP               4 (>)
+             16 POP_JUMP_IF_FALSE       42
+  5          18 LOAD_FAST                2 (b)
+             20 LOAD_FAST                1 (a)
+             22 LOAD_FAST                2 (b)
+             24 BINARY_ADD
+             26 ROT_TWO
+             28 STORE_FAST               1 (a)
+             30 STORE_FAST               2 (b)
+  6          32 LOAD_FAST                0 (n)
+             34 LOAD_CONST               1 (1)
+             36 INPLACE_SUBTRACT
+             38 STORE_FAST               0 (n)
+             40 JUMP_ABSOLUTE           10
