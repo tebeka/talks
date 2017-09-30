@@ -1,5 +1,5 @@
 # R0 holds N
-MOV(R1, 1)
+MOV(R1, 2)
 MOV(R2, 1)
 LABEL('LOOP')
 CMP(R0, 0)

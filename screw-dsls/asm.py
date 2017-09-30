@@ -4,24 +4,30 @@ from enum import IntEnum
 from abc import ABC, abstractmethod
 from inspect import getouterframes, currentframe
 
-program = []
+program = []  # List of instructions
 labels = {}  # name -> location
-instructions = {}
+instructions = {}  # name -> class
 num_regs = 8
 
 
 def instruction(cls):
-    """Class decorator to register instruction"""
+    """Decorator to register instruction"""
     instructions[cls.__name__] = cls
     return cls
 
 
-def line_info():
+def line_info(depth=3):
     """Get file and line number in source file"""
     try:
-        return getouterframes(currentframe())[3][1:3]
+        return getouterframes(currentframe())[depth][2]
     except:
-        return '???', 0
+        return 0
+
+
+class ASMError(Exception):
+    def __init__(self, message, line=0):
+        super().__init__(message)
+        self.line = line
 
 
 class OpCodes(IntEnum):
@@ -59,7 +65,7 @@ class REG:
 
 class ASM(ABC):
     def __init__(self):
-        self.file, self.line = line_info()
+        self.line = line_info()
         self.name = self.__class__.__name__
         program.append(self)
 
@@ -160,10 +166,11 @@ class CMP(ASM):
 
 
 @instruction
-class LABEL:
-    def __init__(self, name):
-        self.name = name
-        labels[name] = len(program)
+def LABEL(name):
+    if name in labels:
+        line = line_info(depth=2)
+        raise ASMError(f'duplicate label - {name!r}', line)
+    labels[name] = len(program)
 
 
 @instruction
@@ -193,6 +200,10 @@ def asm_compile(infile):
     return program
 
 
+def show_debug(inst):
+    return f'{inst.line:03d}: {inst!r}'
+
+
 if __name__ == '__main__':
     from argparse import ArgumentParser, FileType
 
@@ -204,9 +215,12 @@ if __name__ == '__main__':
         '--debug', help='debug output', action='store_true', default=False)
 
     args = parser.parse_args()
-    program = asm_compile(args.infile)
+    try:
+        program = asm_compile(args.infile)
+    except ASMError as err:
+        raise SystemExit(f'error: {args.infile.name}:{err.line}: {err}')
 
-    show = repr if args.debug else str
+    show = show_debug if args.debug else str
 
     for inst in program:
         print(show(inst), file=args.out)
