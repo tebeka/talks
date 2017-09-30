@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from enum import IntEnum
+from abc import ABC, abstractmethod
 from inspect import getouterframes, currentframe
 
 program = []
@@ -56,7 +57,7 @@ class REG:
         return f'{name}({self.code!r})'
 
 
-class ASM:
+class ASM(ABC):
     def __init__(self):
         self.file, self.line = line_info()
         self.name = self.__class__.__name__
@@ -78,6 +79,10 @@ class ASM:
         val = self.bits() & 0xFFFF
         return f'{val:016b}'
 
+    @abstractmethod
+    def bits(self):
+        return 0
+
 
 class ALU3(ASM):
     """ALU instruction with 3 operands"""
@@ -92,7 +97,7 @@ class ALU3(ASM):
         return self.code(opcode, self.dest, self.src1, self.src2)
 
     def __repr__(self):
-        return f'{self.name}({self.dest!r}), {self.src1|r}, {self.src2|r})'
+        return f'{self.name}({self.dest!r}), {self.src1!r}, {self.src2!r})'
 
 
 @instruction
@@ -151,7 +156,7 @@ class CMP(ASM):
         return self.code(opcode, self.lhs, self.rhs)
 
     def __repr__(self):
-        return f'{self.name}({self.reg!r}, {self.imm!r})'
+        return f'{self.name}({self.lhs!r}, {self.rhs!r})'
 
 
 @instruction
@@ -195,8 +200,13 @@ if __name__ == '__main__':
     parser.add_argument('infile', help='ASM input file', type=FileType('r'))
     parser.add_argument(
         '--out', help='output file', type=FileType('w'), default='-')
+    parser.add_argument(
+        '--debug', help='debug output', action='store_true', default=False)
 
     args = parser.parse_args()
     program = asm_compile(args.infile)
+
+    show = repr if args.debug else str
+
     for inst in program:
-        print(inst, file=args.out)
+        print(show(inst), file=args.out)

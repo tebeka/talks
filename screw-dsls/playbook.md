@@ -21,4 +21,9 @@ will be a bit different from what you're used to.
     MOV(AX, BX) -> MOV(AX, BX)
     LOOP1: -> LABEL('LOOP1')
 
-He said - whatever works.
+He said - whatever works, everything is better than this.
+
+# slide
+You get the idea, they wrote Python. And it took me 2 days to do it.
+
+

@@ -1,0 +1,10 @@
+$ python app.py
+DB HOST = db1.353solutions.com
+PORT = 8080
+
+$ cat config_overrides
+port = 9999
+
+$ CONFIG_FILE=${PWD}/config_overrides python app.py
+DB HOST = db1.353solutions.com
+PORT = 9999
