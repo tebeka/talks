@@ -9,3 +9,6 @@ config.html: config.py
 
 test:
 	./asm.py fib.asm | ./sim.py -R0 10
+
+test2:
+	./asm2.py fib.asm | ./sim.py -R0 10

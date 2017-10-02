@@ -226,4 +226,7 @@ if __name__ == '__main__':
     show = show_debug if args.debug else str
 
     for inst in program:
-        print(show(inst), file=args.out)
+        try:
+            print(show(inst), file=args.out)
+        except ASMError as err:
+            raise SystemExit(f'error: {args.infile.name}:{err.lineno}: {err}')
