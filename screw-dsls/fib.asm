@@ -1,12 +1,16 @@
 # R0 holds N
 MOV(R1, 1)
 MOV(R2, 1)
+
 LABEL('LOOP')
 CMP(R0, 0)
 JMPE('EXIT')
+
 MOV(R3, R1)
 MOV(R1, R2)
 ADD(R2, R2, R3)
+
 SUB(R0, R0, 1)
 JMP('LOOP')
+
 LABEL('EXIT')

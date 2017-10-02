@@ -21,10 +21,10 @@ class Simulator:
         self.cmp_flag = False
 
     def parse(self, inst):
-        opcode = (inst >> Shifts.Code) & 0xF
-        slot0 = (inst >> Shifts.Slot0) & 0xF
-        slot1 = (inst >> Shifts.Slot1) & 0xF
-        slot2 = (inst >> Shifts.Slot2) & 0xF
+        opcode = (inst >> Shifts.opcode) & 0xF
+        slot0 = (inst >> Shifts.slot0) & 0xF
+        slot1 = (inst >> Shifts.slot1) & 0xF
+        slot2 = (inst >> Shifts.slot2) & 0xF
 
         return opcode, slot0, slot1, slot2
 

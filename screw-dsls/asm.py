@@ -25,9 +25,9 @@ def line_info(depth=3):
 
 
 class ASMError(Exception):
-    def __init__(self, message, line=0):
+    def __init__(self, message, lineno=0):
         super().__init__(message)
-        self.line = line
+        self.lineno = lineno
 
 
 class OpCodes(IntEnum):
@@ -48,13 +48,14 @@ class OpCodes(IntEnum):
 
 
 class Shifts(IntEnum):
-    Code = 12
-    Slot0 = 8
-    Slot1 = 4
-    Slot2 = 0
+    opcode = 12
+    slot0 = 8
+    slot1 = 4
+    slot2 = 0
 
 
 class REG:
+    """A register"""
     def __init__(self, code):
         self.code = code
 
@@ -64,8 +65,9 @@ class REG:
 
 
 class ASM(ABC):
+    """Base assembly instruction"""
     def __init__(self):
-        self.line = line_info()
+        self.lineno = line_info()
         self.name = self.__class__.__name__
         program.append(self)
 
@@ -76,10 +78,10 @@ class ASM(ABC):
 
     def code(self, opcode, slot1, slot2=0, slot3=0):
         return \
-            (opcode << Shifts.Code) | \
-            (self.slot_bits(slot1) << Shifts.Slot0) | \
-            (self.slot_bits(slot2) << Shifts.Slot1) | \
-            (self.slot_bits(slot3) << Shifts.Slot2)
+            (opcode << Shifts.opcode) | \
+            (self.slot_bits(slot1) << Shifts.slot0) | \
+            (self.slot_bits(slot2) << Shifts.slot1) | \
+            (self.slot_bits(slot3) << Shifts.slot2)
 
     def __str__(self):
         val = self.bits() & 0xFFFF
@@ -168,8 +170,8 @@ class CMP(ASM):
 @instruction
 def LABEL(name):
     if name in labels:
-        line = line_info(depth=2)
-        raise ASMError(f'duplicate label - {name!r}', line)
+        lineno = line_info(depth=2)
+        raise ASMError(f'duplicate label - {name!r}', lineno)
     labels[name] = len(program)
 
 
@@ -189,6 +191,7 @@ class MOV(ASM):
 
 
 def asm_compile(infile):
+    """Compile code from input file, return list of instructions"""
     program.clear()
 
     env = instructions.copy()
@@ -201,7 +204,7 @@ def asm_compile(infile):
 
 
 def show_debug(inst):
-    return f'{inst.line:03d}: {inst!r}'
+    return f'{inst.lineno:03d}: {inst!r}'
 
 
 if __name__ == '__main__':
@@ -217,8 +220,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     try:
         program = asm_compile(args.infile)
-    except ASMError as err:
-        raise SystemExit(f'error: {args.infile.name}:{err.line}: {err}')
+    except (SyntaxError, ASMError) as err:
+        raise SystemExit(f'error: {args.infile.name}:{err.lineno}: {err}')
 
     show = show_debug if args.debug else str
 

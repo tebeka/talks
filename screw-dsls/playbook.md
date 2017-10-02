@@ -2,6 +2,11 @@
 Hi, I'm Miki and I hate DSLs
 
 # slide
+definition
+
+config, templates ...
+
+# slide
 Let's get there by the long route...
 
 I was working at a company that made DVDs, doing tools (simulators, debuggers
