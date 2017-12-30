@@ -95,10 +95,9 @@ Also, if we'd like to store list of cars by location
     In [8]: by_loc[c2].append(2)
 
     In [9]: by_loc
-Out[9]: 
-defaultdict(list,
-            {<__main__.Coordinate at 0x7f202da38e80>: [2],
-             <__main__.Coordinate at 0x7f202da4d1d0>: [1]})
+    Out[9]: defaultdict(list,
+		{<__main__.Coordinate at 0x7f202da38e80>: [2],
+		 <__main__.Coordinate at 0x7f202da4d1d0>: [1]})
 
 
 
