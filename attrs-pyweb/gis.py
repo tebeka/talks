@@ -17,6 +17,7 @@ if 0:
 
 import attr
 
+#@attr.s(hash=True)
 @attr.s
 class Coordinate:
     lat = attr.ib(validator=attr.validators.instance_of(float))

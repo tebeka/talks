@@ -74,9 +74,36 @@ You don't see any improvement
     In [35]: c1 == c2
     Out[35]: False
 
-Need to write `__eq__` - too much code for this. The solution? ...
 
-namedtuple :)
+Need to write `__eq__` - too much code for this.
+
+---
+Also, if we'd like to store list of cars by location
+
+    In [5]: by_loc = defaultdict(list)
+
+    In [6]: by_loc[p1].append(1)
+    ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+    <ipython-input-6-7527ca82f453> in <module>()
+    ----> 1 by_loc[p1].append(1)
+
+    NameError: name 'p1' is not defined
+
+    In [7]: by_loc[c1].append(1)
+
+    In [8]: by_loc[c2].append(2)
+
+    In [9]: by_loc
+Out[9]: 
+defaultdict(list,
+            {<__main__.Coordinate at 0x7f202da38e80>: [2],
+             <__main__.Coordinate at 0x7f202da4d1d0>: [1]})
+
+
+
+We also need to write `__hash__` ...
+The solution? ...
 
 ---
     from collections import namedtuple
