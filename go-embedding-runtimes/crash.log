@@ -1,0 +1,200 @@
+$ ./processor -config /tmp/python3-handler.yaml
+Fatal Python error: PyEval_AcquireLock: current thread state is NULL
+
+Current thread 0x00007f49f8f9e740 (most recent call first):
+SIGABRT: abort
+PC=0x7f49f7f090bb m=0 sigcode=18446744073709551610
+
+goroutine 0 [idle]:
+runtime: unknown pc 0x7f49f7f090bb
+stack: frame={sp:0x7ffcf5ea6f50, fp:0x0} stack=[0x7ffcf56a82a8,0x7ffcf5ea72d0)
+00007ffcf5ea6e50:  00000000f5ea6ee4  00007f49f86ed064 
+00007ffcf5ea6e60:  00007f49f86d88a0  00007ffcf5ea6ed8 
+00007ffcf5ea6e70:  000000000f11ed7d  00000000003c47b5 
+00007ffcf5ea6e80:  000000000000003d  00007f49f7ee3558 
+00007ffcf5ea6e90:  00007ffcf5ea6fb0  00007f49f7ed5e48 
+00007ffcf5ea6ea0:  00007ffcf5ea6ed4  00007ffcf5ea6fa0 
+00007ffcf5ea6eb0:  00007f49f8fa1c18  0000000000000000 
+00007ffcf5ea6ec0:  000000000000000a  00007f49f8fa3000 
+00007ffcf5ea6ed0:  000000000000000a  0000000000000000 
+00007ffcf5ea6ee0:  0000000000000000  00007f49f8fa3358 
+00007ffcf5ea6ef0:  00007ffcf5ea7040  00007f49f8fa1dd0 
+00007ffcf5ea6f00:  0000000000000005  0000000000000000 
+00007ffcf5ea6f10:  00007ffcf5ea7068  00007f49f8da0ee1 
+00007ffcf5ea6f20:  0000000000000004  00007f49f8fa1dd0 
+00007ffcf5ea6f30:  0000000000000005  0000000000000000 
+00007ffcf5ea6f40:  0000000000000001  00007f49f8fa3000 
+00007ffcf5ea6f50: <0000000000000000  00007f49f8fa3000 
+00007ffcf5ea6f60:  0000000000000000  00007f49f8fa3358 
+00007ffcf5ea6f70:  00007ffcf5ea6fb0  00000001f8fa3358 
+00007ffcf5ea6f80:  00007f49f8fa3000  00007ffcf5ea6fa0 
+00007ffcf5ea6f90:  00007f49f86ed064  000000000f11ed7d 
+00007ffcf5ea6fa0:  00000000ffffffff  0000000000000002 
+00007ffcf5ea6fb0:  00007f49f7ed8f80  00007f49f8fa3f00 
+00007ffcf5ea6fc0:  0000000000000011  00007f49f8da6234 
+00007ffcf5ea6fd0:  fffffffe7fffffff  ffffffffffffffff 
+00007ffcf5ea6fe0:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea6ff0:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea7000:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea7010:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea7020:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea7030:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea7040:  ffffffffffffffff  ffffffffffffffff 
+runtime: unknown pc 0x7f49f7f090bb
+stack: frame={sp:0x7ffcf5ea6f50, fp:0x0} stack=[0x7ffcf56a82a8,0x7ffcf5ea72d0)
+00007ffcf5ea6e50:  00000000f5ea6ee4  00007f49f86ed064 
+00007ffcf5ea6e60:  00007f49f86d88a0  00007ffcf5ea6ed8 
+00007ffcf5ea6e70:  000000000f11ed7d  00000000003c47b5 
+00007ffcf5ea6e80:  000000000000003d  00007f49f7ee3558 
+00007ffcf5ea6e90:  00007ffcf5ea6fb0  00007f49f7ed5e48 
+00007ffcf5ea6ea0:  00007ffcf5ea6ed4  00007ffcf5ea6fa0 
+00007ffcf5ea6eb0:  00007f49f8fa1c18  0000000000000000 
+00007ffcf5ea6ec0:  000000000000000a  00007f49f8fa3000 
+00007ffcf5ea6ed0:  000000000000000a  0000000000000000 
+00007ffcf5ea6ee0:  0000000000000000  00007f49f8fa3358 
+00007ffcf5ea6ef0:  00007ffcf5ea7040  00007f49f8fa1dd0 
+00007ffcf5ea6f00:  0000000000000005  0000000000000000 
+00007ffcf5ea6f10:  00007ffcf5ea7068  00007f49f8da0ee1 
+00007ffcf5ea6f20:  0000000000000004  00007f49f8fa1dd0 
+00007ffcf5ea6f30:  0000000000000005  0000000000000000 
+00007ffcf5ea6f40:  0000000000000001  00007f49f8fa3000 
+00007ffcf5ea6f50: <0000000000000000  00007f49f8fa3000 
+00007ffcf5ea6f60:  0000000000000000  00007f49f8fa3358 
+00007ffcf5ea6f70:  00007ffcf5ea6fb0  00000001f8fa3358 
+00007ffcf5ea6f80:  00007f49f8fa3000  00007ffcf5ea6fa0 
+00007ffcf5ea6f90:  00007f49f86ed064  000000000f11ed7d 
+00007ffcf5ea6fa0:  00000000ffffffff  0000000000000002 
+00007ffcf5ea6fb0:  00007f49f7ed8f80  00007f49f8fa3f00 
+00007ffcf5ea6fc0:  0000000000000011  00007f49f8da6234 
+00007ffcf5ea6fd0:  fffffffe7fffffff  ffffffffffffffff 
+00007ffcf5ea6fe0:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea6ff0:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea7000:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea7010:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea7020:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea7030:  ffffffffffffffff  ffffffffffffffff 
+00007ffcf5ea7040:  ffffffffffffffff  ffffffffffffffff 
+
+goroutine 1 [syscall]:
+runtime.cgocall(0x1419050, 0xc4202cd760, 0x1419090)
+	/opt/go1.10/src/runtime/cgocall.go:128 +0x64 fp=0xc4202cd720 sp=0xc4202cd6e8 pc=0x92c074
+github.com/nuclio/nuclio/pkg/processor/runtime/python3._Cfunc_create_interpreter_pool(0x1, 0x0)
+	_cgo_gotypes.go:610 +0x4d fp=0xc4202cd760 sp=0xc4202cd720 pc=0x140e83d
+github.com/nuclio/nuclio/pkg/processor/runtime/python3.initPython(0x16f0426, 0x13, 0x1, 0xc4204584e0, 0xc4202cd7f0)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/runtime/python3/interface.go:77 +0x60 fp=0xc4202cd7a0 sp=0xc4202cd760 pc=0x14101d0
+github.com/nuclio/nuclio/pkg/processor/runtime/python3.(*python3).initialize(0xc420459440, 0x0, 0x0)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/runtime/python3/runtime.go:138 +0xbc fp=0xc4202cd800 sp=0xc4202cd7a0 pc=0x1412eac
+github.com/nuclio/nuclio/pkg/processor/runtime/python3.NewRuntime(0x17df4c0, 0xc420459320, 0xc4202d31e0, 0x17df4c0, 0xc420459320, 0xc4202c52e0, 0xc4202cd8e0)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/runtime/python3/runtime.go:71 +0xe6 fp=0xc4202cd858 sp=0xc4202cd800 pc=0x1412456
+github.com/nuclio/nuclio/pkg/processor/runtime/python3.(*factory).Create(0x2054520, 0x17df4c0, 0xc420459260, 0xc4202d31e0, 0x2054520, 0x0, 0x0, 0x1)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/runtime/python3/factory.go:32 +0x6c fp=0xc4202cd8a0 sp=0xc4202cd858 pc=0x140dbbc
+github.com/nuclio/nuclio/pkg/processor/runtime.(*Registry).NewRuntime(0x20316a0, 0x17df4c0, 0xc420459260, 0xc4203d5088, 0x7, 0xc4202d31e0, 0x1, 0x0, 0x0, 0xc4202cd9d8)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/runtime/registry.go:50 +0xcf fp=0xc4202cd8f0 sp=0xc4202cd8a0 pc=0x12c1f1f
+github.com/nuclio/nuclio/pkg/processor/worker.(*Factory).createWorker(0x2054060, 0x17df4c0, 0xc4204591a0, 0x0, 0xc4202d3180, 0x1, 0xc4203fe0d0, 0x16f1317)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/worker/factory.go:89 +0x1cb fp=0xc4202cda18 sp=0xc4202cd8f0 pc=0x12d652b
+github.com/nuclio/nuclio/pkg/processor/worker.(*Factory).createWorkers(0x2054060, 0x17df4c0, 0xc4204591a0, 0x1, 0xc4202d3180, 0x2, 0xc4202cdae8, 0x93ba48, 0xa0, 0x159be60)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/worker/factory.go:108 +0xbe fp=0xc4202cda88 sp=0xc4202cda18 pc=0x12d678e
+github.com/nuclio/nuclio/pkg/processor/worker.(*Factory).CreateFixedPoolWorkerAllocator(0x2054060, 0x17df4c0, 0xc4204591a0, 0x1, 0xc4202d3180, 0x15752c0, 0x1564968, 0x1564958, 0xc4202cdbb0)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/worker/factory.go:41 +0x137 fp=0xc4202cdaf8 sp=0xc4202cda88 pc=0x12d6097
+github.com/nuclio/nuclio/pkg/processor/trigger/http.(*factory).Create(0x2054520, 0x17df4c0, 0xc4204584e0, 0xc4203d51e0, 0x10, 0xc4200f25a0, 0xc4202d3180, 0x20, 0x15d9160, 0x1, ...)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/trigger/http/factory.go:45 +0x1b3 fp=0xc4202cdc00 sp=0xc4202cdaf8 pc=0x136d4f3
+github.com/nuclio/nuclio/pkg/processor/trigger.(*Registry).NewTrigger(0x20316e0, 0x17df4c0, 0xc4204584e0, 0xc4203d51c8, 0x4, 0xc4203d51e0, 0x10, 0xc4200f25a0, 0xc4202d3180, 0xc42043e210, ...)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/trigger/registry.go:54 +0xff fp=0xc4202cdc68 sp=0xc4202cdc00 pc=0x12d6f0f
+github.com/nuclio/nuclio/cmd/processor/app.(*Processor).createTriggers(0xc420458480, 0xc42022cc00, 0xc42034e640, 0x0, 0x0, 0x0, 0x0)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/cmd/processor/app/processor.go:244 +0x247 fp=0xc4202cde28 sp=0xc4202cdc68 pc=0x1415df7
+github.com/nuclio/nuclio/cmd/processor/app.NewProcessor(0x7ffcf5ea8d92, 0x19, 0x0, 0x0, 0x16, 0xc4203d49d8, 0xc4202c4c40)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/cmd/processor/app/processor.go:105 +0x19a fp=0xc4202cdeb0 sp=0xc4202cde28 pc=0x1414c7a
+main.run(0x0, 0x0)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/cmd/processor/main.go:46 +0x21f fp=0xc4202cdf50 sp=0xc4202cdeb0 pc=0x14185ef
+main.main()
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/cmd/processor/main.go:56 +0x22 fp=0xc4202cdf88 sp=0xc4202cdf50 pc=0x1418682
+runtime.main()
+	/opt/go1.10/src/runtime/proc.go:198 +0x212 fp=0xc4202cdfe0 sp=0xc4202cdf88 pc=0x9584f2
+runtime.goexit()
+	/opt/go1.10/src/runtime/asm_amd64.s:2361 +0x1 fp=0xc4202cdfe8 sp=0xc4202cdfe0 pc=0x985d51
+
+goroutine 19 [chan receive]:
+github.com/nuclio/nuclio/vendor/github.com/golang/glog.(*loggingT).flushDaemon(0x20324a0)
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/vendor/github.com/golang/glog/glog.go:882 +0x8b
+created by github.com/nuclio/nuclio/vendor/github.com/golang/glog.init.0
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/vendor/github.com/golang/glog/glog.go:410 +0x203
+
+goroutine 21 [sleep]:
+time.Sleep(0x3b9aca00)
+	/opt/go1.10/src/runtime/time.go:102 +0x166
+github.com/v3io/v3io-go-http/vendor/github.com/valyala/fasthttp.init.0.func1()
+	/home/miki/work/iguazio/src/github.com/v3io/v3io-go-http/vendor/github.com/valyala/fasthttp/coarseTime.go:21 +0x51
+created by github.com/v3io/v3io-go-http/vendor/github.com/valyala/fasthttp.init.0
+	/home/miki/work/iguazio/src/github.com/v3io/v3io-go-http/vendor/github.com/valyala/fasthttp/coarseTime.go:19 +0xb4
+
+goroutine 22 [sleep]:
+time.Sleep(0x3b9aca00)
+	/opt/go1.10/src/runtime/time.go:102 +0x166
+github.com/v3io/v3io-go-http/vendor/github.com/valyala/fasthttp.init.1.func1()
+	/home/miki/work/iguazio/src/github.com/v3io/v3io-go-http/vendor/github.com/valyala/fasthttp/header.go:1384 +0x2a
+created by github.com/v3io/v3io-go-http/vendor/github.com/valyala/fasthttp.init.1
+	/home/miki/work/iguazio/src/github.com/v3io/v3io-go-http/vendor/github.com/valyala/fasthttp/header.go:1382 +0x3a
+
+goroutine 36 [sleep]:
+time.Sleep(0x3b9aca00)
+	/opt/go1.10/src/runtime/time.go:102 +0x166
+github.com/nuclio/nuclio/vendor/github.com/valyala/fasthttp.init.0.func1()
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/vendor/github.com/valyala/fasthttp/coarseTime.go:21 +0x51
+created by github.com/nuclio/nuclio/vendor/github.com/valyala/fasthttp.init.0
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/vendor/github.com/valyala/fasthttp/coarseTime.go:19 +0xb4
+
+goroutine 37 [sleep]:
+time.Sleep(0x3b9aca00)
+	/opt/go1.10/src/runtime/time.go:102 +0x166
+github.com/nuclio/nuclio/vendor/github.com/valyala/fasthttp.init.1.func1()
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/vendor/github.com/valyala/fasthttp/header.go:1384 +0x2a
+created by github.com/nuclio/nuclio/vendor/github.com/valyala/fasthttp.init.1
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/vendor/github.com/valyala/fasthttp/header.go:1382 +0x3a
+
+goroutine 26 [IO wait]:
+internal/poll.runtime_pollWait(0x7f49f8f12f00, 0x72, 0x0)
+	/opt/go1.10/src/runtime/netpoll.go:173 +0x57
+internal/poll.(*pollDesc).wait(0xc4200d0118, 0x72, 0xc420486000, 0x0, 0x0)
+	/opt/go1.10/src/internal/poll/fd_poll_runtime.go:85 +0x9b
+internal/poll.(*pollDesc).waitRead(0xc4200d0118, 0xffffffffffffff00, 0x0, 0x0)
+	/opt/go1.10/src/internal/poll/fd_poll_runtime.go:90 +0x3d
+internal/poll.(*FD).Accept(0xc4200d0100, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0)
+	/opt/go1.10/src/internal/poll/fd_unix.go:372 +0x1a8
+net.(*netFD).accept(0xc4200d0100, 0x7f49f8f5e000, 0x0, 0x1744a50)
+	/opt/go1.10/src/net/fd_unix.go:238 +0x42
+net.(*TCPListener).accept(0xc4202d4010, 0xc42006be40, 0x93ba48, 0x30)
+	/opt/go1.10/src/net/tcpsock_posix.go:136 +0x2e
+net.(*TCPListener).AcceptTCP(0xc4202d4010, 0x1613460, 0xc4201d4120, 0x15492c0)
+	/opt/go1.10/src/net/tcpsock.go:246 +0x49
+net/http.tcpKeepAliveListener.Accept(0xc4202d4010, 0xc420036340, 0x15492c0, 0x1fc6e20, 0x16b3680)
+	/opt/go1.10/src/net/http/server.go:3216 +0x2f
+net/http.(*Server).Serve(0xc4201f6000, 0x17d5ea0, 0xc4202d4010, 0x0, 0x0)
+	/opt/go1.10/src/net/http/server.go:2770 +0x1a5
+net/http.(*Server).ListenAndServe(0xc4201f6000, 0xc4201f6000, 0x0)
+	/opt/go1.10/src/net/http/server.go:2711 +0xa9
+net/http.ListenAndServe(0x16e3a6f, 0x5, 0x7f49f8ec98f8, 0xc42034e690, 0x17df4c0, 0xc4204590e0)
+	/opt/go1.10/src/net/http/server.go:2969 +0x7a
+created by github.com/nuclio/nuclio/pkg/processor/healthcheck.(*Server).Start
+	/home/miki/work/iguazio/src/github.com/nuclio/nuclio/pkg/processor/healthcheck/server.go:78 +0x148
+
+rax    0x0
+rbx    0x7f49f82ad800
+rcx    0x7f49f7f090bb
+rdx    0x0
+rdi    0x2
+rsi    0x7ffcf5ea6f50
+rbp    0x2
+rsp    0x7ffcf5ea6f50
+r8     0x0
+r9     0x7ffcf5ea6f50
+r10    0x8
+r11    0x246
+r12    0x7f49f8d85a50
+r13    0x43
+r14    0x42
+r15    0x100
+rip    0x7f49f7f090bb
+rflags 0x246
+cs     0x33
+fs     0x0
+gs     0x0
