@@ -1,0 +1,115 @@
+Hi Sean,
+
+Hope all is well. Would love to pick your brain preparing for my next talk.
+Sorry if this is long :)
+
+I'm giving a talk in a Python meetup about 4 programming languages you should learn.
+The main take is that learning a new programming paradigm will expand your mind and will give you more tools to solve problems in Python.
+
+I'm going to show a language, some code and then influence on Python (factorial). The 4 types of languages I'm going to recommend learning are:
+
+# Procedural
+
+Here the range is really big. C, C++, Java, Python, Ruby, Go, PHP, Perl, JavaScript, SmallTalk ...
+I'll probably recommend C or Go. Maybe learning Python more in depth
+
+
+    --- Go ---
+    func fact(n int) int {
+	    total := 1
+	    for ; n > 0; n-- {
+		    total *= n
+	    }
+	    return total
+    }
+
+    --- Python ---
+    def fact(n):
+	total = 1
+	while n > 0:
+	    total *= n
+	    n -= 1
+	return total
+
+Not sure what to give as take away here :)
+
+Books:
+    - Object Oriented C https://www.cs.rit.edu/~ats/books/ooc.pdf
+	    
+
+# Logical
+Here only Prolog comes to mind. I'll recommend SWI-Prolog and will probably show either solution to Framer, wolf, sheep, cabbage riddle or 8 queens. Here I struggle to show Python code that's inspired by that. The only thing I have is some cryptic Prolog code used in the old Psyco JIT compiler to generate instructions.
+
+
+    --- Prolog ---
+    fact(1, 1).
+    fact(N, F) :-
+	N > 0,
+	N1 is N - 1,
+	fact(N1, F1),
+	F is N * F1.
+
+    --- Python ---
+    def fact(n):
+	if n == 1:
+	    return 1
+	return n * fact(n-1)
+
+Books: 
+    - Prolog Experiments in Discrete Mathematics
+	http://samples.jbpub.com/9780763772062/PrologLabBook09.pdf
+
+# Functional
+I'll mention common lisp (sbcl), scheme (racket), Clojure, haskell and ML (ocaml).
+
+    --- Haskell ---
+    fact n = foldl (*) 1 [1..n]
+
+    --- Python ---
+    from operator import mul
+    from functools import reduce
+
+    def fact(n):
+	return reduce(mul, range(1, n+1))
+
+I plan to mention SICP, maybe show some code by Norvig and talk on why functional programming matters.
+
+Books:
+    - [Practical Common Lisp](http://www.gigamonkeys.com/book/)
+    - [On Lisp](http://www.paulgraham.com/onlisp.html)
+    - [Learn You a Haskell for Great Good](http://learnyouahaskell.com/chapters)
+    - [Real World Haskell](http://book.realworldhaskell.org/read/) 
+    - [SICP](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-4.html#%_toc_start)
+
+# Assembly
+x86 assembly, gcc, nasm(?), ...
+
+    --- Assembly ---
+    fact:
+	movl %eax, %ecx  # Loop n -1 times
+	decl %ecx
+    fact_loop:
+	imul %ecx, %eax  # n = n * n-1
+	loop fact_loop
+	jmp end
+
+
+    --- Python ---
+    def fact(n):
+	total = n
+	for i in range(1, n):
+	    total *= i
+	return total
+    
+I'll talk about knowing the machine below the program and show a project my daughter did in assembly which is the Qbert game.
+
+Books:
+    - [Assembly Programming Tutorial](https://www.tutorialspoint.com/assembly_programming/index.htm) (using [nasm](http://www.nasm.us/)
+    - [Programming from the Ground Up](http://nongnu.askapache.com/pgubook/ProgrammingGroundUp-1-0-booksize.pdf) (PDF)
+
+
+Any comments? Ideas? Books to add?
+
+Thanks,
+--
+Miki

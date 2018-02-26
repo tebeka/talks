@@ -1,5 +1,9 @@
 dotfile = /tmp/graph.dot
 
+%: %.s
+	as -o %.o $<
+	ld -o $@ %.o
+
 graph.png: graph.pl
 	echo 'digraph G {' > $(dotfile)
 	echo 'graph [rankdir=LR, label="Sample Graph", labelloc=t, fontsize=32];' >> $(dotfile)
@@ -16,7 +20,10 @@ hw: hw.o
 hw.o: hw.s
 	as -o $@ $<
 
+fact: fact.s
+
 
 clean:
 	rm -f graph.png
 	rm -f hw.o hw
+	rm -f fact.o fact

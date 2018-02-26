@@ -1,0 +1,5 @@
+(defun fact (n)
+  (let ((result 1))
+    (do ((i n (1- i)))
+      ((= i 0) result)
+      (setf result (* result i)))))
