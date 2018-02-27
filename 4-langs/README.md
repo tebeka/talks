@@ -46,6 +46,7 @@ Functional (Clojure, Haskell, SBCL, Racket)
 # Books
 
 * [Practical Common Lisp](http://www.gigamonkeys.com/book/)
+* [Paradigms of Artificial Intelligence Programming](https://github.com/norvig/paip-lisp)
 * [On Lisp](http://www.paulgraham.com/onlisp.html)
 * [Learn You a Haskell for Great Good](http://learnyouahaskell.com/chapters)
 * [Real World Haskell](http://book.realworldhaskell.org/read/) 
@@ -56,4 +57,5 @@ Functional (Clojure, Haskell, SBCL, Racket)
 * [Assembly Programming Tutorial](https://www.tutorialspoint.com/assembly_programming/index.htm) (using [nasm](http://www.nasm.us/)
 * [Programming from the Ground Up](http://nongnu.askapache.com/pgubook/ProgrammingGroundUp-1-0-booksize.pdf) (PDF)
 * [OOC](https://www.cs.rit.edu/~ats/books/ooc.pdf) PDF
+* [Assemblers and Loaders](https://www.davidsalomon.name/assem.advertis/asl.pdf)
 
