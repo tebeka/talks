@@ -4,6 +4,11 @@ dotfile = /tmp/graph.dot
 	as -o %.o $<
 	ld -o $@ %.o
 
+
+# white?
+slides.html: slides.txt
+	pandoc -t revealjs -V theme=serif -s $< -o $@
+
 graph.png: graph.pl
 	echo 'digraph G {' > $(dotfile)
 	echo 'graph [rankdir=LR, label="Sample Graph", labelloc=t, fontsize=32];' >> $(dotfile)
