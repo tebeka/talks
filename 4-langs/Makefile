@@ -27,7 +27,6 @@ hw.o: hw.s
 
 fact: fact.s
 
-
 clean:
 	rm -f graph.png
 	rm -f hw.o hw

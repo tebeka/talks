@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+from os import mkdir
+from os.path import isdir, splitext, basename
+from subprocess import run
+
+out_dir = 'html'
+
+src_files = [
+    '8q.pl',
+    'coins.pl',
+    'fact.c',
+    'fact.clj',
+    'fact.go',
+    'fact.hs',
+    'fact_hs.py',
+    'fact.lsp',
+    'fact.pl',
+    'fact_pl.py',
+    'fact.py',
+    'fact.s',
+    'fact.scm',
+    'fact_scm.py',
+    'graph.pl',
+    'httpc.py',
+    'hw2.s',
+    'hw.c',
+    'hw.s',
+    'tree.py',
+]
+
+if not isdir(out_dir):
+    mkdir(out_dir)
+
+for src in src_files:
+    base, ext = splitext(basename(src))
+    out = f'{out_dir}/{base}_{ext[1:]}.html'
+    print(f'{src} -> {out}')
+    cmd = [
+        'pygmentize',
+        '-Ofull,linenos=1,style=vs',
+        '-l', 'python',
+        '-f', 'html',
+        '-o', out,
+    ]
+    if ext == '.s':
+        cmd.extend(['-l', 'gas'])
+    cmd.append(src)
+    run(cmd)
