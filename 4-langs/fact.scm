@@ -3,3 +3,5 @@
     (if (zero? n)
       acc
       (loop (- n 1) (* n acc)))))
+
+(println (fact 10))

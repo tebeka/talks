@@ -6,7 +6,7 @@ dotfile = /tmp/graph.dot
 
 
 # white?
-slides.html: slides.txt
+slides.html: slides.md
 	pandoc -t revealjs -V theme=serif -s $< -o $@
 
 graph.png: graph.pl
