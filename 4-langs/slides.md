@@ -21,6 +21,10 @@
 
 ---
 
+![](2-lang.png)
+
+---
+
 ## 4 **Types** of Languages You Must Learn
 
 ---
