@@ -1,8 +1,8 @@
 dotfile = /tmp/graph.dot
 
 %: %.s
-	as -o %.o $<
-	ld -o $@ %.o
+	as -o $@.o $<
+	ld -o $@ $@.o
 
 
 # white?

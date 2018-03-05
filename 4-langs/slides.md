@@ -5,6 +5,30 @@
 
 ---
 
+# But first, for something completely different ...
+
+---
+
+![](pycon_2018.jpg)
+
+---
+
+* Django Girls: June 3
+* Main Event: June 4, 5
+* Workshops: June 6
+
+Wohl Center (Bar Ilan University)
+
+**CFP is Open**
+
+[http://il.pycon.org/2018/](http://il.pycon.org/2018/)
+
+(End April 4)
+
+### We Still Have Some Sponsorship Slots Available
+
+
+
 ## Why Other Language?
 
 ![](ring.png)
@@ -31,7 +55,7 @@
 
 ## 1. Procedural/OO
 
-Python, Go, C, C++, Java, Perl, PHP, Ruby, C#,  ...
+Python, Go, C, C++, Java, Perl, PHP, Ruby, C#, rust, D, ...
 
 ---
 
@@ -295,6 +319,12 @@ Learn 4 types of languages, it'll expand your mind.
 * Assembly (x86)
 * Functional (Clojure/Haskell)
 * Logical (SWI Prolog)
+
+--- 
+
+## Also, submit your talk
+
+[http://il.pycon.org/2018/](http://il.pycon.org/2018/)
 
 
 ---
