@@ -23,11 +23,15 @@ Wohl Center (Bar Ilan University)
 
 [http://il.pycon.org/2018/](http://il.pycon.org/2018/)
 
-(End April 4)
+(ends April 4)
 
 ### We Still Have Some Sponsorship Slots Available
 
+---
 
+## Back to the Show ...
+
+---
 
 ## Why Other Language?
 
@@ -96,6 +100,10 @@ Know the machine!
 
 ---
 
+![](binary.png)
+
+---
+
 **fact.s**
 ```asm
 _start:
@@ -119,8 +127,8 @@ fact_loop:
 
 ```
 $ make fact
-as -o %.o fact.s
-ld -o fact %.o
+as -o fact.o fact.s
+ld -o fact fact.o
 $ ls -lh fact
 -rwxrwxr-x 1 miki miki 864 Mar  2 18:23 fact
 ./fact
@@ -145,7 +153,7 @@ $ ls -lh fact
 ## 3. Functional
 
 * Lispish
-    * Lisp - [SBCL](http://www.sbcl.org/)
+    * Common Lisp - [SBCL](http://www.sbcl.org/)
     * Scheme - [Racket](https://racket-lang.org/)
     * [Clojure](https://clojure.org/)
 * Haskell - [GHC](https://www.haskell.org/ghc/)
@@ -171,6 +179,12 @@ def fact(n):
         return _fact(n-1, acc*n)
     return _fact(n, 1)
 ```
+
+---
+
+![](lisp.png)
+
+[https://xkcd.com/297/](https://xkcd.com/297/)
 
 ---
 
@@ -322,9 +336,11 @@ Learn 4 types of languages, it'll expand your mind.
 
 --- 
 
-## Also, submit your talk
+## Also, submit your PyCon talk
 
 [http://il.pycon.org/2018/](http://il.pycon.org/2018/)
+
+Please share ...
 
 
 ---

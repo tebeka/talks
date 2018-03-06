@@ -1,4 +1,5 @@
 dotfile = /tmp/graph.dot
+s3bucket=s3://353solutions/4-langs
 
 %: %.s
 	as -o $@.o $<
@@ -31,3 +32,12 @@ clean:
 	rm -f graph.png
 	rm -f hw.o hw
 	rm -f fact.o fact
+
+# TODO: Move to GitHub pages
+upload:
+	s3cmd sync *.png *.jpg slides.html reveal.js $(s3bucket)/
+	s3cmd setacl $(s3bucket)/ --acl-public --recursive
+	find reveal.js/ \
+	    -name '*.css' \
+	    -exec s3cmd modify $(s3bucket)/{} \
+	    	--add-header='Content-Type: text/css' \;
