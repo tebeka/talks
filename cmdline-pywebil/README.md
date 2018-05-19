@@ -7,8 +7,13 @@ Talk at [PyWeb IL, July 2, 2018](https://www.meetup.com/PyWeb-IL/events/25081411
 
 * Mclorry vs Knuth
 * At the beginning there was the command line ...
+    - http://cristal.inria.fr/~weis/info/commandline.html
     - raspberry pie?
 * xkcd tar
 * setup.py + script
-* pex (dependencies)
+* depedencies
+    * pyinstaller/cx_freeze
+    - pyinstaller --hidden-import numpy sin.py
+    - pex
 * nuke-db --help
+* tqdm, '-\r'
