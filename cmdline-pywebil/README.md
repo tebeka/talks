@@ -10,6 +10,8 @@ Talk at [PyWeb IL, July 2, 2018](https://www.meetup.com/PyWeb-IL/events/25081411
     - http://cristal.inria.fr/~weis/info/commandline.html
     - raspberry pie?
 * xkcd tar
+    * design
+    * sub commands
 * setup.py + script
 * depedencies
     * pyinstaller/cx_freeze
@@ -17,3 +19,4 @@ Talk at [PyWeb IL, July 2, 2018](https://www.meetup.com/PyWeb-IL/events/25081411
     - pex
 * nuke-db --help
 * tqdm, '-\r'
+* --json
