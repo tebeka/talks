@@ -1,0 +1,7 @@
+venv
+*.pex
+html/*.html
+code/frames
+build
+*.mp4
+*.gif
