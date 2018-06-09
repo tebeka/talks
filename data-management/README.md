@@ -1,12 +1,16 @@
 # Data Management - We can do better
 
-Talk given at TODO June 18, 2018
+Talk given at [Big Data Analytics meetup](https://www.meetup.com/Big-Data-Analytics-Israel/events/251392450/) June 18, 2018
 
 ## Ideas
 * Regular schema not enough (inch vs feet ...)
     * Weather example where in c/10
 * Column names in database
 * Ask TT about data quality regulation
+    - GDPR forces companies
+    - error rate KPI (if above threshold, reject)
+    - Header (# of records)
+    - Compare to previous period (anomaly)
 * Track source of data through ETL
 * Bit rot
     * Example of RAM cosmic rays
