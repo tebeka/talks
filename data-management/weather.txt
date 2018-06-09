@@ -1,0 +1,18 @@
+Custom Options:	Station name	
+Stations:	GHCND:USW00094728 - NEW YORK CENTRAL PARK OBS BELVEDERE TOWER, NY US
+Data Types:	
+WDF5 - Direction of fastest 5-second wind (degrees)
+AWND - Average daily wind speed (tenths of meters per second)
+TMAX - Maximum temperature (tenths of degrees C)
+WDF2 - Direction of fastest 2-minute wind (degrees)
+SNWD - Snow depth (mm)
+SNOW - Snowfall (mm)
+PRCP - Precipitation (tenths of mm)
+WSF5 - Fastest 5-second wind speed (tenths of meters per second)
+FMTM - Time of fastest mile or fastest 1-minute wind (hours and minutes, i.e, HHMM)
+PGTM - Peak gust time (hours and minutes, i.e., HHMM)
+WSF2 - Fastest 2-minute wind speed (tenths of meters per second)
+TMIN - Minimum temperature (tenths of degrees C)
+
+
+URL: http://www.ncdc.noaa.gov/cdo-web
