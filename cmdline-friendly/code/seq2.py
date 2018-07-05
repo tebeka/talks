@@ -3,17 +3,12 @@ from argparse import ArgumentParser
 from itertools import count
 
 
-def main():
-    parser = ArgumentParser(description=__doc__)
-    parser.add_argument('start', type=int, help='number to start')
-    args = parser.parse_args()
+parser = ArgumentParser(description=__doc__)
+parser.add_argument('start', type=int, help='number to start')
+args = parser.parse_args()
 
-    for n in count(args.start):
-        print(n)
-
-
-if __name__ == '__main__':
+for n in count(args.start):
     try:
-        main()
+        print(n)
     except BrokenPipeError:
-        pass
+        break
