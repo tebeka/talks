@@ -41,3 +41,4 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
     - vim adventures
     - vim golf
     - https://www.openvim.com/
+- gang sign
