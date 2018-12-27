@@ -20,6 +20,8 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
     - C-]
     - S-k
     - \r
+- C-p
+- gF
 - snippets
     - class
 	- ctrl-b
@@ -28,9 +30,14 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
     - [PyCharm](https://plugins.jetbrains.com/plugin/164-ideavim)
     - [VSCode](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
     - bash/zsh: `set -o vi`
+    - ~/.inputrc: `set editing-mode vi`
     - IPython: `c.TerminalInteractiveShell.editing_mode = 'vi'`
     - [vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
-- Extendable with Python
+    - [airline](https://github.com/vim-airline/vim-airline)
+	- git branch, number of words
+- Scriptable with Python
+    - :help python
 - learn
     - vim adventures
     - vim golf
+    - https://www.openvim.com/
