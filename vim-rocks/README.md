@@ -28,7 +28,7 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
     - \r
 - [airline](https://github.com/vim-airline/vim-airline)
     - git branch, number of words
-- C-p
+- C-p / NERDTree
 - gF
 - snippets
     - class

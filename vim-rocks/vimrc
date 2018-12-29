@@ -1,0 +1,166 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'cespare/vim-toml'
+Plug 'davidhalter/jedi-vim'
+Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/a.vim'
+Plug 'w0rp/ale'
+Plug 'zchee/vim-flatbuffers'
+
+" Initialize plugin system
+call plug#end()
+
+" Search & display
+set ignorecase
+set incsearch
+set nohls
+set number
+set showmatch
+set smartcase
+
+" Enable vim: ... directives
+set modeline
+
+" Tab stuff
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+
+" Use system clipboard
+set clipboard=unnamedplus
+
+" Make no noise
+set visualbell t_vb=
+set noerrorbells
+
+" Vertical diff
+set diffopt=filler,vertical
+
+" Use hidden (allow buffer switch when modified)
+au BufNewFile,BufRead * set hidden
+
+" Abbriviations
+abb _3me_ Miki Tebeka <miki@353solutions.com>
+abb _date_ <C-R>=strftime("%Y-%m-%d")<CR>
+abb _gme_ Miki Tebeka <miki.tebeka@gmail.com>
+abb _py_ #!/usr/bin/env python
+abb _sh_ #!/bin/bash
+
+" Make file executable
+func! MakeExecutable()
+    w
+    !chmod +x %
+    e
+endfunc
+comm! MX silent call MakeExecutable()
+
+" Clean non ascii
+func! ASCII_Clean()
+    silent %! iconv -c -t ASCII
+endfunc
+comm! AC call ASCII_Clean()
+
+
+comm! Gr ! go run %
+comm! Pr ! python %
+comm! Pr2 ! python2 %
+
+" YAML
+au BufNewFile,BufRead *.yaml setl ts=2
+au BufNewFile,BufRead *.yaml setl sw=2
+
+" Go
+au BufNewFile,BufRead *.go setl noet
+au BufNewFile,BufRead *.go setl ts=4
+au BufNewFile,BufRead *.go setl tw=0
+
+let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
+au FileType go nmap <leader>gt :GoDeclsDir<cr>
+
+augroup go
+  autocmd!
+  autocmd Filetype go
+    \  command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+    \| command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    \| command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+augroup END
+
+" .envrc
+au BufNewFile,BufRead .envrc set ft=zsh
+
+" Space for page up/down
+noremap <SPACE> <C-F>
+
+" Explorer to show full info
+let g:explDetailedList=1
+
+" Ale
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '❗'
+let g:ale_linters = {
+\   'python': ['flake8'],
+\}
+nmap <silent> <C-n> <Plug>(ale_next_wrap)
+
+" Airline
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#ctrlp#enabled = 1
+let g:airline_theme = 'minimalist'
+let g:airline_powerline_fonts = 1
+
+" CTRL-P
+noremap <C-P> :FZF<CR>
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.venv$\|\.vendor$',
+  \ }
+
+" Python
+let g:jedi#goto_command = "<C-]>"
+
+au BufNewFile,BufRead *.py setl tw=78
+
+func! Isort()
+    w
+    silent !isort -ns % -q %
+    e
+endfunc
+comm! Isort call Isort()
+
+" Run black Python formatter
+func! Black()
+    w
+    silent !black -S -l 79 %
+    e
+endfunc
+comm! Black call Black()
+
+" NERDTree
+let NERDTreeIgnore = ['\.py[co]$', '__pycache__']
+comm! NT NERDTreeToggle
+let g:NERDTreeWinSize = 18 
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Wheels are zip files
+au BufReadCmd *.whl call zip#Browse(expand("<amatch>"))
+
+if has("gui_running")
+    " No toolbar or menu
+    set guioptions=aAce
+    colorscheme default
+    set guifont=Space\ Mono\ 18
+endif
