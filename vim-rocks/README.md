@@ -34,6 +34,9 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
 - C-p / NERDTree
 - Add MANIFEST.in 
     - `recursive-include tests *.py`
+- open .gitignore
+- add math2.egg-info/
+    - math<CTRL-X F> 
 - [airline](https://github.com/vim-airline/vim-airline)
     - git branch, number of words
 - setup.py
