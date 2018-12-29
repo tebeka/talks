@@ -4,36 +4,43 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
 
 [Slides](https://docs.google.com/presentation/d/1-7DR3vsiv8GEgUall8X50EhuEDQKCxmVEioVZb5CBPY/edit)
 
-## Plan
+## Playbook
 - [Lindy effect](https://en.wikipedia.org/wiki/Lindy_effect)
     - vi 1976; 42 years ago
     - vim 1991; 27 years ago
 - Jokes then move to vim
-    - Work on branch in nuclio-jupyter
-- dual mode
+    - Work math2
+- start without file
+    - show exit instructions
+- open tests/test_sqrt.py
 - no mouse (find image?)
-- folding
-- color schemes
-- %!jq .
-    - also single line
-    - xxd?
-- zip file
-    - whl
-- plugins
+- dual mode
+- movement
+- CTRL-] on sqrt
     - plug
-- fugitive
-- jedi
-    - C-]
-    - S-k
-    - \r
+    - jedi plugin
+    - \r (val to value)
+    - :Gdiff
+- goto tests/sqrt_cases.json
+- add space
+- gf
+- %!jq .
+- back to test and :Gdiff
+- :make dist
+    - Show Makefile
+- :NT
+    - open dist/
+    - open wheel
+- C-p / NERDTree
+- Add MANIFEST.in 
+    - `recursive-include tests *.py`
 - [airline](https://github.com/vim-airline/vim-airline)
     - git branch, number of words
-- C-p / NERDTree
-- gF
+- setup.py
+    - gx
 - snippets
-    - class
-	- ctrl-b
-    - ifm 
+- open __init__.py
+- def<TAB> .. (add)
 - Plugins
     - [PyCharm](https://plugins.jetbrains.com/plugin/164-ideavim)
     - [VSCode](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
