@@ -9,6 +9,7 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
     - vi 1976; 42 years ago
     - vim 1991; 27 years ago
 - it's everywhere
+- car analogy
 - jokes then move to vim
     - Work math2
 - start without file
