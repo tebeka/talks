@@ -23,9 +23,11 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
     - jedi plugin
     - \r (val to value)
     - :Gdiff
+- import
+    - show ale (C-N)
 - goto tests/sqrt_cases.json
-- add space
-- gf
+    - add space
+    - gf (goto file)
 - %!jq .
 - back to test and :Gdiff
 - :make dist
