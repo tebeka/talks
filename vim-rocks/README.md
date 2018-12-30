@@ -8,7 +8,8 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
 - [Lindy effect](https://en.wikipedia.org/wiki/Lindy_effect)
     - vi 1976; 42 years ago
     - vim 1991; 27 years ago
-- Jokes then move to vim
+- it's everywhere
+- jokes then move to vim
     - Work math2
 - start without file
     - show exit instructions
@@ -32,7 +33,8 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
     - open dist/
     - open wheel
 - C-p / NERDTree
-- Add MANIFEST.in 
+    - in the command line
+- add MANIFEST.in 
     - `recursive-include tests *.py`
 - open .gitignore
 - add math2.egg-info/
@@ -44,14 +46,14 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
 - snippets
 - open __init__.py
 - def<TAB> .. (add)
-- Plugins
+- plugins
     - [PyCharm](https://plugins.jetbrains.com/plugin/164-ideavim)
     - [VSCode](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
     - bash/zsh: `set -o vi`
     - ~/.inputrc: `set editing-mode vi`
     - IPython: `c.TerminalInteractiveShell.editing_mode = 'vi'`
     - [vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
-- Scriptable with Python
+- scriptable with Python
     - :help python
 - learn
     - vim adventures
