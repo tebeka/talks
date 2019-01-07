@@ -9,9 +9,9 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
     - vi 1976; 42 years ago
     - vim 1991; 27 years ago
 - it's everywhere
-- car analogy
 - jokes then move to vim
-    - Work math2
+- car analogy
+- math2
 - start without file
     - show exit instructions
 - open tests/test_sqrt.py
@@ -36,7 +36,7 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
     - open dist/
     - open wheel
 - C-p / NERDTree
-    - in the command line
+    - fzf in the command line
 - add MANIFEST.in 
     - `recursive-include tests *.py`
 - open .gitignore
@@ -49,6 +49,7 @@ Given at [PyWeb IL](https://www.meetup.com/PyWeb-IL/events/257305259/)
 - snippets
 - open __init__.py
 - def<TAB> .. (add)
+    - C-B
 - plugins
     - [PyCharm](https://plugins.jetbrains.com/plugin/164-ideavim)
     - [VSCode](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
