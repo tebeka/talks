@@ -20,3 +20,6 @@ Talk on descriptors given at PyCon Israel 2019
 ## TODO
 - References?
 - Find other uses for descriptors
+- ASCII first slide
+-  %alias code pygmentize %l | cat -n                                                                                                                                                                                                       
+
