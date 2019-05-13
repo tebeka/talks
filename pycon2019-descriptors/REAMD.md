@@ -94,7 +94,12 @@ IPython & Log terminal
     In [41]: Math.neg(10)
     Out[41]: -10
 
-    # What can *we* do with it?
+    In [  ]: import json
+    In [  ]: dir(json.JSONDecoder.decode)
+
+    In [  ]: %cow mind=blown
+
+    In [  ]: %cow WIIFM
 
     In [44]: %edit -n 1609 -x ~/Projects/cpython/Doc/reference/datamodel.rst
 
