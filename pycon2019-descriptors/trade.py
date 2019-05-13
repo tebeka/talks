@@ -1,15 +1,13 @@
+from dataclasses import dataclass
+
 import fields
 
 
+@dataclass
 class Trade:
-    symbol = fields.Symbol()
-    price = fields.Price()
-    volume = fields.Volume()
-
-    def __init__(self, symbol, price, volume):
-        self.symbol = symbol
-        self.price = price
-        self.volume = volume
+    symbol: fields.Field = fields.Symbol()
+    price: fields.Field = fields.Price()
+    volume: fields.Field = fields.Volume()
 
     def __repr__(self):
         cls = self.__class__.__name__
