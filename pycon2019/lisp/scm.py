@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Function:
+class Lambda:
     args: list
     body: list
     env: dict
@@ -14,6 +14,11 @@ class Function:
         args = {name: val for name, val in zip(self.args, params)}
         env = ChainMap(args, self.env)
         return evaluate(self.body, env)
+
+    def __repr__(self):
+        args = ' '.join(self.args)
+        body = lispify(self.body)
+        return f'(lambda ({args}) {body})'
 
 
 def tokenize(code):
@@ -115,7 +120,7 @@ def evaluate(expr, env):
 
     if op == 'lambda':
         args, body = rest
-        return Function(args, body, env)
+        return Lambda(args, body, env)
 
     func = evaluate(expr[0], env)
     args = [evaluate(arg, env) for arg in expr[1:]]
@@ -125,3 +130,24 @@ def evaluate(expr, env):
 def run(code, env=None):
     env = builtin if env is None else env
     return evaluate(parse(code), env)
+
+
+def repl():
+    while True:
+        try:
+            code = input('> ')
+            val = run(code)
+            if val is not None:
+                print(lispify(val))
+        except (EOFError, KeyboardInterrupt):
+            print('ciao')
+            return
+        except Exception as err:
+            print(f'error: {err}')
+
+
+def lispify(val):
+    if not isinstance(val, list):
+        return str(val)
+
+    return '(' + ' '.join(lispify(v) for v in val) + ')'
