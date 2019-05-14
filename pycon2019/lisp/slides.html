@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<title>Let's write a Lisp interpreter</title>
+	<title>Let's Write a Lisp interpreter</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/serif.min.css">
 	<base target="_blank">
 <style>
 .reveal section img { background:none; border:none; box-shadow:none; }
+span.del {
+  text-decoration-line: line-through;
+  text-decoration-style: wavy;
+  text-decoration-color: silver;
+}
 </style>
     </head>
     <body>
@@ -23,18 +28,11 @@
 		    <img alt="logo" src="353.png">
 		</section>
 		<section>
-		    <img alt="xkcd" src="xkcd-lisp.png">
-
-		    <hr/>
-		    <a href="https://xkcd.com/297/">xkcd: Lisp Cycles</a>
-
-		</section>
-		<section>
 		    <h3>
 		    LISP is worth learning for a different reason — the
-		    profound enlightenment experience you will have when you
-		    finally get it. That experience will make you a better
-		    programmer for the rest of your days, even if you never
+		    <b>profound enlightenment</b> experience you will have when you
+		    finally get it. That experience <b>will make you a better
+		    programmer</b> for the rest of your days, even if you never
 		    actually use LISP itself a lot
 		    </h3>
 		    <hr />
@@ -43,20 +41,61 @@
 		</section>
 		<section>
 		    <h3>
-		    Any sufficiently complicated C or Fortran program contains
-		    an ad-hoc, informally-specified, bug-ridden, slow
-		    implementation of half of Common Lisp.
+			<b>Any sufficiently complicated</b> C or Fortran
+			<b>program contains</b> an ad-hoc, informally-specified,
+			<b>bug-ridden, slow implementation of half of
+			    Common Lisp</b>.
 		    </h3>
 		    <hr/>
 		    <a href="https://en.wikipedia.org/wiki/Greenspun%27s_tenth_rule">Greenspun's tenth rule</a>
 		</section>
 		<section>
-		    <h2>Python, is a watered-down Lisp with infix syntax and no macros.</h2>
+		    <h2><b>Python, is a watered-down Lisp</b> with infix syntax
+			and no macros.</h2>
 		    <hr/>
 		    <a href="http://www.paulgraham.com/popular.html">Paul Graham - Being Popular</a>
 		</section>
 		<section>
 		    <h1>!יאללה</h1>
+		</section>
+		<section>
+		    <h1>Code Example</h1>
+		    <pre><code>
+; One step in Collatz conjecture
+(define collatz
+  (lambda (n)
+    (if (even? n)
+	(/ n 2)
+	(+ (* n 3) 1))))
+
+(collatz 7) ; 22
+		    </code></pre>
+		</section>
+		<section>
+		    <img alt="xkcd" src="xkcd-lisp.png">
+		    <hr/>
+		    <a href="https://xkcd.com/297/">xkcd: Lisp Cycles</a>
+		</section>
+		<section>
+		    <h2>Interpretation Process</h2>
+		    <h4>
+			code (bytes) → [lex] → tokens (stream) <br />
+			→ [parse] → AST <br/>
+			<span class="del">→ [compile] (bytecode) </span><br/>
+			→ [eval]
+		    </h4>
+		</section>
+		<section>
+		    <h1>Code</h1>
+		</section>
+		<section>
+		    <h1>Lex</h1>
+		</section>
+		<section>
+		    <h1>Parse</h1>
+		</section>
+		<section>
+		    <h1>Eval</h1>
 		</section>
 		<section>
 		    <h1>קריאה נוספת</h1>
@@ -77,9 +116,9 @@
 		</section>
 	    </div>
 	</div>
+    </body>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
 	<script>
-	    Reveal.initialize();
+	Reveal.initialize();
 	</script>
-    </body>
 </html>
