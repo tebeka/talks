@@ -7,6 +7,7 @@ cases = [
     ('fact.scm', 1, '(fact 10)', 3628800.0),
     ('circle.scm', 2, '(circle-area 10)', 314.159265358),
     ('square.scm', 1, '(square 7)', 49),
+    ('account.scm', 2, '(acct -32)', 68),
     ('', 0, '(- 1 7)', -6),
 ]
 
