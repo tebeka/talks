@@ -63,7 +63,7 @@ builtin = {
     '>=': operator.ge,
     '<=': operator.le,
     '=': operator.eq,
-    'even?': lambda x: x % 2 == 0,
+    '%': operator.mod,
 }
 
 
@@ -112,5 +112,5 @@ def evaluate(expr, env):
     return func(*args)
 
 
-def ep(code):
+def run(code):
     return evaluate(parse(code), builtin)
