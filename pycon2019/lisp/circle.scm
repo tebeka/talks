@@ -2,6 +2,6 @@
 
 (define circle-area 
   (lambda (r)
-      (* pi r r)))
+      (* pi (* r r))))
 
 (circle-area 100) ; 31415.9265358

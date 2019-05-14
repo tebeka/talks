@@ -53,7 +53,7 @@ def parse(code):
     return read_sexpr(tokens)
 
 
-builtin = {
+builtin = ChainMap({
     '+': operator.add,
     '-': operator.sub,
     '*': operator.mul,
@@ -64,7 +64,7 @@ builtin = {
     '<=': operator.le,
     '=': operator.eq,
     '%': operator.mod,
-}
+})
 
 
 def evaluate(expr, env):
@@ -74,37 +74,47 @@ def evaluate(expr, env):
     if not isinstance(expr, list):  # constant literal
         return expr
 
-    if expr[0] == 'if':
-        _, test, true_expr, false_expr = expr
+    op, *rest = expr
+
+    if op == 'if':
+        test, true_expr, false_expr = rest
         expr = true_expr if evaluate(test, env) else false_expr
         return evaluate(expr, env)
 
-    if expr[0] == 'or':
-        for expr in expr[1:]:
+    if op == 'or':
+        for expr in rest:
             if evaluate(expr, env):
                 return True
         return False
 
-    if expr[0] == 'and':
-        for expr in expr[1:]:
+    if op == 'and':
+        for expr in rest:
             if not evaluate(expr, env):
                 return False
         return True
 
-    if expr[0] == 'begin':
+    if op == 'begin':
         x = None
-        for child in expr[1:]:
+        for child in rest:
             x = evaluate(child, env)
         return x
 
-    if expr[0] == 'define':
-        _, name, child = expr
+    if op == 'define':
+        name, child = rest
         val = evaluate(child, env)
         env[name] = val
         return val
 
-    if expr[0] == 'lambda':
-        _, args, body = expr
+    if op == 'set!':
+        name, child = rest
+        for m in env.maps:
+            if name in m:
+                m[name] = evaluate(child, env)
+                return
+        raise NameError(name)
+
+    if op == 'lambda':
+        args, body = rest
         return Function(args, body, env)
 
     func = evaluate(expr[0], env)
@@ -112,5 +122,6 @@ def evaluate(expr, env):
     return func(*args)
 
 
-def run(code):
-    return evaluate(parse(code), builtin)
+def run(code, env=None):
+    env = builtin if env is None else env
+    return evaluate(parse(code), env)
