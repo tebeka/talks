@@ -60,16 +60,21 @@ span.del {
 		</section>
 		<section>
 		    <h1>Code Example</h1>
-		    <pre><code>
-; One step in Collatz conjecture
+		    <pre><code>def collatz(n):
+    """Return the next number in Collatz conjucture"""
+    if n % 2 == 0:
+        return n / 2
+    return n * 3 + 1
+
+collatz(7)  # 22</code></pre>
+		    <pre><code>; Return the next number in Collatz conjecture
 (define collatz
   (lambda (n)
     (if (= (% n 2) 0)
 	(/ n 2)
 	(+ (* n 3) 1))))
 
-(collatz 7) ; 22
-		    </code></pre>
+(collatz 7) ; 22 </code></pre>
 		</section>
 		<section>
 		    <img alt="xkcd" src="xkcd-lisp.png">
@@ -86,13 +91,37 @@ span.del {
 		    </h4>
 		</section>
 		<section>
-		    <h1>Code</h1>
+		    <section>
+			<h1>Code</h1>
+		    </section>
+		    <section>
+			<img src="scratch.png" alt="scratch">
+			<hr />
+			<a href="https://scratch.mit.edu/">MIT Scratch</a>
+		    </section>
+		    <section>
+			<img src="pharo.png" alt="pharo">
+			<hr />
+			<a href="https://pharo.org/">Pharo Smalltalk</a>
+		    </section>
+		    <section>
+			<img src="circle_area.png" alt="python">
+			<hr />
+			<a href="https://python.org/">Python 3</a>
+		    </section>
 		</section>
 		<section>
 		    <h1>Lex</h1>
 		</section>
 		<section>
-		    <h1>Parse</h1>
+		    <section>
+			<h1>Parse</h1>
+		    </section>
+		    <section>
+			<img src="s-expression.png" alt="sexpr">
+			<hr />
+			<small><a href="https://en.wikipedia.org/wiki/S-expression">Wikipedia</a></small>
+		    </section>
 		</section>
 		<section>
 		    <h1>Eval</h1>

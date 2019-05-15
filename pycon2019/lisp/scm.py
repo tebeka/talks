@@ -36,7 +36,7 @@ def read_sexpr(tokens):
         child = []
         while tokens[0] != ')':
             child.append(read_sexpr(tokens))
-        tokens.pop(0)  # remove closing )
+        tokens.pop(0)  # remove closing ')'
         return child
 
     # TODO: file:line
@@ -122,8 +122,8 @@ def evaluate(expr, env):
         args, body = rest
         return Lambda(args, body, env)
 
-    func = evaluate(expr[0], env)
-    args = [evaluate(arg, env) for arg in expr[1:]]
+    func = evaluate(op, env)
+    args = [evaluate(arg, env) for arg in rest]
     return func(*args)
 
 
