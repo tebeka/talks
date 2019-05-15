@@ -1,4 +1,5 @@
 import ast
+from textwrap import dedent
 
 
 def print_ast(node, depth=0):
@@ -8,11 +9,12 @@ def print_ast(node, depth=0):
         print_ast(child, depth+1)
 
 
-code = '''
-if x > 10:
-    x /= 2
-'''
+def demo():
+    code = '''
+    if x > 10:
+        x /= 2
+    '''
 
-m = ast.parse(code)
-print(code)
-print_ast(m)
+    m = ast.parse(dedent(code))
+    print(code)
+    print_ast(m)
