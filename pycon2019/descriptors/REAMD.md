@@ -107,14 +107,10 @@ IPython & Log terminal
     In [49]:f = Field()
 
     In [50]: %code fields.py
-    In [52]:%code trade.py
     In [53]:%code trade.py
     In [54]: Trade.symbol
     Out[54]: <fields.Symbol at 0x7fd157a8d198>
     In [55]: t = Trade('BRK.A', 310_132.41, 3)
-
-    In [56]: t
-    Out[56]: Trade('BRK.A', 310132.41, 3)
 
     In [57]: t.symbol
     Out[57]: 'BRK.A'
