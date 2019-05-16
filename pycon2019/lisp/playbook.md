@@ -5,8 +5,12 @@
     - Python 3 UTF-8
 - Lex
     - Convert bytes to tokens
-    - tok.py, `x = collatz(y)`
-	- show it ignore whitespace
+    - %code tok.py
+    ~~~
+    code = 'x = collatz(n)`
+    print_tokens(code)
+    ~~~
+    - show it ignore whitespace
     - %edit -x -n 1145 ~/Projects/cpython/Parser/tokenizer.c:
     - scm.py:tokenize
 	- token is just a str (file, lineno ...)
@@ -16,7 +20,10 @@
     ~~~
 - Parse
     - %edit -x ~/Projects/cpython/Parser/Python.asdl
-    - parse.py
+    - %code parse.py
+    ~~~
+    code = '''
+    if x > 10
     - reader
     - scm.py:read_sexpr
     - All numbers are float (like JavaScript)
@@ -44,8 +51,8 @@
     - lambda
 	- square.scm
 	- collatz.scm
+	- fact.scm (recursion)
 	- adder.scm (closure)
 	    - Show Python
-	- fact.scm (recursion)
     - begin
 	- account.scm (global, nonlocal)
