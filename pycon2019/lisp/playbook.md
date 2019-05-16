@@ -12,6 +12,7 @@
     ~~~
     - show it ignore whitespace
     - %edit -x -n 1145 ~/Projects/cpython/Parser/tokenizer.c:
+    - humble.py
     - scm.py:tokenize
 	- token is just a str (file, lineno ...)
     ~~~
