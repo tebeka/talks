@@ -67,6 +67,8 @@ IPython & Log terminal
 
     In [35]: p = Person('Diana', 'Prince')
 
+    In [ ]: %show diana.jpg
+
     In [36]: p
     Out[36]: Person(first='Diana', last='Prince')
 
@@ -76,6 +78,8 @@ IPython & Log terminal
     In [38]: %code property.py
 
     In [35]: p = Person('Natasha', 'Romanova')
+
+    In [ ]: %show natasha.jpg
 
     In [66]: Person.name                                                                
     Out[66]: <__main__.Property at 0x7fd157af7780>

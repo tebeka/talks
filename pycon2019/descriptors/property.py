@@ -1,6 +1,3 @@
-from dataclasses import dataclass
-
-
 class Property:
     def __init__(self, func):
         self.func = func
@@ -12,10 +9,10 @@ class Property:
         return self.func(inst)
 
 
-@dataclass
 class Person:
-    first: str
-    last: str
+    def __init__(self, first, last):
+        self.first = first
+        self.last = last
 
     @Property
     def name(self):

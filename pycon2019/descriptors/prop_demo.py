@@ -1,10 +1,7 @@
-from dataclasses import dataclass
-
-
-@dataclass
 class Person:
-    first: str
-    last: str
+    def __init__(self, first, last):
+        self.first = first
+        self.last = last
 
     @property
     def name(self):
