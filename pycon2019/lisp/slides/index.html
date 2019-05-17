@@ -2,8 +2,10 @@
 <html>
     <head>
 	<title>Let's Write a Lisp interpreter</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/serif.min.css">
+	<link rel="stylesheet" href="./reveal.js-3.8.0/css/reset.css">
+	<link rel="stylesheet" href="./reveal.js-3.8.0/css/reveal.css">
+	<link rel="stylesheet" href="./reveal.js-3.8.0/css/theme/serif.css">
+	<link rel="stylesheet" href="./highlight/styles/default.css">
 	<base target="_blank">
 <style>
 .reveal section img { background:none; border:none; box-shadow:none; }
@@ -26,6 +28,9 @@ span.del {
 		    <h2>מיקי טבקה</h2>
 		    CEO, CTO, UFO ...
 		    <img alt="logo" src="353.png">
+		</section>
+		<section>
+		    <img alt="why" src="picard-why.jpg">
 		</section>
 		<section>
 		    <h3>
@@ -60,14 +65,14 @@ span.del {
 		</section>
 		<section>
 		    <h1>Code Example</h1>
-		    <pre><code>def collatz(n):
+		    <pre><code class="python">def collatz(n):
     """Return the next number in Collatz conjucture"""
     if n % 2 == 0:
         return n / 2
     return n * 3 + 1
 
 collatz(7)  # 22</code></pre>
-		    <pre><code>; Return the next number in Collatz conjecture
+		    <pre><code class="scheme">; Return the next number in Collatz conjecture
 (define collatz
   (lambda (n)
     (if (= (% n 2) 0)
@@ -84,15 +89,16 @@ collatz(7)  # 22</code></pre>
 		<section>
 		    <h2>Interpretation Process</h2>
 		    <h4>
-			code (bytes) → [lex] → tokens (stream) <br />
+			coffee → [developer] → <br />
+			source code → [lex] → tokens <br />
 			→ [parse] → AST <br/>
-			<span class="del">→ [compile] (bytecode) </span><br/>
-			→ [eval]
+			<span class="del">→ [compile] → bytecode </span><br/>
+			→ [eval] → value
 		    </h4>
 		</section>
 		<section>
 		    <section>
-			<h1>Code</h1>
+			<h1>Source Code</h1>
 		    </section>
 		    <section>
 			<img src="scratch.png" alt="scratch">
@@ -162,9 +168,11 @@ collatz(7)  # 22</code></pre>
 		</section>
 	    </div>
 	</div>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
+	<script src="./reveal.js-3.8.0/js/reveal.js"></script>
+	<script src="./highlight/highlight.pack.js"></script>
 	<script>
-	Reveal.initialize();
+	    Reveal.initialize();
+	    hljs.initHighlightingOnLoad();
 	</script>
     </body>
 </html>
