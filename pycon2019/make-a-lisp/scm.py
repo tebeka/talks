@@ -140,7 +140,7 @@ def repl():
             if val is not None:
                 print(lispify(val))
         except (EOFError, KeyboardInterrupt):
-            print('!ייב הללאי')
+            print('Yalla Bye ☺')
             return
         except Exception as err:
             print(f'error: {err}')
@@ -170,7 +170,7 @@ def repl_multi():
             else:
                 print('')
         except (EOFError, KeyboardInterrupt):
-            print('!ייב הללאי')
+            print('Yalla Bye ☺')
             return
         except Exception as err:
             print(f'error: {err}')

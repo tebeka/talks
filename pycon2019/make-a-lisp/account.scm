@@ -1,7 +1,7 @@
 (define make-account
   (lambda (balance)
-    (lambda (amt) 
-      (begin (set! balance (+ balance amt)) 
+    (lambda (amount)
+      (begin (set! balance (+ balance amount))
              balance))))
 
 (define acct (make-account 100))
