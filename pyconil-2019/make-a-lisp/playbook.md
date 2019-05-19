@@ -7,7 +7,7 @@
     - Convert bytes to tokens
     - %code tok.py
     ~~~
-    code = 'x = collatz(n)`
+    code = b'x = collatz(n)`
     print_tokens(code)
     ~~~
     - show it ignore whitespace
