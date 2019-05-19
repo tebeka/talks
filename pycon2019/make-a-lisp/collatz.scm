@@ -1,4 +1,4 @@
-; One step in Collatz conjecture
+; Return the next number in Collatz conjucture
 (define collatz
   (lambda (n)
     (if (= (% n 2) 0)
