@@ -43,7 +43,10 @@
     - expression vs statement `eval('x=1')` → `exec('x=1')`
     - start with just func, name & variable
 	- need builtin
+	- names + case sensitive
+	- lisp 1/2
     - run & repl
+	- Python str & repr
     - if
     - or, and
 	- short circuit
@@ -55,5 +58,6 @@
 	- fact.scm (recursion)
 	- adder.scm (closure)
 	    - Show Python
+    - account.scm (global, nonlocal)
+	- Python, start without nonlocal
     - begin
-	- account.scm (global, nonlocal)
