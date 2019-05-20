@@ -24,7 +24,9 @@
     - %code parse.py
     ~~~
     code = '''
-    if x > 10
+    if x > 10:
+        y /= 7
+    '''
     - reader
     - scm.py:read_sexpr
     - All numbers are float (like JavaScript)
