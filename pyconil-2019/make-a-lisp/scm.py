@@ -187,4 +187,5 @@ if __name__ == '__main__':
     import readline  # noqa
 
     print('Welcome to humble lisp (hit CTRL-C or CTRL-D to exit)')
-    repl_multi()
+    # repl_multi()
+    repl()
