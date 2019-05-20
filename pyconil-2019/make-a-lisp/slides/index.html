@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<title>Let's Write a Lisp interpreter</title>
-	<link rel="stylesheet" href="./reveal.js-3.8.0/css/reset.css">
-	<link rel="stylesheet" href="./reveal.js-3.8.0/css/reveal.css">
-	<link rel="stylesheet" href="./reveal.js-3.8.0/css/theme/serif.css">
-	<link rel="stylesheet" href="./highlight/styles/default.css">
-	<base target="_blank">
+  <title>Let's Write a Lisp interpreter</title>
+  <link rel="stylesheet" href="./reveal.js-3.8.0/css/reset.css">
+  <link rel="stylesheet" href="./reveal.js-3.8.0/css/reveal.css">
+  <link rel="stylesheet" href="./reveal.js-3.8.0/css/theme/serif.css">
+  <link rel="stylesheet" href="./highlight/styles/default.css">
+  <base target="_blank">
 <style>
 .reveal section img { background:none; border:none; box-shadow:none; }
 span.del {
@@ -17,164 +17,266 @@ span.del {
 </style>
     </head>
     <body>
-	<div class="reveal">
-	    <div class="slides">
-		<section>
-		    <h1>Let's write a Lisp Interpreter</h1>
-		    <hr />
-		    <img src="PyConIL.png" alt="PyCon">
-		</section>
-		<section>
-		    <h2>מיקי טבקה</h2>
-		    CEO, CTO, UFO ...
-		    <img alt="logo" src="353.png">
-		</section>
-		<section>
-		    <img alt="why" src="picard-why.jpg">
-		</section>
-		<section>
-		    <h3>
-		    LISP is worth learning for a different reason — the
-		    <b>profound enlightenment</b> experience you will have when you
-		    finally get it. That experience <b>will make you a better
-		    programmer</b> for the rest of your days, even if you never
-		    actually use LISP itself a lot
-		    </h3>
-		    <hr />
-		    <a href="http://www.catb.org/~esr/faqs/hacker-howto.html">ESR - 
-			How To Become A Hacker</a>
-		</section>
-		<section>
-		    <h3>
-			<b>Any sufficiently complicated</b> C or Fortran
-			<b>program contains</b> an ad-hoc, informally-specified,
-			<b>bug-ridden, slow implementation of half of
-			    Common Lisp</b>.
-		    </h3>
-		    <hr/>
-		    <a href="https://en.wikipedia.org/wiki/Greenspun%27s_tenth_rule">Greenspun's tenth rule</a>
-		</section>
-		<section>
-		    <h2><b>Python, is a watered-down Lisp</b> with infix syntax
-			and no macros.</h2>
-		    <hr/>
-		    <a href="http://www.paulgraham.com/popular.html">Paul Graham - Being Popular</a>
-		</section>
-		<section>
-		    <h1>!יאללה</h1>
-		</section>
-		<section>
-		    <h1>Code Example</h1>
-		    <pre><code class="python">def collatz(n):
+  <div class="reveal">
+      <div class="slides">
+    <section>
+        <h1>Let's write a Lisp Interpreter</h1>
+        <hr />
+        <img src="PyConIL.png" alt="PyCon">
+    </section>
+    <section>
+        <h2>מיקי טבקה</h2>
+        CEO, CTO, UFO ...
+        <img alt="logo" src="353.png">
+    </section>
+    <section>
+      <section>
+        <img alt="why" src="picard-why.jpg">
+      </section>
+    <section>
+        <h3>
+        LISP is worth learning for a different reason — the
+        <b>profound enlightenment</b> experience you will have when you
+        finally get it. That experience <b>will make you a better
+        programmer</b> for the rest of your days, even if you never
+        actually use LISP itself a lot
+        </h3>
+        <hr />
+        <a href="http://www.catb.org/~esr/faqs/hacker-howto.html">ESR - 
+      How To Become A Hacker</a>
+    </section>
+    <section>
+        <h3>
+      <b>Any sufficiently complicated</b> C or Fortran
+      <b>program contains</b> an ad-hoc, informally-specified,
+      <b>bug-ridden, slow implementation of half of
+          Common Lisp</b>.
+        </h3>
+        <hr/>
+        <a href="https://en.wikipedia.org/wiki/Greenspun%27s_tenth_rule">Greenspun's tenth rule</a>
+    </section>
+    <section>
+        <h2><b>Python, is a watered-down Lisp</b> with infix syntax
+      and no macros.</h2>
+        <hr/>
+        <a href="http://www.paulgraham.com/popular.html">Paul Graham - Being Popular</a>
+    </section>
+    </section>
+    <section>
+        <h1>!יאללה</h1>
+    </section>
+    <section>
+        <h1>Code Example</h1>
+        <pre><code class="python">def collatz(n):
     """Return the next number in Collatz conjucture"""
     if n % 2 == 0:
         return n / 2
     return n * 3 + 1
 
 collatz(7)  # 22</code></pre>
-		    <pre><code class="scheme">; Return the next number in Collatz conjecture
+        <pre><code class="scheme">; Return the next number in Collatz conjecture
 (define collatz
   (lambda (n)
     (if (= (% n 2) 0)
-	(/ n 2)
-	(+ (* n 3) 1))))
+  (/ n 2)
+  (+ (* n 3) 1))))
 
 (collatz 7) ; 22 </code></pre>
-		</section>
-		<section>
-		    <img alt="xkcd" src="xkcd-lisp.png">
-		    <hr/>
-		    <a href="https://xkcd.com/297/">xkcd: Lisp Cycles</a>
-		</section>
-		<section>
-		    <h2>Interpretation Process</h2>
-		    <h4>
-			coffee → [developer] → <br />
-			source code → [lex] → tokens <br />
-			→ [parse] → AST <br/>
-			<span class="del">→ [compile] → bytecode </span><br/>
-			→ [eval] → value
-		    </h4>
-		</section>
-		<section>
-		    <section>
-			<h1>Source Code</h1>
-		    </section>
-		    <section>
-			<img src="scratch.png" alt="scratch">
-			<hr />
-			<a href="https://scratch.mit.edu/">MIT Scratch</a>
-		    </section>
-		    <section>
-			<img src="pharo.png" alt="pharo">
-			<hr />
-			<a href="https://pharo.org/">Pharo Smalltalk</a>
-		    </section>
-		    <section>
-			<img src="circle_area.png" alt="python">
-			<hr />
-			<a href="https://python.org/">Python 3</a>
-		    </section>
-		</section>
-		<section>
-		    <h1>Lex</h1>
-		</section>
-		<section>
-		    <section>
-			<h1>Parse</h1>
-		    </section>
-		    <section>
-			<img src="s-expression.png" alt="sexpr">
-			<hr />
-			<small><a href="https://en.wikipedia.org/wiki/S-expression">Wikipedia</a></small>
-		    </section>
-		</section>
-		<section>
-		    <h1>Eval</h1>
-		</section>
-		<section>
-		    <h1>קריאה נוספת</h1>
-		    <hr />
-		    <ul>
-			<li>
-			<a href="https://norvig.com/lispy.html">
-				(How to Write a (Lisp) Interpreter (in Python))</a>
-			</li>
-			<li><a href="https://github.com/kanaka/mal">mal - Make a Lisp</a></li>
-			<li><a href="http://docs.hylang.org/">hy</a></li>
-			<li><a href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-4.html#%_toc_start">SICP</a></li>
-			<li><a href="https://clojure.org/">Clojure</a></li>
-			<li><a href="https://racket-lang.org/">Racket</a></li>
-		    </ul>
-		</section>
-		<section>
-		    <h3>Hacking Options</h3>
-		    <ul>
-			<li>Number liternal in different bases: <code>0x10</code>, <code>0o10</code>, <code>0b10</code></li>
-			<li>Fancier REPL with <code>TAB</code> completion (see <a href="https://docs.python.org/3.7/library/readline.html">readline</a>) </li>
-			<li>More types
-			    <ul>
-				<li>strings</li>
-				<li>boolean (<code>#t</code>, <code>#f</code>)</li>
-				<li>lists (vectors), dictionaries (hash tables) ...</li>
-			    </ul>
-			</li>
-			<li>Python interop <code>(.split "lisp is cool")</code></li>
-			<li>macros</li>
-			<li>bytecode</li>
-			<li>...</li>
-		    </ul>
-		</section>
-		<section>
-		    <h1>!תודה</h1>
-		</section>
-	    </div>
-	</div>
-	<script src="./reveal.js-3.8.0/js/reveal.js"></script>
-	<script src="./highlight/highlight.pack.js"></script>
-	<script>
-	    Reveal.initialize();
-	    hljs.initHighlightingOnLoad();
-	</script>
+    </section>
+    <section>
+        <img alt="xkcd" src="xkcd-lisp.png">
+        <hr/>
+        <a href="https://xkcd.com/297/">xkcd: Lisp Cycles</a>
+    </section>
+    <section>
+        <h2>Interpretation Process</h2>
+        <h4>
+      coffee → [developer] → <br />
+      source code → [lex] → tokens <br />
+      → [parse] → AST <br/>
+      <span class="del">→ [compile] → bytecode </span><br/>
+      → [eval] → value
+        </h4>
+    </section>
+    <section>
+        <section>
+      <h1>Source Code</h1>
+        </section>
+        <section>
+      <img src="scratch.png" alt="scratch">
+      <hr />
+      <a href="https://scratch.mit.edu/">MIT Scratch</a>
+        </section>
+        <section>
+      <img src="pharo.png" alt="pharo">
+      <hr />
+      <a href="https://pharo.org/">Pharo Smalltalk</a>
+        </section>
+        <section>
+      <img src="circle_area.png" alt="python">
+      <hr />
+      <a href="https://python.org/">Python 3</a>
+        </section>
+    </section>
+    <section>
+      <section>
+        <h1>Lex</h1>
+      </section>
+      <section>
+        <pre><code class="python">from io import BytesIO
+from tokenize import tokenize
+from token import tok_name
+
+
+def print_tokens(code):
+    for tok in tokenize(BytesIO(code).readline):
+        name = tok_name[tok.exact_type]
+        print(f'{tok.string:&lt;10s} {name}')</code></pre>
+      </section>
+      <section>
+        <pre><code>In [2]: code = b'x = collatz(n)'
+In [3]: print_tokens(code)
+utf-8      ENCODING
+x          NAME
+=          EQUAL
+collatz    NAME
+(          LPAR
+n          NAME
+)          RPAR
+           NEWLINE
+           ENDMARKER</code></pre>
+      </section>
+    </section>
+    <section>
+        <section>
+      <h1>Parse</h1>
+        </section>
+      <section>
+        <pre><code class="python">import ast
+def print_tree(node, depth=0):
+    print(' ' * 4 * depth, end='')
+    print(node.__class__.__name__)
+    for child in ast.iter_child_nodes(node):
+        print_tree(child, depth+1)
+
+code = ''' 
+if x > 10: 
+    y /= 7 
+'''
+</code></pre>
+      </section>
+      <section>
+        <pre><code class="python">In [9]: print_tree(ast.parse(code))
+Module
+    If
+        Compare
+            Name
+                Load
+            Gt
+            Num
+        AugAssign
+            Name
+                Store
+            Div
+            Num</code></pre>
+      </section>
+        <section>
+          <img src="s-expression.png" alt="sexpr">
+          <hr />
+          <small><a href="https://en.wikipedia.org/wiki/S-expression">Wikipedia</a></small>
+        </section>
+    </section>
+    <section>
+      <section>
+        <h1>Eval</h1>
+      </section>
+      <section>
+        <pre><code class="python">In [4]: eval('32 / 7')
+Out[4]: 4.571428571428571</code></pre>
+      </section>
+    </section>
+    <section>
+        <h1>קריאה נוספת</h1>
+        <hr />
+        <ul>
+      <li>
+      <a href="https://norvig.com/lispy.html">
+        (How to Write a (Lisp) Interpreter (in Python))</a>
+      </li>
+      <li><a href="https://github.com/kanaka/mal">mal</a> - Make a Lisp</li>
+      <li><a href="http://docs.hylang.org/">hy</a> - Lisp in Python</li>
+      <li><a href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-4.html#%_toc_start">SICP</a> - <b>The</b> book</li>
+      <li><a href="https://clojure.org/">Clojure</a> - Modern Lisp on the JVM</li>
+      <li><a href="https://racket-lang.org/">Racket</a> - Scheme ;&amp; more</li>
+        </ul>
+    </section>
+    <section>
+      <section>
+        <h1>Hacking Options</h1>
+      </section>
+      <section>
+        <h2>Number liternal in different bases</h2>
+        <pre><code>0x10
+0o10
+0b10</code></pre>
+      </section>
+      <section>
+        <h2>Fancier REPL with <code>TAB</code> completion</h2>
+        Using <a
+              href="https://docs.python.org/3.7/library/readline.html">readline</a>?
+      </section>
+      <section>
+        <h1>More types</h1>
+        <ul>
+          <li>strings</li>
+          <li>boolean (<code>#t</code>, <code>#f</code>)</li>
+          <li>lists (vectors), dictionaries (hash tables) ...</li>
+        </ul>
+      </section>
+      <section>
+        <h1>Python interop</h1>
+        <pre><code>(import greetings)
+(.greet greetings "foo") ; prints "hello, foo"</code></pre>
+        <hr/>
+        <a href="http://docs.hylang.org/en/stable/language/interop.html">Hy &lt;-&gt; Python interop</a>
+      </section>
+      <section>
+        <h1>Macros</h1>
+        <pre><code>(defmacro aif (test-form then-form &amp;optional else-form)
+  ‘(let ((it ,test-form))
+    (if it ,then-form ,else-form)))</code></pre>
+        <hr />
+        <small>Paul Graham's <a href="http://www.paulgraham.com/onlisp.html">On Lisp</a></small>
+      </section>
+      <section>
+        <h1>bytecode</h1>
+        <pre><code>In [1]: def relu(n): 
+ ...:     if n < 0.0: 
+...:         return 0.0 
+...:     return n 
+...:
+In [2]: from dis import dis
+In [3]: dis(relu)
+2           0 LOAD_FAST                0 (n)
+            2 LOAD_CONST               1 (0.0)
+            4 COMPARE_OP               0 (&lt;)
+            6 POP_JUMP_IF_FALSE       12
+3           8 LOAD_CONST               1 (0.0)
+           10 RETURN_VALUE
+4      &gt;&gt;  12 LOAD_FAST                0 (n)
+           14 RETURN_VALUE</code></pre>
+      </section>
+    </section>
+    <section>
+        <h1>!תודה</h1>
+    </section>
+      </div>
+  </div>
+  <script src="./reveal.js-3.8.0/js/reveal.js"></script>
+  <script src="./highlight/highlight.pack.js"></script>
+  <script>
+      Reveal.initialize();
+      hljs.initHighlightingOnLoad();
+  </script>
     </body>
 </html>
