@@ -145,7 +145,9 @@ def repl():
             print('Yalla Bye ☺')
             return
         except Exception as err:
-            print(f'error: {err}')
+            print('\033[31m', end='')  # red
+            print(f'[ERROR] {err.__class__.__name__}: {err}')
+            print('\033[0m', end='')  # reset color
 
 
 def lispify(val):
