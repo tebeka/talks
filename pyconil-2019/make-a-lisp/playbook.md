@@ -18,16 +18,19 @@
     print_tokens(code)
     ~~~
     - show it ignore whitespace
-    - %edit -x -n 1145 ~/Projects/cpython/Parser/tokenizer.c:
+    - %edit -x -n 1115 ~/Projects/cpython/Parser/tokenizer.c
     - humble.py
     - scm.py:tokenize
 	- token is just a str (file, lineno ...)
     ~~~
     code = '(+ 7 3)'
     tokenize(code)
+    code = '(even? 2)'
+    tokenize(code)
     ~~~
 - Parse
     - %edit -x ~/Projects/cpython/Parser/Python.asdl
+    - %edit -x ~/Projects/cpython/Grammar/Grammar
     - %code parse.py
     ~~~
     code = '''
