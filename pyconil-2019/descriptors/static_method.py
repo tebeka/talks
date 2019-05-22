@@ -6,7 +6,7 @@ class StaticMethod:
         return self.func
 
 
-class Math:
+class MathD:
     @StaticMethod
     def neg(val):
         return -val

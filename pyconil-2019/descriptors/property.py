@@ -9,7 +9,7 @@ class Property:
         return self.func(inst)
 
 
-class Person:
+class PersonD:
     def __init__(self, first, last):
         self.first = first
         self.last = last

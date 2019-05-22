@@ -8,7 +8,7 @@ from dataclasses import dataclass
 class Lambda:
     args: list
     body: list
-    env: dict
+    env: dict  # closure
 
     def __call__(self, *params):
         args = {name: val for name, val in zip(self.args, params)}
@@ -31,6 +31,7 @@ def tokenize(code):
 def read_sexpr(tokens):
     if not tokens:
         raise EOFError
+
     tok = tokens.pop(0)
     if tok == '(':
         child = []
@@ -132,6 +133,7 @@ def run(code, env=None):
     return evaluate(parse(code), env)
 
 
+# REPL = read, eval, print, loop
 def repl():
     while True:
         try:
@@ -184,7 +186,7 @@ def lispify(val):
 
 
 if __name__ == '__main__':
-    import readline  # noqa
+#    import readline  # noqa
 
     print('Welcome to humble lisp (hit CTRL-C or CTRL-D to exit)')
     # repl_multi()

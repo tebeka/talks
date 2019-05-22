@@ -11,6 +11,7 @@ class Field(ABC):
         self.assert_valid(value)
         setattr(inst, self._attr, value)
 
+    # x = Field() -> Field.__set_name__(Field, 'x')
     def __set_name__(self, owner, name):
         self._attr = f'_{owner.__name__}_{name}'
 

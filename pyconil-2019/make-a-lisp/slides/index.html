@@ -14,6 +14,9 @@ span.del {
   text-decoration-style: wavy;
   text-decoration-color: silver;
 }
+code.c3 {
+    font-size: 1.2em;
+}
 </style>
     </head>
     <body>
@@ -78,8 +81,8 @@ collatz(7)  # 22</code></pre>
 (define collatz
   (lambda (n)
     (if (= (% n 2) 0)
-  (/ n 2)
-  (+ (* n 3) 1))))
+      (/ n 2)
+      (+ (* n 3) 1))))
 
 (collatz 7) ; 22 </code></pre>
     </section>
@@ -97,6 +100,8 @@ collatz(7)  # 22</code></pre>
       <span class="del">→ [compile] → bytecode </span><br/>
       → [eval] → value
         </h4>
+	<hr />
+	Every interpreted language follow these steps
     </section>
     <section>
         <section>
@@ -108,12 +113,21 @@ collatz(7)  # 22</code></pre>
       <a href="https://scratch.mit.edu/">MIT Scratch</a>
         </section>
         <section>
+      <img src="casper.png" alt="Casper">
+      <hr />
+      <a href="https://www.1690orbit.com/2019">Casper</a>
+        </section>
+        <section>
       <img src="pharo.png" alt="pharo">
       <hr />
       <a href="https://pharo.org/">Pharo Smalltalk</a>
         </section>
         <section>
-      <img src="circle_area.png" alt="python">
+	    <pre><code class="python c3">π = 3.14159265358
+
+def circle_area(r):
+    return π * r * r
+	    </code></pre>
       <hr />
       <a href="https://python.org/">Python 3</a>
         </section>
@@ -207,7 +221,7 @@ Out[4]: 4.571428571428571</code></pre>
       <li><a href="http://docs.hylang.org/">hy</a> - Lisp in Python</li>
       <li><a href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-4.html#%_toc_start">SICP</a> - <b>The</b> book</li>
       <li><a href="https://clojure.org/">Clojure</a> - Modern Lisp on the JVM</li>
-      <li><a href="https://racket-lang.org/">Racket</a> - Scheme ;&amp; more</li>
+      <li><a href="https://racket-lang.org/">Racket</a> - Scheme &amp; more</li>
         </ul>
     </section>
     <section>
@@ -215,7 +229,7 @@ Out[4]: 4.571428571428571</code></pre>
         <h1>Hacking Options</h1>
       </section>
       <section>
-        <h2>Number liternal in different bases</h2>
+        <h2>Number literals in different bases</h2>
         <pre><code>0x10
 0o10
 0b10</code></pre>
@@ -238,15 +252,22 @@ Out[4]: 4.571428571428571</code></pre>
         <pre><code>(import greetings)
 (.greet greetings "foo") ; prints "hello, foo"</code></pre>
         <hr/>
-        <a href="http://docs.hylang.org/en/stable/language/interop.html">Hy &lt;-&gt; Python interop</a>
+        <a href="http://docs.hylang.org/en/stable/language/interop.html">Hy ↔ Python interop</a>
       </section>
       <section>
         <h1>Macros</h1>
         <pre><code>(defmacro aif (test-form then-form &amp;optional else-form)
   ‘(let ((it ,test-form))
     (if it ,then-form ,else-form)))</code></pre>
+        <pre><code>(aif (query-from-database)
+  (process-results it))</code></pre>
         <hr />
         <small>Paul Graham's <a href="http://www.paulgraham.com/onlisp.html">On Lisp</a></small>
+	<hr />
+        <pre><code class="python">if (it := read_from_database()):
+    process_results(it)</code></pre>
+	<hr />
+        <small><a href="https://www.python.org/dev/peps/pep-0572/">PEP 572</a> (AKA The Walrus Operator)</small>
       </section>
       <section>
         <h1>bytecode</h1>

@@ -1,5 +1,11 @@
 # Script
 
+- We're going to dive into one of Python powerful tool that not many know about
+- It helps explain how many features in Python, such as properties, static
+  methods, class methods and others works
+- We'll also see how it can help us easily implement features that otherwise
+  are more difficult to write
+
 IPython & Log terminal
 
     In [1]: fp = open('/dev/zero')
@@ -58,7 +64,6 @@ IPython & Log terminal
 
     In [30]: dir(fp.__class__.name)
     In [31]:%edit -n 1609 -x ~/Projects/cpython/Doc/reference/datamodel.rst
-    Editing...
 
     In [34]: %code prop_demo.py
 
@@ -74,7 +79,7 @@ IPython & Log terminal
 
     In [38]: %code property.py
 
-    In [35]: p = Person('Natasha', 'Romanova')
+    In [35]: p = PersonD('Natasha', 'Romanova')
 
     In [ ]: %show natasha.jpg
 
@@ -92,32 +97,35 @@ IPython & Log terminal
     Out[41]: -10
 
     In [42]:%code static_method.py
-    In [41]: Math.neg(10)
+    In [41]: MathD.neg(10)
     Out[41]: -10
 
     In [  ]: import json
-    In [  ]: dir(json.JSONDecoder.decode)
-
-    In [  ]: %cow mind=blown
+    In [  ]: '__get__' in dir(json.JSONDecoder.decode)
+    In [  ]: # This is how "self" gets to methods
+    In [  ]: %mb
 
     In [  ]: %cow WIIFM
-
-    In [44]: %edit -n 1609 -x ~/Projects/cpython/Doc/reference/datamodel.rst
-
-    In [47]: %code field.py
-    In [49]:f = Field()
-
-    In [50]: %code fields.py
-    In [53]:%code trade.py
-    In [54]: Trade.symbol
-    Out[54]: <fields.Symbol at 0x7fd157a8d198>
-    In [55]: t = Trade('BRK.A', 310_132.41, 3)
-
+    In [  ]: from trade import Trade
+    In [55]: t = Trade('BRK.A', 310132.41, 3)
+    In [  ]: t
+    Out[22]: Trade('BRK-A', 300304.13, 1)
     In [57]: t.symbol
     Out[57]: 'BRK.A'
-
+    In [59]: t.symbol = 'brka'
+    In [60]: t.price = 'too much'
+    In [  ]: t.volume = 2
     In [58]: vars(t)
     Out[58]: {'_Trade_symbol': 'BRK.A', '_Trade_price': 310132.41, '_Trade_volume': 3}
 
-    In [59]: t.symbol = 'brka'
-    In [60]:t.price = 'too much'
+    In [53]:%code trade.py
+    In [54]: Trade.symbol
+    Out[54]: <fields.Symbol at 0x7fd157a8d198>
+
+
+    In [50]: %code fields.py
+    In [47]: %code field.py
+
+    In [49]:f = Field()  # Abstract class
+
+

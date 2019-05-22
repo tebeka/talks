@@ -4,6 +4,4 @@ class Proxy:
         self.proxied = proxied
 
     def __getattr__(self, attr):
-        if hasattr(self.proxied, attr):
-            return getattr(self.proxied, attr)
-        raise AttributeError(attr)
+        return getattr(self.proxied, attr)
