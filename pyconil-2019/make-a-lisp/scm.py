@@ -137,40 +137,10 @@ def run(code, env=None):
 def repl():
     while True:
         try:
-            code = input('> ')
+            code = input('» ')
             val = run(code)
             if val is not None:
                 print(lispify(val))
-        except (EOFError, KeyboardInterrupt):
-            print('Yalla Bye ☺')
-            return
-        except Exception as err:
-            print(f'error: {err}')
-
-
-def read_line(prompt):
-    while True:
-        line = input(prompt)
-        prompt = ''
-        if line.strip():
-            return line
-
-
-def repl_multi():
-    while True:
-        try:
-            code = read_line('> ')
-            while code.count('(') > code.count(')'):
-                code += read_line('')
-
-            tokens = tokenize(code)
-            value = None
-            while tokens:
-                value = evaluate(read_sexpr(tokens), builtin)
-            if value is not None:
-                print(lispify(value))
-            else:
-                print('')
         except (EOFError, KeyboardInterrupt):
             print('Yalla Bye ☺')
             return
@@ -186,8 +156,7 @@ def lispify(val):
 
 
 if __name__ == '__main__':
-#    import readline  # noqa
+    import readline  # arrows, history, paren matching ... # noqa
 
     print('Welcome to humble lisp (hit CTRL-C or CTRL-D to exit)')
-    # repl_multi()
     repl()
