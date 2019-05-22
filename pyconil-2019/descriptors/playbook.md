@@ -100,9 +100,10 @@ IPython & Log terminal
     In [41]: MathD.neg(10)
     Out[41]: -10
 
-    In [  ]: import json
-    In [  ]: '__get__' in dir(json.JSONDecoder.decode)
+    In [  ]: from json import JSONDecoder
+    In [  ]: '__get__' in dir(JSONDecoder.decode)
     In [  ]: # This is how "self" gets to methods
+
     In [  ]: %mb
 
     In [  ]: %cow WIIFM
