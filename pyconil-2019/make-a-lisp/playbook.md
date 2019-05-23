@@ -56,6 +56,7 @@
 	- need builtin
 	- names + case sensitive
 	- lisp 1/2
+    - Python's `__add__` and friends
     - run & repl
 	- Python str & repr
 	- readline for matching ()
