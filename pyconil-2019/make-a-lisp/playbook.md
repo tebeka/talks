@@ -61,6 +61,7 @@
 	- Python str & repr
 	- readline for matching ()
     - if
+	- what are booleans?
     - or, and
 	- short circuit
 	- in Python as well

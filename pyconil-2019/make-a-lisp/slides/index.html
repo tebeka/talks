@@ -250,8 +250,16 @@ Out[4]: 4.571428571428571</code></pre>
         </ul>
       </section>
       <section>
+	  <h1>let</h1>
+	  <pre><code class="scheme">(define login
+  (lambda (user password)
+    (let ((given (hash-password password))
+	  (stored (load-user-password user)))
+      (= given stored))))</code></pre>
+      </section>
+      <section>
         <h1>Python interop</h1>
-        <pre><code>(import greetings)
+        <pre><code class="scheme">(import greetings)
 (.greet greetings "foo") ; prints "hello, foo"</code></pre>
         <hr/>
         <a href="http://docs.hylang.org/en/stable/language/interop.html">Hy ↔ Python interop</a>

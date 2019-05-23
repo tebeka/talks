@@ -74,43 +74,52 @@ builtin = ChainMap({
 
 
 def evaluate(expr, env):
+    # a
     if isinstance(expr, str):  # variable
         return env[expr]
 
+    # 2.3
     if not isinstance(expr, list):  # constant literal
         return expr
 
     op, *rest = expr
 
+    # (if (> 1 2) 10 20)
+    # TODO: (if (> 1 2) 3)
     if op == 'if':
         test, true_expr, false_expr = rest
         expr = true_expr if evaluate(test, env) else false_expr
         return evaluate(expr, env)
 
+    # (or (> 1 2) (> 3 2)) -> True
     if op == 'or':
         for expr in rest:
             if evaluate(expr, env):
                 return True
         return False
 
+    # (and (> 1 2) (> 3 2)) -> False
     if op == 'and':
         for expr in rest:
             if not evaluate(expr, env):
                 return False
         return True
 
+    # (begin (set! x 7) (+ x 1)) -> 8
     if op == 'begin':
         x = None
         for child in rest:
             x = evaluate(child, env)
         return x
 
+    # (define x (* y 7)) -> None
     if op == 'define':
         name, child = rest
         val = evaluate(child, env)
         env[name] = val
         return val
 
+    # (set! x (* y 7)) -> None
     if op == 'set!':
         name, child = rest
         for m in env.maps:
@@ -119,10 +128,12 @@ def evaluate(expr, env):
                 return
         raise NameError(name)
 
+    # (lambda (n) (+ n 1)) -> Lambda
     if op == 'lambda':
         args, body = rest
         return Lambda(args, body, env)
 
+    # (* 3 7)
     func = evaluate(op, env)
     args = [evaluate(arg, env) for arg in rest]
     return func(*args)
