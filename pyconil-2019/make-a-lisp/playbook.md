@@ -77,6 +77,7 @@
 ~~~
     - define & set!
     - lambda
+	- parameter passing (value, ref ..)
 	- square.scm
 	- collatz.scm
 	- fact.scm (recursion)
