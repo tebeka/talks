@@ -1,3 +1,11 @@
+# Prepare
+
+- log
+- ipython
+- font
+- slides
+- silence phone
+
 # Script
 
 - We're going to dive into one of Python powerful tool that not many know about
@@ -6,18 +14,17 @@
 - We'll also see how it can help us easily implement features that otherwise
   are more difficult to write
 
-IPython & Log terminal
 
     In [1]: fp = open('/dev/zero')
+
+    In [4]: fp.mode
+    Out[4]: 'r'
 
     In [2]: fp.__dict__
     Out[2]: {'mode': 'r'}
 
     In [3]: vars(fp)
     Out[3]: {'mode': 'r'}
-
-    In [4]: fp.mode
-    Out[4]: 'r'
 
     In [5]: dir(fp)
 
@@ -63,7 +70,7 @@ IPython & Log terminal
     Out[29]: <attribute 'name' of '_io.TextIOWrapper' objects>
 
     In [30]: dir(fp.__class__.name)
-    In [31]:%edit -n 1609 -x ~/Projects/cpython/Doc/reference/datamodel.rst
+    In [31]: %edit -n 1609 -x ~/Projects/cpython/Doc/reference/datamodel.rst
 
     In [34]: %code prop_demo.py
 
@@ -83,14 +90,25 @@ IPython & Log terminal
 
     In [ ]: %show natasha.jpg
 
-    In [66]: Person.name                                                                
+    In [66]: PersonD.name                                                                
     Out[66]: <__main__.Property at 0x7fd157af7780>
-
-    In [36]: p
-    Out[36]: Person(first='Natasha', last='Romanova')
 
     In [37]: p.name
     Out[37]: 'Natasha Romanova'
+
+    In [ ]: %code cls_demo.py
+    In [30]: p = Point.from_json('{"x": 1, "y": 2}')
+    In [31]: p.x
+    Out[31]: 1
+
+    In [32]: %code classmethod.py
+    In [33]: p = PointD.from_json('{"x": 1, "y": 2}')
+
+    In [34]: p.x
+    Out[34]: 1
+
+    In [35]: type(p)
+    Out[35]: __main__.PointD
 
     In [40]: %code static_demo.py
     In [41]: Math.neg(10)
@@ -113,9 +131,15 @@ IPython & Log terminal
     Out[22]: Trade('BRK-A', 300304.13, 1)
     In [57]: t.symbol
     Out[57]: 'BRK.A'
+    In [57]: t.price
+    Out[57]: 300304.13
+    In [57]: t.volume
+    Out[57]: 1
     In [59]: t.symbol = 'brka'
     In [60]: t.price = 'too much'
     In [  ]: t.volume = 2
+    In [  ]: t.volume
+    Out[  ]: 2
     In [58]: vars(t)
     Out[58]: {'_Trade_symbol': 'BRK.A', '_Trade_price': 310132.41, '_Trade_volume': 3}
 
@@ -125,7 +149,7 @@ IPython & Log terminal
 
 
     In [50]: %code fields.py
-    In [47]: %code field.py
+    In [47]: %code field.py (talk on ...)
 
     In [49]:f = Field()  # Abstract class
 
