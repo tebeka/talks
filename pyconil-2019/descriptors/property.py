@@ -2,7 +2,7 @@ class Property:
     def __init__(self, func):
         self.func = func
 
-    def __get__(self, inst, value):
+    def __get__(self, inst, owner):
         if not inst:
             return self
 
