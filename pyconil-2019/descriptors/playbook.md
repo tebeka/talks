@@ -8,6 +8,8 @@
 
 # Script
 
+- Love it after lunch ...
+- Myself + Tenerife
 - We're going to dive into one of Python powerful tool that not many know about
 - It helps explain how many features in Python, such as properties, static
   methods, class methods and others works
@@ -90,11 +92,11 @@
 
     In [ ]: %show natasha.jpg
 
-    In [66]: PersonD.name                                                                
-    Out[66]: <__main__.Property at 0x7fd157af7780>
-
     In [37]: p.name
     Out[37]: 'Natasha Romanova'
+
+    In [66]: PersonD.name
+    Out[66]: <__main__.Property at 0x7fd157af7780>
 
     In [ ]: %code cls_demo.py
     In [30]: p = Point.from_json('{"x": 1, "y": 2}')
@@ -126,7 +128,7 @@
 
     In [  ]: %cow WIIFM
     In [  ]: from trade import Trade
-    In [55]: t = Trade('BRK.A', 310132.41, 3)
+    In [55]: t = Trade('BRK.A', 310132.41, 1)
     In [  ]: t
     Out[22]: Trade('BRK-A', 300304.13, 1)
     In [57]: t.symbol
