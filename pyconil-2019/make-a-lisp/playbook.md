@@ -1,4 +1,8 @@
-- Slides up to `Code`
+- log
+- ipython
+- font
+- silence phone
+- slides up to `Code`
 
 ~~~
     $ python scm.py
