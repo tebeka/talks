@@ -24,71 +24,6 @@ table {
     <body>
   <div class="reveal">
       <div class="slides">
-	  <section>
-      <section>
-        <pre><code class="scheme">  (define make-adder
-    (lambda (n)
-      (lambda (m) (+ m n))))
-  
-» (define add-7 (make-adder 7))
-  
-  (add-7 10) ; 17</code></pre>
-      </section>
-      <section>
-	  <table>
-	      <tr>
-		  <td>
-        <pre><code class="scheme">  (define make-adder
-»   (lambda (n)
-      (lambda (m) (+ m n))))
-
-  (define add-7 (make-adder 7))
-
-  (add-7 10) ; 17</code></pre>
-		  </td>
-		  <td>
-		      [ builtin ]
-		  </td>
-	</tr></table>
-      </section>
-      <section>
-	  <table>
-	      <tr>
-		  <td>
-        <pre><code class="scheme">  (define make-adder
-    (lambda (n)
-»     (lambda (m) (+ m n))))
-
-  (define add-7 (make-adder 7))
-
-  (add-7 10) ; 17</code></pre>
-		  </td>
-		  <td>
-		      [ builtin ] <br />
-		      [ n = 7 ]
-		  </td>
-	</tr></table>
-      </section>
-      <section>
-	  <table>
-	      <tr>
-		  <td>
-        <pre><code class="scheme">  (define make-adder
-    (lambda (n)
-      (lambda (m) (+ m n))))
-
-  (define add-7 (make-adder 7))
-
-» (add-7 10) ; 17</code></pre>
-		  </td>
-		  <td>
-		      [ builtin ] <br />
-		      [ n = 7 ] <br />
-		      [ m = 10 ]
-		  </td>
-	</tr></table>
-      </section>
-  </section>
     <section>
         <h1>Let's write a Lisp Interpreter</h1>
         <hr />
@@ -278,6 +213,69 @@ Module
       <section>
         <pre><code class="python">In [4]: eval('32 / 7')
 Out[4]: 4.571428571428571</code></pre>
+      </section>
+      <section>
+        <pre><code class="scheme">  (define make-adder
+    (lambda (n)
+      (lambda (m) (+ m n))))
+  
+» (define add-7 (make-adder 7))
+  
+  (add-7 10) ; 17</code></pre>
+      </section>
+      <section>
+	  <table>
+	      <tr>
+		  <td>
+        <pre><code class="scheme">  (define make-adder
+»   (lambda (n)
+      (lambda (m) (+ m n))))
+
+  (define add-7 (make-adder 7))
+
+  (add-7 10) ; 17</code></pre>
+		  </td>
+		  <td>
+		      [ builtin ]
+		  </td>
+	</tr></table>
+      </section>
+      <section>
+	  <table>
+	      <tr>
+		  <td>
+        <pre><code class="scheme">  (define make-adder
+    (lambda (n)
+»     (lambda (m) (+ m n))))
+
+  (define add-7 (make-adder 7))
+
+  (add-7 10) ; 17</code></pre>
+		  </td>
+		  <td>
+		      [ builtin ] <br />
+		      [ n = 7 ]
+		  </td>
+	</tr></table>
+      </section>
+      <section>
+	  <table>
+	      <tr>
+		  <td>
+        <pre><code class="scheme">  (define make-adder
+    (lambda (n)
+      (lambda (m) (+ m n))))
+
+  (define add-7 (make-adder 7))
+
+» (add-7 10) ; 17</code></pre>
+		  </td>
+		  <td>
+		      [ builtin ] <br />
+		      [ n = 7 ] <br />
+		      [ m = 10 ]
+		  </td>
+	</tr></table>
       </section>
     </section>
     <section>
