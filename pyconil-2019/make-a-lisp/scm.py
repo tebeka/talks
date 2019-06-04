@@ -149,6 +149,8 @@ def repl():
     while True:
         try:
             code = input('» ')
+            if not code.strip():
+                continue
             val = run(code)
             if val is not None:
                 print(lispify(val))
