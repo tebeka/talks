@@ -16,11 +16,79 @@ span.del {
 code.c3 {
     font-size: 1.2em;
 }
+table {
+    width: 100%;
+}
 </style>
     </head>
     <body>
   <div class="reveal">
       <div class="slides">
+	  <section>
+      <section>
+        <pre><code class="scheme">  (define make-adder
+    (lambda (n)
+      (lambda (m) (+ m n))))
+  
+» (define add-7 (make-adder 7))
+  
+  (add-7 10) ; 17</code></pre>
+      </section>
+      <section>
+	  <table>
+	      <tr>
+		  <td>
+        <pre><code class="scheme">  (define make-adder
+»   (lambda (n)
+      (lambda (m) (+ m n))))
+
+  (define add-7 (make-adder 7))
+
+  (add-7 10) ; 17</code></pre>
+		  </td>
+		  <td>
+		      [ builtin ]
+		  </td>
+	</tr></table>
+      </section>
+      <section>
+	  <table>
+	      <tr>
+		  <td>
+        <pre><code class="scheme">  (define make-adder
+    (lambda (n)
+»     (lambda (m) (+ m n))))
+
+  (define add-7 (make-adder 7))
+
+  (add-7 10) ; 17</code></pre>
+		  </td>
+		  <td>
+		      [ builtin ] <br />
+		      [ n = 7 ]
+		  </td>
+	</tr></table>
+      </section>
+      <section>
+	  <table>
+	      <tr>
+		  <td>
+        <pre><code class="scheme">  (define make-adder
+    (lambda (n)
+      (lambda (m) (+ m n))))
+
+  (define add-7 (make-adder 7))
+
+» (add-7 10) ; 17</code></pre>
+		  </td>
+		  <td>
+		      [ builtin ] <br />
+		      [ n = 7 ] <br />
+		      [ m = 10 ]
+		  </td>
+	</tr></table>
+      </section>
+  </section>
     <section>
         <h1>Let's write a Lisp Interpreter</h1>
         <hr />
@@ -47,6 +115,7 @@ code.c3 {
         <a href="http://www.catb.org/~esr/faqs/hacker-howto.html">ESR - 
       How To Become A Hacker</a>
     </section>
+<!--
     <section>
         <h3>
       <b>Any sufficiently complicated</b> C or Fortran
@@ -57,6 +126,7 @@ code.c3 {
         <hr/>
         <a href="https://en.wikipedia.org/wiki/Greenspun%27s_tenth_rule">Greenspun's tenth rule</a>
     </section>
+-->
     <section>
         <h2><b>Python, is a watered-down Lisp</b> with infix syntax
       and no macros.</h2>
