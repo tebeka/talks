@@ -59,6 +59,11 @@ def parse(code):
     return read_sexpr(tokens)
 
 
+def begin(*args):
+    if args:
+        return args[-1]
+
+
 builtin = ChainMap({
     '+': operator.add,
     '-': operator.sub,
@@ -70,6 +75,7 @@ builtin = ChainMap({
     '<=': operator.le,
     '=': operator.eq,
     '%': operator.mod,
+    'begin': begin,
 })
 
 
@@ -104,13 +110,6 @@ def evaluate(expr, env):
             if not evaluate(expr, env):
                 return False
         return True
-
-    # (begin (set! x 7) (+ x 1)) -> 8
-    if op == 'begin':
-        x = None
-        for child in rest:
-            x = evaluate(child, env)
-        return x
 
     # (define x (* y 7)) -> None
     if op == 'define':
