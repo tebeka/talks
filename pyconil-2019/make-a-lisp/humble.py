@@ -7,7 +7,7 @@ from collections import ChainMap
 class Lambda:
     args: list
     body: list
-    env: dict  # closure
+    env: ChainMap  # closure
 
     def __call__(self, *params):
         # args is locals
