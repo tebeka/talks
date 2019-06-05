@@ -1,4 +1,19 @@
 import operator
+from dataclasses import dataclass
+from collections import ChainMap
+
+
+@dataclass
+class Lambda:
+    args: list
+    body: list
+    env: dict  # closure
+
+    def __call__(self, *params):
+        # args is locals
+        args = {name: val for name, val in zip(self.args, params)}
+        env = ChainMap(args, self.env)
+        return evaluate(self.body, env)
 
 
 def tokenize(code):
@@ -34,7 +49,7 @@ def reader(code):
     return read_sexpr(tokenize(code))
 
 
-builtin = {
+builtin = ChainMap({
     '+': operator.add,
     '-': operator.sub,
     '*': operator.mul,
@@ -43,10 +58,10 @@ builtin = {
     '>': operator.gt,
     '<': operator.lt,
     '=': operator.eq,
-}
+})
 
 
-def evaluate(expr):
+def evaluate(expr, env):
     # number: 2.718
     if isinstance(expr, float):
         return expr
@@ -58,17 +73,38 @@ def evaluate(expr):
     # If we're here, it a list
     op, *rest = expr
 
+    # (lambda (n) (+ n 1))
+    if op == 'lambda':
+        args, body = rest
+        return Lambda(args, body, env)
+
+    # (define x (* 3 7))
+    if op == 'define':
+        name, expr = rest
+        val = evaluate(expr, env)
+        builtin[name] = val
+        return val
+
+    # (set! x 7)  - will fail is x is not defined
+    if op == 'set!':
+        name, expr = rest
+        if name not in builtin:
+            raise NameError(name)
+        val = evaluate(expr, env)
+        builtin[name] = val
+        return val
+
     # (and (> 1 2) (> 3 4))
     if op == 'and':
         for expr in rest:
-            if not evaluate(expr):
+            if not evaluate(expr, env):
                 return 0.0
         return 1.0
 
     # (or (< 7 3) (> 3 2) 17)
     if op == 'or':
         for expr in rest:
-            if evaluate(expr):
+            if evaluate(expr, env):
                 return 1.0
         return 0.0
 
@@ -76,14 +112,14 @@ def evaluate(expr):
     if op == 'if':
         # TODO: Support if without else
         cond, true_expr, false_expr = rest
-        expr = true_expr if evaluate(cond) else false_expr
-        return evaluate(expr)
+        expr = true_expr if evaluate(cond, env) else false_expr
+        return evaluate(expr, env)
 
     # (* 3 7)
     # Python 2
     # op, rest = expr[0], expr[1:]
-    func = evaluate(op)
-    args = [evaluate(arg) for arg in rest]
+    func = evaluate(op, env)
+    args = [evaluate(arg, env) for arg in rest]
     return func(*args)
 
 
@@ -95,7 +131,7 @@ def repl():
             if not code.strip():
                 continue
             s_expr = reader(code)
-            val = evaluate(s_expr)
+            val = evaluate(s_expr, builtin)
             print(val)
         except (EOFError, KeyboardInterrupt):
             break
