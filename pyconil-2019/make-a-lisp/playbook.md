@@ -66,9 +66,10 @@
 	- readline for matching ()
     - if
 	- what are booleans?
-    - or, and
 	- short circuit
 	- in Python as well
+    - or, and
+	- they do it
 ~~~
 	def or_(a, b):
 	    if a:

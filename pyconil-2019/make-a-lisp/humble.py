@@ -1,3 +1,6 @@
+import operator
+
+
 def tokenize(code):
     code = code.replace('(', ' ( ')
     code = code.replace(')', ' ) ')
@@ -30,13 +33,17 @@ def read_sexpr(tokens):
 def reader(code):
     return read_sexpr(tokenize(code))
 
-import operator
-builtin = {
-    '*': operator.mul,
-}
 
-# TODO: Add /, %, +, -
-# Back 3:20
+builtin = {
+    '+': operator.add,
+    '-': operator.sub,
+    '*': operator.mul,
+    '/': operator.truediv,
+    '%': operator.mod,
+    '>': operator.gt,
+    '<': operator.lt,
+    '=': operator.eq,
+}
 
 
 def evaluate(expr):
@@ -48,17 +55,36 @@ def evaluate(expr):
     if isinstance(expr, str):
         return builtin[expr]
 
+    # If we're here, it a list
+    op, *rest = expr
+
+    # (and (> 1 2) (> 3 4))
+    if op == 'and':
+        for expr in rest:
+            if not evaluate(expr):
+                return 0.0
+        return 1.0
+
+    # (or (< 7 3) (> 3 2) 17)
+    if op == 'or':
+        for expr in rest:
+            if evaluate(expr):
+                return 1.0
+        return 0.0
+
+    # (if (> 1 2) 10 20)
+    if op == 'if':
+        # TODO: Support if without else
+        cond, true_expr, false_expr = rest
+        expr = true_expr if evaluate(cond) else false_expr
+        return evaluate(expr)
+
     # (* 3 7)
-    if isinstance(expr, list):
-        op, *rest = expr
-        # Python 2
-        # op, rest = expr[0], expr[1:]
-        func = evaluate(op)
-        args = [evaluate(arg) for arg in rest]
-        return func(*args)
-
-
-
+    # Python 2
+    # op, rest = expr[0], expr[1:]
+    func = evaluate(op)
+    args = [evaluate(arg) for arg in rest]
+    return func(*args)
 
 
 # Read, Eval, Print, Loop
@@ -68,12 +94,13 @@ def repl():
             code = input('» ')
             if not code.strip():
                 continue
-            # TODO: tokenize, read s-expression, print tree
             s_expr = reader(code)
             val = evaluate(s_expr)
             print(val)
         except (EOFError, KeyboardInterrupt):
             break
+        except Exception as err:
+            print(f'ERROR: {err.__class__.__name__} {err}')
     print('Yalla Bye ☺')
 
 
