@@ -65,21 +65,25 @@
 	- Python str & repr
 	- readline for matching ()
     - if
-	- what are booleans?
+	- what are booleans? (we'll use 1.0 & 0.0)
 	- short circuit
 	- in Python as well
+~~~
+	if True:
+	    'OK'
+	else:
+	    1/0
+
+	def myif(cond, true_val, false_val):
+	    if cond:
+		return true_val
+	    return false_val
+~~~
     - or, and
 	- they do it
-~~~
-	def or_(a, b):
-	    if a:
-		return True
-	    return b
-
-
-	True or 1/0
-	or_(True, 1/0)
-~~~
+	- `(or)` -> 0.0
+	- `(and)` -> 1.0
+	- `True or 1/0`
     - define & set!
     - lambda
 	- parameter passing (value, ref ..)
