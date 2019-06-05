@@ -68,7 +68,7 @@ def evaluate(expr, env):
 
     # name: a, * ...
     if isinstance(expr, str):
-        return builtin[expr]
+        return env[expr]
 
     # If we're here, it a list
     op, *rest = expr
@@ -82,17 +82,18 @@ def evaluate(expr, env):
     if op == 'define':
         name, expr = rest
         val = evaluate(expr, env)
-        builtin[name] = val
+        env[name] = val
         return val
 
     # (set! x 7)  - will fail is x is not defined
     if op == 'set!':
         name, expr = rest
-        if name not in builtin:
-            raise NameError(name)
-        val = evaluate(expr, env)
-        builtin[name] = val
-        return val
+        for m in env.maps:
+            if name in m:
+                val = evaluate(expr, env)
+                m[name] = val
+                return val
+        raise NameError(name)
 
     # (and (> 1 2) (> 3 4))
     if op == 'and':
