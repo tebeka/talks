@@ -1,4 +1,4 @@
-import scm
+import humble_full as scm
 import pytest
 
 
