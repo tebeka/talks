@@ -1,4 +1,4 @@
-import humble_full as scm
+import scm
 import pytest
 
 
@@ -27,5 +27,22 @@ def test_scm(fname, nsexpr, expr, expected):
             ast = scm.read_sexpr(tokens)
             scm.evaluate(ast, env)
 
-    out = scm.run(expr, env)
+    out = scm.evaluate(scm.reader(expr), env)
     assert abs(out - expected) < 0.001, expr
+
+
+logic_cases = [
+    ('(or)', 1.0),
+    ('(or 1 2)', 1.0),
+    ('(or 0 2 1)', 2.0),
+    ('(and)', 0.0),
+    ('(and 1 2)', 2.0),
+    ('(and 1 0 3)', 0.0),
+]
+
+
+@pytest.mark.parametrize('expr, expected', logic_cases)
+def test_logic(expr, expected):
+    env = env0.copy()
+    out = scm.evaluate(scm.reader(expr), env)
+    assert out == expected, 'bad logic'

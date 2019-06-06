@@ -1,24 +1,8 @@
+"""Full humble lisp implementation"""
 import re
 import operator
 from collections import ChainMap
 from dataclasses import dataclass
-
-
-@dataclass
-class Lambda:
-    args: list
-    body: list
-    env: dict  # closure
-
-    def __call__(self, *params):
-        args = {name: val for name, val in zip(self.args, params)}
-        env = ChainMap(args, self.env)
-        return evaluate(self.body, env)
-
-    def __repr__(self):
-        args = ' '.join(self.args)
-        body = lispify(self.body)
-        return f'(lambda ({args}) {body})'
 
 
 def tokenize(code):
@@ -53,10 +37,27 @@ def read_sexpr(tokens):
         return tok
 
 
-def parse(code):
+def reader(code):
     # TODO: Multiple s-expressions
     tokens = tokenize(code)
     return read_sexpr(tokens)
+
+
+@dataclass
+class Lambda:
+    args: list
+    body: list
+    env: ChainMap  # Closure
+
+    def __call__(self, *params):
+        args = {name: val for name, val in zip(self.args, params)}
+        env = ChainMap(args, self.env)
+        return evaluate(self.body, env)
+
+    def __repr__(self):
+        args = ' '.join(self.args)
+        body = lispify(self.body)
+        return f'(lambda ({args}) {body})'
 
 
 def begin(*args):
@@ -100,18 +101,22 @@ def evaluate(expr, env):
     # (or (> 1 2) (> 3 2)) -> 1.0
     # (or) -> 0.0
     if op == 'or':
+        val = 1.0
         for expr in rest:
-            if evaluate(expr, env):
-                return 1.0
-        return 0.0
+            val = evaluate(expr, env)
+            if val:
+                break
+        return val
 
     # (and (> 1 2) (> 3 2)) -> False
     # (and) -> 1.0
     if op == 'and':
+        val = 0.0
         for expr in rest:
-            if not evaluate(expr, env):
-                return 0.0
-        return 1.0
+            val = evaluate(expr, env)
+            if not val:
+                break
+        return val
 
     # (define x (* y 7)) -> None
     if op == 'define':
@@ -138,12 +143,10 @@ def evaluate(expr, env):
     # (* 3 7)
     func = evaluate(op, env)
     args = [evaluate(arg, env) for arg in rest]
-    return func(*args)
-
-
-def run(code, env=None):
-    env = builtin if env is None else env
-    return evaluate(parse(code), env)
+    val = func(*args)
+    if val in (True, False):  # Convert True/False from gt, lt and friends
+        val = 1.0 if val else 0.0
+    return val
 
 
 # REPL = read, eval, print, loop
@@ -153,7 +156,8 @@ def repl():
             code = input('» ')
             if not code.strip():
                 continue
-            val = run(code)
+            expr = reader(code)
+            val = evaluate(expr, builtin)
             if val is not None:
                 print(lispify(val))
         except (EOFError, KeyboardInterrupt):
