@@ -3,6 +3,8 @@
 - Formats
     - repr
 	- eval
+    - python
+	- code/config.py & code/app.py
     - pickle, marshal (mention shelve)
 	- security
     - JSON
@@ -14,7 +16,8 @@
 	- IDL
 	- gRPC
     - flatbuffers, capnproto
-    - CSV
+    - CSV, XML
+    - sqlite3 (also parquet, orc ...)
 - fork example
     - no serialization
     - COW
@@ -27,3 +30,5 @@
     - cross language
 - Please don't invent your own
     - viaenv example
+- Benchmark with real data
+- Compression?
