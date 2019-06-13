@@ -1,0 +1,29 @@
+- REST/gRPC = transport + serialization
+    - IPC
+- Formats
+    - repr
+	- eval
+    - pickle, marshal (mention shelve)
+	- security
+    - JSON
+	- tuple → list
+	- custom type
+    - YAML, TOML
+    - msgpack, BSON
+    - protobuf
+	- IDL
+	- gRPC
+    - flatbuffers, capnproto
+    - CSV
+- fork example
+    - no serialization
+    - COW
+- summary table
+    - format
+    - library
+    - schema
+    - text/binary
+    - security
+    - cross language
+- Please don't invent your own
+    - viaenv example
