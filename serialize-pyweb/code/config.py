@@ -1,9 +1,6 @@
 import sys
 
-if sys.platform == 'win32':
-    max_sockets = 100
-else:
-    max_sockets = 1000
+max_sockets = 100 if sys.platform == 'win32' else 1000
 
 
 port = 9021

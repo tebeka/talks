@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head>
-	<title>Descriptors - Supercharge Your Dot</title>
-	<link rel="stylesheet" href="./assets/reveal.min.css">
-	<link rel="stylesheet" href="./assets/serif.min.css">
-	<base target="_blank">
-	<meta charset="UTF-8">
-<style>
+	<head>
+	 	<title>Descriptors - Supercharge Your Dot</title>
+		<link rel="stylesheet" href="./assets/reveal.min.css">
+		<link rel="stylesheet" href="./assets/serif.min.css">
+		<link rel="stylesheet" href="./assets/vs.css">
+		<base target="_blank">
+		<meta charset="UTF-8">
+		<style>
 .reveal section img { background:none; border:none; box-shadow:none; }
-</style>
-    </head>
+pre.schema { font-size: 1em; }
+h1.del {
+  text-decoration-line: line-through;
+  text-decoration-style: wavy;
+  text-decoration-color: silver;
+}
+		</style>
+	</head>
     <body>
 	<div class="reveal">
 	    <div class="slides">
@@ -20,26 +27,272 @@
 		    <h4>C2AB 53 65 72 69 61 6C 69 7A 61 74 69 6F 6E C2BB</h4>
 		</section>
 		<section>
-		    <h2>מיקי טבקה</h2>
-		    CEO, CTO, UFO ...
-		    <img alt="logo" src="353.png">
+		    <section>
+			<h1>Selection Criteria</h1>
+		    </section>
+		    <section>
+			<h2>Language Support</h2>
+			<img src="langs.png" alt="langs"> <br />
+			<small><a href="https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted">StackOverflow 2019 Survey</a></small>
+		    </section>
+		    <section>
+			<h2>Types</h2>
+        <pre><code class="python">import json
+from datetime import datetime
+
+json.dumps(datetime.now())
+# ...
+# TypeError: Object of type datetime is not JSON serializable
+
+nums = (1, 2, 3)
+print(json.loads(json.dumps(nums)))
+
+# [1, 2, 3]</code></pre>
+		    </section>
+		    <section>
+				<h2>Schema</h2>
+				<pre class="schema">DATE         SNOW  TMAX  TMIN  PGTM
+2000-01-01   0     100    11   1337
+2000-01-02   0     156    61   2313
+2000-01-03   0     178   106    320
+2000-01-04   0     156    78   1819
+2000-01-05   0      83   -17    843
+2000-07-16   8     312   245    937</pre>
+		    </section>
+		    <section>
+				<h2>Performance</h2>
+				<img src="corr.png" alt="correlation"> <br />
+				<small><a href="https://www.tylervigen.com/spurious-correlations">spurious correlations</a></small>
+		    </section>
+		    <section>
+				<h2>Security</h2>
+				<img src="jpeg-sec.png" alt="jpeg">
+		    </section>
+		    <section>
+				<h2>Streaming</h2>
+				<img src="stream.jpg" alt="stream"> <br />
+				<small><a href="https://unsplash.com/photos/8X1-pcDF8l0">Nathan Anderson</a></small>
+		    </section>
+		    <section>
+				<h2>Standard Library</h2>
+				<img src="python_environment.png" alt="env"> <br />
+				<a href="https://xkcd.com/1987/">https://xkcd.com/1987/</a>
+		    </section>
 		</section>
 		<section>
-		    <h1>!יאללה</h1>
+		    <section>
+				<h1>Formats</h1>
+		    </section>
+		    <section>
+				<h2>pickle</h2>
+				<h2>marshal</h2>
+				<h2>shelve</h2>
+		    </section>
+		    <section>
+				<h2>JSON</h2>
+				<pre><code>{
+  "symbol": "BRK-A",
+  "volume": 1,
+  "price": 321801.07,
+  "buy": true
+}</code></pre>
+		    </section>
+		    <section>
+				<h2>YAML</h2>
+				<pre><code>symbol: "BRK-A"
+volume: 1
+price: 321801.07
+buy: true</code></pre>
+				<h2>TOML</h2>
+				<pre><code>symbol = "BRK-A"
+volume = 1
+price = 321801.07
+buy = true</code></pre>
+		    </section>
+		    <section>
+				<h2>XML</h2>
+				<pre><code>&lt;?xml version="1.0"?&gt;
+&lt;trade&gt;
+  &lt;symbol&gt;BRK-A&lt;/symbol&gt;
+  &lt;price&gt;321801.07&lt;/price&gt;
+  &lt;volume&gt;1&lt;/volume&gt;
+  &lt;buy&gt;true&lt;/buy&gt;
+&lt;/trade&gt;</code></pre>
+		    </section>
+			<section>
+				<h2>CSV</h2>
+				<pre><code>symbol,volume,price,buy
+BRK-A,1,321801.07,true</code></pre>
+			</section>
+		    <section>
+				<h2>msgpack</h2>
+				<h2>BSON</h2>
+		    </section>
+		    <section>
+				<h2>protobuf</h2>
+		<pre><code>syntax = "proto3";
+package pb;
+
+message Trade {
+	string symbol = 1;
+	int64 volume = 2;
+	double price = 3;
+	bool buy = 4;
+}</code></pre>
+		    </section>
+			<section>
+				<h2>flatbuffers</h2>
+				<h2>capnproto</h2>
+			</section>
+			<section>
+				<h2>SQL</h2>
+				<pre><code class="python">from sqlalchemy import Boolean, Column, Float, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+
+class Trade(Base):
+    __tablename__ = 'trades'
+
+    id = Column(Integer, primary_key=True)
+    symbol = Column(String)
+    volume = Column(Integer)
+    price = Column(Float)
+    buy = Column(Boolean)</code></pre>
+			</section>
+			<section>
+				<h2>parquet</h2>
+				<h2>orc</h2>
+				<h2>HDF5</h2>
+				<h2>...</h2>
+			</section>
+			<section>
+				<h2>Invent Your Own</h2>
+				<img src="406.jpeg" alt="406"><br/>
+				<a href="https://http.cat/406">https://http.cat/406</a>
+			</section>
 		</section>
 		<section>
-		    <h1>?שאלות</h1>
+			<section>
+				<img src="different.jpg" alt="different" width="100%"> <br/>
+				<small><a href="https://twitter.com/mweststrate/status/944668225937334272">@mweststrate</a></small>
+			</section>
+			<section>
+				<h1>__repr__</h1>
+			</section>
+			<section>
+<pre><code class="python">from dataclasses import dataclass
+
+
+@dataclass
+class Trade:
+    symbol: str
+    volume: int
+    price: float
+    buy: bool
+
+
+t = Trade('BRK-A', 1, 321801.07, True)
+print(f'{t!r}')
+
+# Trade(symbol='BRK-A', volume=1, price=321801.07, buy=True)</code></pre>
+			</section>
+			<section>
+				<h1>Python</h1>
+			</section>
+			<section>
+				<pre><code class="python">import sys
+
+max_sockets = 100 if sys.platform == 'win32' else 1000
+
+
+port = 9021
+auth_servers = [
+    'auth1.local',
+    'auth2.local',
+]
+
+
+del sys  # Cleanup</code></pre>
+			</section>
+			<section>
+				<pre><code class="python">def load_config(filename):
+    """Load configuration from Python file"""
+    with open(filename) as fp:
+        code = fp.read()
+    cfg = {}
+    exec(code, None, cfg)
+    return cfg</code></pre>
+			</section>
+			<section>
+				<h1 class="del">Serialization</h1>
+			</section>
+			<section>
+				<pre class="schema"> ______ 
+< fork >
+ ------ 
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||</pre>
+			</section>
+			<section>
+				<p>
+				<b>Copy-on-write</b> finds its main use in sharing the virtual
+				memory of operating system processes, <b>in the implementation
+			    of the fork system call</b>. Typically, the process does
+				not modify any memory and immediately executes a new process,
+				replacing the address space entirely. Thus, <b>it would be
+				wasteful to copy all of the process's memory during a fork, and
+				instead the copy-on-write technique is used</b>.
+				</p>
+			</section>
+			<section>
+				<pre><code class="python">def spawn(func, data):
+    """Spawn a child process which run func on data"""
+    rdr, wtr = os.pipe()
+    rdr, wtr = os.fdopen(rdr, 'rb'), os.fdopen(wtr, 'wb')
+    pid = os.fork()
+    if pid:  # parent
+        return pid, rdr
+
+    # child
+    pickle.dump(func(data), wtr)
+    wtr.close()
+    raise SystemExit</code></pre>
+			</section>
+			<section>
+				<pre><code class="python">def wait(child):
+    """Wait for child to finish, load data from pipe"""
+    pid, fp = child
+    with fp:
+        os.waitpid(pid, os.P_WAIT)
+        return pickle.load(fp)</code></pre>
+			</section>
+			<section>
+				<pre><code class="python">def pmap(func, items):
+    """Parallel map (using fork) of func over items
+
+    &gt;&gt;&gt; pmap(lambda x: x * 2, range(5))
+    [0, 2, 4, 6, 8]
+    """
+    children = [spawn(func, item) for item in items]
+    return [wait(child) for child in children]</code></pre>
+			</section>
 		</section>
 		<section>
-		    <h1>!תודה</h1>
-		    <hr />
-		    <a href="http://github.com/tebkea/talks/tree/master/pyconil-2019/make-a-lisp">github.com/tebeka/talks</a>
+			<h1>Thank You</h1>
+			<img src="353.png" alt="353solutions" width="100%">
 		</section>
 	    </div>
 	</div>
 	<script src="./assets/reveal.min.js"></script>
+	<script src="./assets/highlight.pack.js"></script>
 	<script>
 	    Reveal.initialize();
+		hljs.initHighlightingOnLoad();
 	</script>
     </body>
 </html>
