@@ -251,6 +251,25 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *D:* false
 
 
+* Vars (3)
+
+.play -edit -numbers vars3.go
+
+*A:* 3 5
+*B:* ∞ loop
+*C:* 8 8
+*D:* 8 3
+
+* Channel
+
+.play -edit -numbers ch.go
+
+*A:* 0
+*B:* 1
+*C:* panic
+*D:* 2
+
+
 # * Function Var
 # 
 # .play -edit -numbers fnvar.go
