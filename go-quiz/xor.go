@@ -3,6 +3,6 @@ package main
 import "fmt"
 
 func main() {
-	city := "Kraków"
-	fmt.Println(len(city))
+	n := 2 ^ 10
+	fmt.Println(n)
 }

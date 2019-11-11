@@ -4,5 +4,8 @@ import "fmt"
 
 func main() {
 	city := "Kraków"
-	fmt.Println(len(city))
+	for _, c := range city {
+		fmt.Printf("%T\n", c)
+		break
+	}
 }

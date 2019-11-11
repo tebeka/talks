@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style>
+.clock {
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 2em;
+  width: 100%;
+  align: center;
+}
+</style>
+
+  </head>
+  <body>
+    <div class="clock">30</div>
+  </body>
+  <script>
+    function init() {
+      var div = $('.clock');
+      $(div).bind('afterVisible', func() {
+	alert('visible');
+      });
+    }
+    $(init);
+  </script>
+</html>

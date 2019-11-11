@@ -3,6 +3,6 @@ package main
 import "fmt"
 
 func main() {
-	city := "Kraków"
-	fmt.Println(len(city))
+	var pi = 22 / 7.0
+	fmt.Println(pi)
 }
