@@ -33,6 +33,9 @@ func parseSlides(path string, t *testing.T) []*TestCase {
 	for s.Scan() {
 		lnum++
 		line := s.Text()
+		if len(line) > 0 && line[0] == '#' {
+			continue
+		}
 		// .play -edit -numbers empty-map-ok.go
 		if strings.Contains(s.Text(), ".play") {
 			if tc != nil {
@@ -70,18 +73,9 @@ func hasAnswer(output string, answers []string) bool {
 	return false
 }
 
-func isDeadlock(answers []string) bool {
+func hasFail(answers []string) bool {
 	for _, ans := range answers {
-		if strings.Contains(ans, "Deadlock") {
-			return true
-		}
-	}
-	return false
-}
-
-func isFail(answers []string) bool {
-	for _, ans := range answers {
-		for _, text := range []string{"panic", "Won't compile"} {
+		for _, text := range []string{"panic", "Won't compile", "Deadlock"} {
 			if strings.Contains(ans, text) {
 				return true
 			}
@@ -101,11 +95,7 @@ func TestSlides(t *testing.T) {
 			if err == nil {
 				require.True(hasAnswer(output, tc.answers))
 			} else {
-				if isDeadlock(tc.answers) {
-					require.True(strings.Contains(output, "deadlock!"), "deadlock")
-				} else {
-					require.True(isFail(tc.answers), "fail")
-				}
+				require.True(hasFail(tc.answers), "fail")
 			}
 		})
 	}
