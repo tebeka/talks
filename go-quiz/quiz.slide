@@ -236,9 +236,9 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 
 .play -edit -numbers print-char.go
 
-*A:* 114
+*A:* 65
 *B:* a
-*C:* 65
+*C:* 97
 *D:* C
 
 * Error
