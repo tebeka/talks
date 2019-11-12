@@ -270,6 +270,24 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *D:* 2
 
 
+* Struct
+
+.play -edit -numbers underscore.go
+
+*A:* Won't compile
+*B:* {1 2 3}
+*C:* {1 0 3}
+*D:* {0 0 0}
+
+* Defer
+
+.play -edit -numbers defer.go
+
+*A:* 2 1 0
+*B:* 2 2 2
+*C:* 0 1 2
+*D:* 3 3 3
+
 # * Function Var
 # 
 # .play -edit -numbers fnvar.go
