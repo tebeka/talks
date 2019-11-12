@@ -288,6 +288,16 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *C:* 0 1 2
 *D:* 3 3 3
 
+
+* Strings
+
+.play -edit -numbers streq.go
+
+*A:* false
+*B:* true
+*C:* Won't compile
+*D:* 1
+
 # * Function Var
 # 
 # .play -edit -numbers fnvar.go
