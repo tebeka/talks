@@ -189,7 +189,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 
 * Sleep Sort
 
-.play -edit -numbers sleep-sort.go
+.play -edit -numbers sleep-sort.go /^func main/,/^}/
 
 *A:* 1 2 3
 *B:* 1 1 1

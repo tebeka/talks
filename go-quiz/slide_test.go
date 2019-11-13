@@ -21,6 +21,15 @@ type TestCase struct {
 	answers []string
 }
 
+func findFile(fields []string) string {
+	for _, f := range fields {
+		if strings.HasSuffix(f, ".go") {
+			return f
+		}
+	}
+	return ""
+}
+
 func parseSlides(path string, t *testing.T) []*TestCase {
 	require := require.New(t)
 	file, err := os.Open(path)
@@ -43,7 +52,7 @@ func parseSlides(path string, t *testing.T) []*TestCase {
 				cases = append(cases, tc)
 			}
 			fields := strings.Fields(line)
-			tc = &TestCase{file: fields[len(fields)-1]}
+			tc = &TestCase{file: findFile(fields)}
 			continue
 		}
 

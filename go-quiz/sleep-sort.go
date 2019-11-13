@@ -11,9 +11,9 @@ func main() {
 	for _, n := range []int{3, 1, 2} {
 		wg.Add(1)
 		go func() {
+			defer wg.Done()
 			time.Sleep(time.Duration(n) * time.Millisecond)
 			fmt.Printf("%d ", n)
-			wg.Done()
 		}()
 	}
 	wg.Wait()
