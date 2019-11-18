@@ -298,6 +298,15 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *C:* Won't compile
 *D:* 1
 
+* Quote
+
+.play -edit -numbers quote.go
+
+*A:* string string
+*B:* rune string
+*C:* int32 string
+*D:* int32 int32
+
 # * Function Var
 # 
 # .play -edit -numbers fnvar.go
