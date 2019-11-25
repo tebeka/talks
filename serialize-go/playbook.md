@@ -1,0 +1,30 @@
+- REST/gRPC = transport + serialization
+    - IPC
+- Formats
+    - repr
+	- eval
+    - gob
+    - JSON
+	- custom type
+    - YAML, TOML
+    - msgpack, BSON
+    - protobuf
+	- IDL
+	- gRPC
+    - flatbuffers, capnproto
+    - CSV, XML
+    - sqlite3 (also parquet, orc ...)
+- fork example
+    - no serialization
+    - COW
+- summary table
+    - format
+    - library
+    - schema
+    - text/binary
+    - security
+    - cross language
+- Please don't invent your own
+    - viaenv example
+- Benchmark with real data
+- Compression?

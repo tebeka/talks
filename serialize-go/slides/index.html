@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	 	<title>Go Serialize</title>
+		<link rel="stylesheet" href="./assets/reveal.min.css">
+		<link rel="stylesheet" href="./assets/serif.min.css">
+		<link rel="stylesheet" href="./assets/vs.css">
+		<base target="_blank">
+		<meta charset="UTF-8">
+		<style>
+.reveal section img { background:none; border:none; box-shadow:none; }
+pre.schema { font-size: 1em; }
+h1.del {
+  text-decoration-line: line-through;
+  text-decoration-style: wavy;
+  text-decoration-color: silver;
+}
+		</style>
+	</head>
+    <body>
+	<div class="reveal">
+	    <div class="slides">
+		<section>
+		    <img src="Go-Logo_Aqua.png" height="300" alt="Go">
+		    <h1>«Serialization»</h1>
+		    <hr />
+		    <h4>C2AB 53 65 72 69 61 6C 69 7A 61 74 69 6F 6E C2BB</h4>
+		</section>
+		<section>
+		    <section>
+			<h1>Selection Criteria</h1>
+		    </section>
+			<section>
+				<h2>General Health</h2>
+				<hr />
+				<img src="maturity.svg" alt="maturity" width="100%"> <br />
+				<small><a href="http://j.mp/2aEW0P7">Martin Weiner</a></small>
+			</section>
+		    <section>
+			<h2>Language Support</h2>
+			<img src="langs.png" alt="langs"> <br />
+			<small><a href="https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted">StackOverflow 2019 Survey</a></small>
+		    </section>
+		    <section>
+			<h2>Types</h2>
+        <pre><code class="go">i := complex(0, 1)
+_, err := json.Marshal(i)
+fmt.Println(err) // json: unsupported type: complex128
+
+data, _ := json.Marshal(time.Now())
+var out interface{}
+json.Unmarshal(data, &amp;out)
+fmt.Printf("%T\n", out) // string
+
+n := 20
+data, _ = json.Marshal(n)
+json.Unmarshal(data, &amp;out)
+fmt.Printf("%T\n", out) // float64
+</code></pre>
+		    </section>
+		    <section>
+				<h2>Schema</h2>
+				<pre class="schema">DATE         SNOW  TMAX  TMIN  PGTM
+2000-01-01   0     100    11   1337
+2000-01-02   0     156    61   2313
+2000-01-03   0     178   106    320
+2000-01-04   0     156    78   1819
+2000-01-05   0      83   -17    843
+2000-07-16   8     312   245    937</pre>
+		    </section>
+		    <section>
+				<h2>Performance</h2>
+				<img src="corr.png" alt="correlation"> <br />
+				<small><a href="https://www.tylervigen.com/spurious-correlations">spurious correlations</a></small>
+		    </section>
+		    <section>
+				<h2>Security</h2>
+				<img src="jpeg-sec.png" alt="jpeg"> <br />
+				See also <a href="https://en.wikipedia.org/wiki/Zip_bomb">Zip bomb</a>, <a href="https://en.wikipedia.org/wiki/Billion_laughs_attack">Billion laughs</a>, ...
+
+		    </section>
+		    <section>
+				<h2>Streaming</h2>
+				<img src="cables.jpg" alt="stream"> <br />
+				<small><a href="https://commons.wikimedia.org/wiki/File:Server_Rack_with_Spaghetti-Like_Mass_of_Network_Cables.jpg">wikimedia</a></small>
+		    </section>
+		    <section>
+				<h2>Standard Library</h2>
+				<pre><code>$ go mod tidy</code></pre>
+				<h3><a href="https://research.swtch.com/deps">Our Software Dependency Problem</a></h3>
+		    </section>
+		</section>
+		<section>
+		    <section>
+				<h1>Formats</h1>
+		    </section>
+		    <section>
+				<h2>gob</h2>
+			<pre><code class="go">t1 := Trade{
+	Time:   time.Now(),
+	Symbol: "BRK-A",
+	Volume: 1,
+	Price:  321_801.07,
+	IsBuy:  true,
+}
+
+var network bytes.Buffer
+gob.NewEncoder(&amp;network).Encode(t1)
+var t2 Trade
+gob.NewDecoder(&amp;network).Decode(&amp;t2)
+fmt.Printf("%+v\n", t2) // {Time:2019-11-25 12:41:04.41768293 +0200 IST Symbol:BRK-A Volume:1 Price:321801.07 IsBuy:true}</code></pre>
+			</section>
+		    <section>
+				<h2>JSON</h2>
+				<pre><code>{
+  "time": "2019-11-25T12:27:16.6051444+02:00",
+  "symbol": "BRK-A",
+  "volume": 1,
+  "price": 321801.07,
+  "buy": true
+}</code></pre>
+		    </section>
+		    <section>
+				<h2>YAML</h2>
+				<pre><code class="yaml">time: 2019-11-25T12:52:28.129106987+02:00
+symbol: "BRK-A"
+volume: 1
+price: 321801.07
+buy: true</code></pre>
+				<h2>TOML</h2>
+				<pre><code class="toml">time = 2019-11-25T10:59:25Z
+symbol = "BRK-A"
+volume = 1
+price = 321801.07
+buy = true</code></pre>
+		    </section>
+		    <section>
+				<h2>XML</h2>
+				<pre><code class="xml">&lt;?xml version="1.0"?&gt;
+&lt;trade&gt;
+  &lt;time&gt;2019-11-25T13:01:04.592473082+02:00&lt;/time&gt;
+  &lt;symbol&gt;BRK-A&lt;/symbol&gt;
+  &lt;price&gt;321801.07&lt;/price&gt;
+  &lt;volume&gt;1&lt;/volume&gt;
+  &lt;buy&gt;true&lt;/buy&gt;
+&lt;/trade&gt;</code></pre>
+		    </section>
+			<section>
+				<h2>CSV</h2>
+				<pre><code class="csv">time,symbol,volume,price,buy
+2019-11-25T13:01:04.592473082+02:00,BRK-A,1,321801.07,true</code></pre>
+			</section>
+		    <section>
+				<h2>msgpack</h2>
+				<h2>BSON</h2>
+		    </section>
+		    <section>
+				<h2>protobuf</h2>
+		<pre><code>syntax = "proto3";
+package pb;
+import "google/protobuf/timestamp.proto";
+
+
+message Trade {
+    google.protobuf.Timestamp time = 1;
+    string symbol = 2;
+    int64 volume = 3;
+    double price = 4;
+    bool buy = 5;
+}</code></pre>
+		    </section>
+			<section>
+				<h2>flatbuffers</h2>
+				<h2>capnproto</h2>
+			</section>
+			<section>
+				<h2>SQL</h2>
+				<pre><code class="sql">CREATE TABLE trades (
+    time TIMESTAMP,
+    symbol VARCHAR(32),
+    volume INTEGER,
+    price FLOAT,
+    buy BOOLEAN
+);</code></pre>
+			</section>
+			<section>
+				<h2>parquet</h2>
+				<h2>orc</h2>
+				<h2>HDF5</h2>
+				<h2>Arrow</h2>
+				<h2>...</h2>
+			</section>
+			<section>
+				<h2>Invent Your Own</h2>
+				<img src="406.jpeg" alt="406"><br/>
+				<a href="https://http.cat/406">https://http.cat/406</a>
+			</section>
+		</section>
+		<section>
+		    <section>
+			<h1>JSON Tips</h1>
+		    </section>
+		    <section>
+			<h2>json.Marshaller</h2>
+			<pre><code class="go">type List struct {
+	Value string
+	Next  *List
+}
+
+func (l *List) MarshalJSON() ([]byte, error) {
+	var values []string
+	for ; l != nil; l = l.Next {
+		values = append(values, l.Value)
+	}
+	return json.Marshal(values)
+}</code></pre>
+		    </section>
+		    <section>
+			<pre><code class="go">cart := NewList("onions")
+cart.Append("steak")
+cart.Append("potatos")
+
+out, err := json.Marshal(cart)
+if err != nil {
+	log.Fatal(err)
+}
+
+fmt.Println(string(out)) // ["onions","steak","potatos"]
+		</code></pre>
+		    </section>
+		    <section>
+			<h2>json.Unmarshaller</h2>
+			<pre><code class="go">func (l *List) UnmarshalJSON(data []byte) error {
+	var values []string
+	if err := json.Unmarshal(data, &amp;values); err != nil {
+		return err
+	}
+
+	if len(values) == 0 {
+		return fmt.Errorf("empty list")
+	}
+
+	l.Value = values[0]
+	for _, v := range values[1:] {
+		l.Append(v)
+	}
+	return nil
+}</code></pre>
+		    </section>
+		    <section>
+			<pre><code class="go">var user struct {
+	Name string
+	Cart *List
+}
+
+data := []byte(`{
+	"name": "Wile E. Coyote",
+	"cart": ["canon", "brick", "gun powder"]
+}`)
+json.Unmarshal(data, &amp;user)
+fmt.Printf("%s\n", user.Cart) // canon, brick, gun powder</code></pre>
+		    </section>
+		    <section>
+			<h2>Missing Data</h2>
+			<pre><code class="go">type Job struct {
+	User   string
+	Action string
+	Count  int
+}
+
+func main() {
+	data := []byte(`{
+		"user": "saitama",
+		"action": "punch"
+	}`)
+	var job Job
+	json.Unmarshal(data, &amp;job)
+	fmt.Printf("%+v\n", job)
+	// {User:saitama Action:punch Count:0}
+}</code></pre>
+		    </section>
+		    <section>
+			<h3>Solutions - Pointers</h3>
+			<pre><code class="go">type Job struct {
+	User   string
+	Action string
+	JCount *int `json:"count"`
+}
+
+func (j *Job) Count() int {
+	if j.JCount == nil {
+		return 1
+	}
+	return *j.JCount
+}</code></pre>
+		    </section>
+		    <section>
+			<pre><code class="go">func main() {
+	data := []byte(`{
+		"user": "saitama",
+		"action": "punch"
+	}`)
+
+	var job Job
+	json.Unmarshal(data, &amp;job)
+	fmt.Println(job.Count()) // 1
+}</code></pre>
+		    </section>
+		</section>
+		<section>
+			<section>
+				<img src="different.jpg" alt="different" width="100%"> <br/>
+				<small><a href="https://twitter.com/mweststrate/status/944668225937334272">@mweststrate</a></small>
+			</section>
+			<section>
+				<h1><code>%#v</code></h1>
+				<pre><code class="go">fmt.Printf("%#v\n", t)
+
+/*
+	main.Trade{
+		Time:time.Time{wall:0xbf6f0bebf6db79e5, ext:64591, loc:(*time.Location)(0x570b60)},
+		Symbol:"BRK-A",
+		Volume:1,
+		Price:321801.07,
+		IsBuy:true
+	}
+*/</code></pre>
+			</section>
+			<section>
+				<h1>Go</h1>
+			</section>
+			<section>
+				<h4><code>go.353solutions.com/config</code></h4>
+				<pre><code class="go">package config
+
+// Config holds configuration fields
+type Config struct {
+	MaxWorkers  int
+	Port        int
+	AuthServers []string
+}</code></pre>
+			</section>
+			<section>
+				<h3>config.go</h3>
+				<pre><code class="go">import "go.353solutions.com/config"
+
+var Config = config.Config{
+	Port: 9091,
+	AuthServers : []string{"auth1.local", "auth2.local"},
+}
+
+func init() {
+	if runtime.GOOS == "windows" {
+		Config.MaxWorkers = 100
+	} else {
+		Config.MaxWorkers = 1000
+	}
+}</code></pre>
+<small><code>$ go build -buildmode=plugin -o config.so config.go</code></small>
+			</section>
+			<section>
+				<h3>app.go</h3>
+				<pre><code class="go">plug, _ := plugin.Open("config.so")
+v, _ := plug.Lookup("Config")
+cfg := v.(*config.Config)
+fmt.Printf("%+v\n", cfg)
+// &amp;{MaxWorkers:1000 Port:9091 AuthServers:[auth1.local auth2.local]}</code></pre>
+			</section>
+		</section>
+		<section>
+			<h1>Thank You</h1>
+			<img src="353.png" alt="353solutions" width="100%">
+		</section>
+	    </div>
+	</div>
+	<script src="./assets/reveal.min.js"></script>
+	<script src="./assets/highlight.pack.js"></script>
+	<script>
+	    Reveal.initialize();
+		hljs.initHighlightingOnLoad();
+	</script>
+    </body>
+</html>
