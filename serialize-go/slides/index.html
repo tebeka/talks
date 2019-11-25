@@ -182,6 +182,7 @@ message Trade {
     price FLOAT,
     buy BOOLEAN
 );</code></pre>
+	See <a href="https://golang.org/pkg/database/sql/">database/sql</a>, <a href="http://jmoiron.github.io/sqlx/">sqlx</a>, <a href="https://gorm.io/">GORM</a>...
 			</section>
 			<section>
 				<h2>parquet</h2>
@@ -220,11 +221,7 @@ func (l *List) MarshalJSON() ([]byte, error) {
 cart.Append("steak")
 cart.Append("potatos")
 
-out, err := json.Marshal(cart)
-if err != nil {
-	log.Fatal(err)
-}
-
+out, _ := json.Marshal(cart)
 fmt.Println(string(out)) // ["onions","steak","potatos"]
 		</code></pre>
 		    </section>
@@ -280,7 +277,7 @@ func main() {
 }</code></pre>
 		    </section>
 		    <section>
-			<h3>Solutions - Pointers</h3>
+			<h3>Solution - Pointers</h3>
 			<pre><code class="go">type Job struct {
 	User   string
 	Action string
