@@ -1,3 +1,3 @@
-# Python Serialization
+# Go Serialization
 
-Talk at [PyWeb IL](https://www.meetup.com/PyWeb-IL/) July 4, 2019
+Talk at [AppsFlyer](https://www.appsflyer.com) December 9, 2019

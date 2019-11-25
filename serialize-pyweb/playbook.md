@@ -3,12 +3,8 @@
 - Formats
     - repr
 	- eval
-    - python
-	- code/config.py & code/app.py
-    - pickle, marshal (mention shelve)
-	- security
+    - gob
     - JSON
-	- tuple → list
 	- custom type
     - YAML, TOML
     - msgpack, BSON

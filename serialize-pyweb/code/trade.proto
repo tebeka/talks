@@ -1,9 +1,12 @@
 syntax = "proto3";
 package pb;
+import "google/protobuf/timestamp.proto";
+
 
 message Trade {
-	string symbol = 1;
-	int64 volume = 2;
-	double price = 3;
-	bool buy = 4;
+    google.protobuf.Timestamp time = 1;
+	string symbol = 2;
+	int64 volume = 3;
+	double price = 4;
+	bool buy = 5;
 }
