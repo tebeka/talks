@@ -219,6 +219,20 @@ json.NewEncoder(os.Stdout).Encode(u)
 // {"login":"bugs","groups":["wheel","network","lp","daffy"]}</code></pre>
 		    </section>
 		    <section>
+			<h3>protobuf generated</h3>
+<pre><code class="go">type Trade struct {
+	Time                 *timestamp.Timestamp `protobuf:"bytes,1,opt,name=time,proto3" json:"time,omitempty"`
+	Symbol               string               `protobuf:"bytes,2,opt,name=symbol,proto3" json:"symbol,omitempty"`
+	Volume               int64                `protobuf:"varint,3,opt,name=volume,proto3" json:"volume,omitempty"`
+	Price                float64              `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`
+	Buy                  bool                 `protobuf:"varint,5,opt,name=buy,proto3" json:"buy,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+</code></pre>
+		    </section>
+		    <section>
 			<h2>json.Marshaller</h2>
 			<pre><code class="go">type List struct {
 	Value string

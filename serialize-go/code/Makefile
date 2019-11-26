@@ -6,3 +6,9 @@ protobuf:
 
 plugin:
 	go build -buildmode=plugin -o config.so config.go
+
+
+check:
+	for src in *.go; do \
+	    echo $$src && staticcheck $$src; \
+	done

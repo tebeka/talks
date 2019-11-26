@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/BurntSushi/toml v0.3.1
+	github.com/golang/protobuf v1.3.2
 	go.353solutions.com/config v0.0.0-00010101000000-000000000000
 	gopkg.in/yaml.v2 v2.2.7
 )
