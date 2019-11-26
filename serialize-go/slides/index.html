@@ -202,6 +202,23 @@ message Trade {
 			<h1>JSON Tips</h1>
 		    </section>
 		    <section>
+			<h2>Struct Tags</h2>
+			<pre><code class="go">type User struct {
+	Login  string   `json:"login"`
+	Name   string   `json:"name,omitempty"`
+	Groups []string `json:"groups"`
+	Token  string   `json:"-"`
+}
+// ...
+u := User{
+	Login:  "bugs",
+	Groups: []string{"wheel", "network", "lp", "daffy"},
+	Token:  "duck season",
+}
+json.NewEncoder(os.Stdout).Encode(u)
+// {"login":"bugs","groups":["wheel","network","lp","daffy"]}</code></pre>
+		    </section>
+		    <section>
 			<h2>json.Marshaller</h2>
 			<pre><code class="go">type List struct {
 	Value string
@@ -255,7 +272,7 @@ data := []byte(`{
 	"cart": ["canon", "brick", "gun powder"]
 }`)
 json.Unmarshal(data, &amp;user)
-fmt.Printf("%s\n", user.Cart) // canon, brick, gun powder</code></pre>
+fmt.Printf("%s\n", user.Cart) // canon → brick → gun powder</code></pre>
 		    </section>
 		    <section>
 			<h2>Missing Data</h2>

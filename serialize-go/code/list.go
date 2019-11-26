@@ -21,7 +21,7 @@ func (l *List) String() string {
 	for ; l != nil; l = l.Next {
 		values = append(values, l.Value)
 	}
-	return strings.Join(values, ", ")
+	return strings.Join(values, " → ")
 }
 
 func (l *List) Append(value string) {
