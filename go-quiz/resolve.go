@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func resolve(n, dfault int) {
+func resolve(n, default int) {
 	if n == 0 {
 		return default
 	}
