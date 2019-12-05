@@ -7,7 +7,7 @@ miki@353solutions.com
 @tebeka
 
 * Miki Tebeka
-.image 353.png
+.image 353.jng
 
 * 
 
@@ -328,3 +328,12 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 # *B:* Won't compile
 # *C:* 10x
 # *D:* 10
+
+* String
+
+.play -edit -numbers raw.go
+
+*A:* Won't compile
+*B:* a\tb
+*C:* a	b
+*D:* a9b
