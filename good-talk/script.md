@@ -1,10 +1,14 @@
 - Talk
-    - Who am I
+    - Who am I: GoperCon, Go Israel, PyCon, PyData, Teaching ...
 - Story
     - kicked out after one shop
     - Now
 - Content
     - ROAM
+	- R: two tracks, people don't know, Natalie
+	- O: Focus, story on dataclass
+	- A: Go fix your slides
+	- M: What's in it for me? I'm helpful
     - Tell a story
 - Presentation
     - Amateurs talk about tactics, but professionals study logistics.
@@ -18,15 +22,18 @@
 	- Font
 	- Simple
 	- Just the content to pass
+    - expo screen from devopsdays today
     - slide content help talk
 	- example with long text, talk while they read
 	- bold
+    - Connections to monitor
+    - Wifi - backup slides, network for speakers, live coding - more practice 
 - You
     - 7ps (Beasley 14 times)
 	- time management
-	    - practice (dry run), David B. 14 times PyCon IL talk
-
+	    - practice (dry run), both in prep & when talking
     - dress, smell
     - JVP image
+    - Notifications, phone ...
 - Your tips
     - Thanks
