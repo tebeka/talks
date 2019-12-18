@@ -1,8 +1,6 @@
 - REST/gRPC = transport + serialization
     - IPC
 - Formats
-    - repr
-	- eval
     - gob
     - JSON
 	- custom type
@@ -14,9 +12,6 @@
     - flatbuffers, capnproto
     - CSV, XML
     - sqlite3 (also parquet, orc ...)
-- fork example
-    - no serialization
-    - COW
 - summary table
     - format
     - library
@@ -25,6 +20,6 @@
     - security
     - cross language
 - Please don't invent your own
-    - viaenv example
+    - envconfig/viaenv example
 - Benchmark with real data
 - Compression?
