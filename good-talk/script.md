@@ -1,21 +1,32 @@
-- tell a story
-- ROAM
-    - writing w/o bullshit
-- simple
-- find your style, passion
-- just the content to pass
-    - my @dataclass mistake
-- slide content help talk
-    - example with long text, talk while they read
-    - bold
-- Be the UI
-    - http://seriouspony.com/blog/2013/10/4/presentation-skills-considered-harmful
-- Amateurs talk about tactics, but professionals study logistics.
-    - General Robert H. Barrow
-- font, light theme ...
-- Guy Kawasaki's 10-20-30
-- dress, smell
-- JVP image
-- time management
-    - practice (dry run), David B. 14 times PyCon IL talk
-    - I'm willing to help
+- Talk
+    - Who am I
+- Story
+    - kicked out after one shop
+    - Now
+- Content
+    - ROAM
+    - Tell a story
+- Presentation
+    - Amateurs talk about tactics, but professionals study logistics.
+	- General Robert H. Barrow
+    - Guy Kawasaki's 10-20-30
+    - Dark code
+	- Clutter
+	- ≠
+    - Light code
+	- Line numbers
+	- Font
+	- Simple
+	- Just the content to pass
+    - slide content help talk
+	- example with long text, talk while they read
+	- bold
+- You
+    - 7ps (Beasley 14 times)
+	- time management
+	    - practice (dry run), David B. 14 times PyCon IL talk
+
+    - dress, smell
+    - JVP image
+- Your tips
+    - Thanks
