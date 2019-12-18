@@ -339,6 +339,15 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *C:* a	b
 *D:* a9b
 
+* Float
+
+.play -edit -numbers float.go
+
+*A:* 1.21
+*B:* 1
+*C:* 1.1.2100000000000002
+*D:* 1.22
+
 * The End
 
 How many did you get right?
