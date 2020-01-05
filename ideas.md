@@ -2,6 +2,9 @@
 
 ## Faster Pandas
 
+
+Vectorization, ufuncs, append, eval & query, join(?), sql & hdf5, numba, cython
+
 ## Choose a baseline
 
 - Algorithms scoring (fraud: say no, trading: buy & hold ...)
