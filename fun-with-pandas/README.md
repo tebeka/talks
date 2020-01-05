@@ -4,9 +4,6 @@ Workshop January 15, 2020 at [Caesarea ML](https://www.meetup.com/Caesarea-Machi
 
 URL: [353.solutions/c/cml20/](http://353.solutions/c/cml/)
 
-<!--
--->
-
 
 ## Miki Tebeka
 <i class="far fa-envelope"></i> [miki@353solutions.com](mailto:miki@353solutions.com), <i class="fab fa-twitter"></i> [@tebeka](https://twitter.com/tebeka), <i class="fab fa-linkedin-in"></i> [mikitebeka](https://www.linkedin.com/in/mikitebeka/), <i class="fab fa-blogger-b"></i> [pythonwise blog](http://pythonwise.blogspot.com/)
@@ -15,7 +12,10 @@ URL: [353.solutions/c/cml20/](http://353.solutions/c/cml/)
 ## Setup
 
 - Install [Ananconda](https://www.anaconda.com/distribution/#download-section)
-- Download [cart.csv](cart.csv) and [taxi.csv.bz2][taxi]
+- Download
+    - [cart.csv](cart.csv)
+    - [taxi.csv.bz2][taxi]
+    - [weather.db](weather.db)
 
 [taxi]: http://www.353.solutions/c/data/taxi.csv.bz2
 

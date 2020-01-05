@@ -105,6 +105,9 @@ c.index
 df.groupby('Vendor')['VendorID'].count()
 # SELECT Vendor, COUNT(VendorID) FROM df GROUP BY Vendor
 
+# Ourliers
+df.groupby(df['tpep_dropoff_datetime'].dt.year)['VendorID'].count()
+
 # Which day of week has longer rides?
 df.groupby(df['tpep_pickup_datetime'].dt.weekday)['trip_distance'].median()
 # SELECT WEEKDAY(tpep_pickup_datetime) day, MEDIAN(trip_distance) distance
