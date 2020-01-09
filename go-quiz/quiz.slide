@@ -348,6 +348,17 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *C:* 1.1.2100000000000002
 *D:* 1.22
 
+* Interface
+
+.play -edit -numbers iface.go /^type Writer/,
+
+*A:* Read
+*B:* Write
+*C:* Won't compile
+
+: Jeff Wendling at [[https://gophers.slack.com/archives/C1C1YSQBT/p1578455202043500][#darkarts]]
+
+
 * The End
 
 How many did you get right?
