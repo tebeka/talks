@@ -13,7 +13,7 @@ URL: [353.solutions/c/cml20/](http://353.solutions/c/cml/)
 
 - Install [Ananconda](https://www.anaconda.com/distribution/#download-section)
 - Download
-    - [cart.csv](cart.csv)
+    - [stocks.csv](stocks.csv)
     - [taxi.csv.bz2][taxi]
     - [weather.db](weather.db)
 
@@ -28,3 +28,8 @@ URL: [353.solutions/c/cml20/](http://353.solutions/c/cml/)
 - [Modern Pandas](https://tomaugspurger.github.io/modern-1-intro.html)
 - [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)
 - [Data Driven](https://www.amazon.com/Data-Driven-DJ-Patil-ebook/dp/B00SXHFTAS) book
+- Data sets
+    - [Awesome Public Datasets](https://github.com/awesomedata/awesome-public-datasets)
+    - [Kaggle](https://www.kaggle.com/)
+    - [Data Is Plural](https://tinyletter.com/data-is-plural/archive)
+    - [NYC Open Data](https://data.cityofnewyork.us/browse)

@@ -31,6 +31,7 @@ fresh: clean all
 sync: all
 	@echo pushing to $(bucket)/$(class)
 	@rsync \
+	    --exclude .ipynb_checkpoints/ \
 	    --exclude .git \
 	    --exclude .gitignore \
 	    --exclude Makefile \
