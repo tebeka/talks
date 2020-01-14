@@ -2,7 +2,7 @@
 - About jupyter
     - jupyter lab
     - code cell & history
-    - magic & !
+    - magic, !, ?, ??
     - markdown (Euler said: $e^{i\pi}+1=0$)
 - stocks.csv
     - first contact with data
