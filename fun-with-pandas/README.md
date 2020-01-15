@@ -37,7 +37,7 @@ URL: [353.solutions/c/cml20/](http://353.solutions/c/cml/)
     - [matplotlib](https://matplotlib.org/)
     - [bokeh](https://docs.bokeh.org/en/latest/index.html)
     - [altair](https://altair-viz.github.io/)
-- [Loosing your loops](https://www.youtube.com/watch?v=EEUXKG97YRw)
+- [Losing your loops](https://www.youtube.com/watch?v=EEUXKG97YRw)
 
 
 ## Code
