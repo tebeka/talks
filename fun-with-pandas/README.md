@@ -33,3 +33,15 @@ URL: [353.solutions/c/cml20/](http://353.solutions/c/cml/)
     - [Kaggle](https://www.kaggle.com/)
     - [Data Is Plural](https://tinyletter.com/data-is-plural/archive)
     - [NYC Open Data](https://data.cityofnewyork.us/browse)
+- Plotting
+    - [matplotlib](https://matplotlib.org/)
+    - [bokeh](https://docs.bokeh.org/en/latest/index.html)
+    - [altair](https://altair-viz.github.io/)
+- [Loosing your loops](https://www.youtube.com/watch?v=EEUXKG97YRw)
+
+
+## Code
+- [Taxi.ipynb](Taxi.ipynb)
+    - [html](Taxi.html)
+- [CML.ipynb](CML.ipynb)
+    - [html](CML.html)
