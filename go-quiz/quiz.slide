@@ -346,9 +346,18 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *A:* Read
 *B:* Write
 *C:* Won't compile
+*D:* There's no D
 
 : Jeff Wendling at [[https://gophers.slack.com/archives/C1C1YSQBT/p1578455202043500][#darkarts]]
 
+* Number
+
+.play -edit -numbers num.go
+
+*A:* Won't compile
+*B:* 1
+*C:* -1
+*D:* 0.25
 
 * The End
 
