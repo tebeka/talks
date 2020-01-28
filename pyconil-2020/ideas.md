@@ -1,3 +1,17 @@
+## Open source a project (Workshop)
+- github
+- code structure
+    - readme
+- license
+- testing
+- versioning
+- CI
+    - banner in readme
+- readthedocs
+- packaging
+    - setup.py, manifest.in
+    - upload to pypi
+
 ## Faster Pandas (Workshop)
 
 - vectorization

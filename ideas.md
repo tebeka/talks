@@ -1,7 +1,16 @@
 # Talk Ideas
 
-## Faster Pandas
+## ???
 
+## Open source a project
+Based on the daily go
+
+## Rest
+How to rest, in dev, code, life ...
+- Hammock driven development
+- Python zen: Sparse is better than dense
+
+## Faster Pandas
 
 Vectorization, ufuncs, append, eval & query, join(?), sql & hdf5, numba, cython
 
