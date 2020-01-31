@@ -251,10 +251,10 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 
 .play -edit -numbers err.go
 
-*A:* true
+*A:* error: <nil>
 *B:* panic
 *C:* Won't compile
-*D:* false
+*D:* OK
 
 
 # * Vars

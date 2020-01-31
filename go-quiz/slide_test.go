@@ -102,9 +102,9 @@ func TestSlides(t *testing.T) {
 			data, err := cmd.CombinedOutput()
 			output := string(data)
 			if err == nil {
-				require.True(hasAnswer(output, tc.answers))
+				require.Truef(hasAnswer(output, tc.answers), "out=%v, answers=%v", output, tc.answers)
 			} else {
-				require.True(hasFail(tc.answers), "fail")
+				require.Truef(hasFail(tc.answers), "fail", "%v", tc.answers)
 			}
 		})
 	}
