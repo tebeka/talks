@@ -2,30 +2,54 @@
 <html>
 <head>
 <style>
+
+@font-face {
+    font-family: 'Space-Mono';
+    src: url('SpaceMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 .clock {
-    font-family: monospace;
+    font-family: Space-Mono;
     font-size: 1.2em;
     position: absolute;
     left: 40px;
     bottom: 30px;
     color: red;
 }
+
+div.playground pre {
+    font-size: 24px;
+    font-family: Space-Mono;
+}
+
+div.playground span.num {
+    font-size: 24px;
+    font-family: Space-Mono;
+}
+
 </style>
     <script src="jquery-3.4.1.min.js"></script>
     <script>
 	var last_slide = 0;
 	var start = 30;
 
-	function on_hashchange() {
+	function current_slide_num() {
 	    var i = window.location.href.search('#');
 	    if (i == -1) {
-		return;
+		return -1;
 	    }
-	    var n = parseInt(window.location.href.substr(i+1));
-	    if (n < 5) {
+
+	    return parseInt(window.location.href.substr(i+1));
+	}
+
+	function on_hashchange() {
+	    if ($('article.current div.playground').length == 0) {
 		return;
 	    }
 
+	    var n = current_slide_num();
 	    if (n <= last_slide) {
 		return;
 	    }

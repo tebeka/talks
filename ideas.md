@@ -1,6 +1,11 @@
 # Talk Ideas
 
-## ???
+## Mise en place
+
+How to have everything in place *before* you start codign
+- RFC
+- Ontology
+- Use cases
 
 ## Open source a project
 Based on the daily go

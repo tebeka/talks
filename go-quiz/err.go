@@ -4,7 +4,9 @@ import "fmt"
 
 type OSError int
 
-func (e *OSError) Error() string { return fmt.Sprintf("error #%d", e) }
+func (e *OSError) Error() string {
+	return fmt.Sprintf("error #%d", *e)
+}
 
 func FileExists(path string) (bool, error) {
 	var err *OSError
@@ -12,6 +14,9 @@ func FileExists(path string) (bool, error) {
 }
 
 func main() {
-	_, err := FileExists("/no/such/file")
-	fmt.Println(err == nil)
+	if _, err := FileExists("/no/such/file"); err != nil {
+		fmt.Printf("error: %s\n", err)
+	} else {
+		fmt.Println("OK")
+	}
 }
