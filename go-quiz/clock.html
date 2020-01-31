@@ -1,27 +1,58 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<head>
 <style>
 .clock {
-  font-weight: bold;
-  font-family: monospace;
-  font-size: 2em;
-  width: 100%;
-  align: center;
+    font-family: monospace;
+    font-size: 1.2em;
+    position: absolute;
+    left: 40px;
+    bottom: 30px;
+    color: red;
 }
 </style>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+	var last_slide = 0;
+	var start = 30;
 
-  </head>
-  <body>
-    <div class="clock">30</div>
-  </body>
-  <script>
-    function init() {
-      var div = $('.clock');
-      $(div).bind('afterVisible', func() {
-	alert('visible');
-      });
-    }
-    $(init);
-  </script>
+	function on_hashchange() {
+	    var i = window.location.href.search('#');
+	    if (i == -1) {
+		return;
+	    }
+	    var n = parseInt(window.location.href.substr(i+1));
+	    if (n < 5) {
+		return;
+	    }
+
+	    if (n <= last_slide) {
+		return;
+	    }
+	    last_slide = n;
+	    
+	    var v = $('<div class="clock">' + start + '</div>');
+	    $('article.current').append(v);
+	    setTimeout(function() {
+		countdown(v, start);
+	    }, 1000);
+	}
+
+	function countdown(v, n) {
+	    n -= 1;
+	    v.text(n);
+	    if (n == 0) {
+		return;
+	    }
+
+	    setTimeout(function() {
+		countdown(v, n);
+	    }, 1000);
+	}
+
+	$(function() {
+	    $(window).on('hashchange', on_hashchange);
+	});
+    </script>
+</head>
 </html>
