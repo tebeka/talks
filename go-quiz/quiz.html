@@ -32,33 +32,23 @@ div.playground span.num {
 </style>
     <script src="jquery-3.4.1.min.js"></script>
     <script>
-	var last_slide = 0;
-	var start = 30;
-
-	function current_slide_num() {
-	    var i = window.location.href.search('#');
-	    if (i == -1) {
-		return -1;
-	    }
-
-	    return parseInt(window.location.href.substr(i+1));
-	}
+	var duration = 30;
 
 	function on_hashchange() {
+	    // No code section
 	    if ($('article.current div.playground').length == 0) {
 		return;
 	    }
 
-	    var n = current_slide_num();
-	    if (n <= last_slide) {
+	    // Already have a timer running
+	    if ($('article.current .clock').length != 0) {
 		return;
 	    }
-	    last_slide = n;
-	    
-	    var v = $('<div class="clock">' + start + '</div>');
+
+	    var v = $('<div class="clock">' + duration + '</div>');
 	    $('article.current').append(v);
 	    setTimeout(function() {
-		countdown(v, start);
+		countdown(v, duration);
 	    }, 1000);
 	}
 
