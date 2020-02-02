@@ -266,6 +266,16 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *D:* Won't compile
 
 
+* nil
+
+.play -edit -numbers nilrcv.go
+
+*A:* panic
+*B:* won't compile
+*C:* 1
+*D:* 2
+
+
 # * Vars
 # 
 # .play -edit -numbers vars3.go
