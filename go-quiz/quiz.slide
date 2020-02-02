@@ -256,6 +256,15 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *C:* Won't compile
 *D:* OK
 
+* File
+
+.play -edit -numbers nilwtr.go
+
+*A:* true
+*B:* panic
+*C:* false
+*D:* Won't compile
+
 
 # * Vars
 # 

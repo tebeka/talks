@@ -1,3 +1,19 @@
+## Python Optimization (Workshop)
+- Baseline & requirements
+- Explain O(n)
+- timeit
+- pytest-benchmark
+- profiling
+    - snakeviz
+- tricks
+    - local/global
+    - search in list/set
+    - deque
+    - `[0]*size`
+- tracemalloc
+- numba
+- Cython
+
 ## Open source a project (Workshop)
 - github
 - code structure
@@ -11,6 +27,7 @@
 - packaging
     - setup.py, manifest.in
     - upload to pypi
+    - dependabot
 
 ## Faster Pandas (Workshop)
 
