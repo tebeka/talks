@@ -11,7 +11,7 @@ const (
 
 type Reply struct{}
 
-func (r *Reply) Type() byte {
+func (*Reply) Type() byte {
 	return ReplyType
 }
 
