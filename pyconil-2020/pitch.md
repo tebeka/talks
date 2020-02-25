@@ -13,7 +13,7 @@ making Python run faster. Some of the topics we'll cover are:
 - Using numba & Cython
 - Integrating performance in your development process
 
-## Open Sourcing Your Project [Full day workshop]
+## Open Sourcing Your Code [Full day workshop]
 
 You wrote some cool code and decided to open source it so others can enjoy it.
 But... how?
