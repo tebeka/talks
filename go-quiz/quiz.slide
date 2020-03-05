@@ -378,6 +378,15 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *C:* -1
 *D:* 0.25
 
+* Compare
+
+.play -edit -numbers nil_slice.go
+
+*A:* panic
+*B:* true
+*C:* false
+*D:* won't compile
+
 * The End
 
 How many did you get right?
