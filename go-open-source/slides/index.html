@@ -81,10 +81,74 @@ As an online discussion grows longer, the probability of a comparison involving 
 		    <img src="dexter.jpg" alt="tech" style="width: 90%;">
 		</section>
 		<section>
-		    <h1>Structure</h1>
-		    <h2>Library vs Command</h2>
+<pre>
+.
+├── README.md
+├── LICENSE
+├── go.mod
+├── Makefile
+├── doc.go
+├── bucket.go
+├── bucket_test.go
+├── db.go
+├── db_test.go
+├── ...
+└─ cmd
+    └── bbolt
+        └── main.go
+</pre>
+<h4>
+<a href="https://github.com/etcd-io/bbolt">https://github.com/etcd-io/bbolt</a>
+</h4>
 		</section>
+		<section>
+		    <img src="bbolt-readme.png" alt="README">
+		</section>
+		<section>
+		    <h2>IANAL</h2>
+		    A <a href="https://github.blog/2015-03-09-open-source-license-usage-on-github-com/">2015 survey</a> on GitHub found 44.7% of projects use MIT.
 
+		</section>
+		<section>
+<pre>
+module go.etcd.io/bbolt
+
+go 1.12
+</pre>
+		</section>
+		<section>
+		    <img src="bbolt-version.png" alt="version">
+		    <hr />
+		    <a href="https://semver.org/">semver.org</a>
+		</section>
+		<section>
+		    <h2>CI</h2>
+		    <ul>
+			<li><a href="https://github.com/features/actions">GitHub Actions</a></li>
+			<li><a href="https://circleci.com/">CircleCI</a></li>
+			<li><a href="https://travis-ci.com">Travis CI</a></li>
+			<li>...</li>
+		    </ul>
+
+		    <ul>
+			<li><a href="https://github.com/golangci/golangci-lint">golangci-lint</a></li>
+			<li><a href="https://github.com/securego/gosec">gosec</a></li>
+			<li>...</li>
+
+		    </ul>
+		</section>
+		<section>
+		    <img src="bbolt-prs.png" alt="PRs">
+		</section>
+		<section>
+		    <h1>Automation</h1>
+		    <ul>
+			<li>Upload artifacts</li>
+			<li><a href="https://github.com/marketplace/dependabot-preview">dependabot</a></li>
+			<li><a href="https://github.com/bivas/rivi">rivi</a></li>
+			<li>...</li>
+		    </ul>
+		</section>
 	    </section>
 	    </div>
 	</div>

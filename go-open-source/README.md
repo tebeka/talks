@@ -22,7 +22,7 @@ We'll cover code structure, picking a licence, testing & CI, versioning, packagi
 	- fs story, Brad story
 	- Quote from bolt
     - Mean people out there
-- Pick a project (selenium? )
+- Pick a project (bbolt)
 - Code structure
     - lib or exe?
 - Licence
