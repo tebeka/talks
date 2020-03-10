@@ -40,11 +40,14 @@ We'll cover code structure, picking a licence, testing & CI, versioning, packagi
     - tag
     - semver
 - Tests & CI
+    - golangci-lint/staticcheck
+    - gosec
 - Issues & PRs
 - Upload artifacts (CI?)
     - Docker 
 - Bots
     - dependabot
     - rivi
+    - security (gosec?)
 
 [meetup]: https://www.meetup.com/AppsFlyer/events/268055610/
