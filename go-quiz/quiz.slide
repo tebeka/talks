@@ -396,6 +396,15 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *C:* 💩
 *D:* won't compile
 
+* An Exit Strategy
+
+.play -edit -numbers exit.go
+
+*A:* 0 1 2 3 4
+*B:* panic
+*C:* nothing
+*D:* deadlock
+
 * The End
 
 How many did you get right?
