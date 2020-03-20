@@ -405,6 +405,24 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *C:* nothing
 *D:* deadlock
 
+## Append & Slice
+
+.play -edit -numbers append2.go
+
+*A:* [1 10 3] [1 10]
+*B:* panic
+*C:* [1 2 3] [1 2]
+*D:* [1 2 3] [1 10]
+
+## Append & Slice
+
+.play -edit -numbers append3.go
+
+*A:* [1 10 3] [1 10]
+*B:* panic
+*C:* [1 2 3] [1 10]
+*D:* Won't compile
+
 * The End
 
 How many did you get right?
