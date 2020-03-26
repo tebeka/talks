@@ -441,6 +441,13 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 *C:* panic
 *D:* Won't compile
 
+.play -edit -numbers times.go
+
+*A:* panic
+*B:* {Hello 2020-03-21 00:00:00 +0200 IST}
+*C:* {Hello 2020-03-21 00:00:00 +0000 UTC}
+*D:* 2020-03-21 00:00:00 +0000 UTC
+
 * The End
 
 How many did you get right?
