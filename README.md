@@ -22,7 +22,6 @@ view the "code" on [GitHub](https://github.com/tebeka/talks).
 - [Embedding Other Languages in Go](./embed-in-go/embed-in-go.pdf)
 - [4 Languages You Must Learn](./4-langs/slides.html)
 - [attrs - Classes Without Boilerplate](./attrs-pyweb/slides.pdf)
-    - 
 - [Screw DSLs](./screw-dsls/Screw-DSLs.pdf)
 - [Introduction to To](./go-checkpoint/slides.pdf)
 - [All package managers suck, conda sucks less](./conda-pyconil-2017/slides.pdf)
