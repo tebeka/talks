@@ -1,0 +1,15 @@
+- /opt/go/src/io/io.go:363
+    - hash.go:12
+- /opt/go/src/os/file.go:286
+- message.go:26
+- csv.go:61
+- tasks.go
+- /opt/go/src/net/http/server.go:2008
+- counter.go:10
+- empty.go:8
+- error.go:9
+    - /opt/go/src/runtime/runtime2.go:200
+- bench_test.go:12
+    - go test -bench . -benchmem ./bench_test.go
+- quote.go:8
+    - go run -gcflags=-m ./quote.go
