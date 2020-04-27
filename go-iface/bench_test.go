@@ -25,7 +25,7 @@ var (
 
 func BenchmarkStruct(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		p := Point{0, 0}
+		p := &Point{0, 0}
 		p.Move(dx, dy)
 		if p.X < dx {
 			b.Fatal(p.X)

@@ -23,7 +23,6 @@ func urlSha1(url string) (string, error) {
 		if err != nil {
 			return "", err
 		}
-
 	}
 
 	h := sha1.New()
@@ -41,5 +40,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf(hash)
+	fmt.Println(hash)
 }

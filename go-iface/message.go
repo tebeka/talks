@@ -34,8 +34,8 @@ func Marshal(m Message) ([]byte, error) {
 	if err := enc.Encode(m); err != nil {
 		return nil, err
 	}
-
 	data := buf.Bytes()
+
 	msg := make([]byte, headerLen+len(data))
 	copy(msg, []byte(typ))
 	size := uint64(len(data))
@@ -47,7 +47,7 @@ func Marshal(m Message) ([]byte, error) {
 
 // Metric is a metric message
 type Metric struct {
-	time  time.Time
+	Time  time.Time
 	Name  string
 	Value float64
 }

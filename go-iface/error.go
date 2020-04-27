@@ -10,8 +10,15 @@ func (e *OSError) Error() string {
 	return fmt.Sprintf("error #%d", *e)
 }
 
+/*
+type error interface {
+	Error() string
+}
+*/
+
 func FileExists(path string) (bool, error) {
-	var err *OSError
+	var err error
+	//var err *OSError
 	return false, err // TODO
 }
 
