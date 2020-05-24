@@ -1,0 +1,34 @@
+[01;34mpackage[m main
+
+[01;34mimport[m [31m([m
+	[31m"bytes"[m
+	[31m"encoding/gob"[m
+	[31m"fmt"[m
+	[31m"time"[m
+[31m)[m
+
+[31m// Trade object[m
+[01;34mtype[m Trade [01;34mstruct[m [31m{[m
+	Time   time[31m.[mTime
+	Symbol [32mstring[m
+	Volume [32mint64[m
+	Price  [32mfloat64[m
+	IsBuy  [32mbool[m
+[31m}[m
+
+[01;34mfunc[m [01;30mmain[m[31m()[m [31m{[m
+	t1 [31m:=[m Trade[31m{[m
+		Time[31m:[m   time[31m.[m[01;30mNow[m[31m(),[m
+		Symbol[31m:[m [31m"BRK-A"[m[31m,[m
+		Volume[31m:[m [35m1[m[31m,[m
+		Price[31m:[m  321_801[31m.[m[35m07[m[31m,[m
+		IsBuy[31m:[m  true[31m,[m
+	[31m}[m
+
+	[01;34mvar[m network bytes[31m.[mBuffer
+	gob[31m.[m[01;30mNewEncoder[m[31m(&[mnetwork[31m).[m[01;30mEncode[m[31m([mt1[31m)[m
+	[01;34mvar[m t2 Trade
+	gob[31m.[m[01;30mNewDecoder[m[31m(&[mnetwork[31m).[m[01;30mDecode[m[31m(&[mt2[31m)[m
+	fmt[31m.[m[01;30mPrintf[m[31m([m[31m"%+v\n"[m[31m,[m t2[31m)[m
+	[31m// {Time:2019-11-25 12:41:04.41768293 +0200 IST Symbol:BRK-A Volume:1 Price:321801.07 IsBuy:true}[m
+[31m}[m
