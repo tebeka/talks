@@ -1,4 +1,5 @@
-symbol: "BRK-A"
+time: 2020-05-16T14:51:55.215974031+03:00
+symbol: BRK-A
 volume: 1
 price: 321801.07
-buy: true
+isbuy: true

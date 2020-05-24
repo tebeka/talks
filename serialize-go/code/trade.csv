@@ -1,2 +1,2 @@
-symbol,volume,price,buy
-BRK-A,1,321801.07,true
+time,symbol,volume,price,buy
+2019-11-25T12:27:16,BRK-A,1,321801.07,true

@@ -1,4 +1,5 @@
-symbol = "BRK-A"
-volume = 1
-price = 321801.07
+Time = 2020-05-16T11:49:18Z
+Symbol = "BRK-A"
+Volume = 1
+Price = 321801.07
 buy = true
