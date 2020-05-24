@@ -90,6 +90,7 @@ df = pd.read_clipboard(sep=',', parse_dates=['time'])
 - pd.options.display.max_rows = 5
 - pd.options.display.float_format = '{:.2f}'.format
 - df - see lat/lng
+- mention df.style in Jupyter Notebook
 
 - %load_ext sql
     - pip install ipython-sql
@@ -101,16 +102,19 @@ df = pd.read_clipboard(sep=',', parse_dates=['time'])
 - df = result.DataFrame()
     - %config SqlMagic
     - %config SqlMagic.autopandas = True
+- async def inc(n): return n + 1
+- await inc(10)
+- %autoawait
 
 ## Config
 
+- %edit -x ~/.ipython/profile_default/ipython_config.py
 - jupyter console --generate-config
 - ipython profile create
 - confirm_exit
 - editing_mode
 - highlighting_style    
 - %config
-
 - autoreload
 ```
 c.InteractiveShellApp.exec_lines = [
