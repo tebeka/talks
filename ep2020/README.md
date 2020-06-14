@@ -2,14 +2,40 @@
 
 Given at [EuroPython 2020](https://ep2020.europython.eu/talks/5LGWwvT-ipython-the-productivity-booster/), July 2017
 
-## History & Misc
-- In, Out
-- me = 'miki@353solutions.com'
-- Completion `os.<TAB>`, `d['x<TAB>`
-- path.isdir?, path.isdir??, ?path.isdir
+## Talk
 
+### Setup
 
-## Shell
+- terminator
+- zsh -f
+- PS1='$ '
+- clear
+- start logger
+<!-- - `make run-docker` -->
+
+### Why?
+- Work in REPL - productivity
+    - Testing at first stages too restrictive
+
+### History & Misc
+```
+me = 'Miki Tebeka <miki@353solutions.com>'
+927 - 574
+n = Out[1]
+f'miki@{n}solutions.com'
+
+from pathlib import Path
+Path.<TAB>
+
+passwds = {'daffy': 'Rabbit Season', 'bugs': 'Duck Season'}
+passwds['d<TAB>
+
+Path.is_dir?
+?Path.isdir
+Path.is_dir??
+```
+
+### Shell
 ```
 log_dir = '/var/log'
 !ls $log_dir
@@ -32,8 +58,9 @@ files.fields(5, 6, 7)
 df = pd.read_clipboard(sep=',', parse_dates=['time'])
 ```
 
-## Magic
+### Magic
 - %pwd
+    - %pwd?
 - %time
 - %timeit
     %timeit?
@@ -42,9 +69,10 @@ df = pd.read_clipboard(sep=',', parse_dates=['time'])
 - %edit
     %edit t.py
     %edit and then %edit -p
+    %edit -x
 - %env
     %env HOME
-    %env TMPDIR /tmp
+    %env DEBUG true
 - %run, %run -n
     %run t.py
     %run -n t.py
@@ -65,6 +93,9 @@ df = pd.read_clipboard(sep=',', parse_dates=['time'])
     import this (pick one)
     s = '...'
     %prun tokenize(s)
+    %%prun
+    for _ in range(100_000):  # joke on time left
+	tokenize(s)
 <!--
     %edit httpc.py
     %prun get('www.353solutions.com', '/')
@@ -88,7 +119,7 @@ df = pd.read_clipboard(sep=',', parse_dates=['time'])
 - load track
 - df - see lat/lng
 - pd.options.display.max_rows = 5
-- pd.options.display.float_format = '{:.2f}'.format
+- pd.options.display.float_format = '{:.3f}'.format
 - df - see lat/lng
 - mention df.style in Jupyter Notebook
 
@@ -104,9 +135,11 @@ df = pd.read_clipboard(sep=',', parse_dates=['time'])
     - %config SqlMagic.autopandas = True
 - async def inc(n): return n + 1
 - await inc(10)
+    - !python
+    - show the above fails (python -m asyncio?)
 - %autoawait
 
-## Config
+### Config
 
 - %edit -x ~/.ipython/profile_default/ipython_config.py
 - jupyter console --generate-config
@@ -120,7 +153,7 @@ df = pd.read_clipboard(sep=',', parse_dates=['time'])
 c.InteractiveShellApp.exec_lines = [
     '%autoreload 2',
 ]
-## A list of dotted module names of IPython extensions to load.
+### A list of dotted module names of IPython extensions to load.
 c.InteractiveShellApp.extensions = [
     'autoreload',
 ]
@@ -129,3 +162,10 @@ c.InteractiveShellApp.extensions = [
 - hello()
 - %edit -x hello.py
 - hello()
+
+### IDE Integration
+- PyCharm
+    - Use IPython
+    - Run selection in console
+- VSCode
+    - 
