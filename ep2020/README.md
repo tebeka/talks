@@ -9,7 +9,7 @@ Given at [EuroPython 2020](https://ep2020.europython.eu/talks/5LGWwvT-ipython-th
 - terminator
 - zsh -f
 - PS1='$ '
-- clear
+- clear & banner
 - start logger
 <!-- - `make run-docker` -->
 
@@ -70,16 +70,29 @@ df = pd.read_clipboard(sep=',', parse_dates=['time'])
     %edit t.py
     %edit and then %edit -p
     %edit -x
-- %env
-    %env HOME
-    %env DEBUG true
 - %run, %run -n
     %run t.py
     %run -n t.py
+- %env
+    %env HOME
+    %env DEBUG true
+- %who, %whos
+- %reset
+    x = 10
+    %reset
+    x
+- %store a, %store -r
+    a = 10
+    %store a
+    exit
+    %store -r
+    a
+<!--
 - %hist -o -n -f hist.log
 - %logstart -ro, %logstop
-- %notebook hist.ipynb
+- %notebook hist.ipynb   < FIXME >
     jupyter notebook
+-->
 - %pdb
     %edit -x t.py
     def div(a, b):
@@ -99,22 +112,11 @@ df = pd.read_clipboard(sep=',', parse_dates=['time'])
 <!--
     %edit httpc.py
     %prun get('www.353solutions.com', '/')
--->
-- %pwd
-- %reset
-    x = 10
-    %reset
-    x
-- %store a, %store -r
-    a = 10
-    %store a
-    exit
-    %store -r
-    a
-- %who, %whos
 - %%time for multi line cell
-- matplotlib qt5
+
+- matplotlib qt5 < FIXME >
     - Do without before
+-->
 
 - load track
 - df - see lat/lng
@@ -169,3 +171,8 @@ c.InteractiveShellApp.extensions = [
     - Run selection in console
 - VSCode
     - 
+
+---
+Comments
+- More humor / war stories
+- Story?
