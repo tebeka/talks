@@ -167,5 +167,6 @@
 # Thanks
 ```
 >>> print(me)
+>>> # https://github.com/tebeka/talks/tree/master/ep2020
 >>> # Python Brain Teasers (https://gum.co/iIQT)
 ```
