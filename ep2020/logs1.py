@@ -19,6 +19,6 @@ def parse_line(line):
         'time': fields[3] + ' ' + fields[4],
         'method': fields[5][1:],  # Remove leading "
         'path': fields[6],
-        'status_code': int(fields[8]),
-        'size': int(fields[9]),
+        'status_code': int(fields[-2]),
+        'size': int(fields[-1]),
     }

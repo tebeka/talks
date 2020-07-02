@@ -95,13 +95,11 @@ IPython built in help
     ...     for line in fp:
     ...         parse_line(line)
 
-Compare with original line, what the name of the variable (1 bit memory)?
+Talk on pbb
+    ipdb> ?
 
-    >>> %who
-    >>> %whos  # there's also %store, %reset
 
-size can be '-' and missing HTTP version
-We'll change the status_code & size
+size can be '-'
 
     >>> %edit logs.py  # logs2.py
     >>> with lzma.open(log_file, 'rt') as fp:
@@ -125,25 +123,6 @@ Load to data frame
     >>> df
     >>> df.iloc[42]
     >>> df.sample(5)
-    >>> df.dtypes
-    >>> df['st<TAB  # complection
-    >>> df['time'] = pd.to_datetime(df['time'])  # error
-
-format option for to_datetime
-
-    >>> from datetime import datetime
-    >>> datetime.strptime?
-    >>> import time
-    >>> time.strftime?
-    >>> ts = fields[3] + ' ' + fields[4]
-    >>> ts
-    '[02/Jul/1995:16:30:08 -0400]'
-
-yeah, these are old logs
-
-    >>> time_fmt = '[%d/%b/%Y:%H:%M:%S %z]'
-    >>> datetime.strptime(ts, time_fmt)
-    >>> df['time'] = pd.to_datetime(df['time'], format=time_fmt)
     >>> df
 
 TMI
@@ -173,7 +152,7 @@ New requirement - merge with weather data in sqlite database
     >>> result
     >>> # continue with pandas read_sql
 
-New task: Ad a column to check that origin is valid
+New task: Ad a column to check that origin is valid (TIME)
 
     >>> %edit check_ip.py
     >>> check_ip('8.8.8.8')
