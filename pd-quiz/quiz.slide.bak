@@ -1,0 +1,26 @@
+# Pandas Brain Teasers
+Guess the Output
+
+Miki Tebeka
+CEO, 353solutions
+
+## Miki Tebeka
+
+.image 353.png
+.html quiz.html
+
+## Quiz Rules
+
+- I'll show a short program and ask what it'll print
+- You have 45 seconds to guess the output (multiple selection)
+    - Watch the clock on the bottom left corner
+- There are 10 questions total
+
+
+## Add 
+
+.play -edit add.py
+
+## The End
+
+How many did you get right?
