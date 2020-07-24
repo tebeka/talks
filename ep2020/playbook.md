@@ -180,6 +180,7 @@ You can also configuration IPython. For example nag on exit, highlight style
 autoreload
 
     >>> %config
+    In [] %cow IPython Rocks!
     >>> %edit -x ~/.ipython/profile_default/ipython_config.py
 
 Thanks
