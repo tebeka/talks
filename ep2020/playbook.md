@@ -3,7 +3,6 @@
 - python reputation.py (different shell)
 - terminator
 - start logger
-- PROMPT='$ '
 - ipython
 - Open PyCharm on settings, have logs.py open
 - `In [] me = 'Miki Tebeka <miki@353solutions.com>'
@@ -15,8 +14,7 @@
 - PG code sketches
 - No context switch to another app
 
-Task
-- Compressed log files in a directory, load them to data frame for analysis
+- # Task: Load compressed log files from a directory to a DataFrame
 
 Magic commands, start with %, not valid Python
 
@@ -54,7 +52,7 @@ Or we can use du
 
 Pick a log file
 
-    >>> log_file = logs_dir + '/httpd01.log.xz'
+    >>> log_file = logs_dir + '/' + log_files.fields(-1)[0]
 
 Use xzcat to get lines, later we'll use lzma
 
@@ -87,6 +85,9 @@ IPython built in help
     >>> %timeit?
     >>> lzma.open??
 
+Forgot the name of the variable for log file
+    %who
+
     >>> with lzma.open(log_file, 'rt') as fp:
     ...     for line in fp:
     ...         parse_line(line)
@@ -105,11 +106,13 @@ size can be '-'
     >>> with lzma.open(log_file, 'rt') as fp:
     ...     for line in fp:
     ...         parse_line(line)
+
     >>> %pdb  # turn off pdb
 
 
 cell magic
 
+    >>> %timeit parse_line(line)
     >>> %%time
     ... with lzma.open(log_file, 'rt') as fp:
     ...     for line in fp:
@@ -121,7 +124,7 @@ Load to data frame
     >>> records = [parse_line(line) for line in lzma.open(log_file, 'rt')]
     >>> df = pd.DataFrame.from_records(records)
     >>> df
-    >>> df.iloc[42]
+    >>> df.iloc[353]
     >>> df.sample(5)
     >>> df
 
@@ -132,15 +135,17 @@ TMI
 
 Many option, float formatting. There's style for jupyter notebooks
 We'll stop here - you can finish the code
+    >>> pd.describe_options('display')
 
     >>> %history -p -o -f hist.log
 
 New requirement - merge with weather data in sqlite database
 
-    >>> # python -m pip install ipython-sql
+    >>> # %pip install ipython-sql
     >>> %load_ext sql
     >>> %sql sqlite:///weather.db
-    >>> %sql select * from sqlite_master
+    >>> %sql select name, sql from sqlite_master
+    >>> print(Out[])
     >>> %sql SELECT MIN(TMAX) AS min_temp, MAX(TMAX) as max_temp FROM weather
     >>> # same with %%sql
     >>> result = %sql SELECT * FROM weather WHERE TMAX > 0

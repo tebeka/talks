@@ -26,6 +26,7 @@ Vectorization, ufuncs, append, eval & query, join(?), sql & hdf5, numba, cython
 - Performance - dumb, brute force ...
 - https://medium.com/microsoftazure/9-advanced-tips-for-production-machine-learning-6bbdebf49a6f
 - recursion base
+- napkin math
 
 ## So you think you can print?
 
