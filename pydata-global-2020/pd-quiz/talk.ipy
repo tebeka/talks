@@ -1,0 +1,34 @@
+# vim: ft=python
+
+!clear
+
+slides = [
+    'add.py'
+]
+
+timeout = 5
+
+print(f'''\
+Pandas Brain Teasers
+Miki Tebeka <miki@353solutions.com>
+
+Rules:
+- I'll show you a short Python program with Pandas related code
+- You has {timeout} seconds to guess the output
+- Possible outputs:
+    - Syntax error
+    - Exception
+    - Some output (e.g. `[1 2 3]`)
+
+I'm using Python 3.9 & Pandas 1.10
+''')
+
+for i, slide in enumerate(slides, 1):
+    input(f'teaser {i}\n')
+    %source $slide
+    print('')
+    !python timer.py 5
+    try:
+        %run $slide
+    except Exception:
+        pass
