@@ -1,0 +1,4 @@
+%alias_magic -p next.ipy next %run
+!rm -f current.txt
+!clear
+!cat header.txt

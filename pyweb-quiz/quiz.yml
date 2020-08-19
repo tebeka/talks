@@ -1,5 +1,5 @@
-# %alias_magic -p next.ipy next %run
-timeout: 5
+# %run setup.ipy
+timeout: 20
 teasers:
   - teasers/player.py
   - teasers/pi.py
