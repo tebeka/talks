@@ -1,0 +1,13 @@
+# %alias_magic -p next.ipy next %run
+timeout: 5
+teasers:
+  - teasers/player.py
+  - teasers/pi.py
+  - teasers/colors.py
+  - teasers/div.py
+  - teasers/waldo.py
+  - teasers/round.py
+  - teasers/future.py
+  - teasers/loop.py
+  - teasers/vote.py
+  - teasers/tasks.py

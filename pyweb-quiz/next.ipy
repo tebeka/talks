@@ -1,0 +1,35 @@
+# vim: ft=python
+from pathlib import Path
+
+import yaml
+
+with open('quiz.yml') as fp:
+    quiz = yaml.safe_load(fp)
+
+
+def next_teaser():
+
+    current = Path('current.txt')
+    if current.exists():
+        with current.open() as fp:
+            current_teaser = int(fp.read())
+    else:
+        current_teaser = 0
+
+    if current_teaser >= len(quiz['teasers']):
+        print('Done! (more at https://gum.co/iIQT ;)')
+        return
+
+    src = quiz['teasers'][current_teaser]
+    timeout = quiz['timeout']
+    %source $src
+    print('')
+    %run timer.py $timeout
+    print('Output:')
+    %run $src
+
+    current_teaser += 1
+    with current.open('w') as out:
+        print(current_teaser, file=out)
+
+next_teaser()
