@@ -1,5 +1,12 @@
+import yaml
+with open('quiz.yml') as fp:
+    data = yaml.safe_load(fp)
+timeout = data['timeout']
 %alias_magic -p next.ipy next %run
 %alias_magic -p end.ipy end %run
 !rm -f current.txt
 !clear
-!cat header.txt
+with open('header.txt') as fp:
+    text = fp.read()
+text = text.format(timeout=timeout)
+print(text)

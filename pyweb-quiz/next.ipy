@@ -8,7 +8,6 @@ with open('quiz.yml') as fp:
 
 
 def next_teaser():
-
     current = Path('current.txt')
     if current.exists():
         with current.open() as fp:
@@ -21,7 +20,9 @@ def next_teaser():
         return
 
     src = quiz['teasers'][current_teaser]
+    num_teasers = len(quiz['teasers'])
     timeout = quiz['timeout']
+    print(f'<{current_teaser + 1}/{num_teasers}>', end=' ', flush=True)
     %source $src
     print('')
     %run timer.py $timeout
