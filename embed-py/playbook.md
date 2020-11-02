@@ -1,6 +1,6 @@
-- slides up to alice
+- slides up to simple
 - simple.c
-- slides (up to thanks)
+- slides (up what's left)
 - outliers.py
 - outliers.go (just to C)
     - glue.c
