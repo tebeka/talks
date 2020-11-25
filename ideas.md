@@ -1,5 +1,10 @@
 # Talk Ideas
 
+## Fallacies of distributed computing
+https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing
+
+See how to overcome them in Go/Python
+
 ## Mise en place
 
 How to have everything in place *before* you start codign
