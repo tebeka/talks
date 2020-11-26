@@ -22,21 +22,6 @@ https://wiki.c2.com/?RulesOfOptimizationClub
 line_profiler
 snakeviz
 
-## Vectorization
-
-    In []: import pandas as pd
-    In []: s = pd.Series(range(10000))
-    In [] : %%timeit 
-       ...: total = 0 
-       ...: for val in s: 
-       ...:     total += val
-       ...:  
-    968 µs ± 35.9 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
-    In []: %timeit s.sum()
-    49 µs ± 158 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
-    In []: 968 / 49
-    Out[]: 19.755102040816325
-    
 ## Boolean Indexing
 
     In []: import sqlite3
@@ -128,7 +113,7 @@ this takes a while
 ## query
 
     In []: import sqlite3
-    In []: conn = sqlite3.connect('logs2.db',
+    In []: conn = sqlite3.connect('logs.db',
                 detect_types=sqlite3.PARSE_DECLTYPES)
     In []: import pandas as pd
     In []: df = pd.concat([df] * 1000)
@@ -140,43 +125,6 @@ this takes a while
     Out[]: 0.58
 
 ## numba & Cython
-    In []: def add(a, b):
-       ...:     return a + b
-       ...:
-    In []: from dis import dis
-    In []: dis(add)
-      2           0 LOAD_FAST                0 (a)
-		  2 LOAD_FAST                1 (b)
-		  4 BINARY_ADD
-		  6 RETURN_VALUE
-
-    In []: import numba
-    In []: @numba.jit
-       ...: def jit_add(a, b):
-       ...:     return a + b
-       ...:
-
-    In []: type(jit_add)
-    Out[]: numba.core.registry.CPUDispatcher
-    In []: jit_add.overloads
-    Out[]: OrderedDict()
-    In []: jit_add(1, 2)
-    Out[]: 3
-    In []: jit_add.overloads
-    In []: jit_add.overloads.keys()
-    Out[]: odict_keys([(int64, int64)])
-    In []: f = jit_add.get_overload((numba.int64, numba.int64))
-    In []: f
-    Out[]: <function __main__._Closure.jit_add>
-    In []: type(f)
-    Out[]: builtin_function_or_method
-    In []: f(1, 2)
-    Out[]: 3
-    In []: jit_add(1.0, 2.0)
-    Out[]: 3.0
-    In []: jit_add.overloads.keys()
-    Out[]: odict_keys([(int64, int64), (float64, float64)])
-
     In []: import pandas as pd
     In []: import numpy as np
     In []: s = pd.Series(np.random.randint(-3, 200, 1_000_000))
@@ -195,12 +143,6 @@ this takes a while
 	...:         return 0
 	...:     return n
 	...:
-
-    In []: vect_relu(3)
-    Out[]: 3
-
-    In []: vect_relu(pd.Series([-1, 2, 3]))
-    Out[]: array([0, 2, 3])
 
     In []: np.allclose(s.apply(relu), vect_relu(s))
     Out[]: True
