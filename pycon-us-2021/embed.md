@@ -6,15 +6,11 @@
 > conference program to help attendees decide whether they are interested in
 > this presentation. Limit this description to a few concise paragraphs.
 
-Most people use Python's C API to write extension modules. But the C API can
-also be used to embed Python.
+Most people use Python's C API to write extension modules. But the C API can also be used to embed Python.
 
-Embedding Python in your application allows users to extend it without requiring your help.
-In performance sensitive applications, you can call Python code from other
-languages without the overhead of serialization and network calls.
+Embedding Python in your application allows users to extend it without requiring your help.  In performance sensitive applications, you can call Python code from other languages without the overhead of serialization and network calls.
 
-In this talk we'll discuss how to embed Python and will see an example of Go
-code calling Python/numpy code with 0 serialization and ε memory allocations.
+In this talk we'll discuss how to embed Python and will see an example of Go code calling Python/numpy code with 0 serialization and ε memory allocations.
 
 ## Who and Why (Audience)
 
@@ -23,10 +19,8 @@ code calling Python/numpy code with 0 serialization and ε memory allocations.
 > have? (3) What do you expect the audience to learn or do after watching the
 > talk?
 
-The audience are Python (and non-Python) developers who'd like to extend an
-application with Python code. The audience should know Python & a little bit of C.
-At the end of the talk, the audience should know how to embed Python in their
-application.
+The audience are Python (and non-Python) developers who'd like to extend an application with Python code. The audience should know Python & a little bit of C.
+At the end of the talk, the audience should know how to embed Python in their application.
 
 ## Level
 
@@ -55,15 +49,11 @@ Intermediate
 > accessibility, audio (will you need to play pre-recorded sound?), or
 > restrictions on when your talk can be scheduled.
 
-I'm an experienced Python (23+ years) and Go (11+ years) developer and have
-extensive speaking experience.
+I'm an experienced Python (23+ years) and Go (11+ years) developer and have extensive speaking experience.
 
-I have embedded Python in a couple of applications previously: A hardware simulator and a
-serverless platform (https://nuclio.io/).
+I have embedded Python in a couple of applications previously: A hardware simulator and a serverless platform (https://nuclio.io/).
 
-This talk will be based on [this blog
-post](https://www.ardanlabs.com/blog/2020/09/using-python-memory.html) but will
-be adapted to Python developers.
+This talk will be based on [this blog post](https://www.ardanlabs.com/blog/2020/09/using-python-memory.html) but will be adapted to Python developers.
 
 ### Previous Talks & Blogs
 - [IPython: The Productivity Booster](https://www.youtube.com/watch?v=Zmo2ZN1SJ_Q) from EuroPython
