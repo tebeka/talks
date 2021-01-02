@@ -1,4 +1,5 @@
 # Going Open Source
+
 [AppsFlyer meetup][meetup], March 18 2020
 
 Talk on open sourcing a Go project.
