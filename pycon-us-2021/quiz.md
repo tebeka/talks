@@ -14,7 +14,7 @@ Example:
 
 ```python
 name = 'Waldo'
-text = 'Can you find where Wally is?'
+text = 'Can you find Wally?'
 
 if text.find(name):
     print('Found Waldo')
@@ -63,6 +63,25 @@ I'm an experienced Python (23+ years) developer and have extensive speaking expe
 This talk is based on my book [Python Brain Teasers](https://pragprog.com/titles/d-pybrain/python-brain-teasers/).
 
 I gave a similar talk on [PyWeb Israel](https://www.youtube.com/watch?v=LC9UvJSpIDo) (Hebrew)
+
+### Example
+
+For the following quiz:
+
+```python
+name = 'Waldo'
+text = 'Can you find Wally?'
+
+if text.find(name):
+    print('Found Waldo')
+else:
+    print('Cannot find Waldo')
+```
+
+We'll talk about:
+- Documentation and the built-in `help` function
+- Truthiness in Python
+- The `in` operator
 
 ### Previous Talks & Blogs
 - [IPython: The Productivity Booster](https://www.youtube.com/watch?v=Zmo2ZN1SJ_Q) from EuroPython
