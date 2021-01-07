@@ -1,8 +1,11 @@
+"""Simulate frequencies of two-dice rools"""
+
 from random import randint
 from collections import Counter
 
 
 def dice_roll():
+    """Random dice roll."""
     return randint(1, 6)
 
 

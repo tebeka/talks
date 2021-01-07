@@ -1,0 +1,35 @@
+[character]
+success_symbol = "[\\$](bold green)"
+error_symbol = "[\\$](bold red)"
+
+[python]
+symbol = "py "
+style = "fg:green"
+disabled = true
+
+[directory]
+style = "fg:blue"
+
+[gcloud]
+disabled = true
+
+[golang]
+symbol = "go "
+style = "fg:green"
+
+[conda]
+symbol = "© "
+
+[nodejs]
+disabled = true
+
+[java]
+disabled = true
+
+[package]
+disabled = true
+
+
+# [time]
+# disabled = false
+# format = "%H:%M"
