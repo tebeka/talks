@@ -11,8 +11,8 @@ def random_door():
     return randint(1, 3)
 
 
-def game():
-    """Games simulate a game and returns True if the say policy wins."""
+def stay_win_game():
+    """Simulate a game and returns True if the say policy wins."""
     car_door = random_door()
     player_door = random_door()
     return car_door == player_door  # True if stay wins
@@ -21,7 +21,7 @@ def game():
 n = 1_000_000
 stay_wins, switch_wins = 0, 0
 for _ in range(n):
-    if game():
+    if stay_win_game():
         stay_wins += 1
     else:
         switch_wins += 1

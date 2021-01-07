@@ -1,4 +1,4 @@
-"""Simulation of the "Birday problem"
+"""Simulation of the "Birthday problem"
 
 See https://en.wikipedia.org/wiki/Birthday_problem for a description of the
 problem.
