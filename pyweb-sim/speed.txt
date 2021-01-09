@@ -1,0 +1,5 @@
+$ time python pi.py
+python pi.py  61.69s user 0.01s system 99% cpu 1:02.23 total
+$ time pi.py
+3.1415346
+pypy3 pi.py  4.76s user 0.02s system 98% cpu 4.838 total
