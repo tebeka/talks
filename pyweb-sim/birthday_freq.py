@@ -9,9 +9,8 @@ def load_birthdays(csv_file):
     probabilities."""
     df = pd.read_csv(csv_file)
     df.rename(columns={'date_of_month': 'day'}, inplace=True)
-    # df = df[df['year'] == 2013]
-    df.index = pd.to_datetime(df[['year', 'month', 'day']])
-    df['bday'] = df.index.strftime('%m-%d')
+    times = pd.to_datetime(df[['year', 'month', 'day']])
+    df['bday'] = times.dt.strftime('%m-%d')
     probs = df.groupby('bday')['births'].sum()
     probs /= probs.sum()
     return probs.index, probs.values
@@ -22,11 +21,11 @@ def dup_in_group(size, days, probs):
     group of size.
     """
     group = np.random.choice(days, size, p=probs)
-    return len(set(group)) < len(group)
+    return np.unique(group).size < group.size
 
 
 days, probs = load_birthdays('US_births_2000-2014_SSA.csv')
-n, group_size, dups = 1_000_000, 23, 0
+n, group_size, dups = 100_000, 23, 0
 for _ in tqdm(range(n)):
     if dup_in_group(group_size, days, probs):
         dups += 1
