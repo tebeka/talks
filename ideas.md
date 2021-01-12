@@ -1,5 +1,12 @@
 # Talk Ideas
 
+## python -m
+- built-in -m (zipfile, telnet, ... https://pythonwise.blogspot.com/2015/01/python-m.html)
+- `python -m pip install` vs `pip install`
+- same for pytest
+- `__main__.py`, `if __name__ == '__main__':` ...
+- sys.path, site.py and friends
+
 ## Mutation, Rebinding & Scope
 - Mutation vs rebinding
 - LCGB
