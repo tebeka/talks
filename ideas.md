@@ -1,5 +1,12 @@
 # Talk Ideas
 
+## Mutation, Rebinding & Scope
+- Mutation vs rebinding
+- LCGB
+- namespaces = dicts all the way down globals, locals
+- Hack: adding variable to bulitins
+- global, nonlocal
+
 ## Fallacies of distributed computing
 https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing
 
@@ -37,13 +44,6 @@ Vectorization, ufuncs, append, eval & query, join(?), sql & hdf5, numba, cython
 
 Go (https://blog.gopheracademy.com/advent-2018/fmt/)
 Python: `__repr__`, `__format__`, `{name:<20}`
-
-## IPython for Faster Development
-- %magic
-- files = !ls, ls $logs
-- history
-- configuration (aggressive reload)
-- extensions: sql, cython, line/memory profiles, write your own
 
 ## Metaclasses and why you shouldn't use them
 - What are they
