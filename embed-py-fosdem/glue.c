@@ -23,7 +23,7 @@ PyObject *load_func(const char *module_name, char *func_name) {
     return NULL;
   }
 
-  // Get function, same as "getattr(module, func_name)" in Python
+  // Get function, same as "module.func_name" or "getattr(module, func_name)" in Python
   PyObject *func = PyObject_GetAttrString(module, func_name);
   Py_DECREF(module);
   return func;

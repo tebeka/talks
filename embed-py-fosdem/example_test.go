@@ -23,7 +23,6 @@ func Example() {
 	}
 
 	fmt.Println(indices)
-
 	// Output:
 	// [7 113 835]
 }
