@@ -2,6 +2,7 @@
 :ALEDisable
 
 # Setup
+- show python code, example_test.go
 - outliers.go:NewOutliers
 - glue.c:load_func, talk on refcount (py_last_error)
 - outliers.go:Close

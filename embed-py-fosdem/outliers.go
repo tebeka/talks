@@ -34,8 +34,8 @@ type Outliers struct {
 	fn *C.PyObject // Outlier detection Python function object
 }
 
-// NewOutliers returns an new Outliers using moduleName.funcName Python function
-func NewOutliers(moduleName, funcName string) (*Outliers, error) {
+// New returns an new Outliers using moduleName.funcName Python function
+func New(moduleName, funcName string) (*Outliers, error) {
 	initialize()
 	if initErr != nil {
 		return nil, initErr
