@@ -1,4 +1,4 @@
-// outliers provides outlier detection via Python
+// Package outliers provides outlier detection via Python
 package outliers
 
 import (
@@ -128,7 +128,7 @@ func pyLastError() error {
 func cArrToSlice(cArr *C.long, size C.long) ([]int, error) {
 	const maxSize = 1 << 20
 	if size > maxSize {
-		return nil, fmt.Errorf("C array to large (%d > %d)", size, maxSize)
+		return nil, fmt.Errorf("C array too large (%d > %d)", size, maxSize)
 	}
 
 	// Ugly hack to convert C.long* to []int - make the compiler think there's
