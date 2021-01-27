@@ -42,8 +42,7 @@ result_t detect(PyObject *func, double *values, long size) {
   }
 
   // Construct function arguments
-  PyObject *args = PyTuple_New(1);
-  PyTuple_SetItem(args, 0, arr);
+	PyObject *args = PyTuple_Pack(1, arr);
 
   PyArrayObject *out = (PyArrayObject *)PyObject_CallObject(func, args);
   if (out == NULL) {
