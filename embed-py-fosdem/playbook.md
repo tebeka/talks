@@ -1,5 +1,14 @@
 # Getting Ready
-:ALEDisable
+
+- Tab 1
+    vim
+    :ALEDisable
+    set nospell
+
+- Tab 2
+    ./docker.sh run
+    make  # first build is slow
+    clear
 
 # Setup
 - show python code, example_test.go
