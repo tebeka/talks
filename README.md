@@ -8,8 +8,9 @@ Below is a list of talks you can view, others are more interactive. You can
 view the "code" on [GitHub](https://github.com/tebeka/talks).
 
 
+- [Simulations for the Mathematically Challenged](./pyweb-sim/slides.pdf)
 - [Serialization in Go](https://tebeka.github.io/talks/serialize-go/slides/index.html)
-- [A Go Quize](https://talks.godoc.org/github.com/tebeka/talks/go-quiz/quiz-gcil.slide)
+- [A Go Quiz](https://talks.godoc.org/github.com/tebeka/talks/go-quiz/quiz-gcil.slide)
 - [Go Open Source](https://tebeka.github.io/talks/go-open-source/slides/index.html)
 - [Good Talk](https://tebeka.github.io/talks/good-talk/slides/index.html)
 - [Serialization in Python](https://tebeka.github.io/talks/serialize-pyweb/slides/index.html)
