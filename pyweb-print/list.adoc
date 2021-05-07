@@ -1,0 +1,9 @@
+.Shopping List
+Dairy::
+* Milky
+* Cheese
+Produce::
+* Lemon
+* Mango
+Bakery::
+* Baguette

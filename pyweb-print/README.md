@@ -23,7 +23,8 @@
 - logging %s (performance)
     - https://docs.python.org/3/howto/logging-cookbook.html#use-of-alternative-formatting-styles
     - print will slow you down
-	- time python spammer.py 1000000
-	- time python spammer.py 1000000 > /tmp/spam.log
+	- time python spammer.py 10000
+	- time python spammer.py 10000 > /tmp/spam.log
 - Unicode?
 - Python 3 made print function
+- print only in main, otherwise log

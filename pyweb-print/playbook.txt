@@ -1,0 +1,264 @@
+In [1]: a, b = 1, '1'
+In [2]: print(f'a={a}, b={b}')
+a=1, b=1
+In [3]: print(f'a={a!r}, b={b!r}')
+a=1, b='1'
+In [5]: print(f'{a=}, {b=}')
+a=1, b='1'
+In [6]: # 3.8+
+
+In [8]: first, last, age = 'Daffy', 'Duck', 83
+In [12]: f'{first:^30}'
+Out[12]: '            Daffy             '
+
+In [15]: f'{first:<30}'
+Out[15]: 'Daffy                         '
+In [16]: f'{first:>30}'
+Out[16]: '                         Daffy'
+
+In [17]: import os
+In [19]: ncols = os.get_terminal_size().columns
+In [25]: f'{first:^{ncols-15}}'
+Out[25]: '                                                   Daffy                                                    '
+
+In [26]: brk_a = 434_309.62
+
+In [27]: f'buffet stock = ${brk_a}'
+Out[27]: 'buffer stock = 434309.62'
+
+In [29]: f'buffet stock = ${brk_a:,}'
+Out[29]: 'buffer stock = $434,309.62'
+
+In [30]: import math
+
+In [31]: f'e={math.e}'
+Out[31]: 'e=2.718281828459045'
+
+In [32]: f'e={math.e:.3f}'
+Out[32]: 'e=2.718'
+
+In [33]: n = 12
+In [34]: f'{n}'
+Out[34]: '12'
+
+In [35]: f'{n:b}'
+Out[35]: '1100'
+
+In [36]: f'{n:o}'
+Out[36]: '14'
+
+In [37]: f'{n:x}'
+Out[37]: 'c'
+
+In [38]: f'{n:08b}'
+Out[38]: '00001100'
+
+In [39]: # byte
+
+In [42]: from datetime import datetime
+
+In [43]: now = datetime.now()
+
+In [44]: now.strftime('Today is %a, %b %d')
+Out[44]: 'Today is Fri, May 07'
+
+In [45]: f'Today is {now:%a, %b %d}'
+Out[45]: 'Today is Fri, May 07'
+
+In [49]:csv_file = 'C:\path\to\new_report.csv'
+
+In [50]: print(csv_file)
+C:\path	o
+ew_report.csv
+
+In [51]: csv_file = r'C:\path\to\new_report.csv'
+
+In [52]: print(csv_file)
+C:\path\to\new_report.csv
+
+In [53]: base = 'new_report.csv'
+
+In [54]: print(fr'C:\path\to\{base}')
+C:\path\to\new_report.csv
+
+In [46]: print(first, last, age)
+Daffy Duck 83
+
+In [47]: print(first, last, age, sep=',')
+Daffy,Duck,83
+
+In [51]: with open('road.txt') as fp:
+    ...:     for line in fp:
+    ...:         print(line)
+    ...: 
+The Road goes ever on and on
+
+Down from the door where it began.
+
+Now far ahead the Road has gone,
+
+And I must follow, if I can,
+
+Pursuing it with eager feet,
+
+Until it joins some larger way
+
+Where many paths and errands meet.
+
+And whither then? I cannot say.
+
+
+In [52]:!cat road.txt
+The Road goes ever on and on
+Down from the door where it began.
+Now far ahead the Road has gone,
+And I must follow, if I can,
+Pursuing it with eager feet,
+Until it joins some larger way
+Where many paths and errands meet.
+And whither then? I cannot say.
+
+In [53]: with open('road.txt') as fp:
+    ...:     for line in fp:
+    ...:         print(line, end='')
+    ...: 
+The Road goes ever on and on
+Down from the door where it began.
+Now far ahead the Road has gone,
+And I must follow, if I can,
+Pursuing it with eager feet,
+Until it joins some larger way
+Where many paths and errands meet.
+And whither then? I cannot say.
+
+In [56]: from subprocess import Popen, PIPE
+In [57]: import sys
+
+In [61]: p = Popen([sys.executable, 'spammer.py', '--delay', '10'], stdout=PIPE)
+
+In [62]: for line in p.stdout:
+    ...:     print(line)
+    ...: 
+b'Spam message #1\n'
+b'Spam message #2\n'
+b'Spam message #3\n'
+b'Spam message #4\n'
+b'Spam message #5\n'
+b'Spam message #6\n'
+b'Spam message #7\n'
+b'Spam message #8\n'
+b'Spam message #9\n'
+b'Spam message #10\n'
+
+In [63]:p = Popen([sys.executable, 'spammer.py', '--delay', '--flush', '10'], stdout=PIPE)
+
+In [64]: for line in p.stdout:
+    ...:     print(line)
+    ...: 
+b'Spam message #1\n'
+b'Spam message #2\n'
+b'Spam message #3\n'
+b'Spam message #4\n'
+b'Spam message #5\n'
+b'Spam message #6\n'
+b'Spam message #7\n'
+b'Spam message #8\n'
+b'Spam message #9\n'
+b'Spam message #10\n'
+
+In [67]: %code spammer.py
+    1: """Spam with n Messages"""
+    2: from argparse import ArgumentParser
+    3: from time import sleep
+    4: 
+    5: parser = ArgumentParser(description=__doc__)
+    6: parser.add_argument('count', type=int, help='number of messages')
+    7: parser.add_argument('--flush', action='store_true', default=False)
+    8: parser.add_argument('--delay', action='store_true', default=False)
+    9: args = parser.parse_args()
+   10: 
+   11: for i in range(args.count):
+   12:     print(f'Spam message #{i+1}', flush=args.flush)
+   13:     if args.delay:
+   14:         sleep(1)
+
+In [4]: first, last, age = 'Daffy', 'Duck', 83
+
+In [8]:print(f'{first} is {age} years old')
+Daffy is 83 years old
+
+In [12]: log_file = '/tmp/log'
+
+In [13]: with open(log_file, 'w') as out:
+    ...:     print(f'{first} is {age} years old', file=out)
+    ...: 
+
+In [14]: !cat $log_file
+Daffy is 83 years old
+
+In [15]: !cat list.adoc
+.Shopping List
+Dairy::
+* Milky
+* Cheese
+Produce::
+* Lemon
+* Mango
+Bakery::
+* Baguette
+
+In []: %show descr-list.png
+
+
+In [16]:%edit adoc.py
+Editing... done. Executing edited code...
+.Shopping List
+Dairy::
+* Milky
+* Cheese
+Produce::
+* Lemon
+* Mango
+Bakery::
+* Baguette
+
+# cH
+In [22]:print('I ♡ Python')
+I ♡ Python
+
+In [27]: print('I \u2661 Python')
+I ♡ Python
+
+In [31]: print('I \N{White Heart Suit} Python')
+I ♡ Python
+
+In [32]: %run player.py
+
+In [33]: p1
+Out[33]: Player('Parzival', 392, {'copper', 'jade'})
+
+In [34]: print(p1)
+Parzival has {'copper', 'jade'}
+In [66]: f'{p1:%n <%m>}'
+Out[66]: 'Parzival <392>'
+
+$time python spammer.py 100000
+Spam message #1
+Spam message #2
+...
+python spammer.py 100000  0.29s user 0.15s system 25% cpu 1.723 total
+
+talks/pyweb-print on  master [!?] via py v3.9.4 
+$time python spammer.py 100000 > /tmp/log
+python spammer.py 100000 > /tmp/log  0.08s user 0.00s system 98% cpu 0.089 total
+
+In [1]: import logging
+
+In [4]: first, last, age = 'Daffy', 'Duck', 83
+
+In [6]: logging.info(f'{first} is {age} years old')
+2021-05-07 12:18:59,525 INFO Daffy is 83 years old
+
+In [5]: logging.info('%s is %d years old', first, age)2021-05-07 12:18:36,281 INFO Daffy is 83 years old
+
+# style={
