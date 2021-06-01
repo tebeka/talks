@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS journal (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     time TIMESTAMP,
     user TEXT,
     content TEXT
 );
-CREATE INDEX IF NOT EXISTS entries_time ON journal(time);

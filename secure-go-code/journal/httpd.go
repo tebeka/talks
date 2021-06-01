@@ -12,16 +12,18 @@ import (
 
 var (
 	db       *DB
-	lastHTML = `
-	<html>
-		<head>
-			<title>Journal</title>
-		</head>
-		<body>
+	lastHTML = `<!DOCTYPE html>
+<html>
+	<head>
+		<title>Journal</title>
+	</head>
+	<body>
 		<h2>Last Entry</h2>
+		<p>
 		%s
-		</body>
-	</html>
+		</p>
+	</body>
+</html>
 `
 )
 
@@ -45,11 +47,15 @@ func addHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	e.Time = time.Now()
-	if err := db.Add(e); err != nil {
+	id, err := db.Add(e)
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
-	json.NewEncoder(w).Encode(e)
+	resp := map[string]int{
+		"id": id,
+	}
+	json.NewEncoder(w).Encode(resp)
 }
 
 func queryHandler(w http.ResponseWriter, r *http.Request) {

@@ -45,10 +45,15 @@ func strDate(t time.Time) string {
 	return t.Format("2006-01-02 15:04:05")
 }
 
-func (d *DB) Add(entry Entry) error {
+func (d *DB) Add(entry Entry) (int, error) {
 	sql := fmt.Sprintf(addSQL, strDate(entry.Time), entry.User, entry.Content)
-	_, err := d.db.Exec(sql)
-	return err
+	res, err := d.db.Exec(sql)
+	if err != nil {
+		return 0, err
+	}
+
+	id, err := res.LastInsertId()
+	return int(id), err
 }
 
 func (d *DB) Query(start, end time.Time) ([]Entry, error) {
