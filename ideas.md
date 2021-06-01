@@ -1,5 +1,10 @@
 # Talk Ideas
 
+# Prototyping
+
+- https://www.youtube.com/watch?v=vLxX3yZmw5Q
+- Plan to throw one away ...
+
 ## python -m
 - built-in -m (zipfile, telnet, ... https://pythonwise.blogspot.com/2015/01/python-m.html)
 - `python -m pip install` vs `pip install`
