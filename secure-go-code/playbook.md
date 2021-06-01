@@ -1,3 +1,4 @@
+- terminator
 - in journal: tree
 - journal/db.go
 - journal/httpd.go
