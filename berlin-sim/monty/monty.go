@@ -11,7 +11,7 @@ import (
 func stayWinsGame() bool {
 	carDoor := rand.Intn(3)
 	playerDoor := rand.Intn(3)
-
+	// Here host reveals a door with the goat
 	return carDoor == playerDoor
 }
 
