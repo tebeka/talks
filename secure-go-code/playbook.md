@@ -1,7 +1,10 @@
 - terminator
-- in journal: tree
-- journal/db.go
-- journal/httpd.go
+- vscode
+
+slides up to "Code"
+
+    - journal/db.go
+    - journal/httpd.go
 
 - gosec .
 - gosec --help
