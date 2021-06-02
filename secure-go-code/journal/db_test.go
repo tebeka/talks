@@ -10,9 +10,9 @@ import (
 
 var (
 	entries = []Entry{
-		{date(2021, 4, 1), "joe", "Who's on first?"},
-		{date(2021, 4, 2), "joe", "What's on second?"},
-		{date(2021, 4, 3), "joe", "I don't know on third!"},
+		{date(2021, 4, 1), "joe", "one for the money"},
+		{date(2021, 4, 2), "joe", "two for the show"},
+		{date(2021, 4, 3), "joe", "three to get ready"},
 	}
 )
 
@@ -22,7 +22,6 @@ func date(year, month, day int) time.Time {
 
 func TestDB(t *testing.T) {
 	require := require.New(t)
-
 	dir := t.TempDir()
 	dsn := fmt.Sprintf("%s/journal.db", dir)
 
@@ -31,7 +30,7 @@ func TestDB(t *testing.T) {
 	defer db.Close()
 
 	for _, e := range entries {
-		err := db.Add(e)
+		_, err := db.Add(e)
 		require.NoErrorf(err, "insert %#v", e)
 	}
 
