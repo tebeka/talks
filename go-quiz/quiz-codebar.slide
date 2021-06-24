@@ -14,7 +14,7 @@ miki@353solutions.com
 * Quiz Rules
 
 - I'll show a short Go program
-- You have 45 seconds to guess the output (countdown on bottom left)
+- You have 30 seconds to guess the output (countdown on bottom left)
 - Possible answers are: some output, won't compile, panic, deadlock
 - There are 21 questions total
 
