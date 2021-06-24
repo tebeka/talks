@@ -1,0 +1,116 @@
+Go Quiz
+Guess the Output
+
+Miki Tebeka
+CEO, 353solutions
+miki@353solutions.com
+@tebeka
+
+* Miki Tebeka
+
+.image 353.png
+.html quiz.html
+
+* Quiz Rules
+
+- I'll show a short Go program
+- You have 45 seconds to guess the output (countdown on bottom left)
+- Possible answers are: some output, won't compile, panic, deadlock
+- There are 21 questions total
+
+Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]], [[https://twitter.com/bradfitz][Brad Fitzpatrick]] & others
+
+* 
+
+.image picard-why.jpg 550 850
+
+* Number
+
+.play -edit -numbers num.go
+
+* Map
+
+.play -edit -numbers empty-map-ok.go
+
+* Chars
+
+.play -edit -numbers stridx.go
+
+* Tick
+
+.play -edit -numbers tick.go
+
+* City
+
+.play -edit -numbers unicode.go
+
+* Vars
+
+.play -edit -numbers vars2.go
+
+* Map
+
+.play -edit -numbers empty-map.go
+
+* Rune
+
+.play -edit -numbers rune.go
+
+* Sleep
+
+.play -edit -numbers time.go
+
+* Power
+
+.play -edit -numbers xor.go
+
+* Slices
+
+.play -edit -numbers slice.go
+ 
+* Init
+
+.play -edit -numbers init.go
+
+* Sleep Sort
+
+.play -edit -numbers sleep-sort.go /^func main/,/^}/
+
+* π
+
+.play -edit -numbers pi.go
+
+* Append
+
+.play -edit -numbers sliceappend.go
+
+* For
+
+.play -edit -numbers for.go
+
+* Channel
+
+.play -edit -numbers ch.go
+
+* Print
+
+.play -edit -numbers print-char.go
+
+
+* Defer
+
+.play -edit -numbers defer.go
+
+* String
+
+.play -edit -numbers raw.go
+
+* Float
+
+.play -edit -numbers float.go
+
+* The End
+
+How many did you get right?
+
+.image cover.png

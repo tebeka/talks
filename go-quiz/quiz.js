@@ -1,4 +1,4 @@
-var duration = 30;
+var duration = 45;
 
 function on_hashchange() {
     // No code section
