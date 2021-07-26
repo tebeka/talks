@@ -1,0 +1,137 @@
+Wgo.uber.org/multierihat's in a Name?
+Variable Scope & Closure
+
+Miki Tebeka
+CEO, 353solutions
+miki@353solutions.com
+@tebeka
+
+* Miki Tebeka
+
+.image 353.png
+
+* Sleep Sort
+
+.play -edit -numbers sleep_sort.go /START/,/END/
+
+* Mean
+
+.code -numbers mean.go /START/,/END/
+# .play -numbers mean.go /START_MAIN/,/END_MAIN/
+
+- `sum` - local
+- `float64` - builtin (universe)
+- `len` - builtin (universe)
+- `values` - paramter (local)
+- `scale` - global (package)
+
+* Blocks
+
+.image go-blocks.jpg
+
+[[https://golang.org/ref/spec#Blocks]]
+
+* Implicit Blocks
+
+.play -edit -numbers scope.go /START/,/END/
+
+* Scope
+
+.image go-scope.jpg
+
+* Scope
+
+.code -numbers mean.go /START_RET/,/END_RET/
+
+.image scope.svg
+
+[[https://golang.org/ref/spec#Declarations_and_scope]]
+
+* builtin
+
+.image builtin.jpg
+
+[[https://pkg.go.dev/builtin#pkg-index]]
+
+* Closure
+
+.code -numbers sleep_sort_hl.go /START/,/END/
+
+[[https://golang.org/ref/spec#Function_literals]]
+
+Function literals are closures: they may refer to variables defined in a surrounding function. Those variables are then shared between the surrounding function and the function literal, and they survive as long as they are accessible.
+
+
+* Sleep Sort - Fix 1
+
+.play -numbers sleep_sort_fix1.go /START/,/END/
+
+* Sleep Sort - Fix 2
+
+.play -numbers sleep_sort_fix2.go /START/,/END/
+
+* A Bank Account
+
+.code -numbers account.go /START/,/END/
+.play -numbers account.go /MAIN_START/,/MAIN_END/
+
+
+* Middleware
+
+.code -numbers metrics.go /START/,/END/
+.code -numbers metrics.go /START_MAIN/,/END_MAIN/
+
+* errgroup
+
+.image errgroup.png
+
+.code -numbers errg.go /START/,/END/
+
+[[https://pkg.go.dev/golang.org/x/sync/errgroup#Group.Go]]
+
+* Named Result Parameters
+
+.code -numbers panic.go /START/,/END/
+.play -numbers panic.go /MAIN_START/,/MAIN_END/
+
+* spit
+
+.code -numbers spit.go /START/,/END/
+.play -numbers spit.go /MAIN_START/,/MAIN_END/
+
+* spit - A Fix
+
+.code -numbers spit_fix.go /START/,/END/
+.play -numbers spit_fix.go /MAIN_START/,/MAIN_END/
+
+* spit - With Error
+
+.code -numbers spit_err.go /START/,/END/
+.play -numbers spit_err.go /MAIN_START/,/MAIN_END/
+
+* spit - With No Error
+
+# .code -numbers spit_err_fix.go /IMP_START/,/IMP_END/
+.code -numbers spit_err_fix.go /SPIT_START/,/SPIT_END/
+# .play -numbers spit_err_fix.go /MAIN_START/,/MAIN_END/
+
+[[https://go.uber.org/multierr]]
+
+* Quiz: init
+
+.play -numbers init.go /START/,/END/
+
+Will this compile? What will it print?
+
+* init
+
+.image init.jpg
+
+[[https://golang.org/ref/spec#Package_initialization]]
+
+
+* Quiz: Multi Assign
+
+.play -numbers multi_assign.go /START/,/END/
+
+Will this compile? What will it print?
