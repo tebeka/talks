@@ -1,4 +1,4 @@
-Wgo.uber.org/multierihat's in a Name?
+What's in a Name?
 Variable Scope & Closure
 
 Miki Tebeka
@@ -16,7 +16,7 @@ miki@353solutions.com
 
 * Mean
 
-.code -numbers mean.go /START/,/END/
+.code -edit -numbers mean.go /START/,/END/
 # .play -numbers mean.go /START_MAIN/,/END_MAIN/
 
 - `sum` - local
@@ -41,7 +41,7 @@ miki@353solutions.com
 
 * Scope
 
-.code -numbers mean.go /START_RET/,/END_RET/
+.code -edit -numbers mean.go /START_RET/,/END_RET/
 
 .image scope.svg
 
@@ -55,7 +55,7 @@ miki@353solutions.com
 
 * Closure
 
-.code -numbers sleep_sort_hl.go /START/,/END/
+.code -edit -numbers sleep_sort_hl.go /START/,/END/
 
 [[https://golang.org/ref/spec#Function_literals]]
 
@@ -64,62 +64,62 @@ Function literals are closures: they may refer to variables defined in a surroun
 
 * Sleep Sort - Fix 1
 
-.play -numbers sleep_sort_fix1.go /START/,/END/
+.play -edit -numbers sleep_sort_fix1.go /START/,/END/
 
 * Sleep Sort - Fix 2
 
-.play -numbers sleep_sort_fix2.go /START/,/END/
+.play -edit -numbers sleep_sort_fix2.go /START/,/END/
 
 * A Bank Account
 
-.code -numbers account.go /START/,/END/
-.play -numbers account.go /MAIN_START/,/MAIN_END/
+.code -edit -numbers account.go /START/,/END/
+.play -edit -numbers account.go /MAIN_START/,/MAIN_END/
 
 
 * Middleware
 
-.code -numbers metrics.go /START/,/END/
-.code -numbers metrics.go /START_MAIN/,/END_MAIN/
+.code -edit -numbers metrics.go /START/,/END/
+.code -edit -numbers metrics.go /START_MAIN/,/END_MAIN/
 
 * errgroup
 
 .image errgroup.png
 
-.code -numbers errg.go /START/,/END/
+.code -edit -numbers errg.go /START/,/END/
 
 [[https://pkg.go.dev/golang.org/x/sync/errgroup#Group.Go]]
 
 * Named Result Parameters
 
-.code -numbers panic.go /START/,/END/
-.play -numbers panic.go /MAIN_START/,/MAIN_END/
+.code -edit -numbers panic.go /START/,/END/
+.play -edit -numbers panic.go /MAIN_START/,/MAIN_END/
 
 * spit
 
-.code -numbers spit.go /START/,/END/
-.play -numbers spit.go /MAIN_START/,/MAIN_END/
+.code -edit -numbers spit.go /START/,/END/
+.play -edit -numbers spit.go /MAIN_START/,/MAIN_END/
 
 * spit - A Fix
 
-.code -numbers spit_fix.go /START/,/END/
-.play -numbers spit_fix.go /MAIN_START/,/MAIN_END/
+.code -edit -numbers spit_fix.go /START/,/END/
+.play -edit -numbers spit_fix.go /MAIN_START/,/MAIN_END/
 
 * spit - With Error
 
-.code -numbers spit_err.go /START/,/END/
-.play -numbers spit_err.go /MAIN_START/,/MAIN_END/
+.code -edit -numbers spit_err.go /START/,/END/
+.play -edit -numbers spit_err.go /MAIN_START/,/MAIN_END/
 
 * spit - With No Error
 
 # .code -numbers spit_err_fix.go /IMP_START/,/IMP_END/
-.code -numbers spit_err_fix.go /SPIT_START/,/SPIT_END/
+.code -edit -numbers spit_err_fix.go /SPIT_START/,/SPIT_END/
 # .play -numbers spit_err_fix.go /MAIN_START/,/MAIN_END/
 
 [[https://go.uber.org/multierr]]
 
 * Quiz: init
 
-.play -numbers init.go /START/,/END/
+.play -edit -numbers init.go /START/,/END/
 
 Will this compile? What will it print?
 
@@ -132,6 +132,36 @@ Will this compile? What will it print?
 
 * Quiz: Multi Assign
 
-.play -numbers multi_assign.go /START/,/END/
+.play -edit -numbers multi_assign.go /START/,/END/
 
 Will this compile? What will it print?
+
+* Slices
+
+.code -edit -numbers slice.go /START/,/END/
+
+[[https://golang.org/src/runtime/slice.go]]
+
+In a function call, the function value and arguments are evaluated in the usual order. After they are evaluated, the parameters of the call are passed *by* *value* to the function and the called function begins execution. The return parameters of the function are passed by value back to the caller when the function returns.
+
+[[https://golang.org/ref/spec#Calls]]
+
+* append
+
+.code -edit -numbers append.go /APPEND_START/,/APPEND_END/
+.play -edit -numbers append.go /MAIN_START/,/MAIN_END/
+
+* append - Fix
+
+.code -edit -numbers append_fix.go /APPEND_START/,/APPEND_END/
+.play -edit -numbers append_fix.go /MAIN_START/,/MAIN_END/
+
+* median
+
+.code -edit -numbers median.go /MEDIAN_START/,/MEDIAN_END/
+.play -edit -numbers median.go /MAIN_START/,/MAIN_END/
+
+* median - Fix
+
+.code -edit -numbers median_fix.go /MEDIAN_START/,/MEDIAN_END/
+.play -edit -numbers median_fix.go /MAIN_START/,/MAIN_END/
