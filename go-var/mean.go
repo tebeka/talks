@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// START OMIT
+// START_SCALE OMIT
 var scale = 1.1
 
 func scaled_mean(values []float64) float64 {
@@ -16,7 +16,7 @@ func scaled_mean(values []float64) float64 {
 	// END_RET OMIT
 }
 
-// END OMIT
+// END_SCALE OMIT
 
 func main() {
 	// START_MAIN OMIT

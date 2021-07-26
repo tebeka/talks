@@ -10,19 +10,21 @@ miki@353solutions.com
 
 .image 353.png
 
-* Sleep Sort
+* Quiz: Sleep Sort
 
 .play -edit -numbers sleep_sort.go /START/,/END/
 
+Will this compile? What will it print?
+
 * Mean
 
-.code -edit -numbers mean.go /START/,/END/
+.code -edit -numbers mean.go /START_SCALE/,/END_SCALE/
 # .play -numbers mean.go /START_MAIN/,/END_MAIN/
 
-- `sum` - local
+- `sum` - function/local
 - `float64` - builtin (universe)
 - `len` - builtin (universe)
-- `values` - paramter (local)
+- `values` - parameter (function/local)
 - `scale` - global (package)
 
 * Blocks
@@ -140,16 +142,16 @@ Will this compile? What will it print?
 
 .code -edit -numbers slice.go /START/,/END/
 
+* append
+
+.code -edit -numbers append.go /APPEND_START/,/APPEND_END/
+.play -edit -numbers append.go /MAIN_START/,/MAIN_END/
+
 [[https://golang.org/src/runtime/slice.go]]
 
 In a function call, the function value and arguments are evaluated in the usual order. After they are evaluated, the parameters of the call are passed *by* *value* to the function and the called function begins execution. The return parameters of the function are passed by value back to the caller when the function returns.
 
 [[https://golang.org/ref/spec#Calls]]
-
-* append
-
-.code -edit -numbers append.go /APPEND_START/,/APPEND_END/
-.play -edit -numbers append.go /MAIN_START/,/MAIN_END/
 
 * append - Fix
 
