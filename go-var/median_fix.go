@@ -21,7 +21,7 @@ func median(nums []float64) (float64, error) {
 		return vals[mid], nil
 	}
 
-	return (vals[mid-1] + nums[mid]) / 2, nil
+	return (vals[mid-1] + vals[mid]) / 2, nil
 }
 
 // MEDIAN_END OMIT

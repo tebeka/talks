@@ -144,6 +144,8 @@ Will this compile? What will it print?
 
 .code -edit -numbers slice.go /START/,/END/
 
+[[https://github.com/golang/go/blob/master/src/runtime/slice.go#L13]]
+
 * append
 
 .code -edit -numbers append.go /APPEND_START/,/APPEND_END/

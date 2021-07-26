@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+// padding
+
 func main() {
 	// START OMIT
 	x := 1
