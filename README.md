@@ -2,10 +2,11 @@
 
 [![License: CC BY-NC 4.0](https://licensebuttons.net/l/by-nc/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc/4.0/)
 
-
 Various talks given by [Miki Tebeka](mailto:miki@353solutions.com).
 Below is a list of talks you can view, others are more interactive. You can
 view the "code" on [GitHub](https://github.com/tebeka/talks).
+
+You can view this as HTML page [here](https://tebeka.github.io/talks/).
 
 
 - [Simulations for the Mathematically Challenged](./pyweb-sim/slides.pdf)
