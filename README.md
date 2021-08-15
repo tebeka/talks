@@ -8,7 +8,9 @@ view the "code" on [GitHub](https://github.com/tebeka/talks).
 
 You can view this as HTML page [here](https://tebeka.github.io/talks/).
 
-
+- [What's in a Name? Variable Scope & Closure in Go](https://talks.godoc.org/github.com/tebeka/talks/go-var/var.slide#1)
+- [Writing Secure Go Code](./secure-go-code/slides.pdf)
+- [So You Think You Can Print?](./pyweb-print/slides.pdf)
 - [Simulations for the Mathematically Challenged](./pyweb-sim/slides.pdf)
 - [Serialization in Go](https://tebeka.github.io/talks/serialize-go/slides/index.html)
 - [A Go Quiz](https://talks.godoc.org/github.com/tebeka/talks/go-quiz/quiz-gcil.slide)
