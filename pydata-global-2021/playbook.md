@@ -1,8 +1,7 @@
 ## Setup
 - kitty
-- ipython
-- %run setup.py
-- clear
+- ipython -i setup.ipy
+- CTRL-L
     
 
 # Flow
@@ -17,7 +16,7 @@ X.shape
 %timer 10
 !termdown -f doh -v english 7s
 !xdg-open big-data.png
-%icat big-data.png
+%icat teach.png
   - kitty, qt ipython
   - icat??
 %md big.md
