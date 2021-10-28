@@ -8,6 +8,7 @@
 # Flow
 - move to IPython
 
+7 * 50 + 3
 %src titanic
 X.shape
 %src??
@@ -16,8 +17,8 @@ X.shape
 %md??
 %timer 10
 !termdown -f doh -v english 7s
-!xdg-open big-data.png
-%icat teach.png
+!xdg-open captain.jpg
+%icat route.png
   - kitty, qt ipython
   - icat??
 %md big.md
@@ -26,9 +27,4 @@ X.shape
 !echo IPython | toilet -f smblock
 %md math.md
 !cat quote.txt | cowsay
-!cat quote.txt | cowsay -W 80
 %fin
-
-## Dudu
-- One story (titanic)
-- poll movie?
