@@ -2,16 +2,17 @@
 - kitty
 - ipython -i setup.ipy
 - CTRL-L
+- slides.pdf
     
 
 # Flow
-- slides.pdf
 - move to IPython
 
 %src titanic
 X.shape
 %src??
-%md poll.md
+!cat poll.txt
+%md poll.txt
 %md??
 %timer 10
 !termdown -f doh -v english 7s
@@ -27,3 +28,7 @@ X.shape
 !cat quote.txt | cowsay
 !cat quote.txt | cowsay -W 80
 %fin
+
+## Dudu
+- One story (titanic)
+- poll movie?
