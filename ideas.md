@@ -1,5 +1,9 @@
 # Talk Ideas
 
+# Get Comfortable
+
+How being in your comfort zone is better. More productive, less pressure. Drive analogy - focus on road, not on car.
+
 # Prototyping
 
 - https://www.youtube.com/watch?v=vLxX3yZmw5Q

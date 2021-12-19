@@ -18,7 +18,8 @@ X.shape
 %timer 10
 !termdown -f doh -v english 7s
 !xdg-open captain.jpg
-%icat route.png
+    - Edward Smith
+%icat route.png 
   - kitty, qt ipython
   - icat??
 %md big.md
@@ -28,3 +29,5 @@ X.shape
 %md math.md
 !cat quote.txt | cowsay
 %fin
+  
+This Fibonacci joke is as bad as the last two combined.
