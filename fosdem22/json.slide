@@ -1,0 +1,36 @@
+JSON
+The Fine Print
+
+Miki Tebeka
+CEO, 353solutions
+miki@353solutions.com
+@tebeka
+
+* Serialization
+
+Convert data structures in Go to a sequence of bytes and back.
+Usually done at the "edges" of your program.
+
+* JSON
+
+A popular textual serialization format. Has the following types:
+
+- Number -> int*, uint*, float* (default `float64`)
+- String -> `string`
+- Array -> `slice`
+- Boolean -> `bool`
+- null -> `nil`
+- Object -> struct or `map[string]interface{}`
+
+* Numbers
+
+.play -edit -numbers int.go
+
+# * Map
+# 
+# .play -edit -numbers empty-map-ok.go
+# 
+# *A:* 1
+# *B:* panic
+# *C:* Won't compile
+# *D:* 0
