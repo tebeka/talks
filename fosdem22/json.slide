@@ -15,7 +15,7 @@ Usually done at the "edges" of your program.
 
 A popular textual serialization format. Has the following types:
 
-- Number -> int*, uint*, float* (default `float64`)
+- Number -> int*, uint*, float*, big.Int, big.Float (default `float64`)
 - String -> `string`
 - Array -> `slice`
 - Boolean -> `bool`
