@@ -22,6 +22,7 @@ func main() {
 		To:     "", // HL
 		Amount: 123.45,
 	}
+
 	data, err := json.MarshalIndent(p, "", "    ")
 	if err != nil {
 		log.Fatal(err)

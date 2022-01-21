@@ -22,10 +22,12 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	img := Image{
 		Name: name,
 		Data: data,
 	}
+
 	if err := json.NewEncoder(os.Stdout).Encode(img); err != nil {
 		log.Fatal(err)
 	}

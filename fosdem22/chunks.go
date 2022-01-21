@@ -18,6 +18,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "no streaming support", http.StatusInternalServerError)
 		return
 	}
+
 	enc := json.NewEncoder(w)
 	for i := 0; i < 10; i++ {
 		if err := enc.Encode(Point{i, i}); err != nil {

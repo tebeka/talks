@@ -5,7 +5,6 @@ Miki Tebeka
 CEO, 353solutions
 miki@353solutions.com
 @tebeka
-d-gobrain-250.jpg
 
 * Serialization
 
@@ -96,3 +95,31 @@ Example: [[https://robpike.io][robpike.io]]
 * Chunking Example - Request
 
 .code chunk_req.txt
+
+* Missing Values
+
+.code payment_missing.go  /START_PAYMENT/,/END_PAYMENT/
+
+.play payment_missing.go  /START_MAIN/,/END_MAIN/
+
+* Missing Values - Pointers
+
+.code payment_missing_ptr.go  /START_PAYMENT/,/END_PAYMENT/
+
+.play payment_missing_ptr.go  /START_MAIN/,/END_MAIN/
+
+* Missing Values - mapstructure
+
+.code payment_missing_ms.go  /START_MAIN/,/END_MAIN/
+
+* Valid JSON < Valid Data
+
+.code loc.go /START_LOC/,/END_LOC/
+
+.play loc.go  /START_MAIN/,/END_MAIN/
+
+* Validate
+
+.code loc_valid.go /START_VALIDATE/,/END_VALIDATE/
+
+.play loc_valid.go  /START_MAIN/,/END_MAIN/

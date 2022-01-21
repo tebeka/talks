@@ -2,6 +2,8 @@ module fosdem22
 
 go 1.17
 
+require github.com/mitchellh/mapstructure v1.4.3
+
 require (
 	github.com/yuin/goldmark v1.4.1 // indirect
 	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f // indirect
