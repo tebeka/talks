@@ -9,10 +9,10 @@ import (
 
 // START_PAYMENT OMIT
 type Payment struct {
-	Time   *time.Time `json:"time"` // HL
-	From   string     `json:"from"`
-	To     string     `json:"to"`
-	Amount float64    `json:"amount"`
+	Time   time.Time `json:"time"`
+	From   string    `json:"from"`
+	To     string    `json:"to"`
+	Amount float64   `json:"amount"`
 }
 
 // END_PAYMENT OMIT
@@ -25,10 +25,13 @@ func main() {
 		"amount": 123.45
 	}`)
 
-	var p Payment
+	p := Payment{
+		Time: time.Now(), // HL
+	}
 	if err := json.Unmarshal(data, &p); err != nil {
 		log.Fatal(err)
 	}
+
 	fmt.Printf("%#v\n", p)
 	// END_MAIN OMIT
 }

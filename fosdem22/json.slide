@@ -133,6 +133,10 @@ Example: [[https://robpike.io][robpike.io]]
 
 .code payment_missing_ms.go  /START_MAIN/,/END_MAIN/
 
+* Missing Values - Defaults
+
+.play payment_missing_default.go  /START_MAIN/,/END_MAIN/
+
 * Valid JSON < Valid Data
 
 .code loc.go /START_LOC/,/END_LOC/
@@ -147,7 +151,7 @@ Example: [[https://robpike.io][robpike.io]]
 
 * Strings
 
-.play str.go  /START_MAIN/,/END_MAIN/
+.play -edit str.go  /START_MAIN/,/END_MAIN/
 
 * Type Pollution
 

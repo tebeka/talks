@@ -5,13 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
-
-	//	"os"
-	"net/http"
-)
-
-const (
-	urlTemplte = "https://api.stocktwits.com/api/2/streams/symbol/%s.json"
+	"os"
 )
 
 // START_PARSE OMIT
@@ -41,19 +35,13 @@ func parseStocks(r io.Reader, symbol string) (map[string]int, error) {
 
 // END_PARSE OMIT
 
-func relatedStocks(symbol string) (map[string]int, error) {
-	url := fmt.Sprintf(urlTemplte, symbol)
-	resp, err := http.Get(url)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
-	return parseStocks(resp.Body, symbol)
-}
-
 func main() {
-	counts, err := relatedStocks("AAPL")
+	file, err := os.Open("aapl.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	counts, err := parseStocks(file, "AAPL")
 	if err != nil {
 		log.Fatal(err)
 	}
