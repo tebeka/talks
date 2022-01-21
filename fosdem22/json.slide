@@ -5,6 +5,7 @@ Miki Tebeka
 CEO, 353solutions
 miki@353solutions.com
 @tebeka
+https://github.com/tebeka/talks/tree/master/fosdem22
 
 * Serialization
 
@@ -15,7 +16,9 @@ Usually done at the "edges" of your program.
 
 * JSON
 
-A popular textual serialization format. Has the following types:
+A popular _textual_ serialization format
+
+Has the following types:
 
 - Number -> int*, uint*, float*, big.Int, big.Float (default `float64`)
 - String -> `string`
@@ -23,6 +26,10 @@ A popular textual serialization format. Has the following types:
 - Boolean -> `bool`
 - null -> `nil`
 - Object -> struct or `map[string]interface{}`
+
+* Size
+
+.play size.go /START_MAIN/,/END_MAIN/
 
 * Numbers
 
@@ -46,18 +53,32 @@ A popular textual serialization format. Has the following types:
 
 .code tmarsh.go /START/,/END/
 
-* Value
+* Custom Time
 
-.code value.go /START_VALUE/,/END_VALUE/
+.code payment_fmt.go /START_PTIME/,/END_PTIME/
 
-{15.4, Celcius} -> 15.4c
+* Custom Time - Payment
 
-* Value - MarshalJSON
+.code payment_fmt.go /START_PAYMENT/,/END_PAYMENT/
 
-.code value.go /START_MJ/,/END_MJ/
+.play payment_fmt.go /START_MAIN/,/END_MAIN/
 
-.play value.go /START_MAIN/,/END_MAIN/
+* Custom Time - Limitation
 
+.play -edit payment_fmt_limit.go /START_MAIN/,/END_MAIN/
+
+# * Value
+# 
+# .code value.go /START_VALUE/,/END_VALUE/
+# 
+# {15.4, Celcius} -> 15.4c
+# 
+# * Value - MarshalJSON
+# 
+# .code value.go /START_MJ/,/END_MJ/
+# 
+# .play value.go /START_MAIN/,/END_MAIN/
+ 
 * Binary Data
 
 .code img.go /START_IMAGE/,/END_IMAGE/
@@ -123,3 +144,15 @@ Example: [[https://robpike.io][robpike.io]]
 .code loc_valid.go /START_VALIDATE/,/END_VALIDATE/
 
 .play loc_valid.go  /START_MAIN/,/END_MAIN/
+
+* Strings
+
+.play str.go  /START_MAIN/,/END_MAIN/
+
+* Type Pollution
+
+.code stocks.txt
+
+* Anonymous Struct to the Resuce
+
+.play stocks.go /START_PARSE/,/END_PARSE/

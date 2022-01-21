@@ -1,0 +1,21 @@
+$ curl https://api.stocktwits.com/api/2/streams/symbol/AAPL.json
+{
+  "response": { "status": 200 },
+  "symbol": { "id": 686, },
+  "cursor": { "more": true, "since": 428963472, "max": 428956265 },
+  "messages": [
+    {
+      "id": 428963472,
+      "body": "$AAPL safest investment n the markets \nOpportunity knocks\n🍏protection is the best",
+      "created_at": "2022-01-21T15:26:17Z",
+      "user": { "id": 5006864, ...  },
+      "source": { "id": 1149, ...  },
+      "symbols": [
+        {
+          "id": 686,
+          "symbol": "AAPL",
+          "title": "Apple Inc.",
+	  ...
+        }
+      ],
+...
