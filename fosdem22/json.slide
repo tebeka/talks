@@ -5,11 +5,14 @@ Miki Tebeka
 CEO, 353solutions
 miki@353solutions.com
 @tebeka
+d-gobrain-250.jpg
 
 * Serialization
 
 Convert data structures in Go to a sequence of bytes and back.
 Usually done at the "edges" of your program.
+
+.image serialization.png
 
 * JSON
 
@@ -24,13 +27,72 @@ A popular textual serialization format. Has the following types:
 
 * Numbers
 
-.play -edit -numbers int.go
+.play -edit int.go
 
-# * Map
-# 
-# .play -edit -numbers empty-map-ok.go
-# 
-# *A:* 1
-# *B:* panic
-# *C:* Won't compile
-# *D:* 0
+* Time
+
+.code payment.go  /START_PAYMENT/,/END_PAYMENT/
+
+.play payment.go  /START_MAIN/,/END_MAIN/
+
+*
+
+.image wile.jpg
+
+* json.Marshaler
+
+.image marshaler.jpg
+
+`src/time/time.go`
+
+.code tmarsh.go /START/,/END/
+
+* Value
+
+.code value.go /START_VALUE/,/END_VALUE/
+
+{15.4, Celcius} -> 15.4c
+
+* Value - MarshalJSON
+
+.code value.go /START_MJ/,/END_MJ/
+
+.play value.go /START_MAIN/,/END_MAIN/
+
+* Binary Data
+
+.code img.go /START_IMAGE/,/END_IMAGE/
+
+.play img.go /START_MAIN/,/END_MAIN/
+
+* Tags
+
+.play -edit payment_tags.go  /START_PAYMENT/,/END_PAYMENT/
+
+* Streaming Input
+
+.code stream_in.go /START_EVENT/,/END_EVENT/
+
+.play stream_in.go /START_MAIN/,/END_MAIN/
+
+* Streaming Output
+
+.play stream_out.go /START_MAIN/,/END_MAIN/
+
+.code stream.py
+
+* Chunked Transfer Encoding
+
+Chunked transfer encoding is a streaming data transfer mechanism available in version 1.1 of the Hypertext Transfer Protocol (HTTP). - [[https://en.wikipedia.org/wiki/Chunked_transfer_encoding][Wikipedia]]
+
+Example: [[https://robpike.io][robpike.io]]
+
+.code req.txt
+
+* Chunking Example - HTTP Handler
+
+.code chunks.go /BEGIN_HANDLER/,/END_HANDLER/
+
+* Chunking Example - Request
+
+.code chunk_req.txt

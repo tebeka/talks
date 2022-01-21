@@ -1,4 +1,5 @@
 # JSON Serialization - The Fine Print
+Talk at [FOSEDM 2022](https://fosdem.org/2022/schedule/event/go_json/)
 
 A quiz! Consider the following code:
 
@@ -15,14 +16,16 @@ In this talk, we'll journey from the common well lit areas of JSON serialization
 
 ---
 - types
-- streaming
-- missing values
+- binary
 - `json:""` language
     - "-,"
     - ",string"
     - "omitempty"
+
 - time format
-- binary
+
+- streaming
+- missing values
 - mapstructure
 - split encoding types from internal
 - validate
