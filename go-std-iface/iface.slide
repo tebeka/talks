@@ -34,3 +34,18 @@ Task: Compute SHA1 of Gzipped content
 * Computing SHA1
 
 .play sha.go /START_SHA/,/END_SHA/
+
+* Rot13
+
+.code rot13.go /START_ROT13/,/END_ROT13/
+
+* Rot13
+
+.play rot13.go /START_MAIN/,/END_MAIN/
+
+* wc -l
+
+.code wc.go /START_COUNTER/,/END_COUNTER/
+
+* wc -l
+.play wc.go /START_MAIN/,/END_MAIN/

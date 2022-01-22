@@ -5,7 +5,6 @@ import (
 	"crypto/sha1"
 	"fmt"
 	"io"
-	"log"
 	"os"
 )
 
@@ -35,7 +34,8 @@ func fileSHA1(fileName string) (string, error) {
 func main() {
 	sig, err := fileSHA1("system.log.gz")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprintf(os.Stderr, "error: %s", err)
+		os.Exit(1)
 	}
 	fmt.Println(sig)
 
