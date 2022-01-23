@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strings"
 )
 
 // START_COUNTER OMIT
@@ -25,19 +24,15 @@ func (lc *LineCounter) Write(data []byte) (int, error) { // HL
 // END_COUNTER OMIT
 
 func main() {
+	file, err := os.Open("road.txt")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s", err)
+		os.Exit(1)
+	}
+
 	// START_MAIN OMIT
-	poem := `
-The Road goes ever on and on
-Down from the door where it began.
-Now far ahead the Road has gone,
-And I must follow, if I can,
-Pursuing it with eager feet,
-Until it joins some larger way
-Where many paths and errands meet.
-And whither then? I cannot say.
-`
 	var lc LineCounter
-	_, err := io.Copy(&lc, strings.NewReader(poem))
+	_, err = io.Copy(&lc, file)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s", err)
 		os.Exit(1)
