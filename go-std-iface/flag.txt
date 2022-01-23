@@ -1,0 +1,8 @@
+$ go run flag.go -h // HL
+Usage of /tmp/go-build3534883413/b001/exe/flag:
+  -retries value
+	number of retries (default 1)
+$ go run flag.go // HL
+retries: 1
+$ go run flag.go -retries 3 // HL
+retries: 3

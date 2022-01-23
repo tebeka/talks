@@ -60,18 +60,7 @@ And not?
 
 * wc -l
 
-    $ cat road.txt 
-    The Road goes ever on and on
-    Down from the door where it began.
-    Now far ahead the Road has gone,
-    And I must follow, if I can,
-    Pursuing it with eager feet,
-    Until it joins some larger way
-    Where many paths and errands meet.
-    And whither then? I cannot say.
-    $ wc -l road.txt 
-    8 road.txt
-
+.code wc.txt
 
 * Counting Lines
 
@@ -80,9 +69,7 @@ And not?
 
 * HTTP Range Request
 
-    GET /z4d4kWk.jpg HTTP/1.1
-    Host: i.imgur.com
-    Range: bytes=0-1023
+.code range.txt
 
 See [[https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests]] for more details.
 
@@ -90,3 +77,171 @@ See [[https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests]] for mor
 
 .code range.go /START_RANGE/,/END_RANGE/
 .play range.go /START_MAIN/,/END_MAIN/
+
+* fmt.Stringer
+
+	type Stringer interface {
+	    String() string
+	}
+
+src/fmt/print.go
+
+* Fun with Flags
+
+.code flags.go /START_FLAG/,/END_FLAG/
+.play flags.go /START_MAIN/,/END_MAIN/
+
+* fmt.Formatter
+
+	type Formatter interface {
+		Format(f State, verb rune)
+	}
+
+	type State interface {
+		// Write is the function to call to emit formatted output to be printed.
+		Write(b []byte) (n int, err error)
+		// Width returns the value of the width option and whether it has been set.
+		Width() (wid int, ok bool)
+		// Precision returns the value of the precision option and whether it has been set.
+		Precision() (prec int, ok bool)
+
+		// Flag reports whether the flag c, a character, has been set.
+		Flag(c int) bool
+	}
+
+src/fmt/print.go
+
+* User
+
+.code user.go /START_USER/,/END_USER/
+
+* User
+
+.play user.go /START_MAIN/,/END_MAIN/
+
+* JSON
+
+	type Marshaler interface {
+		MarshalJSON() ([]byte, error)
+	}
+
+	type Unmarshaler interface {
+		UnmarshalJSON([]byte) error
+	}
+
+src/encoding/json/encode.go
+
+* Value
+
+.code value.go /START_VALUE/,/END_VALUE/
+
+Value{15.4, Celcius} -> "15.4c"
+
+* Value - MarshalJSON
+
+.code value.go /START_MJ/,/END_MJ/
+.play value.go /START_MAIN/,/END_MAIN/
+
+
+* http.RoundTripper
+
+
+	type RoundTripper interface {
+		// RoundTrip executes a single HTTP transaction, returning
+		// a Response for the provided Request.
+		// ...
+		RoundTrip(*Request) (*Response, error)
+	}
+
+	type Client struct {
+		// Transport specifies the mechanism by which individual
+		// HTTP requests are made.
+		// If nil, DefaultTransport is used.
+		Transport RoundTripper
+		// ...
+	}
+
+src/net/http/client.go
+
+* APIClient
+
+.code api_client_test.go /START_API_CLIENT/,/END_API_CLIENT/
+
+* TestHealthError
+
+.code api_client_test.go /START_TEST/,/END_TEST/
+
+* http.Flusher
+
+	type Flusher interface {
+		// Flush sends any buffered data to the client.
+		Flush()
+	}
+
+src/net/http/server.go
+
+[[https://en.wikipedia.org/wiki/Chunked_transfer_encoding][Chunked transfer encoding]]
+
+* A Crappy Example
+
+[[http://robpike.io][robpike.io]]
+
+.code req.txt
+
+* A Pointless Example 
+
+.code chunks.go /START_HANDLER/,/END_HANDLER/
+
+* Calling
+
+.code chunk_req.txt
+
+* flag.Var
+
+	type Value interface {
+		String() string
+		Set(string) error
+	}
+
+src/flag/flag.go
+
+* IntFlag
+
+.code flag.go /START_INTFLAG/,/END_INTFLAG/
+
+* IntFlag - flag.Var
+
+.code flag.go /START_VAR/,/END_VAR/
+
+* IntFlag - Usage
+
+.code flag.go /START_MAIN/,/END_MAIN/
+.code flag.txt
+
+* testing.TB
+
+	type TB interface {
+		Cleanup(func())
+		Error(args ...interface{})
+		// ...
+	}
+	TB is the interface common to T and B.
+
+
+src/testing/testing.go
+
+* createDB
+
+.code db_test.go /START_CREATE/,/END_CREATE/
+
+`createDB` can be used both in a test or a benchmark.
+
+* And Many More...
+
+- [[https://pkg.go.dev/io/fs][fs]]
+- [[https://pkg.go.dev/sort#Interface][sort.Interface]]
+- [[https://pkg.go.dev/container/heap#Interface][heap.Interface]] 
+- [[https://pkg.go.dev/sync#Locker][sync.Locker]]
+- [[https://pkg.go.dev/net/http#Handler][http.Handler]] (see also [[https://pkg.go.dev/net/http#HandlerFunc][http.HandlerFunc]])
+- [[https://pkg.go.dev/expvar#Var][expvar.Var]]
+- ...
