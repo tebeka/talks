@@ -6,6 +6,17 @@ CEO, 353solutions
 miki@353solutions.com
 @tebeka
 
+* Why?
+
+.image picard-why.jpg
+
+* Data Driven
+
+.code stats.go /START_IFACES/,/END_IFACES/
+
+    $ go run stats.go 
+    total: 355, max: 29, avg: 1.40
+
 * error
 
 src/builtin/builtin.go
