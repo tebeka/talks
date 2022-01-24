@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"go/ast"
 	"go/parser"
@@ -8,6 +9,7 @@ import (
 	"io/fs"
 	"io/ioutil"
 	"log"
+	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -17,10 +19,10 @@ type iface struct {
 	path  string
 	line  int
 	count int
+	name  string
 }
 
 func numMethods(i *ast.InterfaceType) int {
-
 	count := 0
 	for _, m := range i.Methods.List {
 		if len(m.Names) == 0 {
@@ -31,7 +33,45 @@ func numMethods(i *ast.InterfaceType) int {
 		}
 	}
 	return count
+}
 
+func getLine(path string, line int) (string, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	s := bufio.NewScanner(file)
+	for i := 0; i < line; i++ {
+		s.Scan()
+	}
+
+	if err := s.Err(); err != nil {
+		return "", err
+	}
+
+	return s.Text(), nil
+}
+
+func ifaceName(path string, line int) string {
+	code, err := getLine(path, line)
+	if err != nil {
+		return ""
+	}
+	fields := strings.Fields(code)
+	// type Pusher interface {
+	if len(fields) < 3 {
+		return ""
+	}
+	if fields[0] != "type" {
+		return ""
+	}
+	name := fields[1]
+	if !ast.IsExported(name) {
+		return ""
+	}
+	return name
 }
 
 func fileIfaces(path string) ([]iface, error) {
@@ -45,18 +85,16 @@ func fileIfaces(path string) ([]iface, error) {
 		return nil, err
 	}
 
-	// START_IFACES OMIT
 	var ifaces []iface
+	// START_IFACES OMIT
 	ast.Inspect(f, func(n ast.Node) bool {
 		i, ok := n.(*ast.InterfaceType)
 		if !ok {
 			return true
 		}
-
 		if len(i.Methods.List) == 0 { // interface{}
 			return true
 		}
-
 		loc := fset.Position(n.Pos())
 		ifaces = append(ifaces, iface{
 			path:  path,
@@ -78,13 +116,16 @@ func main() {
 
 	err := filepath.Walk(root, func(path string, info fs.FileInfo, err error) error {
 		if info.IsDir() {
-			if strings.Contains(path, "internal") || strings.Contains(path, "test") {
+			if strings.Contains(path, "internal") || strings.Contains(path, "test") || strings.Contains(path, "vendor") {
 				return filepath.SkipDir
 			}
 			return nil
 		}
 
 		if !strings.HasSuffix(path, ".go") {
+			return nil
+		}
+		if strings.HasSuffix(path, "_test.go") {
 			return nil
 		}
 		ifaces, err := fileIfaces(path)
@@ -95,6 +136,15 @@ func main() {
 			return nil
 		}
 		for _, iface := range ifaces {
+			if iface.count == 0 {
+				continue
+			}
+			name := ifaceName(iface.path, iface.line)
+			if name == "" {
+				continue
+			}
+			fmt.Printf("%s:%d %s %d\n", iface.path, iface.line, name, iface.count)
+
 			count++
 			total += iface.count
 			if iface.count > max {

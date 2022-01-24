@@ -15,7 +15,11 @@ miki@353solutions.com
 .code stats.go /START_IFACES/,/END_IFACES/
 
     $ go run stats.go 
-    total: 355, max: 29, avg: 1.40
+    ...
+    /home/miki/sdk/go1.17.6/src/reflect/type.go:38 Type 29
+    ...
+    /home/miki/sdk/go1.17.6/src/text/template/parse/node.go:20 Node 4
+    total: 121, max: 29, avg: 2.17
 
 * error
 
