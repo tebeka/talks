@@ -9,7 +9,7 @@ miki@ardanlabs.com
 
 .image picard-why.jpg
 
-* Data Driven
+* A Data Driven Approach
 
 .code stats.go /START_IFACES/,/END_IFACES/
 
