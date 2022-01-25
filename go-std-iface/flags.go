@@ -20,7 +20,7 @@ func (f Flag) String() string { // HL
 	case Execute:
 		return "execute"
 	default:
-		return fmt.Sprintf("<Flag %d>", f)
+		return fmt.Sprintf("<Flag %d>", f) // HL
 	}
 	// Exercise: Support Read|Write ☺
 }

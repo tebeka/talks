@@ -81,6 +81,14 @@ And not?
 .code wc.go /START_COUNTER/,/END_COUNTER/
 .play wc.go /START_MAIN/,/END_MAIN/
 
+* Optimizations
+
+- `io.ReaderAt`
+- `io.ReaderFrom`
+- `io.WriterAt`
+- `io.WriterTo`
+- `io.Seeker`
+
 * HTTP Range Request
 
 .code range.txt
@@ -131,7 +139,7 @@ src/fmt/print.go
 
 * User
 
-.play user.go /START_MAIN/,/END_MAIN/
+.play -edit user.go /START_MAIN/,/END_MAIN/
 
 * JSON
 

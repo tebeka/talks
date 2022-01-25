@@ -32,9 +32,10 @@ func main() {
 	// START_MAIN OMIT
 	u := User{"Bugs", "duckseason"}
 
+	fmt.Printf("s : %s\n", u)
+	fmt.Printf("v : %v\n", u)
+	fmt.Printf("+v: %+v\n", u)
+	fmt.Printf("#v %#v\n", u)
 	fmt.Println(u)
-	fmt.Printf("%v\n", u)
-	fmt.Printf("%+v\n", u)
-	fmt.Printf("%#v\n", u)
 	// END_MAIN OMIT
 }
