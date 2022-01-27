@@ -64,6 +64,10 @@ And not?
 
 .play sha.go /START_SHA/,/END_SHA/
 
+* Conditionally Computing SHA1
+
+.play sha2.go /START_SHA/,/END_SHA/
+
 # * Rot13
 # 
 # .code rot13.go /START_ROT13/,/END_ROT13/
@@ -94,6 +98,7 @@ And not?
 .code range.txt
 
 See [[https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests]] for more details.
+Also check out [[https://http.cat/404][http.cat]] ☺
 
 * ReadRange
 
@@ -111,25 +116,13 @@ src/fmt/print.go
 * Fun with Flags
 
 .code flags.go /START_FLAG/,/END_FLAG/
-.play flags.go /START_MAIN/,/END_MAIN/
+# .play flags.go /START_MAIN/,/END_MAIN/
+
+See also [[https://pkg.go.dev/golang.org/x/tools/cmd/stringer][x/tools/cmd/stringer]].
 
 * fmt.Formatter
 
-	type Formatter interface {
-		Format(f State, verb rune)
-	}
-
-	type State interface {
-		// Write is the function to call to emit formatted output to be printed.
-		Write(b []byte) (n int, err error)
-		// Width returns the value of the width option and whether it has been set.
-		Width() (wid int, ok bool)
-		// Precision returns the value of the precision option and whether it has been set.
-		Precision() (prec int, ok bool)
-
-		// Flag reports whether the flag c, a character, has been set.
-		Flag(c int) bool
-	}
+.code formatter.txt
 
 src/fmt/print.go
 
@@ -167,21 +160,7 @@ Value{15.4, Celcius} -> "15.4c"
 
 * http.RoundTripper
 
-
-	type RoundTripper interface {
-		// RoundTrip executes a single HTTP transaction, returning
-		// a Response for the provided Request.
-		// ...
-		RoundTrip(*Request) (*Response, error)
-	}
-
-	type Client struct {
-		// Transport specifies the mechanism by which individual
-		// HTTP requests are made.
-		// If nil, DefaultTransport is used.
-		Transport RoundTripper
-		// ...
-	}
+.code round-tripper.txt
 
 src/net/http/client.go
 
@@ -230,6 +209,8 @@ src/flag/flag.go
 * IntFlag
 
 .code flag.go /START_INTFLAG/,/END_INTFLAG/
+
+Example from [[https://github.com/tebeka/flags][github.com/tebeka/flags]].
 
 * IntFlag - flag.Var
 

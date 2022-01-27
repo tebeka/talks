@@ -1,5 +1,3 @@
-GET /z4d4kWk.jpg HTTP/1.1
-Host: i.imgur.com
+GET /404 HTTP/1.1
+Host: http.cat
 Range: bytes=0-1023 // HL
-
-

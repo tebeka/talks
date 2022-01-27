@@ -1,0 +1,14 @@
+type RoundTripper interface {
+	// RoundTrip executes a single HTTP transaction, returning
+	// a Response for the provided Request.
+	// ...
+	RoundTrip(*Request) (*Response, error)
+}
+
+type Client struct {
+	// Transport specifies the mechanism by which individual
+	// HTTP requests are made.
+	// If nil, DefaultTransport is used.
+	Transport RoundTripper // HL
+	// ...
+}
