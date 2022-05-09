@@ -1,7 +1,14 @@
 5 min
+
 # Session title
 
+Uncomment Your Code
+
+
 # Description
+
+Most people agree that comments in code are a good thing, I want to convince your otherwise.
+We'll talk about the dark side of comments, and how avoiding them will make your code better.
 
 
 # Session Outline 
@@ -13,4 +20,9 @@
 > eventually choose XXX: .... [6 min] How did we overcome the challenges: ...
 > [2 min] Summary.
 
+- [2 min] Why comments are bad
+- [3 min] How can you improve your code be removing comments
+
 # Audience Takeaway 
+
+Consider how to improve  your code *before* you add a comment.
