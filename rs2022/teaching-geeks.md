@@ -2,14 +2,14 @@
 
 # Session title
 
-Lesson Learned from Teaching Geeks
+Teaching Geeks: Lesson Learned
 
 # Description
 
-Most of my time in the last eight years is spent on teaching geeks.
-During this time I learned what works, what doesn't work.
+I've been teaching geeks for more than 8 years, during this time I learned what works, what doesn't work.
 
-In this talk, I'll talk about the lessons I learned:
+In this talk, I'll talk about lessons learned:
+
 - How to create appealing teaching materials?
 - What makes an effective lesson?
 - What makes students happy?
@@ -39,7 +39,7 @@ We'll also cover how can you as a student gain more from lessons and how teachin
 
 # Audience Takeaway 
 
-How to get more from courses and how to become an good teacher.
+They should try and teach something to their peers.
 
 # Note
 

@@ -2,12 +2,12 @@
 
 # Session title
 
-Uncomment Your Code
+No Comments
 
 
 # Description
 
-Most people agree that comments in code are a good thing, I want to convince your otherwise.
+Most developers agree that commenting code is good practice, I will convince your otherwise!
 We'll talk about the dark side of comments, and how avoiding them will make your code better.
 
 
@@ -25,4 +25,4 @@ We'll talk about the dark side of comments, and how avoiding them will make your
 
 # Audience Takeaway 
 
-Consider how to improve  your code *before* you add a comment.
+They should *think* before adding comments.
