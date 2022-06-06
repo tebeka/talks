@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 )
 
@@ -24,18 +23,13 @@ func checkPasswd(login, passwd string) bool {
 	return true
 }
 
-func ctxRequestID(ctx context.Context) string {
-	return "e262b9f6-2b43-474b-aae6-a1a6045dd120"
-}
-
 // START_LOGIN OMIT
-func Login(ctx context.Context, login, passwd string) (*User, error) {
+func Login(login, passwd string) (*User, error) {
 	var err error // HL
 	if !checkPasswd(login, passwd) {
 		err := AuthError{
-			Login:     login,
-			Reason:    "password",
-			RequestID: ctxRequestID(ctx),
+			Login:  login,
+			Reason: "password",
 		}
 		return nil, &err
 	}
@@ -48,7 +42,7 @@ func Login(ctx context.Context, login, passwd string) (*User, error) {
 
 func main() {
 	// START_MAIN OMIT
-	if u, err := Login(context.Background(), "daffy", "duck season"); err != nil {
+	if u, err := Login("daffy", "duck season"); err != nil {
 		fmt.Println("ERROR:", err)
 	} else {
 		fmt.Println(u)

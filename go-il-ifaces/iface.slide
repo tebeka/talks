@@ -8,7 +8,7 @@ miki@353solutions.com
 
 - Committing bugs for 25 years
 - 353solutions
-- Help organize this meetup & GopherCon Israel
+- Help organize this meetup (and GopherCon Israel, and PyData Israel)
 - LinkedIn Learning Author
 - Writing Books
 
@@ -118,6 +118,17 @@ The average interface size in the standard library is about 2 methods.
 
 src/builtin/builtin.go
 
+## Let's Lawyer Up! (2)
+
+> A type T implements an interface I if
+>
+> - T is not an interface and is an element of the type set of I; or
+> - T is an interface and the type set of T is a subset of the type set of I.
+> 
+> A value of type T implements an interface if T implements the interface.
+
+[The Go Spec](https://go.dev/ref/spec#Implementing_an_interface)
+
 ## AuthError
 
 .code auth_err.go /START_AE/,/END_AE/
@@ -132,6 +143,8 @@ src/builtin/builtin.go
 .code iface.go /START_IFACE/,/END_IFACE/
 
 > An interface value is nil only if the V (data) and T (itab) are both unset - [Why is my nil error value not equal to nil?](https://go.dev/doc/faq#nil_error)
+
+In our case, `itab` is not `nil`.
 
 ## AuthError - fixed
 
