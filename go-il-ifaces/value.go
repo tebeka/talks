@@ -26,9 +26,9 @@ type Value struct {
 // START_MJ OMIT
 func (v Value) MarshalJSON() ([]byte, error) {
 	// Step 1: Convert to a type encoding/json can handle
-	s := fmt.Sprintf("%f%s", v.Amount, v.Unit)
+	s := fmt.Sprintf("%f%s", v.Amount, v.Unit) // HL
 	// Step 2: Use json.Marshal
-	return json.Marshal(s)
+	return json.Marshal(s) // HL
 	// Step 3: There is no step 3
 }
 
