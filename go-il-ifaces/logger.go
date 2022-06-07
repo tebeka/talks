@@ -31,7 +31,7 @@ func (l Level) String() string {
 // START_LOGGER OMIT
 type Logger struct {
 	level Level
-	w     io.Writer
+	w     io.Writer // HL
 }
 
 func NewLogger(level Level, out io.Writer) Logger {

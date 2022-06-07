@@ -1,4 +1,4 @@
-package stats
+package main
 
 import "fmt"
 
@@ -23,3 +23,13 @@ func Max[T Number](values []T) (T, error) { // HL
 }
 
 // END_MAX OMIT
+
+func main() {
+	// START_MAIN OMIT
+	iVals := []int{2, 7, 1, 8}
+	fmt.Println(Max(iVals))
+
+	fVals := []float64{2, 7, 1, 8}
+	fmt.Println(Max(fVals))
+	// END_MAIN OMIT
+}

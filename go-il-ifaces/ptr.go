@@ -15,9 +15,9 @@ func (s S3File) Sync() error { // HL
 	return nil
 }
 
-type File struct{}
+type OSFile struct{}
 
-func (f *File) Sync() error { // HL
+func (f *OSFile) Sync() error { // HL
 	return nil
 }
 
@@ -26,12 +26,12 @@ func (f *File) Sync() error { // HL
 func main() {
 	// START_MAIN OMIT
 	var s syncer
-	var s3 S3File
 
+	var s3 S3File
 	s = &s3
 	s = s3
 
-	var file File
+	var file OSFile
 	s = &file
 	s = file // HL
 	// END_MAIN OMIT

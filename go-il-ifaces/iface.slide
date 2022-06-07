@@ -6,7 +6,7 @@ miki@353solutions.com
 
 ## Who Am I?
 
-- Committing bugs for 25 years
+- Writing c̶o̶d̶e̶ bugs for 25 years
 - 353solutions
 - Help organize this meetup (and GopherCon Israel, and PyData Israel)
 - LinkedIn Learning Author
@@ -18,13 +18,15 @@ miki@353solutions.com
 
 > You learn something by doing it yourself, by **asking questions**, by thinking, and by experimenting.  - Richard Feynman
 
+.image Richard_Feynman_Nobel.jpg
+
 ## Let's Lawyer Up!
 
 > An interface type defines a **type set** ...
 
-> An interface type is specified by a list of interface elements. An interface element is **either a method or a type** element, where a type element is a union of one or more type terms...
+> An interface type is specified by a **list of interface elements**. An interface element is **either a method or a type** element, where a type element is a union of one or more type terms...
 
-> In its most basic form an interface specifies a (possibly empty) **list of methods**. 
+> In its most **basic form** an interface specifies a (possibly empty) **list of methods**. 
 
 
 [The Go Spec](https://go.dev/ref/spec#Interface_types)
@@ -49,12 +51,7 @@ And not?
 
 Compute the SHA1 signature of the *uncompressed* content.
 
-<br/>
-
-```
-$ cat system.log.gz | gunzip -c | sha1sum
-5512a0192b6de03bbfbd4224f10d8e61da4af420  -
-```
+.code sha1.txt
 
 ## io.Copy & os.Open
 
@@ -66,18 +63,18 @@ Interfaces say what we need, not what we provide.
 
 > Accept interfaces, return structs. - [Jack Lindamood](https://medium.com/@cep21/preemptive-interface-anti-pattern-in-go-54c18ac0668a)
 
-Which is a child of:
+Is it related to the [Robustness principle](https://en.wikipedia.org/wiki/Robustness_principle)?
 
-> Be conservative in what you send, be liberal in what you accept. - Jon Postel (aka [Robustness principle](https://en.wikipedia.org/wiki/Robustness_principle))
+> Be conservative in what you send, be liberal in what you accept. - Jon Postel
 
 
 ## Computing SHA1
 
-.play sha.go /START_SHA/,/END_SHA/
+.play -edit sha.go /START_SHA/,/END_SHA/
 
 ## Conditionally Computing SHA1
 
-.play sha2.go /START_SHA/,/END_SHA/
+.play -edit sha2.go /START_SHA/,/END_SHA/
 
 ## Logger
 
@@ -106,7 +103,7 @@ The average interface size in the standard library is about 2 methods.
 
 ## Thou Shalt Not Pass
 
-.play ptr.go /START_MAIN/,/END_MAIN/
+.play -edit ptr.go /START_MAIN/,/END_MAIN/
 
 ## Thou Shalt Not Pass
 
@@ -134,9 +131,9 @@ src/builtin/builtin.go
 .code auth_err.go /START_AE/,/END_AE/
 .code auth_err.go /START_LOGIN/,/END_LOGIN/
 
-## AuthError - main
+## AuthError - WAT?
 
-.play auth_err.go /START_MAIN/,/END_MAIN/
+.play -edit auth_err.go /START_MAIN/,/END_MAIN/
 
 ## Interface Implementation
 
@@ -146,10 +143,10 @@ src/builtin/builtin.go
 
 In our case, `itab` is not `nil`.
 
-## AuthError - fixed
+## AuthError - Fixed
 
 .code auth_err2.go /START_LOGIN/,/END_LOGIN/
-.play auth_err2.go /START_MAIN/,/END_MAIN/
+.play -edit auth_err2.go /START_MAIN/,/END_MAIN/
 
 ## fmt.Stringer
 
@@ -160,6 +157,10 @@ src/fmt/print.go
 ## Fun with Flags
 
 .code flags.go /START_FLAG/,/END_FLAG/
+
+## Printing Flags
+
+.play -edit flags.go /START_MAIN/,/END_MAIN/
 
 See also [x/tools/cmd/stringer](https://pkg.go.dev/golang.org/x/tools/cmd/stringer).
 
@@ -178,7 +179,7 @@ Value{15.4, Celcius} -> "15.4c"
 ## Value - MarshalJSON
 
 .code value.go /START_MJ/,/END_MJ/
-.play value.go /START_MAIN/,/END_MAIN/
+.play -edit value.go /START_MAIN/,/END_MAIN/
 
 
 ## http.RoundTripper
@@ -210,8 +211,8 @@ Go and read the [sort package examples](https://pkg.go.dev/sort#pkg-examples).
 Notes:
 - Added in [1.18](https://tip.golang.org/doc/go1.18#generics)
 - No generics in the standard library. Only two changes:
-    - `any` is an alias to `interface{}`
-    - There's a `comparable` built-in interface, it is the set of all types which can be compared using == or !=. It may only be used as (or embedded in) a type constraint.
+    - **any** is an alias to `interface{}`
+    - There's a **comparable** built-in interface, it is the set of all types which can be compared using == or !=. It may only be used as (or embedded in) a type constraint.
 
 ## A Statistics Package
 
@@ -219,7 +220,8 @@ Notes:
 
 ## With Generics
 
-.code stats2.go /START_MAX/,/END_MAX/
+.code -edit stats2.go /START_MAX/,/END_MAX/
+.play -edit stats2.go /START_MAIN/,/END_MAIN/
 
 ## Using Generics
 
@@ -233,3 +235,11 @@ See:
 - [x/exp/constraints](https://golang.org/x/exp/constraints)
 - [x/exp/slices](https://golang.org/x/exp/slices)
 - [x/exp/maps](https://golang.org/x/exp/maps)
+
+## Summary
+
+- Don't design with interfaces, discover them. - Rob Pike
+- Accept interfaces, return structs. - [Jack Lindamood](https://medium.com/@cep21/preemptive-interface-anti-pattern-in-go-54c18ac0668a)
+- The bigger the interface, the weaker the abstraction. - [Rob Pike](https://go-proverbs.github.io/)
+- Get familiar with interfaces in the standard library. - Miki Tebeka (just now)
+- You should avoid type parameters until you notice that you are about the write the exact same code multiple times. - [Ian Lance Taylor](https://go.dev/blog/when-generics)

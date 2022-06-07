@@ -30,5 +30,10 @@ func (f Flag) String() string { // HL
 func main() {
 	// START_MAIN OMIT
 	fmt.Println(Execute)
+	fmt.Printf("s: %s\n", Execute)
+	fmt.Printf("v: %v\n", Execute)
+	fmt.Printf("+v: %+v\n", Execute)
+	fmt.Printf("#v: %#v\n", Execute)
+	fmt.Printf("d: %d\n", Execute)
 	// END_MAIN OMIT
 }

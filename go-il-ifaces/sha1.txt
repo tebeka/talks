@@ -1,0 +1,2 @@
+$ cat system.log.gz | gunzip -c | sha1sum
+5512a0192b6de03bbfbd4224f10d8e61da4af420  -

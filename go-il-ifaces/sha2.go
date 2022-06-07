@@ -17,7 +17,7 @@ func fileSHA1(fileName string) (string, error) {
 	}
 	defer file.Close()
 
-	var r io.Reader = file
+	var r io.Reader = file                  // HL
 	if strings.HasSuffix(fileName, ".gz") { // HL
 		var err error
 		r, err = gzip.NewReader(file) // HL
@@ -26,8 +26,8 @@ func fileSHA1(fileName string) (string, error) {
 		}
 	}
 
-	h := sha1.New()                          // HL
-	if _, err := io.Copy(h, r); err != nil { // HL
+	h := sha1.New()
+	if _, err := io.Copy(h, r); err != nil {
 		return "", err
 	}
 
