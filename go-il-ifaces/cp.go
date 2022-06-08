@@ -14,3 +14,10 @@ func Open(name string) (*File, error) {
 }
 
 // END_OPEN OMIT
+
+// START_FILE OMIT
+type File struct {
+	// contains filtered or unexported fields
+}
+
+// END_FILE OMIT

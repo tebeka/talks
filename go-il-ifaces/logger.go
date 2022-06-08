@@ -46,7 +46,7 @@ func (l Logger) log(level Level, format string, args ...interface{}) {
 
 	msg := fmt.Sprintf(format, args...)
 	ts := time.Now().UTC().Format(time.RFC3339)
-	fmt.Fprintf(l.w, "[%s] - %s - %s\n", ts, level, msg)
+	fmt.Fprintf(l.w, "[%s] - %s - %s\n", ts, level, msg) // HL
 }
 
 func (l Logger) Debug(format string, args ...any) {

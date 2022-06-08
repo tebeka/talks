@@ -4,7 +4,7 @@ import "fmt"
 
 // START_MAX OMIT
 type Number interface { // HL
-	~float64 | ~int // HL
+	float64 | int // HL
 } // HL
 
 func Max[T Number](values []T) (T, error) { // HL

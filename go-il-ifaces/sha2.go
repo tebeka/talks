@@ -19,7 +19,7 @@ func fileSHA1(fileName string) (string, error) {
 
 	var r io.Reader = file                  // HL
 	if strings.HasSuffix(fileName, ".gz") { // HL
-		var err error
+		var err error                 // HL
 		r, err = gzip.NewReader(file) // HL
 		if err != nil {
 			return "", err

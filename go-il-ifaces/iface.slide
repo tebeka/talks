@@ -60,6 +60,7 @@ Compute the SHA1 signature of the *uncompressed* content.
 Interfaces say what we need, not what we provide.
 
 .code cp.go /START_OPEN/,/END_OPEN/
+.code cp.go /START_FILE/,/END_FILE/
 
 > Accept interfaces, return structs. - [Jack Lindamood](https://medium.com/@cep21/preemptive-interface-anti-pattern-in-go-54c18ac0668a)
 
@@ -109,6 +110,8 @@ The average interface size in the standard library is about 2 methods.
 
 .image method-sets.png
 
+[Go Loves You](https://youtu.be/Z5cvLOrWlLM?t=356) - Bill Kennedy
+
 ## error
 
 .code error.go /START_ERROR/,/END_ERROR/
@@ -138,6 +141,7 @@ src/builtin/builtin.go
 ## Interface Implementation
 
 .code iface.go /START_IFACE/,/END_IFACE/
+src/runtime/runtime2.go
 
 > An interface value is nil only if the V (data) and T (itab) are both unset - [Why is my nil error value not equal to nil?](https://go.dev/doc/faq#nil_error)
 
@@ -212,7 +216,7 @@ Notes:
 - Added in [1.18](https://tip.golang.org/doc/go1.18#generics)
 - No generics in the standard library. Only two changes:
     - **any** is an alias to `interface{}`
-    - There's a **comparable** built-in interface, it is the set of all types which can be compared using == or !=. It may only be used as (or embedded in) a type constraint.
+    - There's a **comparable** built-in interface, it is the set of all types which can be compared using == or !=. **It may only be used as (or embedded in) a type constraint**.
 
 ## A Statistics Package
 
@@ -231,7 +235,7 @@ From [When To Use Generics](https://go.dev/blog/when-generics) by Ian Lance Tayl
 - Implementing a common method
     -  ... and the implementations for the different types all look the same.
 
-See:
+See also:
 - [x/exp/constraints](https://golang.org/x/exp/constraints)
 - [x/exp/slices](https://golang.org/x/exp/slices)
 - [x/exp/maps](https://golang.org/x/exp/maps)
