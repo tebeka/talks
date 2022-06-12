@@ -18,7 +18,7 @@ class User:
 u7 = User(
     id='007',
     login='Bond',
-    created=datetime(1953, 3, 13, 14, 33, 42, tzinfo=timezone.utc),
+    created=datetime(1953, 3, 13, tzinfo=timezone.utc),
     icon=b'\x89PNG\r\n...',
 )
 
@@ -50,7 +50,7 @@ print(u)
 uQ = User(
     id='81',
     login='Q',
-    created=datetime(1964, 9, 22, 17, 32, 44, tzinfo=timezone.utc),
+    created=datetime(1964, 9, 22, tzinfo=timezone.utc),
     icon=b'\x89PNG\r\n...',
 )
 
@@ -61,11 +61,18 @@ users = [
 
 from socket import socketpair
 
-rs, ws = socketpair()
-r = rs.makefile('rb')
-w = ws.makefile('wb')
+w, r = socketpair()
 
 for u in users:
     data = json.dumps(u.as_dict(), default=default)
     data = data.encode('utf-8')
-    print(b'1', file=w)
+    w.sendall(data + b'\n')
+w.close()
+
+# print(r.recv(1024).decode('utf-8'))
+
+fp = r.makefile('r')
+for line in fp:
+    u = json.loads(line, object_hook=obj_hook)
+    u = User(**u)
+    print('got:', u)
