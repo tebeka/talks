@@ -10,7 +10,7 @@ class User:
     id: str
     login: str
     created: datetime
-    icon: bytes
+    icon: bytes = b''
 
     def as_dict(self):
         return asdict(self)
@@ -31,6 +31,7 @@ u7 = User(
     created=datetime(1953, 3, 13, tzinfo=timezone.utc),
     icon=b'\x89PNG\r\n\x1a\x0a...',
 )
+print('u7:', u7)
 
 
 def default(obj):
@@ -51,7 +52,8 @@ print('u:', u)
 
 def obj_hook(obj):
     obj['created'] = datetime.fromisoformat(obj['created'])
-    obj['icon'] = b64decode(obj['icon'].encode('utf-8'))
+    if 'icon' in obj:
+        obj['icon'] = b64decode(obj['icon'].encode('utf-8'))
     return obj
 
 
@@ -60,7 +62,7 @@ u = User(**request)
 print('u:', u)
 
 
-data = '{"id":"","login":"M","created":"2953-03-13T00:00:00+00:00","icon":""}'
+data = '{"id":"","login":"M","created":"2955-04-05T00:00:00+00:00"}'
 request = json.loads(data, object_hook=obj_hook)
 m = User(**request)
 # m.validate()
