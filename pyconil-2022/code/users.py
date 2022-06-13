@@ -1,7 +1,8 @@
 import json
-from dataclasses import dataclass, asdict
-from datetime import datetime, timezone
-from base64 import b64encode, b64decode
+from base64 import b64decode, b64encode
+from dataclasses import asdict, dataclass
+from datetime import datetime, timedelta, timezone
+from socket import socketpair
 
 
 @dataclass
@@ -14,12 +15,21 @@ class User:
     def as_dict(self):
         return asdict(self)
 
+    def validate(self):
+        if not self.id:
+            raise ValueError('missing id')
+        if not self.login:
+            raise ValueError('missing login')
+        now = datetime.now(tz=timezone.utc)
+        if self.created > now + timedelta(hours=1):
+            raise ValueError('created is in the future')
+
 
 u7 = User(
     id='007',
     login='Bond',
     created=datetime(1953, 3, 13, tzinfo=timezone.utc),
-    icon=b'\x89PNG\r\n...',
+    icon=b'\x89PNG\r\n\x1a\x0a...',
 )
 
 
@@ -30,12 +40,13 @@ def default(obj):
         return b64encode(obj).decode('utf-8')
     return obj
 
+
 data = json.dumps(u7.as_dict(), default=default)
-print(data)
+print('data:', data)
 
 request = json.loads(data)
 u = User(**request)
-print(u)
+print('u:', u)
 
 
 def obj_hook(obj):
@@ -43,23 +54,30 @@ def obj_hook(obj):
     obj['icon'] = b64decode(obj['icon'].encode('utf-8'))
     return obj
 
+
 request = json.loads(data, object_hook=obj_hook)
 u = User(**request)
-print(u)
+print('u:', u)
 
-uQ = User(
+
+data = '{"id":"","login":"M","created":"2953-03-13T00:00:00+00:00","icon":""}'
+request = json.loads(data, object_hook=obj_hook)
+m = User(**request)
+# m.validate()
+print('m:', m)
+
+q = User(
     id='81',
     login='Q',
     created=datetime(1964, 9, 22, tzinfo=timezone.utc),
-    icon=b'\x89PNG\r\n...',
+    icon=b'\x89PNG\r\n\x1a\x0a...',
 )
 
 users = [
     u7,
-    uQ,
+    q,
 ]
 
-from socket import socketpair
 
 w, r = socketpair()
 

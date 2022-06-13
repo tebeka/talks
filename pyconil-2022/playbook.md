@@ -1,0 +1,12 @@
+- terminator + logger (font)
+- ipython + CTRL-L
+
+- Slides
+- User w/o image
+- Try user, then `as_dict`
+- default for time
+- read back - time is str
+- `obj_hook`
+- m data -> validate
+- add image
+- streaming 
