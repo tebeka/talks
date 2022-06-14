@@ -15,9 +15,8 @@
 Comments by Dudu:
 - Remove client/server
 - Explain JSON acronym
-- Remove "why" and "why json"
-    - JSON over XML
-    - JSON over YAML
+- JSON over XML
+- JSON over YAML
 - Binary data no best practice inside JSON
 - Serialization overhead
     - edges
