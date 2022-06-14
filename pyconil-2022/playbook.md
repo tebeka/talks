@@ -2,23 +2,17 @@
 - ipython + CTRL-L
 
 - Slides
+    - Serialization overhead
+    - edges
+    - Explain JSON acronym
+    - JSON over XML, YAML ...
+    - Mention other json libs (ujson, orjson)
 - User w/o image
 - Try user, then `as_dict`
-- default for time
+- default for time -> default.py
 - read back from data - time is str
-- `obj_hook`
+- `obj_hook` -> obj_hook.py
 - m.py data -> validate.py
 - add image -> icon.py
+    - Binary data no best practice inside JSON
 - streaming -> q.py
-
-
-Comments by Dudu:
-- Remove client/server
-- Explain JSON acronym
-- JSON over XML
-- JSON over YAML
-- Binary data no best practice inside JSON
-- Serialization overhead
-    - edges
-- Other json libs? (ujson, orjson)
-- Final words in order of talk
