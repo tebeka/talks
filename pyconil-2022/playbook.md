@@ -21,3 +21,4 @@
 - add image -> icon.py
     - Binary data no best practice inside JSON
 - streaming -> q.py
+    - start w/o close

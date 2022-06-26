@@ -9,3 +9,6 @@ users = [
     u7,
     q,
 ]
+
+from socket import socketpair
+w, r = socketpair()
