@@ -1,5 +1,5 @@
 import json
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
 from datetime import datetime, timezone
 
 
@@ -16,13 +16,8 @@ class User:
     created: datetime
 
     def to_json(self):
-        return json.dumps(asdict(self), default=default)
+        return json.dumps(self)
 
-    @classmethod
-    def from_json(cls, data):
-        d = json.loads(data)
-        u = cls(**d)
-        return u
 
 u7 = User(
     id='007',
@@ -34,5 +29,3 @@ print('u7:', u7)
 
 data = u7.to_json()
 print('data:', data)
-u = User.from_json(data)
-print(u)
