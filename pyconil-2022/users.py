@@ -3,12 +3,6 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 
 
-def default(obj):
-    if isinstance(obj, datetime):
-        return obj.isoformat()
-    return obj
-
-
 @dataclass
 class User:
     id: str
