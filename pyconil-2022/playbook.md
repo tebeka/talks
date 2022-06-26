@@ -13,6 +13,7 @@
 - to_json
     - First w/o `asdict`
 - default for time -> default.py
+    - external schema
 - from_json
     - read back from data - time is str
 - `obj_hook` -> obj_hook.py
