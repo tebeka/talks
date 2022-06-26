@@ -12,8 +12,15 @@ class User:
     created: datetime
     icon: bytes = b''
 
-    def as_dict(self):
-        return asdict(self)
+    def to_json(self):
+        return json.dumps(asdict(self), default=default)
+
+    @classmethod
+    def from_json(cls, data):
+        d = json.loads(data, object_hook=obj_hook)
+        u = cls(**d)
+        u.validate()
+        return u
 
     def validate(self):
         if not self.id:
@@ -42,19 +49,19 @@ def default(obj):
     return obj
 
 
-data = json.dumps(u7.as_dict(), default=default)
+data = u7.to_json()
 print('data:', data)
-
-request = json.loads(data)
-u = User(**request)
-print('u:', u)
-
 
 def obj_hook(obj):
     obj['created'] = datetime.fromisoformat(obj['created'])
     if 'icon' in obj:
         obj['icon'] = b64decode(obj['icon'].encode('utf-8'))
     return obj
+
+u = User.from_json(data)
+print('u:', u)
+
+
 
 
 request = json.loads(data, object_hook=obj_hook)
@@ -84,7 +91,7 @@ users = [
 w, r = socketpair()
 
 for u in users:
-    data = json.dumps(u.as_dict(), default=default)
+    data = u.to_json()
     data = data.encode('utf-8')
     w.sendall(data + b'\n')
 w.close()
@@ -93,6 +100,5 @@ w.close()
 
 fp = r.makefile('r')
 for line in fp:
-    u = json.loads(line, object_hook=obj_hook)
-    u = User(**u)
+    u = User.from_json(line)
     print('got:', u)

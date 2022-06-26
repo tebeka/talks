@@ -1,5 +1,6 @@
 - terminator + logger (font)
 - ipython + CTRL-L
+- 
 
 - Slides
     - Serialization overhead
@@ -8,9 +9,12 @@
     - JSON over XML, YAML ...
     - Mention other json libs (ujson, orjson)
 - User w/o image
-- Try user, then `as_dict`
+    - API objects vs internal
+- to_json
+    - First w/o `asdict`
 - default for time -> default.py
-- read back from data - time is str
+- from_json
+    - read back from data - time is str
 - `obj_hook` -> obj_hook.py
 - m.py data -> validate.py
 - add image -> icon.py

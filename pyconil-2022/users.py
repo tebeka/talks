@@ -9,6 +9,9 @@ class User:
     login: str
     created: datetime
 
+    def to_json(self):
+        return json.dumps(self)
+
 
 u7 = User(
     id='007',
@@ -18,5 +21,5 @@ u7 = User(
 print('u7:', u7)
 
 
-data = json.dumps(u7)
+data = u7.to_json()
 print('data:', data)
