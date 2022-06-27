@@ -17,8 +17,8 @@ class User:
 
     @classmethod
     def from_json(cls, data):
-        d = json.loads(data, object_hook=obj_hook)
-        u = cls(**d)
+        kw = json.loads(data, object_hook=obj_hook)
+        u = cls(**kw)
         u.validate()
         return u
 

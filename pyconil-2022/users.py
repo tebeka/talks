@@ -12,6 +12,12 @@ class User:
     def to_json(self):
         return json.dumps(self)
 
+    @classmethod
+    def from_json(cls, data):
+        kw = json.loads(data)
+        u = cls(**kw)
+        return u
+
 
 u7 = User(
     id='007',
@@ -23,3 +29,4 @@ print('u7:', u7)
 
 data = u7.to_json()
 print('data:', data)
+print('back:', User.from_json(data))
