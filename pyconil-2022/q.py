@@ -10,5 +10,6 @@ users = [
     q,
 ]
 
+# See also HTTP chunked transfer encoding
 from socket import socketpair
 w, r = socketpair()
