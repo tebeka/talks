@@ -3,6 +3,7 @@ from dataclasses import dataclass, asdict
 from datetime import datetime, timezone
 from base64 import b64encode, b64decode
 
+
 def default(obj):
     if isinstance(obj, datetime):
         return obj.isoformat()
@@ -15,6 +16,7 @@ def obj_hook(obj):
     obj['created'] = datetime.fromisoformat(obj['created'])
     obj['icon'] = b64decode(obj['icon'])
     return obj
+
 
 @dataclass
 class User:
@@ -59,8 +61,8 @@ print('back:', User.from_json(data))
 
 # Moonraker
 data = '{"id":"","login":"M","created":"2955-04-05T00:00:00+00:00"}'
-#m = User.from_json(data)
-#
+# m = User.from_json(data)
+# print('m:', m)
 
 
 q = User(
@@ -79,5 +81,14 @@ users = [
 from socket import socketpair
 w, r = socketpair()
 
+# This code was added after the talk since I ran out of time :(
+for u in users:
+    data = u.to_json()
+    data = data.encode('utf-8')
+    w.sendall(data + b'\n')
+w.close()
 
-print('m:', m)
+fp = r.makefile('r')
+for line in fp:
+    u = User.from_json(line)
+    print('got:', u)
