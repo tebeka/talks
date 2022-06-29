@@ -8,9 +8,10 @@
     - Explain JSON acronym
     - JSON over XML, YAML ...
     - Mention other json libs (ujson, orjson)
-- User w/o image
     - API objects vs internal
-- to_json
+- users.py 
+    - to_json
+    - from_json
     - First w/o `asdict`
 - default for time -> default.py
     - external schema
