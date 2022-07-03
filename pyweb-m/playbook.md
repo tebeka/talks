@@ -22,6 +22,7 @@ setup:
     python -m pytest
 
 - Show slide on sys.path
+    python -m site
 
     python -m httpd (fails)
     mv httpd/__init__.py httpd/__main__.py
