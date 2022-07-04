@@ -1,2 +1,4 @@
+.hypothesis
+.pytest_cache/
 build
 calc.egg-info
