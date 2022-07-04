@@ -39,6 +39,7 @@ setup:
     cat tebeka.json | python -m json.tool
     (mention jq)
 
+    (open in vim first, show .vimrc)
     python -m zipfile -l calc-0.1.0-py3-none-any.whl
     cat quote.txt.gz| python -m gzip -d
 
