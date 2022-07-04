@@ -32,12 +32,12 @@ setup:
 
 - Standard library support
     
-    cat data/tebeka.json
-    cat data/tebeka.json | python -m json.tool
+    cat tebeka.json
+    cat tebeka.json | python -m json.tool
     (mention jq)
 
-    python -m zipfile -l data/code.zip
-    cat data/quote.txt.gz| python -m gzip -d
+    python -m zipfile -l code.zip
+    cat quote.txt.gz| python -m gzip -d
 
     python -m http.server
     python -m telnetlib towel.blinkenlights.nl
