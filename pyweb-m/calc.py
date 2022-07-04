@@ -4,8 +4,7 @@ import math
 
 def calc(expr):
     """Returns the calculation of a math expression"""
-    env = math.__dict__.copy()
-    return eval(expr, env)
+    return eval(expr, math.__dict__)
 
 
 def main():

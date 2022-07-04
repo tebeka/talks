@@ -27,6 +27,11 @@ setup:
 - Show slide on sys.path
     python -m site
 
+    cd tests
+    python -c 'import calc'
+    cd ..
+    python -c 'import calc'
+
     python -m httpd (fails)
     mv httpd/__init__.py httpd/__main__.py
     python -m httpd
