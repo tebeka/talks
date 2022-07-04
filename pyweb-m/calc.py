@@ -4,8 +4,7 @@ import math
 
 def calc(expr):
     """Returns the calculation of a math expression"""
-    env = globals().copy()
-    env.update(math.__dict__)
+    env = math.__dict__.copy()
     return eval(expr, env)
 
 
@@ -17,7 +16,8 @@ def main():
     args = parser.parse_args()
 
     try:
-        print(calc(args.expr))
+        val = calc(args.expr)
+        print(val)
     except Exception as err:
         raise SystemExit(f'error: {args.expr!r} - {err}')
 
