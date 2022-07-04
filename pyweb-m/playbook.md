@@ -49,7 +49,7 @@ setup:
     cat quote.txt.gz| python -m gzip -d
 
     python -m http.server
-    python -m freechess.org
+    python -m telnetlib freechess.org
         - also pop, smtp, 
     # python -m telnetlib towel.blinkenlights.nl
 
