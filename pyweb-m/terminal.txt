@@ -1,0 +1,778 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"calc.py" 25L, 540
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"setup.py" 13L, 286
+Talks/pyweb-m/tests on  master [⇡] via py v3.10.5 
+$ cd ..
+
+Talks/pyweb-m on  master [⇡] via py v3.10.5 
+❮ python -c 'import calc'
+
+Talks/pyweb-m on  master [⇡] via py v3.10.5 
+$ ls httpd 
+__init__.py
+
+Talks/pyweb-m on  master [⇡] via py v3.10.5 
+$ cat httpd/__init__.py 
+if __name__ == '__main__':
+    print('starting server ...')
+
+Talks/pyweb-m on  master [⇡] via py v3.10.5 
+$ python -m httpd
+/home/miki/.venv/bin/python: No module named httpd.__main__; 'httpd' is a package and cannot be directly executed
+Talks/pyweb-m on  master [⇡] via py v3.10.5 
+$ cp httpd/__init__.py httpd/__main__.py
+
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 
+$ python -m httpd                       
+starting server ...
+
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 
+$ cat tebeka.json 
+{"login":"tebeka","id":87697,"node_id":"MDQ6VXNlcjg3Njk3","avatar_url":"https://avatars.githubusercontent.com/u/87697?v=4","gravatar_id":"","url":"https://api.github.com/users/tebeka","html_url":"https://github.com/tebeka","followers_url":"https://api.github.com/users/tebeka/followers","following_url":"https://api.github.com/users/tebeka/following{/other_user}","gists_url":"https://api.github.com/users/tebeka/gists{/gist_id}","starred_url":"https://api.github.com/users/tebeka/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/tebeka/subscriptions","organizations_url":"https://api.github.com/users/tebeka/orgs","repos_url":"https://api.github.com/users/tebeka/repos","events_url":"https://api.github.com/users/tebeka/events{/privacy}","received_events_url":"https://api.github.com/users/tebeka/received_events","type":"User","site_admin":false,"name":"Miki Tebeka","company":"353solutions","blog":"https://www.353solutions.com","location":"Israel ","email":null,"hireable":true,"bio":"A person (arguably)\r\n\r\nalso CEO of @353solutions ","twitter_username":"tebeka","public_repos":85,"public_gists":201,"followers":219,"following":3,"created_at":"2009-05-22T21:46:45Z","updated_at":"2022-06-04T06:16:37Z"}%                                                      
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 
+$ cat tebeka.json | python -m json.tool
+{
+    "login": "tebeka",
+    "id": 87697,
+    "node_id": "MDQ6VXNlcjg3Njk3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/87697?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/tebeka",
+    "html_url": "https://github.com/tebeka",
+    "followers_url": "https://api.github.com/users/tebeka/followers",
+    "following_url": "https://api.github.com/users/tebeka/following{/other_user}",
+    "gists_url": "https://api.github.com/users/tebeka/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/tebeka/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/tebeka/subscriptions",
+    "organizations_url": "https://api.github.com/users/tebeka/orgs",
+    "repos_url": "https://api.github.com/users/tebeka/repos",
+    "events_url": "https://api.github.com/users/tebeka/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/tebeka/received_events",
+    "type": "User",
+    "site_admin": false,
+    "name": "Miki Tebeka",
+    "company": "353solutions",
+    "blog": "https://www.353solutions.com",
+    "location": "Israel ",
+    "email": null,
+    "hireable": true,
+    "bio": "A person (arguably)\r\n\r\nalso CEO of @353solutions ",
+    "twitter_username": "tebeka",
+    "public_repos": 85,
+    "public_gists": 201,
+    "followers": 219,
+    "following": 3,
+    "created_at": "2009-05-22T21:46:45Z",
+    "updated_at": "2022-06-04T06:16:37Z"
+}
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 
+$ python -m site
+sys.path = [
+    '/home/miki/Talks/pyweb-m',
+    '/usr/lib/python310.zip',
+    '/usr/lib/python3.10',
+    '/usr/lib/python3.10/lib-dynload',
+    '/home/miki/.venv/lib/python3.10/site-packages',
+]
+USER_BASE: '/home/miki/.local' (exists)
+USER_SITE: '/home/miki/.local/lib/python3.10/site-packages' (exists)
+ENABLE_USER_SITE: False
+
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 
+$ ls *whl
+calc-0.1.0-py3-none-any.whl
+
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 
+$vim calc-0.1.0-py3-none-any.whl 
+
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 took 14s 
+$ docker run --rm -it python:3.10-slim /bin/bash
+root@358077ac7fbf:/# unzip
+bash: unzip: command not found
+root@358077ac7fbf:/# 
+exit
+
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 took 12s 
+$ python -m zipfile -l calc-0.1.0-py3-none-any.whl 
+File Name                                             Modified             Size
+calc.py                                        2022-07-04 14:01:14          540
+calc-0.1.0.dist-info/METADATA                  2022-07-04 14:08:00          201
+calc-0.1.0.dist-info/WHEEL                     2022-07-04 14:08:00           92
+calc-0.1.0.dist-info/entry_points.txt          2022-07-04 14:08:00           36
+calc-0.1.0.dist-info/top_level.txt             2022-07-04 14:08:00            5
+calc-0.1.0.dist-info/RECORD                    2022-07-04 14:08:00          439
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 
+$ cat quote.txt.gz| python -m gzip -d
+Data matures like wine, applications mature like fish.
+    - Connor McDonald
+
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 
+$ python -m http.server
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+127.0.0.1 - - [04/Jul/2022 19:00:07] "GET / HTTP/1.1" 200 -
+^C
+Keyboard interrupt received, exiting.
+
+Talks/pyweb-m on  master [?⇡] via py v3.10.5 took 24s 
+$ python -m dis calc.py            
+  1           0 LOAD_CONST               0 ('Calculate math expressions')
+              2 STORE_NAME               0 (__doc__)
+
+  2           4 LOAD_CONST               1 (0)
+              6 LOAD_CONST               2 (None)
+              8 IMPORT_NAME              1 (math)
+             10 STORE_NAME               1 (math)
+
+  5          12 LOAD_CONST               3 (<code object calc at 0x7f33d21aac30, file "calc.py", line 5>)
+             14 LOAD_CONST               4 ('calc')
+             16 MAKE_FUNCTION            0
+             18 STORE_NAME               2 (calc)
+
+ 10          20 LOAD_CONST               5 (<code object main at 0x7f33d21aad90, file "calc.py", line 10>)
+             22 LOAD_CONST               6 ('main')
+             24 MAKE_FUNCTION            0
+             26 STORE_NAME               3 (main)
+
+ 24          28 LOAD_NAME                4 (__name__)
+             30 LOAD_CONST               7 ('__main__')
+             32 COMPARE_OP               2 (==)
+             34 POP_JUMP_IF_FALSE       23 (to 46)
+
+ 25          36 LOAD_NAME                3 (main)
+             38 CALL_FUNCTION            0
+             40 POP_TOP
+             42 LOAD_CONST               2 (None)
+             44 RETURN_VALUE
+
+ 24     >>   46 LOAD_CONST               2 (None)
+             48 RETURN_VALUE
+
+Disassembly of <code object calc at 0x7f33d21aac30, file "calc.py", line 5>:
+  7           0 LOAD_GLOBAL              0 (eval)
+              2 LOAD_FAST                0 (expr)
+              4 LOAD_GLOBAL              1 (math)
+              6 LOAD_ATTR                2 (__dict__)
+              8 CALL_FUNCTION            2
+             10 RETURN_VALUE
+
+Disassembly of <code object main at 0x7f33d21aad90, file "calc.py", line 10>:
+ 11           0 LOAD_CONST               1 (0)
+              2 LOAD_CONST               2 (('ArgumentParser',))
+              4 IMPORT_NAME              0 (argparse)
+              6 IMPORT_FROM              1 (ArgumentParser)
+              8 STORE_FAST               0 (ArgumentParser)
+             10 POP_TOP
+
+ 13          12 LOAD_FAST                0 (ArgumentParser)
+             14 LOAD_GLOBAL              2 (__doc__)
+             16 LOAD_CONST               3 (('description',))
+             18 CALL_FUNCTION_KW         1
+             20 STORE_FAST               1 (parser)
+
+ 14          22 LOAD_FAST                1 (parser)
+             24 LOAD_ATTR                3 (add_argument)
+             26 LOAD_CONST               4 ('expr')
+             28 LOAD_CONST               5 ('expression to calculate')
+             30 LOAD_CONST               6 (('help',))
+             32 CALL_FUNCTION_KW         2
+             34 POP_TOP
+
+ 15          36 LOAD_FAST                1 (parser)
+             38 LOAD_METHOD              4 (parse_args)
+             40 CALL_METHOD              0
+             42 STORE_FAST               2 (args)
+
+ 17          44 SETUP_FINALLY           12 (to 70)
+
+ 18          46 LOAD_GLOBAL              5 (calc)
+             48 LOAD_FAST                2 (args)
+             50 LOAD_ATTR                6 (expr)
+             52 CALL_FUNCTION            1
+             54 STORE_FAST               3 (val)
+
+ 19          56 LOAD_GLOBAL              7 (print)
+             58 LOAD_FAST                3 (val)
+             60 CALL_FUNCTION            1
+             62 POP_TOP
+             64 POP_BLOCK
+             66 LOAD_CONST               0 (None)
+             68 RETURN_VALUE
+
+ 20     >>   70 DUP_TOP
+             72 LOAD_GLOBAL              8 (Exception)
+             74 JUMP_IF_NOT_EXC_MATCH    57 (to 114)
+             76 POP_TOP
+             78 STORE_FAST               4 (err)
+             80 POP_TOP
+             82 SETUP_FINALLY           11 (to 106)
+
+ 21          84 LOAD_GLOBAL              9 (SystemExit)
+             86 LOAD_CONST               7 ('error: ')
+             88 LOAD_FAST                2 (args)
+             90 LOAD_ATTR                6 (expr)
+             92 FORMAT_VALUE             2 (repr)
+             94 LOAD_CONST               8 (' - ')
+             96 LOAD_FAST                4 (err)
+             98 FORMAT_VALUE             0
+            100 BUILD_STRING             4
+            102 CALL_FUNCTION            1
+            104 RAISE_VARARGS            1
+        >>  106 LOAD_CONST               0 (None)
+            108 STORE_FAST               4 (err)
+            110 DELETE_FAST              4 (err)
+            112 RERAISE                  1
+
+ 20     >>  114 RERAISE                  0
+Talks/pyweb-m on  master [!?⇡] via py v3.10.5 
+$ python -m pdb calc.py 'gcd(20, 8)'
+> /home/miki/Talks/pyweb-m/calc.py(1)<module>()
+-> """Calculate math expressions"""
+(Pdb) b calc
+Breakpoint 1 at /home/miki/Talks/pyweb-m/calc.py:5
+(Pdb) c
+> /home/miki/Talks/pyweb-m/calc.py(7)calc()
+-> return eval(expr, math.__dict__)
+(Pdb) p expr
+'gcd(20, 8)'
+(Pdb) q
+The program exited via sys.exit(). Exit status: error: 'gcd(20, 8)' - 
+> /home/miki/Talks/pyweb-m/calc.py(1)<module>()
+-> """Calculate math expressions"""
+(Pdb) q
+
+Talks/pyweb-m on  master [!?⇡] via py v3.10.5 took 17s 
+$python -m timeit -s 'from calc import calc' 'calc("gcd(20, 8)")'
+50000 loops, best of 5: 5.83 usec per loop
+
+Talks/pyweb-m on  master [!?⇡] via py v3.10.5 took 2s 
+$ python -m cProfile 'calc("gcd(20, 8)")'
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/usr/lib/python3.10/cProfile.py", line 190, in <module>
+    main()
+  File "/usr/lib/python3.10/cProfile.py", line 170, in main
+    with open(progname, 'rb') as fp:
+FileNotFoundError: [Errno 2] No such file or directory: 'calc("gcd(20, 8)")'
+
+Talks/pyweb-m on  master [!?⇡] via py v3.10.5 
+❮ python -m cProfile calc.py "gcd(20, 8)"   
+4
+         4011 function calls (3931 primitive calls) in 0.005 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:100(acquire)
+     10/3    0.000    0.000    0.004    0.001 <frozen importlib._bootstrap>:1022(_find_and_load)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:125(release)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:165(__init__)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:169(__enter__)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:173(__exit__)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:179(_get_module_lock)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:198(cb)
+     14/4    0.000    0.000    0.003    0.001 <frozen importlib._bootstrap>:233(_call_with_frames_removed)
+      178    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:244(_verbose_message)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:357(__init__)
+       16    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:391(cached)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:404(parent)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:412(has_location)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:48(_new_module)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:492(_init_module_attrs)
+       10    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:564(module_from_spec)
+     10/3    0.000    0.000    0.004    0.001 <frozen importlib._bootstrap>:664(_load_unlocked)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:71(__init__)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:746(find_spec)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:826(find_spec)
+       30    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:893(__enter__)
+       30    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:897(__exit__)
+       10    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap>:921(_find_spec)
+     10/3    0.000    0.000    0.004    0.001 <frozen importlib._bootstrap>:987(_find_and_load_unlocked)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1040(__init__)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1065(get_filename)
+       12    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1070(get_data)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1089(path_stats)
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1163(__init__)
+        4    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1174(create_module)
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1182(exec_module)
+      160    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:126(_path_join)
+      160    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:128(<listcomp>)
+       12    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:132(_path_split)
+       24    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:134(<genexpr>)
+       44    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1356(_path_importer_cache)
+       10    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1399(_get_spec)
+       50    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:140(_path_stat)
+       10    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1431(find_spec)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:150(_path_is_mode_type)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1531(_get_spec)
+       34    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:1536(find_spec)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:159(_path_isfile)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:180(_path_isabs)
+       12    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:380(cache_from_source)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:510(_get_cached)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:542(_check_name_wrapper)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:585(_classify_pyc)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:646(_validate_hash_pyc)
+        6    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:670(_compile_bytecode)
+       34    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:71(_relax_case)
+       10    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:721(spec_from_file_location)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:84(_unpack_uint32)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:874(create_module)
+      6/2    0.000    0.000    0.003    0.002 <frozen importlib._bootstrap_external>:877(exec_module)
+        6    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:950(get_code)
+        1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 __init__.py:328(namedtuple)
+        4    0.000    0.000    0.000    0.000 __init__.py:402(<genexpr>)
+        3    0.000    0.000    0.000    0.000 __init__.py:43(normalize_encoding)
+       12    0.000    0.000    0.000    0.000 _collections_abc.py:816(get)
+        1    0.000    0.000    0.000    0.000 _compression.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 _compression.py:33(DecompressReader)
+        1    0.000    0.000    0.000    0.000 _compression.py:9(BaseStream)
+        4    0.000    0.000    0.000    0.000 abc.py:105(__new__)
+        1    0.000    0.000    0.000    0.000 argparse.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 argparse.py:1034(_AppendConstAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:1061(_CountAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:107(_AttributeHolder)
+        1    0.000    0.000    0.000    0.000 argparse.py:1084(_HelpAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:1086(__init__)
+        1    0.000    0.000    0.000    0.000 argparse.py:1103(_VersionAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:1129(_SubParsersAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:1131(_ChoicesPseudoAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:1222(_ExtendAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:1233(FileType)
+        1    0.000    0.000    0.000    0.000 argparse.py:1288(Namespace)
+        1    0.000    0.000    0.000    0.000 argparse.py:1295(__init__)
+        1    0.000    0.000    0.000    0.000 argparse.py:1308(_ActionsContainer)
+        3    0.000    0.000    0.000    0.000 argparse.py:1310(__init__)
+       37    0.000    0.000    0.000    0.000 argparse.py:1363(register)
+        5    0.000    0.000    0.000    0.000 argparse.py:1367(_registry_get)
+        2    0.000    0.000    0.003    0.002 argparse.py:1392(add_argument)
+        2    0.000    0.000    0.000    0.000 argparse.py:1443(add_argument_group)
+        2    0.000    0.000    0.000    0.000 argparse.py:1453(_add_action)
+        1    0.000    0.000    0.000    0.000 argparse.py:1517(_get_positional_kwargs)
+        1    0.000    0.000    0.000    0.000 argparse.py:1533(_get_optional_kwargs)
+        1    0.000    0.000    0.000    0.000 argparse.py:154(HelpFormatter)
+        2    0.000    0.000    0.000    0.000 argparse.py:1567(_pop_action_class)
+        3    0.000    0.000    0.000    0.000 argparse.py:1571(_get_handler)
+        2    0.000    0.000    0.000    0.000 argparse.py:1580(_check_conflict)
+        2    0.000    0.000    0.003    0.001 argparse.py:161(__init__)
+        1    0.000    0.000    0.000    0.000 argparse.py:1618(_ArgumentGroup)
+        2    0.000    0.000    0.000    0.000 argparse.py:1620(__init__)
+        2    0.000    0.000    0.000    0.000 argparse.py:1642(_add_action)
+        1    0.000    0.000    0.000    0.000 argparse.py:1652(_MutuallyExclusiveGroup)
+        1    0.000    0.000    0.000    0.000 argparse.py:1672(ArgumentParser)
+        1    0.000    0.000    0.004    0.004 argparse.py:1694(__init__)
+        1    0.000    0.000    0.000    0.000 argparse.py:1734(identity)
+        2    0.000    0.000    0.000    0.000 argparse.py:1805(_add_action)
+        1    0.000    0.000    0.000    0.000 argparse.py:1817(_get_positional_actions)
+        1    0.000    0.000    0.000    0.000 argparse.py:1818(<listcomp>)
+        1    0.000    0.000    0.000    0.000 argparse.py:1825(parse_args)
+        1    0.000    0.000    0.000    0.000 argparse.py:1832(parse_known_args)
+        1    0.000    0.000    0.000    0.000 argparse.py:1871(_parse_known_args)
+        1    0.000    0.000    0.000    0.000 argparse.py:1918(take_action)
+        1    0.000    0.000    0.000    0.000 argparse.py:201(_Section)
+        1    0.000    0.000    0.000    0.000 argparse.py:2016(consume_positionals)
+        2    0.000    0.000    0.000    0.000 argparse.py:203(__init__)
+        1    0.000    0.000    0.000    0.000 argparse.py:2168(_match_arguments_partial)
+        1    0.000    0.000    0.000    0.000 argparse.py:2174(<listcomp>)
+        1    0.000    0.000    0.000    0.000 argparse.py:2178(<listcomp>)
+        1    0.000    0.000    0.000    0.000 argparse.py:2184(_parse_optional)
+        1    0.000    0.000    0.000    0.000 argparse.py:2287(_get_nargs_pattern)
+        1    0.000    0.000    0.000    0.000 argparse.py:2420(_get_values)
+        1    0.000    0.000    0.000    0.000 argparse.py:2476(_get_value)
+        1    0.000    0.000    0.000    0.000 argparse.py:2502(_check_value)
+        2    0.000    0.000    0.003    0.001 argparse.py:2542(_get_formatter)
+        2    0.000    0.000    0.000    0.000 argparse.py:575(_metavar_formatter)
+        2    0.000    0.000    0.000    0.000 argparse.py:584(format)
+        2    0.000    0.000    0.000    0.000 argparse.py:591(_format_args)
+        1    0.000    0.000    0.000    0.000 argparse.py:613(<listcomp>)
+        1    0.000    0.000    0.000    0.000 argparse.py:666(RawDescriptionHelpFormatter)
+        1    0.000    0.000    0.000    0.000 argparse.py:677(RawTextHelpFormatter)
+        1    0.000    0.000    0.000    0.000 argparse.py:688(ArgumentDefaultsHelpFormatter)
+        1    0.000    0.000    0.000    0.000 argparse.py:705(MetavarTypeHelpFormatter)
+        1    0.000    0.000    0.000    0.000 argparse.py:740(ArgumentError)
+        1    0.000    0.000    0.000    0.000 argparse.py:760(ArgumentTypeError)
+        1    0.000    0.000    0.000    0.000 argparse.py:769(Action)
+        2    0.000    0.000    0.000    0.000 argparse.py:820(__init__)
+        1    0.000    0.000    0.000    0.000 argparse.py:863(BooleanOptionalAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:904(_StoreAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:906(__init__)
+        1    0.000    0.000    0.000    0.000 argparse.py:935(__call__)
+        1    0.000    0.000    0.000    0.000 argparse.py:939(_StoreConstAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:962(_StoreTrueAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:979(_StoreFalseAction)
+        1    0.000    0.000    0.000    0.000 argparse.py:996(_AppendAction)
+        1    0.000    0.000    0.001    0.001 bz2.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 bz2.py:26(BZ2File)
+        1    0.000    0.000    0.005    0.005 calc.py:1(<module>)
+        1    0.000    0.000    0.005    0.005 calc.py:10(main)
+        1    0.000    0.000    0.000    0.000 calc.py:5(calc)
+        8    0.000    0.000    0.000    0.000 enum.py:359(__call__)
+        8    0.000    0.000    0.000    0.000 enum.py:678(__new__)
+        2    0.000    0.000    0.000    0.000 enum.py:801(value)
+        4    0.000    0.000    0.000    0.000 enum.py:986(__and__)
+        1    0.000    0.000    0.000    0.000 fnmatch.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 functools.py:35(update_wrapper)
+        1    0.000    0.000    0.000    0.000 functools.py:479(lru_cache)
+        1    0.000    0.000    0.000    0.000 functools.py:518(decorating_function)
+       12    0.000    0.000    0.000    0.000 genericpath.py:16(exists)
+        6    0.000    0.000    0.000    0.000 gettext.py:211(_expand_lang)
+        3    0.000    0.000    0.000    0.000 gettext.py:542(find)
+        3    0.000    0.000    0.000    0.000 gettext.py:583(translation)
+        3    0.000    0.000    0.000    0.000 gettext.py:664(dgettext)
+        3    0.000    0.000    0.000    0.000 gettext.py:741(gettext)
+        3    0.000    0.000    0.000    0.000 locale.py:362(_replace_encoding)
+        6    0.000    0.000    0.000    0.000 locale.py:396(normalize)
+        1    0.000    0.000    0.000    0.000 lzma.py:1(<module>)
+        1    0.000    0.000    0.000    0.000 lzma.py:38(LZMAFile)
+       16    0.000    0.000    0.000    0.000 os.py:674(__getitem__)
+       16    0.000    0.000    0.000    0.000 os.py:754(encode)
+        3    0.000    0.000    0.000    0.000 os.py:758(decode)
+        1    0.000    0.000    0.000    0.000 posixpath.py:140(basename)
+       13    0.000    0.000    0.000    0.000 posixpath.py:41(get_sep)
+       12    0.000    0.000    0.000    0.000 posixpath.py:71(join)
+        1    0.000    0.000    0.000    0.000 re.py:187(match)
+        7    0.000    0.000    0.000    0.000 re.py:249(compile)
+        8    0.000    0.000    0.001    0.000 re.py:288(_compile)
+        1    0.000    0.000    0.002    0.002 shutil.py:1(<module>)
+        2    0.000    0.000    0.000    0.000 shutil.py:1344(get_terminal_size)
+        1    0.000    0.000    0.000    0.000 shutil.py:59(Error)
+        1    0.000    0.000    0.000    0.000 shutil.py:62(SameFileError)
+        1    0.000    0.000    0.000    0.000 shutil.py:65(SpecialFileError)
+        1    0.000    0.000    0.000    0.000 shutil.py:69(ExecError)
+        1    0.000    0.000    0.000    0.000 shutil.py:72(ReadError)
+        1    0.000    0.000    0.000    0.000 shutil.py:75(RegistryError)
+        1    0.000    0.000    0.000    0.000 shutil.py:79(_GiveupOnFastCopy)
+        4    0.000    0.000    0.000    0.000 sre_compile.py:265(_compile_charset)
+        4    0.000    0.000    0.000    0.000 sre_compile.py:292(_optimize_charset)
+        7    0.000    0.000    0.000    0.000 sre_compile.py:447(_simple)
+        1    0.000    0.000    0.000    0.000 sre_compile.py:456(_generate_overlap_table)
+        8    0.000    0.000    0.000    0.000 sre_compile.py:477(_get_iscased)
+      5/4    0.000    0.000    0.000    0.000 sre_compile.py:485(_get_literal_prefix)
+        3    0.000    0.000    0.000    0.000 sre_compile.py:516(_get_charset_prefix)
+        4    0.000    0.000    0.000    0.000 sre_compile.py:560(_compile_info)
+        8    0.000    0.000    0.000    0.000 sre_compile.py:619(isstring)
+        4    0.000    0.000    0.000    0.000 sre_compile.py:622(_code)
+        4    0.000    0.000    0.000    0.000 sre_compile.py:783(compile)
+        3    0.000    0.000    0.000    0.000 sre_compile.py:81(_combine_flags)
+     14/4    0.000    0.000    0.000    0.000 sre_compile.py:87(_compile)
+       14    0.000    0.000    0.000    0.000 sre_parse.py:112(__init__)
+       34    0.000    0.000    0.000    0.000 sre_parse.py:161(__len__)
+        4    0.000    0.000    0.000    0.000 sre_parse.py:163(__delitem__)
+       85    0.000    0.000    0.000    0.000 sre_parse.py:165(__getitem__)
+        7    0.000    0.000    0.000    0.000 sre_parse.py:169(__setitem__)
+       21    0.000    0.000    0.000    0.000 sre_parse.py:173(append)
+     15/5    0.000    0.000    0.000    0.000 sre_parse.py:175(getwidth)
+        4    0.000    0.000    0.000    0.000 sre_parse.py:225(__init__)
+       31    0.000    0.000    0.000    0.000 sre_parse.py:234(__next)
+       15    0.000    0.000    0.000    0.000 sre_parse.py:250(match)
+       25    0.000    0.000    0.000    0.000 sre_parse.py:255(get)
+       13    0.000    0.000    0.000    0.000 sre_parse.py:287(tell)
+        8    0.000    0.000    0.000    0.000 sre_parse.py:356(_escape)
+      5/4    0.000    0.000    0.000    0.000 sre_parse.py:436(_parse_sub)
+      6/5    0.000    0.000    0.000    0.000 sre_parse.py:494(_parse)
+        4    0.000    0.000    0.000    0.000 sre_parse.py:76(__init__)
+       10    0.000    0.000    0.000    0.000 sre_parse.py:82(groups)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:85(opengroup)
+        4    0.000    0.000    0.000    0.000 sre_parse.py:928(fix_flags)
+        4    0.000    0.000    0.000    0.000 sre_parse.py:944(parse)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:97(closegroup)
+        2    0.000    0.000    0.000    0.000 types.py:176(__get__)
+        4    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x7f813c3a6020}
+        4    0.000    0.000    0.000    0.000 {built-in method _abc._abc_init}
+        6    0.000    0.000    0.000    0.000 {built-in method _imp._fix_co_filename}
+       50    0.000    0.000    0.000    0.000 {built-in method _imp.acquire_lock}
+        4    0.001    0.000    0.001    0.000 {built-in method _imp.create_dynamic}
+        4    0.000    0.000    0.000    0.000 {built-in method _imp.exec_dynamic}
+       10    0.000    0.000    0.000    0.000 {built-in method _imp.is_builtin}
+       10    0.000    0.000    0.000    0.000 {built-in method _imp.is_frozen}
+       50    0.000    0.000    0.000    0.000 {built-in method _imp.release_lock}
+        6    0.000    0.000    0.000    0.000 {built-in method _imp.source_hash}
+        4    0.000    0.000    0.000    0.000 {built-in method _sre.compile}
+       20    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+       20    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
+    40/38    0.000    0.000    0.001    0.000 {built-in method builtins.__build_class__}
+        5    0.000    0.000    0.000    0.000 {built-in method builtins.callable}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.eval}
+      7/1    0.000    0.000    0.005    0.005 {built-in method builtins.exec}
+       70    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+       65    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+      216    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.iter}
+  153/139    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+       16    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+       36    0.000    0.000    0.000    0.000 {built-in method builtins.min}
+        6    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+        7    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
+        6    0.000    0.000    0.000    0.000 {built-in method from_bytes}
+       12    0.000    0.000    0.000    0.000 {built-in method io.open_code}
+        6    0.001    0.000    0.001    0.000 {built-in method marshal.loads}
+        1    0.000    0.000    0.000    0.000 {built-in method math.gcd}
+       35    0.000    0.000    0.000    0.000 {built-in method posix.fspath}
+        2    0.000    0.000    0.000    0.000 {built-in method posix.get_terminal_size}
+       10    0.000    0.000    0.000    0.000 {built-in method posix.getcwd}
+       62    0.000    0.000    0.000    0.000 {built-in method posix.stat}
+        1    0.000    0.000    0.000    0.000 {built-in method sys._getframe}
+        4    0.000    0.000    0.000    0.000 {built-in method sys.intern}
+        4    0.000    0.000    0.000    0.000 {method '__contains__' of 'frozenset' objects}
+       12    0.000    0.000    0.000    0.000 {method '__exit__' of '_io._IOBase' objects}
+       20    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+        5    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+      207    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        3    0.000    0.000    0.000    0.000 {method 'decode' of 'bytes' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+       16    0.000    0.000    0.000    0.000 {method 'encode' of 'str' objects}
+       50    0.000    0.000    0.000    0.000 {method 'endswith' of 'str' objects}
+        5    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+        2    0.000    0.000    0.000    0.000 {method 'fileno' of '_io.TextIOWrapper' objects}
+        4    0.000    0.000    0.000    0.000 {method 'find' of 'bytearray' objects}
+       18    0.000    0.000    0.000    0.000 {method 'find' of 'str' objects}
+       59    0.000    0.000    0.000    0.000 {method 'get' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 {method 'groups' of 're.Match' objects}
+        3    0.000    0.000    0.000    0.000 {method 'index' of 'str' objects}
+       12    0.000    0.000    0.000    0.000 {method 'isalnum' of 'str' objects}
+       12    0.000    0.000    0.000    0.000 {method 'isascii' of 'str' objects}
+        4    0.000    0.000    0.000    0.000 {method 'isidentifier' of 'str' objects}
+        4    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+      180    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+       12    0.000    0.000    0.000    0.000 {method 'lower' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'lstrip' of 'str' objects}
+        3    0.000    0.000    0.000    0.000 {method 'match' of 're.Pattern' objects}
+       13    0.000    0.000    0.000    0.000 {method 'pop' of 'dict' objects}
+       12    0.000    0.000    0.000    0.000 {method 'read' of '_io.BufferedReader' objects}
+        1    0.000    0.000    0.000    0.000 {method 'remove' of 'list' objects}
+        8    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        6    0.000    0.000    0.000    0.000 {method 'reverse' of 'list' objects}
+       13    0.000    0.000    0.000    0.000 {method 'rfind' of 'str' objects}
+       66    0.000    0.000    0.000    0.000 {method 'rpartition' of 'str' objects}
+      332    0.000    0.000    0.000    0.000 {method 'rstrip' of 'str' objects}
+       43    0.000    0.000    0.000    0.000 {method 'setdefault' of 'dict' objects}
+        7    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+       50    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+
+
+Talks/pyweb-m on  master [!?⇡] via py v3.10.5 
+$ python -m this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!se.py:234(__next)
+       15    0.000    0.000    0.000    0.000 sre_parse.py:250(match)
+       25    0.000    0.000    0.000    0.000 sre_parse.py:255(get)
+       13    0.000    0.000    0.000    0.000 sre_parse.py:287(tell)
+        8    0.000    0.000    0.000    0.000 sre_parse.py:356(_escape)
+      5/4    0.000    0.000    0.000    0.000 sre_parse.py:436(_parse_sub)
+      6/5    0.000    0.000    0.000    0.000 sre_parse.py:494(_parse)
+        4    0.000    0.000    0.000    0.000 sre_parse.py:76(__init__)
+       10    0.000    0.000    0.000    0.000 sre_parse.py:82(groups)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:85(opengroup)
+        4    0.000    0.000    0.000    0.000 sre_parse.py:928(fix_flags)
+        4    0.000    0.000    0.000    0.000 sre_parse.py:944(parse)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:97(closegroup)
+        2    0.000    0.000    0.000    0.000 types.py:176(__get__)
+        4    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x7f813c3a6020}
+        4    0.000    0.000    0.000    0.000 {built-in method _abc._abc_init}
+        6    0.000    0.000    0.000    0.000 {built-in method _imp._fix_co_filename}
+       50    0.000    0.000    0.000    0.000 {built-in method _imp.acquire_lock}
+        4    0.001    0.000    0.001    0.000 {built-in method _imp.create_dynamic}
+        4    0.000    0.000    0.000    0.000 {built-in method _imp.exec_dynamic}
+       10    0.000    0.000    0.000    0.000 {built-in method _imp.is_builtin}
+       10    0.000    0.000    0.000    0.000 {built-in method _imp.is_frozen}
+       50    0.000    0.000    0.000    0.000 {built-in method _imp.release_lock}
+        6    0.000    0.000    0.000    0.000 {built-in method _imp.source_hash}
+        4    0.000    0.000    0.000    0.000 {built-in method _sre.compile}
+       20    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+       20    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
+    40/38    0.000    0.000    0.001    0.000 {built-in method builtins.__build_class__}
+        5    0.000    0.000    0.000    0.000 {built-in method builtins.callable}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.eval}
+      7/1    0.000    0.000    0.005    0.005 {built-in method builtins.exec}
+       70    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+       65    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+      216    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.iter}
+  153/139    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+       16    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+       36    0.000    0.000    0.000    0.000 {built-in method builtins.min}
+        6    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+        7    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
+        6    0.000    0.000    0.000    0.000 {built-in method from_bytes}
+       12    0.000    0.000    0.000    0.000 {built-in method io.open_code}
+        6    0.001    0.000    0.001    0.000 {built-in method marshal.loads}
+        1    0.000    0.000    0.000    0.000 {built-in method math.gcd}
+       35    0.000    0.000    0.000    0.000 {built-in method posix.fspath}
+        2    0.000    0.000    0.000    0.000 {built-in method posix.get_terminal_size}
+       10    0.000    0.000    0.000    0.000 {built-in method posix.getcwd}
+       62    0.000    0.000    0.000    0.000 {built-in method posix.stat}
+        1    0.000    0.000    0.000    0.000 {built-in method sys._getframe}
+        4    0.000    0.000    0.000    0.000 {built-in method sys.intern}
+        4    0.000    0.000    0.000    0.000 {method '__contains__' of 'frozenset' objects}
+       12    0.000    0.000    0.000    0.000 {method '__exit__' of '_io._IOBase' objects}
+       20    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+        5    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+      207    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        3    0.000    0.000    0.000    0.000 {method 'decode' of 'bytes' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+       16    0.000    0.000    0.000    0.000 {method 'encode' of 'str' objects}
+       50    0.000    0.000    0.000    0.000 {method 'endswith' of 'str' objects}
+        5    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+        2    0.000    0.000    0.000    0.000 {method 'fileno' of '_io.TextIOWrapper' objects}
+        4    0.000    0.000    0.000    0.000 {method 'find' of 'bytearray' objects}
+       18    0.000    0.000    0.000    0.000 {method 'find' of 'str' objects}
+       59    0.000    0.000    0.000    0.000 {method 'get' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 {method 'groups' of 're.Match' objects}
+        3    0.000    0.000    0.000    0.000 {method 'index' of 'str' objects}
+       12    0.000    0.000    0.000    0.000 {method 'isalnum' of 'str' objects}
+       12    0.000    0.000    0.000    0.000 {method 'isascii' of 'str' objects}
+        4    0.000    0.000    0.000    0.000 {method 'isidentifier' of 'str' objects}
+        4    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+      180    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+       12    0.000    0.000    0.000    0.000 {method 'lower' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'lstrip' of 'str' objects}
+        3    0.000    0.000    0.000    0.000 {method 'match' of 're.Pattern' objects}
+       13    0.000    0.000    0.000    0.000 {method 'pop' of 'dict' objects}
+       12    0.000    0.000    0.000    0.000 {method 'read' of '_io.BufferedReader' objects}
+        1    0.000    0.000    0.000    0.000 {method 'remove' of 'list' objects}
+        8    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        6    0.000    0.000    0.000    0.000 {method 'reverse' of 'list' objects}
+       13    0.000    0.000    0.000    0.000 {method 'rfind' of 'str' objects}
+       66    0.000    0.000    0.000    0.000 {method 'rpartition' of 'str' objects}
+      332    0.000    0.000    0.000    0.000 {method 'rstrip' of 'str' objects}
+       43    0.000    0.000    0.000    0.000 {method 'setdefault' of 'dict' objects}
+        7    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+       50    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+
+
+
+Talks/pyweb-m on  master [!?⇡] via py v3.10.5 
+$ python -m this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+
+Talks/pyweb-m on  master [!?⇡] via py v3.10.5 
+$
