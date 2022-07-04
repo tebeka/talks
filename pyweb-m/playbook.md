@@ -16,6 +16,8 @@ setup:
     python -m calc 2*pi
 
 - Why: no need for script
+    - setup.py, entry_points
+
 - tests/test_calc.py
     
     pytest (fails)

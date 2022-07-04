@@ -9,7 +9,7 @@ def calc(expr):
     return eval(expr, env)
 
 
-if __name__ == '__main__':
+def main():
     from argparse import ArgumentParser
 
     parser = ArgumentParser(description=__doc__)
@@ -20,3 +20,7 @@ if __name__ == '__main__':
         print(calc(args.expr))
     except Exception as err:
         raise SystemExit(f'error: {args.expr!r} - {err}')
+
+
+if __name__ == '__main__':
+    main()
