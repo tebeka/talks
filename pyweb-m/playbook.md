@@ -44,7 +44,10 @@ setup:
     cat tebeka.json | python -m json.tool
     (mention jq)
 
+    ls *.whl
     (open in vim first, show .vimrc)
+    docker run -it --rm python:3.10-slim /bin/bash
+    root@4a0e20bfb282:/# unzip
     python -m zipfile -l calc-0.1.0-py3-none-any.whl
     cat quote.txt.gz| python -m gzip -d
 
