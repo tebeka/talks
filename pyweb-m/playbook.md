@@ -19,6 +19,7 @@ setup:
     - setup.py, entry_points
 
 - tests/test_calc.py
+    - why tests in separate dir
     
     pytest (fails)
     python -m pytest
