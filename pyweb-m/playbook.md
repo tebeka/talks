@@ -43,7 +43,9 @@ setup:
     cat quote.txt.gz| python -m gzip -d
 
     python -m http.server
-    python -m telnetlib towel.blinkenlights.nl
+    python -m freechess.org
+        - also pop, smtp, 
+    # python -m telnetlib towel.blinkenlights.nl
 
     python -m dis calc.py
     python -m pdb calc.py "gcd(20, 8)"
