@@ -5,6 +5,7 @@
 For example stringer in Go.
 Fixed parser (RDH example)
 Mention generics
+Generate `_ import` for config
 
 # Get Comfortable
 
