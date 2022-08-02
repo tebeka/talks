@@ -1,5 +1,11 @@
 # Talk Ideas
 
+# Code that writes code
+
+For example stringer in Go.
+Fixed parser (RDH example)
+Mention generics
+
 # Get Comfortable
 
 How being in your comfort zone is better. More productive, less pressure. Drive analogy - focus on road, not on car.
@@ -8,13 +14,6 @@ How being in your comfort zone is better. More productive, less pressure. Drive 
 
 - https://www.youtube.com/watch?v=vLxX3yZmw5Q
 - Plan to throw one away ...
-
-## python -m
-- built-in -m (zipfile, telnet, ... https://pythonwise.blogspot.com/2015/01/python-m.html)
-- `python -m pip install` vs `pip install`
-- same for pytest
-- `__main__.py`, `if __name__ == '__main__':` ...
-- sys.path, site.py and friends
 
 ## Mutation, Rebinding & Scope
 - Mutation vs rebinding
