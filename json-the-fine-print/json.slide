@@ -1,0 +1,207 @@
+# JSON
+the fine print
+
+Miki Tebeka
+miki@ardanlabs.com
+@tebeka
+https://github.com/tebeka/talks/tree/master/json-the-fine-print
+
+## Serialization
+
+Convert data structures in Go to a sequence of bytes and back.
+
+.image serialization.png
+
+## Formats
+
+- BSON
+- CSV
+- Cap'n Proto
+- Flat buffers
+- **JSON**
+- MessagePack
+- Protocl buffers
+- TOML
+- XML
+- YAML
+- ...
+
+## Serialize at the "Edges" of Your Program
+
+.image road-runner.png
+
+## Representation ≠ Value
+
+.image MagrittePipe.jpg
+
+## JSON
+
+JSON = JavaScript Object Notation.
+
+A (the most?) popular _textual_ serialization format.
+
+.play size.go /START_MAIN/,/END_MAIN/
+
+## Types
+
+<table>
+    <tr><th style="text-align: center">JSON</th><th style="text-align: center">Go</th></tr>
+    <tr><td>true/false</td><td>bool</td>
+    <tr><td>string</td><td>string</td>
+    <tr><td>null</td><td>nil</td>
+    <tr><td>array</td><td>[]T, []any</td>
+    <tr><td>number</td><td>int8, int16, int32, int64, int, uint8, ..., float32, <b>float64</b></td>
+    <tr><td>object</td><td>struct, map[string]any</td>
+    <tr><td></td><td>time.Time</td>
+    <tr><td></td><td>[]byte</td>
+</table>
+
+I also miss comments ☺
+
+## encoding/json API
+
+<table>
+    <tr>
+	<th style="text-align: center">From</th>
+	<th style="text-align: center">via</th>
+	<th style="text-align: center">To</th>
+	<th style="text-align: center">Use</th>
+    </tr>
+    <tr><td>Go</td><td>[]byte</td><td>JSON</td><td><a href="https://pkg.go.dev/encoding/json#Marshal">Marshal</a></td></tr>
+    <tr><td>JSON</td><td>[]byte</td><td>Go</td><td><a href="https://pkg.go.dev/encoding/json#Unmarshal">Unmarshal</a></td></tr>
+    <tr><td>Go</td><td>io.Writer</td><td>JSON</td><td><a href="https://pkg.go.dev/encoding/json#Encoder">Encoder</a></td></tr>
+    <tr><td>JSON</td><td>io.Reader</td><td>Go</td><td><a href="https://pkg.go.dev/encoding/json#Decoder">Decoder</a></td></tr>
+</table>
+
+
+## Hints
+
+.play -edit int.go
+
+// change to: var reply int
+
+## Time
+
+.code payment.go  /START_PAYMENT/,/END_PAYMENT/
+
+.play payment.go  /START_MAIN/,/END_MAIN/
+
+##
+
+.image wile.jpg
+
+## json.Marshaler
+
+.image marshaler.jpg
+
+`src/time/time.go`
+
+.code tmarsh.go /START/,/END/
+
+## Custom Time
+
+.code payment_fmt.go /START_PTIME/,/END_PTIME/
+
+## Custom Time - Payment
+
+.code payment_fmt.go /START_PAYMENT/,/END_PAYMENT/
+
+.play payment_fmt.go /START_MAIN/,/END_MAIN/
+
+## Custom Time - Limitation
+
+.play -edit payment_fmt_limit.go /START_MAIN/,/END_MAIN/
+
+# * Value
+# 
+# .code value.go /START_VALUE/,/END_VALUE/
+# 
+# {15.4, Celcius} -> 15.4c
+# 
+# * Value - MarshalJSON
+# 
+# .code value.go /START_MJ/,/END_MJ/
+# 
+# .play value.go /START_MAIN/,/END_MAIN/
+ 
+## Binary Data
+
+.code img.go /START_IMAGE/,/END_IMAGE/
+
+.play img.go /START_MAIN/,/END_MAIN/
+
+## Tags
+
+.play -edit payment_tags.go  /START_PAYMENT/,/END_PAYMENT/
+
+## Streaming Input
+
+.code stream_in.go /START_EVENT/,/END_EVENT/
+
+.play stream_in.go /START_MAIN/,/END_MAIN/
+
+## Streaming Output
+
+.play stream_out.go /START_MAIN/,/END_MAIN/
+
+.code stream.py
+
+## Chunked Transfer Encoding
+
+Chunked transfer encoding is a streaming data transfer mechanism available in version 1.1 of the Hypertext Transfer Protocol (HTTP). - [[https://en.wikipedia.org/wiki/Chunked_transfer_encoding][Wikipedia]]
+
+Example: [[https://robpike.io][robpike.io]]
+
+.code req.txt
+
+## Chunking Example - HTTP Handler
+
+.code chunks.go /BEGIN_HANDLER/,/END_HANDLER/
+
+## Chunking Example - Request
+
+.code chunk_req.txt
+
+## Missing Values
+
+.code payment_missing.go  /START_PAYMENT/,/END_PAYMENT/
+
+.play payment_missing.go  /START_MAIN/,/END_MAIN/
+
+## Missing Values - Pointers
+
+.code payment_missing_ptr.go  /START_PAYMENT/,/END_PAYMENT/
+
+.play payment_missing_ptr.go  /START_MAIN/,/END_MAIN/
+
+## Missing Values - mapstructure
+
+.code payment_missing_ms.go  /START_MAIN/,/END_MAIN/
+
+## Missing Values - Defaults
+
+.play payment_missing_default.go  /START_MAIN/,/END_MAIN/
+
+## Valid JSON < Valid Data
+
+.code loc.go /START_LOC/,/END_LOC/
+
+.play loc.go  /START_MAIN/,/END_MAIN/
+
+## Validate
+
+.code loc_valid.go /START_VALIDATE/,/END_VALIDATE/
+
+.play loc_valid.go  /START_MAIN/,/END_MAIN/
+
+## Strings
+
+.play -edit str.go  /START_MAIN/,/END_MAIN/
+
+## Type Pollution
+
+.code stocks.txt
+
+## Anonymous Struct to the Resuce
+
+.play stocks.go /START_PARSE/,/END_PARSE/
