@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 	"os"
 )
 
@@ -15,7 +14,7 @@ type Event struct {
 
 // END_EVENT OMIT
 
-func main() {
+func demo() error {
 	// START_MAIN OMIT
 	events := []Event{
 		{"click", 100, 200},
@@ -24,8 +23,13 @@ func main() {
 	enc := json.NewEncoder(os.Stdout)
 	for _, e := range events {
 		if err := enc.Encode(e); err != nil {
-			log.Fatal(err)
+			return err
 		}
 	}
 	// END_MAIN OMIT
+	return nil
+}
+
+func main() {
+	demo()
 }

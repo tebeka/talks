@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"time"
 
 	"github.com/mitchellh/mapstructure"
@@ -19,7 +18,7 @@ type Payment struct {
 
 // END_PAYMENT OMIT
 
-func main() {
+func demo() error {
 	// START_MAIN OMIT
 	data := []byte(`{
 		"from": "Wile. E. Coyote",
@@ -29,12 +28,12 @@ func main() {
 
 	var m map[string]interface{} // HL
 	if err := json.Unmarshal(data, &m); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	var p Payment
 	if err := mapstructure.Decode(m, &p); err != nil { // HL
-		log.Fatal(err)
+		return err
 	}
 
 	if _, ok := m["time"]; !ok { // HL
@@ -42,4 +41,9 @@ func main() {
 	}
 	fmt.Printf("%#v\n", p)
 	// END_MAIN OMIT
+	return nil
+}
+
+func main() {
+	demo()
 }

@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"os"
 )
 
@@ -18,18 +17,15 @@ type Image struct {
 func main() {
 	// START_MAIN OMIT
 	name := "4.png"
-	data, err := ioutil.ReadFile(name)
-	if err != nil {
-		log.Fatal(err)
-	}
+	data, _ := ioutil.ReadFile(name)
 
 	img := Image{
 		Name: name,
 		Data: data,
 	}
 
-	if err := json.NewEncoder(os.Stdout).Encode(img); err != nil {
-		log.Fatal(err)
-	}
+	enc := json.NewEncoder(os.Stdout)
+	enc.SetIndent("", "  ")
+	enc.Encode(img)
 	// END_MAIN OMIT
 }

@@ -90,40 +90,45 @@ I also miss comments ☺
 
 .image wile.jpg
 
-## json.Marshaler
+## json.Marshaler & json.Unmarshaler
 
-.image marshaler.jpg
-
-`src/time/time.go`
 
 .code tmarsh.go /START/,/END/
 
-## Custom Time
+[src/time/time.go](https://github.com/golang/go/blob/master/src/time/time.go)
 
-.code payment_fmt.go /START_PTIME/,/END_PTIME/
+## Custom Time Format?
 
-## Custom Time - Payment
+.image ties.png
 
-.code payment_fmt.go /START_PAYMENT/,/END_PAYMENT/
+Eventually, you will use different types for database, API and internal use.
 
-.play payment_fmt.go /START_MAIN/,/END_MAIN/
+## Custom Serialization
 
-## Custom Time - Limitation
+.code color.go /START_COLOR/,/END_COLOR/
 
-.play -edit payment_fmt_limit.go /START_MAIN/,/END_MAIN/
+## Custom Serialization - main
 
-# * Value
-# 
-# .code value.go /START_VALUE/,/END_VALUE/
-# 
-# {15.4, Celcius} -> 15.4c
-# 
-# * Value - MarshalJSON
-# 
-# .code value.go /START_MJ/,/END_MJ/
-# 
-# .play value.go /START_MAIN/,/END_MAIN/
- 
+.play -edit color.go /START_MAIN/,/END_MAIN/
+
+
+## Method Sets
+
+
+<table style="text-align: center">
+    <tr>
+	<th style="text-align: center">Type</th>
+	<th style="text-align: center">Value Receiver</th>
+	<th style="text-align: center">Pointer Receiver</th>
+    </tr>
+    <tr><td>*T</td><td style="color: green">✓</td><td style="color: green">✓</td></tr>
+    <tr><td>T</td><td style="color: green">✓</td><td style="color: red">✗</td></tr>
+</table>
+
+## Using Pointer
+
+.play -edit color2.go /START_MAIN/,/END_MAIN/
+
 ## Binary Data
 
 .code img.go /START_IMAGE/,/END_IMAGE/
@@ -133,6 +138,10 @@ I also miss comments ☺
 ## Tags
 
 .play -edit payment_tags.go  /START_PAYMENT/,/END_PAYMENT/
+
+// add omitempty
+
+See [json.Marshal](https://pkg.go.dev/encoding/json#Marshal) documentation.
 
 ## Streaming Input
 
@@ -144,13 +153,11 @@ I also miss comments ☺
 
 .play stream_out.go /START_MAIN/,/END_MAIN/
 
-.code stream.py
-
 ## Chunked Transfer Encoding
 
-Chunked transfer encoding is a streaming data transfer mechanism available in version 1.1 of the Hypertext Transfer Protocol (HTTP). - [[https://en.wikipedia.org/wiki/Chunked_transfer_encoding][Wikipedia]]
+Chunked transfer encoding is a streaming data transfer mechanism available in version 1.1 of the Hypertext Transfer Protocol (HTTP). - [Wikipedia](https://en.wikipedia.org/wiki/Chunked_transfer_encoding)
 
-Example: [[https://robpike.io][robpike.io]]
+Example: [robpike.io](https://robpike.io)
 
 .code req.txt
 
@@ -162,41 +169,58 @@ Example: [[https://robpike.io][robpike.io]]
 
 .code chunk_req.txt
 
-## Missing Values
+## Zero vs Missing Values
 
 .code payment_missing.go  /START_PAYMENT/,/END_PAYMENT/
 
 .play payment_missing.go  /START_MAIN/,/END_MAIN/
 
-## Missing Values - Pointers
+## Zero vs Missing Values - Pointers
 
 .code payment_missing_ptr.go  /START_PAYMENT/,/END_PAYMENT/
 
 .play payment_missing_ptr.go  /START_MAIN/,/END_MAIN/
 
-## Missing Values - mapstructure
+##
+
+.image mapstructure.png
+
+See [https://pkg.go.dev/github.com/mitchellh/mapstructure](https://pkg.go.dev/github.com/mitchellh/mapstructure)
+
+## Zero vs Missing Values - mapstructure
 
 .code payment_missing_ms.go  /START_MAIN/,/END_MAIN/
 
-## Missing Values - Defaults
+## Zero vs Missing Values - Defaults
 
 .play payment_missing_default.go  /START_MAIN/,/END_MAIN/
 
-## Valid JSON < Valid Data
+## Valid JSON ≪ Valid Data
 
 .code loc.go /START_LOC/,/END_LOC/
 
-.play loc.go  /START_MAIN/,/END_MAIN/
+.play -edit loc.go  /START_MAIN/,/END_MAIN/
+
+## Latitude & Longitude
+
+> Latitude and longitude are a pair of numbers (coordinates) used to describe a position on the plane of a geographic coordinate system. The numbers are in decimal degrees format and range from **-90 to 90 for latitude** and **-180 to 180 for longitude**.
+
+
+[https://docs.mapbox.com/help/glossary/lat-lon/](https://docs.mapbox.com/help/glossary/lat-lon/)
 
 ## Validate
 
 .code loc_valid.go /START_VALIDATE/,/END_VALIDATE/
 
-.play loc_valid.go  /START_MAIN/,/END_MAIN/
+.play -edit loc_valid.go  /START_MAIN/,/END_MAIN/
 
-## Strings
+## The Great Escape
 
 .play -edit str.go  /START_MAIN/,/END_MAIN/
+
+## No Escape
+
+.play -edit str2.go  /START_MAIN/,/END_MAIN/
 
 ## Type Pollution
 
@@ -205,3 +229,39 @@ Example: [[https://robpike.io][robpike.io]]
 ## Anonymous Struct to the Resuce
 
 .play stocks.go /START_PARSE/,/END_PARSE/
+
+## Summary
+
+- Serializes at program “edges”
+- Don’t tie internal objects to API
+- Use json.Marshaler/json.Unmarshaler for custom serialization
+- "Zero vs Missing Value" is a hard problem
+- Valid JSON ≪ Valid data
+- Streaming is possible
+
+
+//## Custom Time
+//
+//.code payment_fmt.go /START_PTIME/,/END_PTIME/
+//
+//## Custom Time - Payment
+//
+//.code payment_fmt.go /START_PAYMENT/,/END_PAYMENT/
+//
+//.play payment_fmt.go /START_MAIN/,/END_MAIN/
+//
+//## Custom Time - Limitation
+//
+//.play -edit payment_fmt_limit.go /START_MAIN/,/END_MAIN/
+//
+// * Value
+// 
+// .code value.go /START_VALUE/,/END_VALUE/
+// 
+// {15.4, Celcius} -> 15.4c
+// 
+// * Value - MarshalJSON
+// 
+// .code value.go /START_MJ/,/END_MJ/
+// 
+// .play value.go /START_MAIN/,/END_MAIN/

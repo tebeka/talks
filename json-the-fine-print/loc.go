@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 )
 
 // START_LOC OMIT
@@ -14,15 +13,20 @@ type Location struct {
 
 // END_LOC OMIT
 
-func main() {
+func demo() error {
 	// START_MAIN OMIT
 	data := []byte(`{"lat": 132.5270941, "lng": 34.9404309}`) // HL
 
 	var loc Location
 	if err := json.Unmarshal(data, &loc); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	fmt.Println(loc)
 	// END_MAIN OMIT
+	return nil
+}
+
+func main() {
+	demo()
 }

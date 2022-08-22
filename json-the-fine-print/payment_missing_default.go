@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"time"
 )
 
@@ -17,7 +16,7 @@ type Payment struct {
 
 // END_PAYMENT OMIT
 
-func main() {
+func demo() error {
 	// START_MAIN OMIT
 	data := []byte(`{
 		"from": "Wile. E. Coyote",
@@ -29,9 +28,14 @@ func main() {
 		Time: time.Now(), // HL
 	}
 	if err := json.Unmarshal(data, &p); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	fmt.Printf("%#v\n", p)
 	// END_MAIN OMIT
+	return nil
+}
+
+func main() {
+	demo()
 }
