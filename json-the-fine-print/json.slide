@@ -125,6 +125,8 @@ Eventually, you will use different types for database, API and internal use.
     <tr><td>T</td><td style="color: green">✓</td><td style="color: red">✗</td></tr>
 </table>
 
+Bill says this is a sign that [Go loves you](https://www.youtube.com/watch?v=Z5cvLOrWlLM) ☺
+
 ## Using Pointer
 
 .play -edit color2.go /START_MAIN/,/END_MAIN/
@@ -233,7 +235,7 @@ See [https://pkg.go.dev/github.com/mitchellh/mapstructure](https://pkg.go.dev/gi
 ## Summary
 
 - Serializes at program “edges”
-- Don’t tie internal objects to API
+- Don’t tie internal types to API
 - Use json.Marshaler/json.Unmarshaler for custom serialization
 - "Zero vs Missing Value" is a hard problem
 - Valid JSON ≪ Valid data
