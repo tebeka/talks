@@ -1,4 +1,6 @@
 - gRPC overview
+- copy git URL to zoom
+    - https://github.com/tebeka/talks/tree/master/grpc-go
 - The Protocol buffers definition file
     - solutions/unter/unter.proto
     - https://developers.google.com/protocol-buffers/docs/proto3#scalar
