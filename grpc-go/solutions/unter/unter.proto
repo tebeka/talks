@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.unter.org/unter/pb";
+
+message Location {
+    double lat = 1;
+    double lng = 2;
+}
+
+message UpdateRequest {
+    string car_id = 1;
+    string driver = 2;
+    Location location = 3;
+    google.protobuf.Timestamp time = 4;
+    Status status = 5;
+}
+
+enum Status {
+    OFF = 0;
+    FREE = 1;
+    RIDING = 3;
+}
+
+message UpdateResponse {
+    string car_id = 1;
+}
+
+message LocationRequest {
+    string car_id = 1;
+    Location location = 2;
+}
+
+message LocationResponse {
+    string car_id = 1;
+    int64 num_messages = 2;
+}
+
+// Exericse: Add a Get rpc that will return car status by car_id
+// Use an in-memory map[string]pb.UpdateRequest as database
+// Return error on unknown ID
+
+service Unter {
+    // rpc Health(HealthRequest) return (HealthResponse) {}
+    rpc Update(UpdateRequest) returns (UpdateResponse) {}
+    rpc Location(stream LocationRequest) returns (LocationResponse) {}
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go.unter.com/unter/pb";
+
+message Location {
+    double lat = 1;
+    double lng = 2;
+}
+
+enum Status {
+    OFF = 0;
+    FREE = 1;
+    RIDING = 2;
+}
+
+message UpdateRequest {
+    string car_id = 1;
+    string driver = 2;
+    Location location = 3;
+    google.protobuf.Timestamp time = 4;
+    Status status = 5;
+}

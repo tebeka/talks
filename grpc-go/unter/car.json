@@ -1,0 +1,10 @@
+{
+  "car_id": "F2002",
+  "driver": "Schumacher",
+  "location": {
+    "lat": 52.50138,
+    "lng": 13.44964
+  },
+  "status": "FREE",
+  "time": "2022-07-21T11:31:44.620659666+03:00"
+}
