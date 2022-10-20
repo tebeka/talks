@@ -22,3 +22,11 @@ message UpdateRequest {
     google.protobuf.Timestamp time = 4;
     Status status = 5;
 }
+
+message UpdateResponse {
+    string car_id = 1;
+}
+
+service Unter {
+    rpc Update(UpdateRequest) returns (UpdateResponse) {}
+}

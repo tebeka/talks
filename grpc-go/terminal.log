@@ -1,0 +1,77 @@
+protoc --go_out=pb --go_opt=paths=source_relative unter.proto
+pb/: No such file or directory
+
+talks/grpc-go/unter on  master [?] via go v1.19.2 
+$ mkdir pb
+
+talks/grpc-go/unter on  master [?] via go v1.19.2 
+❮ protoc --go_out=pb --go_opt=paths=source_relative unter.proto
+
+talks/grpc-go/unter on  master [?] via go v1.19.2 
+$ go generate 
+
+talks/grpc-go/unter on  master [?] via go v1.19.2 
+$ go test -bench . -run NONE ./cmd/marshal 
+goos: linux
+goarch: amd64
+pkg: go.unter.com/unter/cmd/marshal
+cpu: 12th Gen Intel(R) Core(TM) i7-1255U
+BenchmarkProto-12    	 6398341	       181.0 ns/op
+BenchmarkJSON-12     	 2581114	       478.4 ns/op
+PASS
+ok  	go.unter.com/unter/cmd/marshal	3.061s
+
+talks/grpc-go/unter on  master [!?] via go v1.19.2 took 3s 
+$ grpcurl --plaintext localhost:7689
+Too few arguments.
+Try 'grpcurl -help' for more details.
+
+talks/grpc-go/unter on  master [!?] via go v1.19.2 
+$ grpcurl --plaintext localhost:7689 list
+Unter
+grpc.reflection.v1alpha.ServerReflection
+talks/grpc-go/unter on  master [!?] via go v1.19.2 
+$ grpcurl --plaintext localhost:7689 list Unter
+Unter.Update
+
+talks/grpc-go/unter on  master [!?] via go v1.19.2 
+$ grpcurl --plaintext localhost:7689 describe Unter.Update
+Unter.Update is a method:
+rpc Update ( .UpdateRequest ) returns ( .UpdateResponse );
+
+talks/grpc-go/unter on  master [!?] via go v1.19.2 
+$ grpcurl --plaintext localhost:7689 describe .UpdateRequest
+UpdateRequest is a message:
+message UpdateRequest {
+  string car_id = 1;
+  string driver = 2;
+  .Location location = 3;
+  .google.protobuf.Timestamp time = 4;
+  .Status status = 5;
+}
+
+talks/grpc-go/unter on  master [!?] via go v1.19.2 
+$ cat car.json 
+{
+  "car_id": "F2002",
+  "driver": "Schumacher",
+  "location": {
+    "lat": 52.50138,
+    "lng": 13.44964
+  },
+  "status": "FREE",
+  "time": "2022-07-21T11:31:44.620659666+03:00"
+}
+talks/grpc-go/unter on  master [!?] via go v1.19.2 
+$ grpcurl --plaintext -d @ localhost:7689  Unter.Update < car.json
+{
+  "carId": "F2002"
+}
+
+talks/grpc-go/unter on  master [!?] via go v1.19.2 
+$ go run ./cmd/client 
+2022/10/20 22:58:47 connected to :7689
+car_id:"007"
+
+talks/grpc-go/unter on  master [!?] via go v1.19.2 
+❮
