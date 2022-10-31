@@ -1,0 +1,7 @@
+Faster Pandas: Make your code run faster and consume less memory.
+
+We'll start by reviewing the rules of the optimization club and why you shouldn't optimize.
+After that we'll see how you can measure speed and memory consumption and how to find the bottlenecks in your code. Finally we'll review some code samples and make them faster.
+
+
+Miki Tebeke, CEO 353solutions
