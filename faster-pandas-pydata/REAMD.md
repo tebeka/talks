@@ -1,3 +1,6 @@
 # Faster Pandas
 
-Talk at AppsFlyer, November 26, 2020
+Talk at PyData Tel-Aviv Meetup, October 31 ,2022
+
+- [Slides](slides.pdf)
+- [Terminal log](terminal.log)
