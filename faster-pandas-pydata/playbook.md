@@ -90,7 +90,6 @@ s.values.sum()
 %timeit df[(df['VendorID'] == 2) & (df['passenger_count'] > 1) & (df['trip_distance'] > 2)]
 %timeit df.query('VendorID == 2 & passenger_count > 1')
 
-# Talk on numba & Cython
 
 # %%
 %cow Memory
@@ -127,3 +126,26 @@ df['vendor'].memory_usage(deep=True)
 # %%
 df['vendor'] = df['vendor'].astype('category')
 df['vendor'].memory_usage(deep=True)
+
+# Slides - Talk on process
+# pytest-benchmark
+
+
+---
+Backup
+
+numba & Cython
+
+python -m cProfile bench_tokenize.py
+python -m cProfile -s cumulative bench_tokenize.py
+python -m cProfile -o tokenize.pprof bench_tokenize.py
+
+# %%
+import nlp
+text = 'In the face of ambiguity, refuse the temptation to guess.'
+
+%timeit nlp.tokenize(text)
+
+nlp_opt.py
+
+%timeit nlp_opt.tokenize(text)

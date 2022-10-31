@@ -1,2 +1,3 @@
 yellow_tripdata_2022-04.csv.gz
 yellow_tripdata_2022-04.parquet
+*.pprof
