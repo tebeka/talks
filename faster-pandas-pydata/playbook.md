@@ -1,15 +1,3 @@
-## Why?
-`%cow 'Why Optimize?'
-- Money
-- Responsiveness
-    - UI
-    - Developer
-
-## Why not?
-`%cow 'Why Not?'
-- Bugs
-- Maintainability
-
 ## Rules
 `!glow rules.md`
 - first performance goals
@@ -17,8 +5,7 @@
 
 ## Code
 
-```
-
+```python
 # %%
 
 import pandas as pd
@@ -92,7 +79,7 @@ s.values.sum()
 
 
 # %%
-%cow Memory
+## Memory
 
 mb = 1<<20
 df.memory_usage().sum() / mb

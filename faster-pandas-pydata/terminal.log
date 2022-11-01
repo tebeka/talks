@@ -1,0 +1,263 @@
+import pandas as pd, numpy as np
+
+In [2]: df = pd.read_parquet('yellow_tripdata_2022-04.parquet')
+
+In [3]: len(df)
+Out[3]: 3599920
+
+In [4]: df.columns
+Out[4]: 
+Index(['VendorID', 'tpep_pickup_datetime', 'tpep_dropoff_datetime',
+       'passenger_count', 'trip_distance', 'RatecodeID', 'store_and_fwd_flag',
+       'PULocationID', 'DOLocationID', 'payment_type', 'fare_amount', 'extra',
+       'mta_tax', 'tip_amount', 'tolls_amount', 'improvement_surcharge',
+       'total_amount', 'congestion_surcharge', 'airport_fee'],
+      dtype='object')
+
+In [5]: !glow rules.md
+
+   The Rules of Optimization Club:                                                                                    
+                                                                                                                      
+  1. You do not optimize.                                                                                             
+  2. You do not optimize, without measuring first.                                                                    
+  3. When the performance is not bound by the code, but by external factors, the optimization is over.                
+  4. Only optimize code that already has full unit test coverage.                                                     
+  5. One factor at a time.                                                                                            
+  6. No unresolved bugs, no schedule pressure.                                                                        
+  7. Testing will go on as long as it has to.                                                                         
+  8. If this is your first night at Optimization Club, you have to write a test case.                                 
+                                                                                                                    
+  https://wiki.c2.com/?RulesOfOptimizationClub                                                                        
+
+
+In [6]:
+
+
+
+
+
+        1    0.008    0.008    0.008    0.008 {method 'unique' of 'pandas._libs.hashtable.Int64HashTable' objects}
+       20    0.003    0.000    0.003    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+        4    0.002    0.000    0.002    0.000 missing.py:227(_isna_array)
+       12    0.002    0.000    0.002    0.000 take.py:554(_take_preprocess_indexer_and_fill_value)
+      601    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+       13    0.000    0.000    0.234    0.018 frame.py:3463(__getitem__)
+       12    0.000    0.000    0.201    0.017 take.py:120(_take_nd_ndarray)
+        8    0.000    0.000    0.001    0.000 series.py:323(__init__)
+       12    0.000    0.000    0.201    0.017 blocks.py:1116(take_nd)
+       12    0.000    0.000    0.000    0.000 generic.py:5517(__finalize__)
+        4    0.000    0.000    0.000    0.000 expressions.py:72(_can_use_numexpr)
+       24    0.000    0.000    0.000    0.000 _ufunc_config.py:32(seterr)
+        4    0.000    0.000    0.221    0.055 managers.py:875(take)
+   125/89    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        4    0.000    0.000    0.010    0.002 base.py:1098(take)
+        4    0.000    0.000    0.221    0.055 generic.py:3609(take)
+       12    0.000    0.000    0.000    0.000 generic.py:239(__init__)
+       12    0.000    0.000    0.201    0.017 take.py:57(take_nd)
+    41/37    0.000    0.000    0.000    0.000 {built-in method numpy.asarray}
+       24    0.000    0.000    0.000    0.000 _ufunc_config.py:131(geterr)
+       24    0.000    0.000    0.000    0.000 generic.py:5577(__setattr__)
+        4    0.000    0.000    0.002    0.001 nanops.py:257(_get_values)
+        4    0.000    0.000    0.010    0.003 series.py:5613(_cmp_method)
+        1    0.000    0.000    0.305    0.305 {built-in method builtins.exec}
+        4    0.000    0.000    0.009    0.002 expressions.py:92(_evaluate_numexpr)
+        4    0.000    0.000    0.233    0.058 frame.py:3530(_getitem_bool_array)
+        4    0.000    0.000    0.004    0.001 series.py:4435(_reduce)
+      115    0.000    0.000    0.000    0.000 generic.py:43(_check)
+        4    0.000    0.000    0.004    0.001 nanops.py:83(_f)
+        9    0.000    0.000    0.000    0.000 base.py:4973(__contains__)
+        4    0.000    0.000    0.201    0.050 managers.py:634(reindex_indexer)
+
+
+
+
+
+
+        4    0.000    0.000    0.004    0.001 generic.py:10731(_min_count_stat_function)
+       30    0.000    0.000    0.000    0.000 common.py:1587(_is_dtype_type)
+        1    0.000    0.000    0.008    0.008 algorithms.py:336(unique)
+        4    0.000    0.000    0.000    0.000 base.py:5178(equals)
+        9    0.000    0.000    0.000    0.000 _dtype.py:344(_name_get)
+        4    0.000    0.000    0.000    0.000 utils.py:457(check_array_indexer)
+        4    0.000    0.000    0.000    0.000 base.py:654(_simple_new)
+       12    0.000    0.000    0.000    0.000 cast.py:468(maybe_promote)
+       12    0.000    0.000    0.000    0.000 common.py:581(is_dtype_equal)
+        1    0.000    0.000    0.008    0.008 series.py:2030(unique)
+        4    0.000    0.000    0.009    0.002 array_ops.py:134(_na_arithmetic_op)
+       42    0.000    0.000    0.000    0.000 common.py:1552(get_dtype)
+        4    0.000    0.000    0.000    0.000 blocks.py:2043(new_block)
+        4    0.000    0.000    0.000    0.000 necompiler.py:530(getContext)
+        4    0.000    0.000    0.000    0.000 managers.py:1016(iget)
+       12    0.000    0.000    0.000    0.000 _ufunc_config.py:434(__exit__)
+       16    0.000    0.000    0.001    0.000 {method 'any' of 'numpy.ndarray' objects}
+        4    0.000    0.000    0.221    0.055 generic.py:3708(_take_with_is_copy)
+      132    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
+        4    0.000    0.000    0.004    0.001 nanops.py:580(nansum)
+       16    0.000    0.000    0.000    0.000 series.py:590(name)
+       13    0.000    0.000    0.000    0.000 common.py:161(is_object_dtype)
+       13    0.000    0.000    0.000    0.000 indexing.py:2481(check_deprecated_indexers)
+       13    0.000    0.000    0.000    0.000 managers.py:1848(internal_values)
+      101    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+        9    0.000    0.000    0.000    0.000 frame.py:3923(_get_item_cache)
+       28    0.000    0.000    0.000    0.000 managers.py:1837(dtype)
+       24    0.000    0.000    0.000    0.000 {built-in method numpy.seterrobj}
+       12    0.000    0.000    0.000    0.000 flags.py:47(__init__)
+       12    0.000    0.000    0.000    0.000 generic.py:5561(__getattr__)
+        4    0.000    0.000    0.000    0.000 construction.py:698(_try_cast)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         3148 function calls (3108 primitive calls) in 0.315 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        4    0.087    0.022    0.087    0.022 {pandas._libs.algos.take_2d_axis1_float64_float64}
+        4    0.071    0.018    0.071    0.018 {pandas._libs.algos.take_2d_axis1_object_object}
+        1    0.049    0.049    0.315    0.315 <string>:1(<module>)
+        4    0.035    0.009    0.035    0.009 {pandas._libs.algos.take_2d_axis1_int64_int64}
+       12    0.016    0.001    0.016    0.001 {built-in method numpy.empty}
+        4    0.011    0.003    0.011    0.003 {method 'nonzero' of 'numpy.ndarray' objects}
+        4    0.010    0.003    0.010    0.003 {method 'take' of 'numpy.ndarray' objects}
+        4    0.009    0.002    0.009    0.002 necompiler.py:764(evaluate)
+        4    0.008    0.002    0.009    0.002 utils.py:249(maybe_convert_indices)
+        1    0.008    0.008    0.008    0.008 {method 'unique' of 'pandas._libs.hashtable.Int64HashTable' objects}
+       20    0.003    0.000    0.003    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+        4    0.002    0.000    0.002    0.000 missing.py:227(_isna_array)
+       12    0.002    0.000    0.002    0.000 take.py:554(_take_preprocess_indexer_and_fill_value)
+       12    0.000    0.000    0.211    0.018 take.py:120(_take_nd_ndarray)
+      601    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+       13    0.000    0.000    0.243    0.019 frame.py:3463(__getitem__)
+       12    0.000    0.000    0.212    0.018 blocks.py:1116(take_nd)
+        8    0.000    0.000    0.001    0.000 series.py:323(__init__)
+       12    0.000    0.000    0.000    0.000 generic.py:5517(__finalize__)
+       24    0.000    0.000    0.000    0.000 _ufunc_config.py:32(seterr)
+        4    0.000    0.000    0.011    0.003 series.py:5613(_cmp_method)
+   125/89    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        4    0.000    0.000    0.231    0.058 managers.py:875(take)
+        4    0.000    0.000    0.000    0.000 expressions.py:72(_can_use_numexpr)
+       12    0.000    0.000    0.211    0.018 take.py:57(take_nd)
+    41/37    0.000    0.000    0.000    0.000 {built-in method numpy.asarray}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         3148 function calls (3108 primitive calls) in 0.320 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.320    0.320 {built-in method builtins.exec}
+        1    0.049    0.049    0.320    0.320 <string>:1(<module>)
+       13    0.000    0.000    0.249    0.019 frame.py:3463(__getitem__)
+        4    0.000    0.000    0.248    0.062 frame.py:3530(_getitem_bool_array)
+        4    0.000    0.000    0.236    0.059 generic.py:3708(_take_with_is_copy)
+        4    0.000    0.000    0.236    0.059 generic.py:3609(take)
+        4    0.000    0.000    0.236    0.059 managers.py:875(take)
+        4    0.000    0.000    0.216    0.054 managers.py:634(reindex_indexer)
+        4    0.000    0.000    0.216    0.054 managers.py:692(<listcomp>)
+       12    0.000    0.000    0.216    0.018 blocks.py:1116(take_nd)
+       12    0.000    0.000    0.216    0.018 take.py:57(take_nd)
+       12    0.000    0.000    0.216    0.018 take.py:120(_take_nd_ndarray)
+        4    0.092    0.023    0.092    0.023 {pandas._libs.algos.take_2d_axis1_float64_float64}
+        4    0.070    0.018    0.070    0.018 {pandas._libs.algos.take_2d_axis1_object_object}
+        4    0.035    0.009    0.035    0.009 {pandas._libs.algos.take_2d_axis1_int64_int64}
+       12    0.016    0.001    0.016    0.001 {built-in method numpy.empty}
+        4    0.012    0.003    0.012    0.003 {method 'nonzero' of 'numpy.ndarray' objects}
+        4    0.000    0.000    0.011    0.003 common.py:55(new_method)
+        4    0.000    0.000    0.011    0.003 base.py:1098(take)
+        4    0.000    0.000    0.011    0.003 arraylike.py:38(__eq__)
+        4    0.000    0.000    0.011    0.003 series.py:5613(_cmp_method)
+        4    0.000    0.000    0.011    0.003 algorithms.py:1356(take)
+        4    0.011    0.003    0.011    0.003 {method 'take' of 'numpy.ndarray' objects}
+        4    0.000    0.000    0.010    0.002 array_ops.py:227(comparison_op)
+        4    0.000    0.000    0.010    0.002 array_ops.py:134(_na_arithmetic_op)
+        4    0.000    0.000    0.010    0.002 expressions.py:223(evaluate)
+
+NameError: name 'maps' is not defined
+
+In [50]: %timeit df['vendor'] = df['VendorID'].map(names)
+34 ms ± 161 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+
+In [51]: %timeit df['vendor'] = df['VendorID'].apply(lambda vid: names.get(vid))
+201 ms ± 4.05 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+In [52]: df['vendor'].memory_usage()
+Out[52]: 28799488
+
+In [53]: df['VendorID'].memory_usage()
+Out[53]: 28799488
+
+In [54]: df['vendor'].memory_usage(deep=True)
+Out[54]: 233691118
+
+In [55]: df['vendor'] = df['vendor'].astype('category')
+
+In [56]: df['vendor'].memory_usage(deep=True)
+Out[56]: 3600286
+
+In [57]:
