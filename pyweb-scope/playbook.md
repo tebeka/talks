@@ -95,3 +95,5 @@ div(1, 0)
 
 - # Objects are merely a poor man's closures. - Qc Na
 %code bank.py
+
+%code asm.py
