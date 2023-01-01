@@ -162,5 +162,5 @@ func main() {
 
 	avg := float64(total) / float64(count)
 	fmt.Printf("total: %d, max: %d, avg: %.2f\n", count, max, avg)
-	// fmt.Printf("%+v\n", maxIface)
+	fmt.Printf("%+v\n", maxIface)
 }
