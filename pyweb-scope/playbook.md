@@ -3,6 +3,8 @@
     - global: deg_km
     - builtin: abs
 
+# LCGB: Local, Closure, Global, Built-in
+
 
     distance.__code__.co_nlocals
 
