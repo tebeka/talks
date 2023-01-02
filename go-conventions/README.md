@@ -8,6 +8,7 @@ Testing
     ExampleXXX
     FuzzXXX
     TestMain
+    testdata
 build
     `_GOOS.go`
 Doc comment
@@ -20,3 +21,5 @@ iota in const group
         Admin
     )
 "internal" package
+
+https://twitter.com/tebeka/status/1609825350510608385
