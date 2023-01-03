@@ -3,7 +3,11 @@
     - global: deg_km
     - builtin: abs
 
-# LCGB: Local, Closure, Global, Built-in
+https://pythontutor.com/visualize.html
+    (frame, scope)
+
+    # LCGB: Local, Closure, Global, Built-in
+https://docs.python.org/3/library/functions.html
 
 
     distance.__code__.co_nlocals
