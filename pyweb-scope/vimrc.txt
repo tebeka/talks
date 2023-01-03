@@ -1,0 +1,319 @@
+" Hack to get :py3 working
+" https://robertbasic.com/blog/force-python-version-in-vim/
+if has('python3')
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'cespare/vim-toml'
+Plug 'easymotion/vim-easymotion'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" :CocInstall coc-pyright
+Plug 'racer-rust/vim-racer'
+Plug 'raimon49/requirements.txt.vim'
+Plug 'rhysd/vim-grammarous'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-speeddating'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/a.vim'
+Plug 'w0rp/ale'
+Plug 'xavierd/clang_complete'
+Plug 'jamessan/vim-gnupg', {'branch': 'main'}
+Plug 'jjo/vim-cue'
+
+Plug 'satabin/hocon-vim'
+Plug 'ollykel/v-vim'
+
+" Initialize plugin system
+call plug#end()
+
+" Search & display
+set ignorecase
+set incsearch
+set nohls
+set number
+set showmatch
+set smartcase
+
+" Enable vim: ... directives
+set modeline
+
+" Tab stuff
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set wrap linebreak
+
+" Use system clipboard
+set clipboard=unnamedplus
+
+" Make no noise
+set visualbell t_vb=
+set noerrorbells
+
+" Vertical diff
+set diffopt=filler,vertical
+
+" Save undo
+set undofile
+
+" Use hidden (allow buffer switch when modified)
+au BufNewFile,BufRead * set hidden
+
+" Abbriviations
+iabb _3me_ Miki Tebeka <miki@353solutions.com>
+iabb _date_ <C-R>=strftime("%Y-%m-%d")<CR>
+iabb _gme_ Miki Tebeka <miki.tebeka@gmail.com>
+iabb _py_ #!/usr/bin/env python
+iabb _sh_ #!/bin/bash
+iabb _pyc_ 
+\<CR>[source,python]
+\<CR>----
+\<CR>----
+
+" Clean non ascii
+func! ASCII_Clean()
+    silent %! iconv -c -t ASCII
+endfunc
+comm! AC call ASCII_Clean()
+
+comm! PC call popup_clear()
+
+" Convert notebook to Python
+func! NB2Py()
+    silent %! jupyter nbconvert --stdin --stdout --to python 2>/dev/null
+    setl ft=python
+endfunc
+comm! NB call NB2Py()
+
+comm! PC call popup_clear()
+
+" Edit in perforce
+func! P4Edit()
+    !p4 edit %
+    e
+endfunc
+comm! P4 silent call P4Edit()
+
+" Run black Python formatter
+func! Black()
+    w
+    silent !black --skip-string-formatting %
+    e
+endfunc
+comm! Black call Black()
+
+func! GoRun()
+    :GoImports
+    !go run "%"
+endfunc
+
+comm! Gr call GoRun()
+comm! Pr ! python "%"
+comm! Ppr ! pypy3 "%"
+
+" YAML
+au FileType yaml setl ts=2
+au FileType yaml setl sw=2
+
+" YAML
+au FileType html setl ts=2
+au FileType html setl sw=2
+
+" PML
+au BufNewFile,BufRead *.pml setl ts=2
+au BufNewFile,BufRead *.pml setl sts=2
+au BufNewFile,BufRead *.pml setl sw=2
+au BufNewFile,BufRead *.pml setl ft=markdown
+au BufNewFile,BufRead *.pml setl spell
+
+" protobuf
+au BufNewFile,BufRead *.proto setl ts=2
+au BufNewFile,BufRead *.proto setl sts=2
+au BufNewFile,BufRead *.proto setl sw=2
+au BufNewFile,BufRead *.proto setl et
+
+" Go
+au BufNewFile,BufRead *.go setl noet
+au BufNewFile,BufRead *.go setl ts=4
+au BufNewFile,BufRead *.go setl tw=0
+au BufNewFile,BufRead *.go setl spell
+au FileType go nmap <leader>gt :GoDeclsDir<cr>
+
+let g:go_auto_type_info = 1
+let g:go_list_height = 0
+let g:go_metalinter_command = 'golangci-lint'
+let g:go_decls_mode = 'fzf'
+let g:go_template_file = expand('$HOME/.vim-go-template.go')
+let g:go_gopls_complete_unimported = 1
+
+"let g:go_fmt_experimental = 1
+"let g:go_template_autocreate = 0
+" let g:go_auto_sameids = 1
+
+" Joker
+
+au BufNewFile,BufRead *.joke setl ft=clojure
+
+augroup go
+  autocmd!
+  autocmd Filetype go
+    \  command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+    \| command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+    \| command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+augroup END
+
+set completeopt-=preview
+
+" rust
+let g:rustfmt_autosave = 1 
+
+" .envrc
+au BufNewFile,BufRead .envrc set ft=zsh
+
+" Jenkinsfile
+au BufNewFile,BufRead Jenkinsfile set ft=groovy
+
+" swig
+au BufNewFile,BufRead *.i set ft=swig
+au BufNewFile,BufRead *.swig set ft=swig
+au BufNewFile,BufRead *.swigcxx set ft=swig
+
+" Dockerfiles
+au BufNewFile,BufRead Dockerfile* set ft=dockerfile
+
+" IPython files
+au BufNewFile,BufRead *.ipy set ft=python
+
+" Space for page up/down
+noremap <SPACE> <C-F>
+
+" Explorer to show full info
+let g:explDetailedList=1
+
+" Ale
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '❗'
+let g:ale_linters = {
+\   'python': ['flake8'],
+\   'go': ['gopls'],
+\}
+nmap <silent> <C-n> <Plug>(ale_next_wrap)
+let g:ale_go_langserver_executable = 'gopls'
+let g:ale_hover_cursor = 0
+
+" Airline
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#ctrlp#enabled = 1
+let g:airline_theme = 'minimalist'
+let g:airline_powerline_fonts = 1
+
+" CTRL-P
+noremap <C-P> :FZF<CR>
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.venv$\|\.vendor$',
+  \ }
+
+" coc
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <C-]> <Plug>(coc-definition)
+nmap <silent> <C-m> <Plug>(coc-diagnostic-next)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+nmap <leader>r <Plug>(coc-rename)
+
+au BufNewFile,BufRead *.py setl tw=78
+au BufNewFile,BufRead *.py setl spell
+
+func! Isort()
+    w
+    silent !isort -q -m6 %
+    e
+endfunc
+comm! Isort call Isort()
+
+" FIXME: We get "import a:name" in the file
+func! PyImport(name)
+    w
+    silent execute('!isort -q -a ' . a:name . ' ' . expand("%:p"))
+    e
+endfunc
+comm! -nargs=1 PyImport call PyImport(<f-args>)
+   
+
+func! ClangFormat()
+    w
+    silent !clang-format %
+    e
+endfunc
+comm! ClangFormat call ClangFormat()
+
+func! NormQuote()
+    s/[“”]/"/g
+endfunc
+comm! NormQuote call NormQuote()
+
+" NERDTree
+let NERDTreeIgnore = ['\.py[co]$', '__pycache__']
+comm! NT NERDTreeToggle
+let g:NERDTreeWinSize = 18 
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Wheels are zip files
+au BufReadCmd *.whl call zip#Browse(expand("<amatch>"))
+
+" Allow project specific .vimrc
+if !empty($ALLOW_EXRC)
+    set exrc
+    set secure
+endif
+
+" netrw settings
+let g:netrw_banner=0
+let g:netrw_altv=1
+" open URLs
+let g:netrw_browsex_viewer="setsid exo-open"
+
+" C/C++
+let g:clang_library_path='/usr/lib/libclang.so'
+au FileType c,cpp setl sw=2 ts=2
+
+" Markdown
+let g:markdown_fenced_languages = ['go', 'python', 'bash=sh', 'yaml']
+let g:markdown_syntax_conceal = 0
+au FileType markdown set spell
+
+" Asciidoc
+au FileType asciidoc set spell
+
+set termguicolors " enable true colors support
+if has("gui_running")
+    " No toolbar or menu
+    set guioptions=aAce
+    " colorscheme koehler
+    colorscheme default
+    set guifont=IBM\ Plex\ Mono\ Medium\ 18
+endif
