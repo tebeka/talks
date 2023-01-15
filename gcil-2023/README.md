@@ -17,3 +17,4 @@ goto
     https://xkcd.com/292/
 for c.Next() {
     https://github.com/golang/go/discussions/54245
+    discussion: standard iterator interface #54245

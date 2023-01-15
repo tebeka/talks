@@ -68,12 +68,11 @@ See [redefining for loop variable semantics](https://github.com/golang/go/discus
 
 ## Nested
 
-.play inner.go /START/,/END/
+.play nested.go /START/,/END/
 
 ## Nested (fix)
 
-.play inner_fix.go /START/,/END/
-
+.play nested_fix.go /START/,/END/
 
 ## goto
 
@@ -88,4 +87,6 @@ See [redefining for loop variable semantics](https://github.com/golang/go/discus
 
 **646**
 
+## Nested (again)
 
+.play netsted_goto.go
