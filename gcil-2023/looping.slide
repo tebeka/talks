@@ -85,7 +85,7 @@ See [redefining for loop variable semantics](https://github.com/golang/go/discus
 .code goto.sh
 
 
-**646**
+**610**
 
 ## Nested (again)
 
