@@ -15,7 +15,7 @@ func main() {
 	}()
 
 	for { // HL
-		v, ok := <-ch
+		v, ok := <-ch // HL
 		if !ok {
 			break
 		}

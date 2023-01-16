@@ -15,7 +15,7 @@ func main() {
 	}
 
 	for _, player := range players { // HL
-		player.points += 123
+		player.points += 353
 	}
 	fmt.Printf("%v\n", players)
 }

@@ -13,14 +13,14 @@ func main() {
 	// fan out
 	ch := make(chan reply)
 	for _, s := range vs {
-		s := s
+		s := s // HL
 		go func() {
 			ch <- reply{s, isPalindrome(s)}
 		}()
 	}
 
 	// collect
-	for range vs { // HL
+	for range vs {
 		r := <-ch
 		fmt.Printf("%-5s -> %v\n", r.s, r.isP)
 	}

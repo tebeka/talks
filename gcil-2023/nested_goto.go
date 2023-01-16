@@ -16,11 +16,11 @@ func main() {
 			if mat[r][c]%2 == 0 {
 				hasEven = true
 				fmt.Println("found")
-				goto found
+				goto found // HL
 			}
 		}
 	}
-found:
+found: // HL
 	fmt.Println("has even:", hasEven)
 	// END OMIT
 }
