@@ -30,7 +30,7 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 ## forever
 
 .code handler.go /AAA/,/BBB/
-.code handler.go /START/,/END/
+.play handler.go /START/,/END/
 
 ## range ∴ slice
 
