@@ -18,6 +18,7 @@ func main() {
 		player.points += 353
 	}
 	fmt.Printf("%v\n", players)
+	// [{Rick 1000000} {Morty 13}]
 }
 
 // END OMIT

@@ -52,14 +52,6 @@ Same as slices ☺
 
 .play chan.go /START/,/END/
 
-## range ∴ channel fix
-
-.play chan_fix.go /START/,/END/
-
-## range ∴ channel expand
-
-.play chan_expand.go /START/,/END/
-
 ## range ∴ nothing
 
 .play palis.go /START/,/END/
@@ -96,6 +88,6 @@ See [redefining for loop variable semantics](https://github.com/golang/go/discus
 
 ## iteration ∴ scanner
 
-.play wc.go /START/,/END/
+.play fgrep.go /START/,/END/
 
 See [discussion: standard iterator interface](https://github.com/golang/go/discussions/54245) by Ian Lance Taylor

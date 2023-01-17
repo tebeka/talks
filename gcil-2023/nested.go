@@ -22,4 +22,11 @@ func main() {
 	}
 	fmt.Println("has even:", hasEven)
 	// END OMIT
+
+	/* Output:
+	found
+	found
+	found
+	has even: true
+	*/
 }
