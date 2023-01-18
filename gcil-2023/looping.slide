@@ -54,11 +54,11 @@ Same as slices ☺
 
 ## range ∴ nothing
 
-.play palis.go /START/,/END/
+.play urls.go /START/,/END/
 
 ## range ∴ closure capture
 
-.play palis_closure.go /START/,/END/
+.play urls_closure.go /START/,/END/
 
 See [redefining for loop variable semantics](https://github.com/golang/go/discussions/56010) by Russ Cox.
 
@@ -68,7 +68,7 @@ See [redefining for loop variable semantics](https://github.com/golang/go/discus
 
 ## nested ∴ fix
 
-.play nested_fix.go /START/,/END/
+.play nested_label.go /START/,/END/
 
 ## goto
 
