@@ -5,22 +5,22 @@ import "fmt"
 func main() {
 	// START OMIT
 	mat := [][]int{
-		{1, 2},
-		{3, 4},
-		{5, 6},
+		{1, -2},
+		{3, -4},
+		{5, -6},
 	}
 
-	hasEven := false
+	found := false
 loop: // HL
 	for r := range mat {
 		for c := range mat[0] {
-			if mat[r][c]%2 == 0 {
-				hasEven = true
-				fmt.Println("found")
+			if v := mat[r][c]; v < 0 {
+				found = true
+				fmt.Println("found", v)
 				break loop // HL
 			}
 		}
 	}
-	fmt.Println("has even:", hasEven)
+	fmt.Println("negatives:", found)
 	// END OMIT
 }
