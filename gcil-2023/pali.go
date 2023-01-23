@@ -6,13 +6,14 @@ import (
 
 // START OMIT
 func isPalindrome(s string) bool {
-	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 { // HL
-		if s[i] != s[j] {
+	chars := []rune(s)
+	for i, j := 0, len(chars)-1; i < j; i, j = i+1, j-1 { // HL
+		if chars[i] != chars[j] {
 			return false
 		}
 	}
-	return true
 
+	return true
 }
 
 // END OMIT
@@ -20,7 +21,7 @@ func isPalindrome(s string) bool {
 func main() {
 	// START_M OMIT
 	fmt.Println(isPalindrome("a"))
-	fmt.Println(isPalindrome("ab"))
-	fmt.Println(isPalindrome("aba"))
+	fmt.Println(isPalindrome("a♡"))
+	fmt.Println(isPalindrome("a♡a"))
 	// END_M OMIT
 }
