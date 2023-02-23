@@ -82,6 +82,8 @@ s.values.sum()
 # %%
 ## Memory
 
+%cow Memory
+
 memory slide
 
 mb = 1<<20

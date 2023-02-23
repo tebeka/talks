@@ -23,7 +23,7 @@ def tokenize(text):
     return tokens
 
 
-stop_words = {
+stop_words = [
     'a', 'able', 'about', 'across', 'after', 'all', 'almost', 'also', 'am',
     'among', 'an', 'and', 'any', 'are', 'as', 'at', 'be', 'because', 'been',
     'but', 'by', 'can', 'cannot', 'could', 'dear', 'did', 'do', 'does',
@@ -37,4 +37,4 @@ stop_words = {
     'they', 'this', 'tis', 'to', 'too', 'twas', 'us', 'wants', 'was', 'we',
     'were', 'what', 'when', 'where', 'which', 'while', 'who', 'whom', 'why',
     'will', 'with', 'would', 'yet', 'you', 'your',
-}
+]
