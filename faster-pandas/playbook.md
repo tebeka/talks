@@ -2,6 +2,10 @@
 `!glow rules.md`
 - first performance goals
 - percentile
+- talk on same hardware & data
+
+    !lscpu
+    !free -g
 
 ## Code
 
@@ -10,6 +14,8 @@
 
 import pandas as pd
 import numpy as np
+
+pd.__version__
 
 df = pd.read_parquet('yellow_tripdata_2022-04.parquet')
 len(df)
@@ -20,8 +26,10 @@ df.columns
 %cow CPU
 
 
-%time df = pd.read_parquest('yellow_tripdata_2022-04.parquet')
-%time df = pd.read_csv('yellow_tripdata_2022-04.csv.gz')
+%time _ = pd.read_parquet('yellow_tripdata_2022-04.parquet')
+%time _ = pd.read_csv('yellow_tripdata_2022-04.csv.gz')
+%time _ = pd.read_csv('yellow_tripdata_2022-04.csv.gz', engine='pyarrow')
+%time _ = pd.read_csv('yellow_tripdata_2022-04.csv.gz', engine='pyarrow', dtype_backend='pyarrow')
 
 # %%
 
@@ -114,6 +122,11 @@ names = {
 df['VendorID'].memory_usage()
 df['vendor'].memory_usage()
 df['vendor'].memory_usage(deep=True)
+
+# %%
+
+s = df['vendor'].astype('string[pyarrow]')
+s.memory_usage(deep=True)/df['vendor'].memory_usage(deep=True)
 
 # %%
 df['vendor'] = df['vendor'].astype('category')
