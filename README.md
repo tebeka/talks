@@ -8,6 +8,7 @@ view the "code" on [GitHub](https://github.com/tebeka/talks).
 
 You can view this as HTML page [here](https://tebeka.github.io/talks/).
 
+- [Looping in Go](in-the-loop.pdf) (see video (in Heberw) [here](https://www.youtube.com/watch?v=9dXGNWsFb0Q))
 - [Interfaces In Go](https://talks.godoc.org/github.com/tebeka/talks/go-il-ifaces/iface.slide#1) (currently broken)
 - [What's in a Name? Variable Scope & Closure in Go](https://talks.godoc.org/github.com/tebeka/talks/go-var/var.slide#1)
 - [Writing Secure Go Code](./secure-go-code/slides.pdf)

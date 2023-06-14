@@ -99,7 +99,7 @@ df.memory_usage().sum() / mb
 
 # %%
 amt_df = pd.read_parquet('yellow_tripdata_2022-04.parquet', columns=['VendorID', 'total_amount'])
-amt_df.memory_usage().sum() / mb
+amt_df.memory_usage().sum() / md;lijb
 
 # %%
 df['total_amount'].memory_usage() / mb
