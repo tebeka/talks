@@ -4,5 +4,5 @@ import "fmt"
 
 func main() {
 	n := 1.1
-	fmt.Println(n * n)
+	fmt.Println(n*n == 1.21)
 }

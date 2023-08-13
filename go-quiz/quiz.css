@@ -1,3 +1,12 @@
+.clock {
+    font-family: JetBrains-Mono;
+    font-size: 1.2em;
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    color: red;
+}
+
 /*
 @font-face {
     font-family: 'JetBrains-Mono';
@@ -7,14 +16,6 @@
 }
 */
 
-.clock {
-    font-family: JetBrains-Mono;
-    font-size: 1.2em;
-    position: absolute;
-    right: 40px;
-    bottom: 40px;
-    color: red;
-}
 
 /*
 div.playground pre {
