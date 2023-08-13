@@ -1,15 +1,17 @@
 package main
 
-var f = func(i int) {
-	print("x")
+import "fmt"
+
+var fn = func(i int) {
+	fmt.Print("Amigos")
 }
 
 func main() {
-	f := func(i int) {
-		print(i)
+	fn := func(i int) {
+		fmt.Print(i, " ")
 		if i > 0 {
-			f(i - 1)
+			fn(i - 1)
 		}
 	}
-	f(10)
+	fn(3)
 }

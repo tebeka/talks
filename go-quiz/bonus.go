@@ -6,15 +6,15 @@ import (
 
 func main() {
 	var players = []struct {
-		name   string
-		points int
+		name  string
+		score int
 	}{
 		{"Wednesday", 1_000_000},
 		{"Pugsley", 13},
 	}
 
 	for _, player := range players {
-		player.points += 123
+		player.score += 123
 	}
 	fmt.Printf("%v\n", players)
 }

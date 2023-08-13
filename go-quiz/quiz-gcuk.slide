@@ -12,9 +12,17 @@ miki@ardanlabs.com
 
 ## Quiz Rules
 
-- I'll show a short program and ask what it'll print
-- You have 30 seconds to guess the output (multiple selection)
-- There are 20 questions total
+- I'll show a short program and ask what will happen when I run it
+- You have 30 seconds to find out the output (multiple selection)
+- After that, I'll run the program and then explain *why* we got such output
+    - The idea is to learn, not show WATs
+- There are 25 questions total
+
+## 
+
+<p style="font-size: 7em; margin-top: 30%; text-align: center;">
+Let's Go!
+</p>
 
 ## In Scope
 
@@ -37,11 +45,11 @@ miki@ardanlabs.com
 
 ## Such Emptiness
 
-.play -edit -numbers empty-map-ok.go
+.play -edit -numbers empty_map_ok.go
 
 - A: 1
 - B: panic
-- C: Won't compile
+- C: ""
 - D: 0
 
 ## Not Your Type
@@ -62,7 +70,7 @@ miki@ardanlabs.com
 - C: 1 3 4
 - D: 1 1 3
 
-## Order of Things
+## Are We There Yet?
 
 .play -edit -numbers time.go
 
@@ -80,12 +88,22 @@ miki@ardanlabs.com
 - C: 512
 - D: 8
 
+## Shaken, Not Stirred
+
+.code -edit -numbers loc.go /^type Loc/,/^}/
+.play -edit -numbers loc.go /^func main/,/^}/
+
+- A: Won't compile
+- B: [Q]
+- C: [007 M]
+- D: panic
+
 ## Sleep Sort
 
 .play -edit -numbers sleep_sort.go /^func main/,/^}/
 
 - A: 1 2 3
-- B: 1 1 1
+- B: 3 1 2
 - C: 2 2 2
 - D: Deadlock
 
@@ -98,6 +116,15 @@ miki@ardanlabs.com
 - B: panic
 - C: false
 - D: Won't compile
+
+## A Bald Move
+
+.play -edit -numbers print_char.go
+
+- A: 61
+- B: a
+- C: 97
+- D: S
 
 ## Leftovers
 
@@ -115,6 +142,16 @@ miki@ardanlabs.com
 - A: true
 - B: false
 - C: Won't compile
+- D: panic
+
+## Function Var
+
+.code -edit -numbers fnvar.go /^var fn/,/^}/
+.play -edit -numbers fnvar.go /^func main/,/^}/
+
+- A: 3 2 1 0
+- B: Won't compile
+- C: 3 Amigos 
 - D: panic
 
 ## A Funny Number
@@ -135,23 +172,21 @@ miki@ardanlabs.com
 - C: panic
 - D: Won't compile
 
+## A Troll
 
-## Return to Sender, Address Unknown
+.play -edit -numbers for_under.go
 
-.code -edit -numbers addr.go /^type Message/,/^}/
-.play -edit -numbers addr.go /^func main/,/^}/
+- A: 0 1 2
+- B: Won't compile
+- C: 1 2 3
+- D: panic
 
-- A: 1 
-- B: 2
-- C: 4
-- D: 7
-
-## Slicing Bugs
+## The Best Thing Since Sliced Bread
 
 .play -edit -numbers append3.go
 
 - A: [1 2 3] [1 10]
-- B: Won't compile
+- B: [1 2 3] [1 2]
 - C: [1 10 3] [1 10]
 - D: panic
 
@@ -163,7 +198,6 @@ miki@ardanlabs.com
 - B: 9762
 - C: ☢
 - D: won't compile
-
 
 ## A Hefty Bonus
 
@@ -190,6 +224,25 @@ miki@ardanlabs.com
 - B: map[]
 - C: map[NaN:MacLeod]
 - D: panic
+
+## Default Case
+
+.play -edit -numbers resolve.go
+
+- A: 3
+- B: 0
+- C: Won't compile
+- D: panic
+
+## Let's Get Shifty
+
+.code -edit -numbers iota.go /^const/,/^\)/
+.play -edit -numbers iota.go /^func main/,/^}/
+
+- A: 3
+- B: 2
+- C: Won't compile
+- D: 4
 
 ## Nothing in General
 
@@ -219,7 +272,7 @@ How many did you get right?
 
 // ## Map
 // 
-// .play -edit -numbers empty-map.go
+// .play -edit -numbers empty_map.go
 // 
 // - A: 1
 // - B: 0
@@ -237,7 +290,7 @@ How many did you get right?
 
 // ## Ints & Floats
 // 
-// .play -edit -numbers float-int2.go
+// .play -edit -numbers float_int2.go
 // 
 // - A: 36
 // - B: 33
@@ -262,15 +315,6 @@ How many did you get right?
 // - C: [1 2 3]
 // - D: Won't compile
 
-// ## Resolve
-// 
-// .play -edit -numbers resolve.go
-// 
-// - A: 3
-// - B: 0
-// - C: Won't compile
-// - D: panic
-
 // ## For
 // 
 // .play -edit -numbers for.go
@@ -279,15 +323,6 @@ How many did you get right?
 // - B: c c c c
 // - C: Won't compile
 // - D: sup?
-
-// ## Print
-// 
-// .play -edit -numbers print-char.go
-// 
-// - A: 65
-// - B: a
-// - C: 97
-// - D: C
 
 // ## Vars
 // 
@@ -307,16 +342,6 @@ How many did you get right?
 // - C: {1 0 3}
 // - D: {0 0 0}
 
-// ## Function Var
-// 
-// .play -edit -numbers fnvar.go
-// 
-// - A: 109876543210
-// - B: Won't compile
-// - C: 10x
-// - D: 10
-
-
 // ## Tick
 // 
 // .play -edit -numbers tick.go
@@ -335,7 +360,6 @@ How many did you get right?
 // - C: Won't compile
 // - D: 3 4
 // 
-// ## Unicode
 
 // ## Map
 // 
@@ -525,4 +549,13 @@ How many did you get right?
 // - B: [1 2 3 1 2 3]
 // - C: [1 2 3 0 1 2]
 // - D: [1 2 3 [1 2 3]]
+
+// ## Return to Sender, Address Unknown
 // 
+// .code -edit -numbers addr.go /^type Message/,/^}/
+// .play -edit -numbers addr.go /^func main/,/^}/
+// 
+// - A: 1 
+// - B: 2
+// - C: 4
+// - D: 7
