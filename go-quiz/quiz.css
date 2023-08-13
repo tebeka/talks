@@ -1,23 +1,22 @@
+/*
 @font-face {
-    /*
-    font-family: 'Space-Mono';
-    src: url('SpaceMono-Regular.ttf') format('truetype');
-    */
     font-family: 'JetBrains-Mono';
     src: url('JetBrainsMono-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
+*/
 
 .clock {
     font-family: JetBrains-Mono;
     font-size: 1.2em;
     position: absolute;
-    left: 40px;
-    bottom: 30px;
+    right: 40px;
+    bottom: 40px;
     color: red;
 }
 
+/*
 div.playground pre {
     font-size: 24px;
     font-family: JetBrains-Mono;
@@ -27,3 +26,4 @@ div.playground span.num {
     font-size: 24px;
     font-family: JetBrains-Mono;
 }
+*/

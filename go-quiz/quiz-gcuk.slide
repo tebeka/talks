@@ -1,0 +1,480 @@
+# Go Quiz
+Guess the Output
+
+Miki Tebeka
+miki@ardanlabs.com
+@tebeka
+
+## 
+
+.html quiz.html
+.image me.png
+
+## Quiz Rules
+
+- I'll show a short program and ask what it'll print
+- You have 30 seconds to guess the output (multiple selection)
+- There are 20 questions total
+
+##
+
+.image gcuk-qr.png
+
+
+<p style="font-family: monspace; font-size: 3em; text-align: center;">
+slido.com <br/>
+<br/>
+5148 336
+</p>
+
+
+// * Map
+// 
+// .play -edit -numbers empty-map-ok.go
+// 
+// *A:* 1
+// *B:* panic
+// *C:* Won't compile
+// *D:* 0
+
+## Chars
+
+.play -edit -numbers stridx.go
+
+- A: `int8`
+- B: `uint8`
+- C: `byte`
+- D: `rune`
+
+// * Pointers
+// 
+// .play -edit -numbers ptr.go
+// 
+// *A:* 9 8
+// *B:* 8 9
+// *C:* 8 8
+// *D:* 9 9
+
+// * Map
+// 
+// .play -edit -numbers empty-map.go
+// 
+// *A:* 1
+// *B:* 0
+// *C:* Won't compile
+// *D:* panic
+
+// * For
+// 
+// .play -edit -numbers str.go
+// 
+// *A:* K r a k ó w
+// *B:* 0 1 2 3 4 5
+// *C:* 0 1 2 3 4 6
+// *D:* Kraków
+
+## Vars
+
+.play -edit -numbers vars.go
+
+- A: 1 2
+- B: 1 3
+- C: Won't compile
+- D: 3 4
+
+## Tick
+
+.play -edit -numbers tick.go
+
+- A: bye
+- B: Won't compile
+- C: Deadlock
+- D: bye bye
+
+## Unicode
+
+.play -edit -numbers unicode.go
+
+- A: 6
+- B: 7
+- C: 8
+- D: Won't compile
+
+## Vars
+
+.play -edit -numbers vars2.go
+
+- A: 1 2 3
+- B: Won't compile
+- C: 1 3 4
+- D: 1 1 3
+
+## Map
+
+.play -edit -numbers map.go
+
+- A: 1
+- B: 0
+- C: Won't compile
+- D: panic
+
+## Rune
+.play -edit -numbers rune.go
+
+- A: int8
+- B: rune
+- C: int32
+- D: uint32
+
+## Ints & Floats
+
+.play -edit -numbers float-int.go
+
+- A: 36
+- B: 33
+- C: Won't compile
+- D: 36.3
+
+## Times
+
+.play -edit -numbers time.go
+
+- A: before
+- B: before after
+- C: Won't compile
+- D: Deadlock
+
+## Power
+
+.play -edit -numbers xor.go
+
+- A: Won't compile
+- B: 1024
+- C: 512
+- D: 8
+
+//# * Ints & Floats
+// 
+// .play -edit -numbers float-int2.go
+// 
+// *A:* 36
+// *B:* 33
+// *C:* Won't compile
+// *D:* 36.3
+
+## For Append
+
+.play -edit -numbers appendfor.go
+
+- A: Hang
+- B: [1 2 3 1 2 3]
+- C: [1 2 3 0 1 2]
+- D: [1 2 3 [1 2 3]]
+
+// * Slices
+// 
+// .play -edit -numbers slice.go
+// 
+// *A:* [1 2 3]
+// *B:* [1 2 99]
+// *C:* [99 2 3]
+// *D:* [1 99 3]
+ 
+## Init
+
+.play -edit -numbers init.go
+
+- A: A B
+- B: B A
+- C: B
+- D: Won't compile
+
+## Append
+
+.play -edit -numbers sliceappend.go
+
+- A: [1 2 3 4]
+- B: [1 99 3 4]
+- C: [1 2 99 3]
+- D: [1 2 3]
+
+## Sleep Sort
+
+.play -edit -numbers sleep-sort.go /^func main/,/^}/
+
+- A: 1 2 3
+- B: 1 1 1
+- C: 2 2 2
+- D: Deadlock
+
+// ## Types
+// 
+// .play -edit -numbers callers.go
+// 
+// *A:* [0 1 2]
+// *B:* [0 0 0]
+// *C:* [1 2 3]
+// *D:* Won't compile
+
+// ## Resolve
+// 
+// .play -edit -numbers resolve.go
+// 
+// *A:* 3
+// *B:* 0
+// *C:* Won't compile
+// *D:* panic
+
+## π
+
+.play -edit -numbers pi.go
+
+- A: 3
+- B: 3.142857142857143
+- C: Won't compile
+- D: 4
+
+// ## For
+// 
+// .play -edit -numbers for.go
+// 
+// *A:* s u p ?
+// *B:* c c c c
+// *C:* Won't compile
+// *D:* sup?
+
+// ## Print
+// 
+// .play -edit -numbers print-char.go
+// 
+// *A:* 65
+// *B:* a
+// *C:* 97
+// *D:* C
+
+## Error
+
+.play -edit -numbers err.go
+
+- A: error: <nil>
+- B: panic
+- C: Won't compile
+- D: OK
+
+## File
+
+.play -edit -numbers nilwtr.go
+
+- A: true
+- B: panic
+- C: false
+- D: Won't compile
+
+
+## nil
+
+.play -edit -numbers nilrcv.go
+
+- A: panic
+- B: won't compile
+- C: 1
+- D: 2
+
+
+// ## Vars
+// 
+// .play -edit -numbers vars3.go
+// 
+// *A:* 3 5
+// *B:* ∞ loop
+// *C:* 8 8
+// *D:* 8 3
+
+## Channel
+
+.play -edit -numbers ch.go
+
+- A: 0
+- B: deadlock
+- C: 2
+- D: panic
+
+// ## Struct
+// 
+// .play -edit -numbers underscore.go
+// 
+// *A:* Won't compile
+// *B:* {1 2 3}
+// *C:* {1 0 3}
+// *D:* {0 0 0}
+
+## Defer
+
+.play -edit -numbers defer.go
+
+- A: 2 1 0
+- B: 2 2 2
+- C: 0 1 2
+- D: 3 3 3
+
+
+## Strings
+
+.play -edit -numbers streq.go
+
+- A: false
+- B: true
+- C: Won't compile
+- D: 1
+
+## Quote
+
+.play -edit -numbers quote.go
+
+- A: string string
+- B: rune string
+- C: int32 string
+- D: int32 int32
+
+// ## Function Var
+// 
+// .play -edit -numbers fnvar.go
+// 
+// *A:* 109876543210
+// *B:* Won't compile
+// *C:* 10x
+// *D:* 10
+
+## String
+
+.play -edit -numbers raw.go
+
+- A: Won't compile
+- B: a\tb
+- C: a	b
+- D: a9b
+
+## Float
+
+.play -edit -numbers float.go
+
+- A: 1.21
+- B: 1
+- C: 1.1.2100000000000002
+- D: 1.22
+
+## Interface
+
+.play -edit -numbers iface.go /^type Writer/,
+
+- A: Read
+- B: Write
+- C: Won't compile
+- D: There's no D
+
+: Jeff Wendling at [[https://gophers.slack.com/archives/C1C1YSQBT/p1578455202043500][#darkarts]]
+
+## Number
+
+.play -edit -numbers num.go
+
+- A: Won't compile
+- B: 1
+- C: -1
+- D: 0.25
+
+## Compare
+
+.play -edit -numbers nil_slice.go
+
+- A: panic
+- B: true
+- C: false
+- D: won't compile
+
+## Integer String
+
+.play -edit -numbers strint.go
+
+- A: panic
+- B: 128169
+- C: 💩
+- D: won't compile
+
+## An Exit Strategy
+
+.play -edit -numbers exit.go
+
+- A: 0 1 2 3 4
+- B: panic
+- C: nothing
+- D: deadlock
+
+## Append & Slice
+
+.play -edit -numbers append2.go
+
+- A: [1 10 3] [1 10]
+- B: panic
+- C: [1 2 3] [1 2]
+- D: [1 2 3] [1 10]
+
+## Append & Slice
+
+.play -edit -numbers append3.go
+
+- A: [1 10 3] [1 10]
+- B: panic
+- C: [1 2 3] [1 10]
+- D: Won't compile
+
+## C String
+
+.play -edit -numbers c_str.go
+
+- A: Panic
+- B: -
+- C: Go is better
+- D: Won't compile
+
+## Time Equality
+
+.play -edit -numbers time_eq.go
+
+- A: false
+- B: true
+- C: panic
+- D: Won't compile
+
+
+## ???
+
+.play -edit -numbers times.go
+
+- A: panic
+- B: {Hello 2020-03-21 00:00:00 +0200 IST}
+- C: {Hello 2020-03-21 00:00:00 +0000 UTC}
+- D: 2020-03-21 00:00:00 +0000 UTC
+
+## ???
+
+.play -edit -numbers cmp.go
+
+- A: Won't compile
+- B: true
+- C: false
+- D: panic
+
+## ???
+
+.play -edit -numbers addr.go
+
+- A: 1
+- B: 2
+- C: 4
+- D: 8
+
+
+# The End
+
+How many did you get right?
