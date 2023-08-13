@@ -16,21 +16,22 @@ miki@ardanlabs.com
 - You have 30 seconds to guess the output (multiple selection)
 - There are 20 questions total
 
-##
+## In Scope
 
-.image gcuk-qr.png
+.play -edit -numbers scope.go
 
+- A: Won't compile
+- B: 2 2
+- C: 2 1
+- D: 1 1
 
-<p style="font-family: monspace; font-size: 3em; text-align: center;">
-slido.com 5148 336
-</p>
 
 ## A Piece of π
 
 .play -edit -numbers pi.go
 
 - A: 3
-- B: 3.142857142857143
+- B: 3.1415929203539825
 - C: Won't compile
 - D: 4
 
@@ -47,10 +48,10 @@ slido.com 5148 336
 
 .play -edit -numbers stridx.go
 
-- A: `int8`
-- B: `uint8`
-- C: `byte`
-- D: `rune`
+- A: int8
+- B: uint8
+- C: byte
+- D: rune
 
 ## Something New
 
@@ -90,7 +91,8 @@ slido.com 5148 336
 
 ## Nothing For Me
 
-.play -edit -numbers nilwtr.go
+.code -edit -numbers nilwtr.go /^func Open/,/^}/
+.play -edit -numbers nilwtr.go /^func main/,/^}/
 
 - A: true
 - B: panic
@@ -115,7 +117,7 @@ slido.com 5148 336
 - C: Won't compile
 - D: panic
 
-## Funny Number
+## A Funny Number
 
 .play -edit -numbers num.go
 
@@ -124,18 +126,9 @@ slido.com 5148 336
 - C: -1
 - D: 0.25
 
-## Integer String
+## At the Same Time
 
-.play -edit -numbers strint.go
-
-- A: panic
-- B: 128169
-- C: 💩
-- D: won't compile
-
-## Same Time
-
-.play -edit -numbers time_eq.go
+.play -edit -numbers time_eq.go /^func main/,/^}/
 
 - A: false
 - B: true
@@ -143,14 +136,15 @@ slido.com 5148 336
 - D: Won't compile
 
 
-## Wrong Address
+## Return to Sender, Address Unknown
 
-.play -edit -numbers addr.go
+.code -edit -numbers addr.go /^type Message/,/^}/
+.play -edit -numbers addr.go /^func main/,/^}/
 
-- A: 1
+- A: 1 
 - B: 2
 - C: 4
-- D: 8
+- D: 7
 
 ## Slicing Bugs
 
@@ -161,16 +155,17 @@ slido.com 5148 336
 - C: [1 10 3] [1 10]
 - D: panic
 
-## Scope of Things
+## A Toxic Number
 
-.play -edit -numbers scope.go
+.play -edit -numbers strint.go
 
-- A: Won't compile
-- B: 2 2
-- C: 2 1
-- D: 1 1
+- A: 0x2622
+- B: 9762
+- C: ☢
+- D: won't compile
 
-## A Bonus
+
+## A Hefty Bonus
 
 .play -edit -numbers bonus.go /^func main/,/^}/
 
@@ -206,9 +201,11 @@ slido.com 5148 336
 - C: Won't compile
 - D: 0.0
 
-# The End
+## The End
 
 How many did you get right?
+
+.image go-brain-teasers.png
 
 
 // ## Pointers

@@ -6,14 +6,15 @@ import (
 )
 
 type Message struct {
-	c1 byte
-	c2 byte
-	i  int64
+	Level   byte
+	Group   byte
+	ID      int
+	Content string
 }
 
 func main() {
 	var m Message
-	addr1 := uintptr(unsafe.Pointer(&m.i))
-	addr2 := uintptr(unsafe.Pointer(&m.c1))
+	addr1 := uintptr(unsafe.Pointer(&m.ID))
+	addr2 := uintptr(unsafe.Pointer(&m.Group))
 	fmt.Println(addr1 - addr2)
 }

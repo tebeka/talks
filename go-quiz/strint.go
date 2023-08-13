@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	s := string(0x1F4A9)
+	s := string(0x2622)
 	fmt.Println(s)
 }
