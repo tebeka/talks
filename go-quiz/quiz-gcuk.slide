@@ -225,15 +225,6 @@ Let's Go!
 - C: map[NaN:MacLeod]
 - D: panic
 
-## Default Case
-
-.play -edit -numbers resolve.go
-
-- A: 3
-- B: 0
-- C: Won't compile
-- D: panic
-
 ## Let's Get Shifty
 
 .code -edit -numbers iota.go /^const/,/^\)/
@@ -243,6 +234,17 @@ Let's Go!
 - B: 2
 - C: Won't compile
 - D: 4
+
+## A Method to the Madness
+
+.code -edit -numbers method.go /^type Driver/,/^\}/
+.code -edit -numbers method.go /^func \(d/,/^\}/
+.play -edit -numbers method.go /^func main/,/^}/
+
+- A: panic
+- B: CoolDB
+- C: Won't compile
+- D: <nil>
 
 ## Nothing in General
 
@@ -559,3 +561,12 @@ How many did you get right?
 // - B: 2
 // - C: 4
 // - D: 7
+
+// ## Default Case
+// 
+// .play -edit -numbers resolve.go
+// 
+// - A: 3
+// - B: 0
+// - C: Won't compile
+// - D: panic
