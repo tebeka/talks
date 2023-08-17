@@ -172,7 +172,7 @@ Let's Go!
 - C: panic
 - D: Won't compile
 
-## [17] A Troll
+## [17] Under Valued
 
 .play -edit -numbers for_under.go
 
