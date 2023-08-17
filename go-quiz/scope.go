@@ -8,7 +8,7 @@ func main() {
 	n := 1
 	{
 		n := n + 1
-		fmt.Printf("%d ", n)
+		fmt.Print(n, " ")
 	}
 	fmt.Println(n)
 }
