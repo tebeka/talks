@@ -64,3 +64,8 @@ Python: `__repr__`, `__format__`, `{name:<20}`
 ## Metaclasses and why you shouldn't use them
 - What are they
 - Implement ABC
+
+## Testing Conference Banner
+- QR code
+- Image processing
+
