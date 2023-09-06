@@ -13,6 +13,8 @@ You'll need the following installed:
 - Python requirements from [requirements.txt](requirements.txt)
 - The `source-highlight` command line tool
 
+Optional: Exit `quiz.yml` to set timeout and what quizzes to run.
+
 Start IPython and run
 
 ```
