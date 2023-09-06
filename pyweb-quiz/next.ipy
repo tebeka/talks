@@ -24,7 +24,6 @@ def next_teaser():
     timeout = quiz['timeout']
     print(f'<{current_teaser + 1}/{num_teasers}>', end=' ', flush=True)
     !source-highlight  -n -f esc -s python -i $src
-#    %source $src
     print('')
     %run timer.py $timeout
     print('Output:')
