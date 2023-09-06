@@ -1,0 +1,13 @@
+import os
+import pyqrcode
+
+
+!clear
+
+qr = pyqrcode.create('https://bit.ly/484HT39')
+data = qr.terminal(quiet_zone=1, background='blue')
+lines = data.splitlines()
+i = len(lines)//2
+lines[i] +=   '                    Pandas Brain Teasers'
+lines[i+1] += '   https://pragprog.com/titles/d-pandas/pandas-brain-teasers/'
+print('\n'.join(lines))

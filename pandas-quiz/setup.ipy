@@ -1,0 +1,39 @@
+import sys
+
+import pandas as pd
+import yaml
+
+header = '''\
+Pandas Brain Teasers (https://bit.ly/484HT39)
+Miki Tebeka <miki@353solutions.com>
+
+Rules:
+- I'll show you a short Python/Pandas program.
+- You has {timeout} seconds to guess the output, which might be:
+    - Some output (e.g. `[1 2 3]`)
+    - Exception
+- When the time ends, I'll show you the output.
+- We'll discuss *why* this is the output.
+
+There are {count} puzzles.
+I'm using Python {pyver} and Pandas {pdver}.
+'''
+
+%alias_magic -p next.ipy next %run
+%alias_magic -p fin.ipy fin %run
+!rm -f current.txt
+!clear
+
+with open('quiz.yml') as fp:
+    data = yaml.safe_load(fp)
+
+params = {
+    'pyver': sys.version.split()[0],
+    'pdver': pd.__version__,
+    'timeout': data['timeout'],
+    'count': len(data['puzzles']),
+}
+
+
+text = header.format(**params)
+print(text)

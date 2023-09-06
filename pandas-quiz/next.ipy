@@ -1,0 +1,38 @@
+# vim: ft=python
+from pathlib import Path
+
+import yaml
+
+with open('quiz.yml') as fp:
+    quiz = yaml.safe_load(fp)
+
+
+def next_puzzle():
+    current = Path('current.txt')
+    if current.exists():
+        with current.open() as fp:
+            current_puzzle = int(fp.read())
+    else:
+        current_puzzle = 0
+
+    !clear
+    if current_puzzle >= len(quiz['puzzles']):
+        print('Done!')
+        return
+
+    src = quiz['puzzles'][current_puzzle]
+    num_puzzles = len(quiz['puzzles'])
+    timeout = quiz['timeout']
+    print(f'[{current_puzzle + 1}/{num_puzzles}]', flush=True)
+    !source-highlight  -n -f esc -s python -i $src
+#    %source $src
+    print('')
+    %run timer.py $timeout
+    print('Output:')
+    %run $src
+
+    current_puzzle += 1
+    with current.open('w') as out:
+        print(current_puzzle, file=out)
+
+next_puzzle()

@@ -1,0 +1,5 @@
+ipython ~= 8.15
+pandas ~= 2.1
+pyqrcode != 1.2
+PyYAML ~= 6.0
+tqdm ~= 4.66
