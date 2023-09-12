@@ -1,22 +1,24 @@
 import sys
+from tempfile import NamedTemporaryFile
 
 import pandas as pd
 import yaml
 
 header = '''\
-Pandas Brain Teasers (https://bit.ly/484HT39)
-Miki Tebeka <miki@353solutions.com>
+## Pandas Quiz
+Miki Tebeka [miki@353solutions.com]
 
-Rules:
+### Rules:
 - I'll show you a short Python/Pandas program.
-- You has {timeout} seconds to guess the output, which might be:
-    - Some output (e.g. `[1 2 3]`)
+- You has 30 seconds to guess the output, which might be:
+    - Some output (e.g. `[2 7 1 8]`)
     - Exception
 - When the time ends, I'll show you the output.
 - We'll discuss *why* this is the output.
 
 There are {count} puzzles.
 I'm using Python {pyver} and Pandas {pdver}.
+Quiz based on [Pandas Brain Teasers](https://t.ly/pdBT)
 '''
 
 %alias_magic -p next.ipy next %run
@@ -36,4 +38,8 @@ params = {
 
 
 text = header.format(**params)
-print(text)
+with NamedTemporaryFile('w') as out:
+    out.write(text)
+    out.flush()
+    name = out.name
+    ! glow $name
