@@ -1,0 +1,20 @@
+2013-09-14 version 0.5.0
+    * "nrsc" is go gettable
+
+2013-07-25 version 0.4.1
+    * Look for executable in path (thanks Kendell Fabricius)
+
+2013-06-05 version 0.4.0
+    * Added Mask (closing issue #1)
+
+2013-01-04 version 0.3.1
+    * Call Initialize in LoadTemplates as well (thanks Vincent Rischmann)
+
+2013-01-04 version 0.3.0
+    * Allow to pass parameters to zip command (as requested by Josh Holland)
+
+2012-10-06 version 0.2.0
+    * Using zip payload (Idea from Carlos Castillo http://bit.ly/SmYXXm)
+
+2012-10-18 version 0.1.0
+    * Initial release

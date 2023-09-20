@@ -1,0 +1,5 @@
+syntax: glob
+
+README.html
+nrsc
+playground/nrsc
