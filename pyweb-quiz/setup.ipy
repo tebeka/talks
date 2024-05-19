@@ -1,4 +1,6 @@
 import yaml
+from subprocess import run
+
 with open('quiz.yml') as fp:
     data = yaml.safe_load(fp)
 timeout = data['timeout']
@@ -6,7 +8,8 @@ timeout = data['timeout']
 %alias_magic -p end.ipy end %run
 !rm -f current.txt
 !clear
-with open('header.txt') as fp:
+with open('header.md') as fp:
     text = fp.read()
 text = text.format(timeout=timeout)
-print(text)
+
+run(['glow', '-'], input=text.encode())

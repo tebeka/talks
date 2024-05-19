@@ -1,0 +1,5 @@
+%glow fin.md
+%icat cover.png
+width = os.get_terminal_size().columns
+url = 'https://gum.co/iIQT'
+print(f'{url:^{width}}')

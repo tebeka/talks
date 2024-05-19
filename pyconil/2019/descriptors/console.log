@@ -1,0 +1,624 @@
+Python 3.7.3 (default, Mar 26 2019, 21:43:19) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.4.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: fp = open('/dev/zero')                                                            
+
+In [2]: fp.mode                                                                           
+Out[2]: 'r'
+
+In [3]: fp.__dict__                                                                       
+Out[3]: {'mode': 'r'}
+
+In [4]: vars(fp)                                                                          
+Out[4]: {'mode': 'r'}
+
+In [5]: dir(fp)                  
+['_CHUNK_SIZE',
+ '__class__',
+ '__del__',
+ '__delattr__',
+ '__dict__',
+ '__dir__',
+ '__doc__',
+ '__enter__',
+ '__eq__',
+ '__exit__',
+ '__format__',
+ '__ge__',
+ '__getattribute__',
+ '__getstate__',
+ '__gt__',
+ '__hash__',
+ '__init__',
+ '__init_subclass__',
+ '__iter__',
+ '__le__',
+ '__lt__',
+ '__ne__',
+ '__new__',
+ '__next__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__',
+ '_checkClosed',
+ '_checkReadable',
+ '_checkSeekable',
+ '_checkWritable',
+ '_finalizing',
+ 'buffer',
+ 'close',
+ 'closed',
+ 'detach',
+ 'encoding',
+ 'errors',
+ 'fileno',
+ 'flush',
+ 'isatty',
+ 'line_buffering',
+ 'mode',
+ 'name',
+ 'newlines',
+ 'read',
+ 'readable',
+ 'readline',
+ 'readlines',
+ 'reconfigure',
+ 'seek',
+ 'seekable',
+ 'tell',
+ 'truncate',
+ 'writable',
+ 'write',
+ 'write_through',
+ 'writelines']
+
+In [6]:fp.read(3)                                                                             
+Out[6]: '\x00\x00\x00'
+
+In [7]: fp.__class__.__dict__                                                                  
+Out[7]: 
+mappingproxy({'__repr__': <slot wrapper '__repr__' of '_io.TextIOWrapper' objects>,
+              '__next__': <slot wrapper '__next__' of '_io.TextIOWrapper' objects>,
+              '__init__': <slot wrapper '__init__' of '_io.TextIOWrapper' objects>,
+              '__new__': <function TextIOWrapper.__new__(*args, **kwargs)>,
+              'detach': <method 'detach' of '_io.TextIOWrapper' objects>,
+              'reconfigure': <method 'reconfigure' of '_io.TextIOWrapper' objects>,
+              'write': <method 'write' of '_io.TextIOWrapper' objects>,
+              'read': <method 'read' of '_io.TextIOWrapper' objects>,
+              'readline': <method 'readline' of '_io.TextIOWrapper' objects>,
+              'flush': <method 'flush' of '_io.TextIOWrapper' objects>,
+              'close': <method 'close' of '_io.TextIOWrapper' objects>,
+              'fileno': <method 'fileno' of '_io.TextIOWrapper' objects>,
+              'seekable': <method 'seekable' of '_io.TextIOWrapper' objects>,
+              'readable': <method 'readable' of '_io.TextIOWrapper' objects>,
+              'writable': <method 'writable' of '_io.TextIOWrapper' objects>,
+              'isatty': <method 'isatty' of '_io.TextIOWrapper' objects>,
+              '__getstate__': <method '__getstate__' of '_io.TextIOWrapper' objects>,
+              'seek': <method 'seek' of '_io.TextIOWrapper' objects>,
+              'tell': <method 'tell' of '_io.TextIOWrapper' objects>,
+              'truncate': <method 'truncate' of '_io.TextIOWrapper' objects>,
+              'encoding': <member 'encoding' of '_io.TextIOWrapper' objects>,
+              'buffer': <member 'buffer' of '_io.TextIOWrapper' objects>,
+              'line_buffering': <member 'line_buffering' of '_io.TextIOWrapper' objects>,
+              'write_through': <member 'write_through' of '_io.TextIOWrapper' objects>,
+              '_finalizing': <member '_finalizing' of '_io.TextIOWrapper' objects>,
+              'name': <attribute 'name' of '_io.TextIOWrapper' objects>,
+              'closed': <attribute 'closed' of '_io.TextIOWrapper' objects>,
+              'newlines': <attribute 'newlines' of '_io.TextIOWrapper' objects>,
+              'errors': <attribute 'errors' of '_io.TextIOWrapper' objects>,
+              '_CHUNK_SIZE': <attribute '_CHUNK_SIZE' of '_io.TextIOWrapper' objects>,
+              '__doc__': 'Character and line based layer over a BufferedIOBase object, buffer.\n\nencoding gives the name of the encoding that the stream will be\ndecoded or encoded with. It defaults to locale.getpreferredencoding(False).\n\nerrors determines the strictness of encoding and decoding (see\nhelp(codecs.Codec) or the documentation for codecs.register) and\ndefaults to "strict".\n\nnewline controls how line endings are handled. It can be None, \'\',\n\'\\n\', \'\\r\', and \'\\r\\n\'.  It works as follows:\n\n* On input, if newline is None, universal newlines mode is\n  enabled. Lines in the input can end in \'\\n\', \'\\r\', or \'\\r\\n\', and\n  these are translated into \'\\n\' before being returned to the\n  caller. If it is \'\', universal newline mode is enabled, but line\n  endings are returned to the caller untranslated. If it has any of\n  the other legal values, input lines are only terminated by the given\n  string, and the line ending is returned to the caller untranslated.\n\n* On output, if newline is None, any \'\\n\' characters written are\n  translated to the system default line separator, os.linesep. If\n  newline is \'\' or \'\\n\', no translation takes place. If newline is any\n  of the other legal values, any \'\\n\' characters written are translated\n  to the given string.\n\nIf line_buffering is True, a call to flush is implied when a call to\nwrite contains a newline character.'})
+
+In [8]:fp.__class__.read                                                                      
+Out[8]: <method 'read' of '_io.TextIOWrapper' objects>
+
+In [9]: %code getattr.py                                                                       
+    1: def get_attr(obj, name):
+    2:     if name in obj.__dict__:
+    3:         print('found in object')
+    4:         return obj.__dict__[name]
+    5:     for cls in obj.__class__.__mro__:
+    6:         if name in cls.__dict__:
+    7:             print(f'found in class {cls.__name__}')
+    8:             return cls.__dict__[name]
+    9:     raise AttributeError(f'{type(obj)} object has no attribute {name!r}')
+   10: 
+In [10]: %code __getattr__.py                                                                  
+    1: class Proxy:
+    2:     def __init__(self, name, proxied):
+    3:         self.name = name
+    4:         self.proxied = proxied
+    5: 
+    6:     def __getattr__(self, attr):
+    7:         return getattr(self.proxied, attr)
+    8:
+In [11]: p = Proxy('devo0', fp)                                                                
+
+In [12]: p.name                                                                                
+Out[12]: 'devo0'
+
+In [13]: p.read(3)                                                                             
+Out[13]: '\x00\x00\x00'
+
+In [14]: fp.name                                                                               
+Out[14]: '/dev/zero'
+
+In [15]: 'name' in fp.__dict__                                                                 
+Out[15]: False
+
+In [16]: fp.__class__.name                                                                     
+Out[16]: <attribute 'name' of '_io.TextIOWrapper' objects>
+
+In [17]: %edit -n 1609 -x ~/Projects/cpython/Doc/reference/datamodel.rst                       
+Editing... 
+
+In [18]:%code prop_demo.py                                                                    
+    1: class Person:
+    2:     def __init__(self, first, last):
+    3:         self.first = first
+    4:         self.last = last
+    5: 
+    6:     @property
+    7:     def name(self):
+    8:         return f'{self.first} {self.last}'
+    9: 
+In [19]: p = Person('Diana', 'Prince')                                                         
+
+In [20]: p.name                                                                                
+Out[20]: 'Diana Prince'
+
+In [21]: %show diana.jpg                                                                       
+
+In [22]: %code property.py                                                                     
+    1: class Property:
+    2:     def __init__(self, func):
+    3:         self.func = func
+    4: 
+    5:     def __get__(self, inst, owner):
+    6:         if not inst:
+    7:             return self
+    8: 
+    9:         return self.func(inst)
+   10: 
+   11: 
+   12: class PersonD:
+   13:     def __init__(self, first, last):
+   14:         self.first = first
+   15:         self.last = last
+   16: 
+   17:     @Property
+   18:     def name(self):
+   19:         return f'{self.first} {self.last}'
+   20: In [23]: p = PersonD('Nataha', 'Romanova')                                                     
+
+In [24]: %show natasha.jpg                                                                     
+
+In [25]: p.name                                                                                
+Out[25]: 'Nataha Romanova'
+
+In [26]: p                                                                                     
+Out[26]: <__main__.PersonD at 0x7f2f5a7204a8>
+
+In [27]: %code cls_demo.py                                                                     
+    1: import json
+    2: 
+    3: 
+    4: class Point:
+    5:     def __init__(self, x, y):
+    6:         self.x = x
+    7:         self.y = y
+    8: 
+    9:     @classmethod
+   10:     def from_json(cls, data):
+   11:         obj = json.loads(data)
+   12:         return cls(obj['x'], obj['y'])
+   13: In [28]: p = Point.from_json('{"x": 1, "y": 2}')                                               
+
+In [29]: p.x                                                                                   
+Out[29]: 1
+
+In [30]: %code classmethod.py                                                                  
+    1: import json
+    2: from functools import partial
+    3: 
+    4: 
+    5: class ClassMethod:
+    6:     def __init__(self, func):
+    7:         self.func = func
+    8: 
+    9:     def __get__(self, inst, owner):
+   10:         return partial(self.func, owner)
+   11: 
+   12: 
+   13: class PointD:
+   14:     def __init__(self, x, y):
+   15:         self.x = x
+   16:         self.y = y
+   17: 
+   18:     @ClassMethod
+   19:     def from_json(cls, data):
+   20:         obj = json.loads(data)
+   21:         return cls(obj['x'], obj['y'])
+   22: In [31]: p = PointD.from_json('{"x": 1, "y": 2}')                                              
+
+In [32]: p.x                                                                                   
+Out[32]: 1
+
+In [33]: from json import JSONDecoder                                                          
+
+In [34]: '__get__' in dir(JSONDecoder.decode)                                                  
+Out[34]: True
+
+In [35]: %mb                                                                                   
+ ______ 
+< 💣 >
+ ------ 
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+In [36]: %cow WIIFM                                                                             _______ 
+< WIIFM >
+ ------- 
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+In [37]: from trade import Trade                                                               
+
+In [38]: t = Trade('BRK-A', 310132.41, 1)                                                      
+
+In [39]: t.symbol                                                                              
+Out[39]: 'BRK-A'
+
+In [40]: t.price                                                                               
+Out[40]: 310132.41
+
+In [41]: t.volume                                                                              
+Out[41]: 1
+
+In [42]:t.symbol = 'brka                                                                      
+  File "<ipython-input-42-74d32848b6c1>", line 1
+    t.symbol = 'brka
+                    ^
+SyntaxError: EOL while scanning string literal
+
+
+In [43]: t.symbol = 'brka'                                                                     
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-43-e053e7760548> in <module>
+----> 1 t.symbol = 'brka'
+
+~/Projects/talks/pyconil-2019/descriptors/field.py in __set__(self, inst, value)
+      9 
+     10     def __set__(self, inst, value):
+---> 11         self.assert_valid(value)
+     12         setattr(inst, self._attr, value)
+     13 
+
+~/Projects/talks/pyconil-2019/descriptors/fields.py in assert_valid(self, value)
+      8 
+      9         if not str.isupper(value):
+---> 10             raise ValueError(f'symbol not upper case: {value!r}')
+     11 
+     12 
+
+ValueError: symbol not upper case: 'brka'
+
+In [44]:t.price = 'too much'                                                                  
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-44-08c64b96d471> in <module>
+----> 1 t.price = 'too much'
+
+~/Projects/talks/pyconil-2019/descriptors/field.py in __set__(self, inst, value)
+      9 
+     10     def __set__(self, inst, value):
+---> 11         self.assert_valid(value)
+     12         setattr(inst, self._attr, value)
+     13 
+
+~/Projects/talks/pyconil-2019/descriptors/fields.py in assert_valid(self, value)
+     14     def assert_valid(self, value):
+     15         if not isinstance(value, float):
+---> 16             raise TypeError(f'price not a float: {value!r}')
+     17 
+     18         if value <= 0:
+
+TypeError: price not a float: 'too much'
+In [45]: t.volume = 3                                                                          
+
+In [46]: %code trade.py                                                                        
+    1: import fields
+    2: 
+    3: 
+    4: class Trade:
+    5:     symbol = fields.Symbol()
+    6:     price = fields.Price()
+    7:     volume = fields.Volume()
+    8: 
+    9:     def __init__(self, symbol, price, volume):
+   10:         self.symbol = symbol
+   11:         self.price = price
+   12:         self.volume = volume
+   13: 
+   14:     def __repr__(self):
+   15:         name = self.__class__.__name__
+   16:         return f'{name}({self.symbol!r}, {self.price!r}, {self.volume!r})'
+   17: 
+In [47]: t                                                                                     Out[47]: Trade('BRK-A', 310132.41, 3)
+
+In [48]: %code fields.py                                                                       
+    1: from field import Field
+    2: 
+    3: 
+    4: class Symbol(Field):
+    5:     def assert_valid(self, value):
+    6:         if not value:
+    7:             raise ValueError('empty symbol')
+    8: 
+    9:         if not str.isupper(value):
+   10:             raise ValueError(f'symbol not upper case: {value!r}')
+   11: 
+   12: 
+   13: class Price(Field):
+   14:     def assert_valid(self, value):
+   15:         if not isinstance(value, float):
+   16:             raise TypeError(f'price not a float: {value!r}')
+   17: 
+   18:         if value <= 0:
+   19:             raise ValueError(f'non positive price: {value!r}')
+   20: 
+   21: 
+   22: class Volume(Field):
+   23:     def assert_valid(self, value):
+   24:         if not isinstance(value, int):
+   25:             raise TypeError(f'volume not an int: {value!r}')
+   26: 
+   27:         if value <= 0:
+   28:             raise ValueError(f'non positive volume: {value!r}')
+   29:
+In [49]: %code field.py                                                                        
+    1: from abc import ABC, abstractmethod
+    2: 
+    3: 
+    4: class Field(ABC):
+    5:     def __get__(self, inst, owner):
+    6:         if inst is None:
+    7:             return self
+    8:         return getattr(inst, self._attr)
+    9: 
+   10:     def __set__(self, inst, value):
+   11:         self.assert_valid(value)
+   12:         setattr(inst, self._attr, value)
+   13: 
+   14:     # x = Field() -> Field.__set_name__(Field, 'x')
+   15:     def __set_name__(self, owner, name):
+   16:         self._attr = f'_{owner.__name__}_{name}'
+   17: 
+   18:     @abstractmethod
+   19:     def assert_valid(self, value):
+   20:         ...
+   21:
+In [50]: f = Field()                                                                           
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-50-af294a9d9ae3> in <module>
+----> 1 f = Field()
+
+TypeError: Can't instantiate abstract class Field with abstract methods assert_valid
+
+In [51]: %code field.py                                                                        
+    1: from abc import ABC, abstractmethod
+    2: 
+    3: 
+    4: class Field(ABC):
+    5:     def __get__(self, inst, owner):
+    6:         if inst is None:
+    7:             return self
+    8:         return getattr(inst, self._attr)
+    9: 
+   10:     def __set__(self, inst, value):
+   11:         self.assert_valid(value)
+   12:         setattr(inst, self._attr, value)
+   13: 
+   14:     # x = Field() -> Field.__set_name__(Field, 'x')
+   15:     def __set_name__(self, owner, name):
+   16:         self._attr = f'_{owner.__name__}_{name}'
+   17: 
+   18:     @abstractmethod
+   19:     def assert_valid(self, value):
+   20:         ...
+   21:              
+ _______ 
+< WIIFM >
+ ------- 
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+In [37]: from trade import Trade                                                               
+
+In [38]: t = Trade('BRK-A', 310132.41, 1)                                                      
+
+In [39]: t.symbol                                                                              
+Out[39]: 'BRK-A'
+
+In [40]: t.price                                                                               
+Out[40]: 310132.41
+
+In [41]: t.volume                                                                              
+Out[41]: 1
+
+In [42]: t.symbol = 'brka                                                                      
+  File "<ipython-input-42-74d32848b6c1>", line 1
+    t.symbol = 'brka
+                    ^
+SyntaxError: EOL while scanning string literal
+
+
+In [43]: t.symbol = 'brka'                                                                     
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-43-e053e7760548> in <module>
+----> 1 t.symbol = 'brka'
+
+~/Projects/talks/pyconil-2019/descriptors/field.py in __set__(self, inst, value)
+      9 
+     10     def __set__(self, inst, value):
+---> 11         self.assert_valid(value)
+     12         setattr(inst, self._attr, value)
+     13 
+
+~/Projects/talks/pyconil-2019/descriptors/fields.py in assert_valid(self, value)
+      8 
+      9         if not str.isupper(value):
+---> 10             raise ValueError(f'symbol not upper case: {value!r}')
+     11 
+     12 
+
+ValueError: symbol not upper case: 'brka'
+
+In [44]: t.price = 'too much'                                                                  
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-44-08c64b96d471> in <module>
+----> 1 t.price = 'too much'
+
+~/Projects/talks/pyconil-2019/descriptors/field.py in __set__(self, inst, value)
+      9 
+     10     def __set__(self, inst, value):
+---> 11         self.assert_valid(value)
+     12         setattr(inst, self._attr, value)
+     13 
+
+~/Projects/talks/pyconil-2019/descriptors/fields.py in assert_valid(self, value)
+     14     def assert_valid(self, value):
+     15         if not isinstance(value, float):
+---> 16             raise TypeError(f'price not a float: {value!r}')
+     17 
+     18         if value <= 0:
+
+TypeError: price not a float: 'too much'
+
+In [45]: t.volume = 3                                                                          
+
+In [46]: %code trade.py                                                                        
+    1: import fields
+    2: 
+    3: 
+    4: class Trade:
+    5:     symbol = fields.Symbol()
+    6:     price = fields.Price()
+    7:     volume = fields.Volume()
+    8: 
+    9:     def __init__(self, symbol, price, volume):
+   10:         self.symbol = symbol
+   11:         self.price = price
+   12:         self.volume = volume
+   13: 
+   14:     def __repr__(self):
+   15:         name = self.__class__.__name__
+   16:         return f'{name}({self.symbol!r}, {self.price!r}, {self.volume!r})'
+   17: 
+In [47]: t                                                                                     
+Out[47]: Trade('BRK-A', 310132.41, 3)
+
+In [48]: %code fields.py                                                                       
+    1: from field import Field
+    2: 
+    3: 
+    4: class Symbol(Field):
+    5:     def assert_valid(self, value):
+    6:         if not value:
+    7:             raise ValueError('empty symbol')
+    8: 
+    9:         if not str.isupper(value):
+   10:             raise ValueError(f'symbol not upper case: {value!r}')
+   11: 
+   12: 
+   13: class Price(Field):
+   14:     def assert_valid(self, value):
+   15:         if not isinstance(value, float):
+   16:             raise TypeError(f'price not a float: {value!r}')
+   17: 
+   18:         if value <= 0:
+   19:             raise ValueError(f'non positive price: {value!r}')
+   20: 
+   21: 
+   22: class Volume(Field):
+   23:     def assert_valid(self, value):
+   24:         if not isinstance(value, int):
+   25:             raise TypeError(f'volume not an int: {value!r}')
+   26: 
+   27:         if value <= 0:
+   28:             raise ValueError(f'non positive volume: {value!r}')
+   29: 
+In [49]: %code field.py                                                                        
+    1: from abc import ABC, abstractmethod
+    2: 
+    3: 
+    4: class Field(ABC):
+    5:     def __get__(self, inst, owner):
+    6:         if inst is None:
+    7:             return self
+    8:         return getattr(inst, self._attr)
+    9: 
+   10:     def __set__(self, inst, value):
+   11:         self.assert_valid(value)
+   12:         setattr(inst, self._attr, value)
+   13: 
+   14:     # x = Field() -> Field.__set_name__(Field, 'x')
+   15:     def __set_name__(self, owner, name):
+   16:         self._attr = f'_{owner.__name__}_{name}'
+   17: 
+   18:     @abstractmethod
+   19:     def assert_valid(self, value):
+   20:         ...
+   21: 
+In [50]: f = Field()                                                                           
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-50-af294a9d9ae3> in <module>
+----> 1 f = Field()
+
+TypeError: Can't instantiate abstract class Field with abstract methods assert_valid
+
+In [51]: %code field.py                                                                        
+    1: from abc import ABC, abstractmethod
+    2: 
+    3: 
+    4: class Field(ABC):
+    5:     def __get__(self, inst, owner):
+    6:         if inst is None:
+    7:             return self
+    8:         return getattr(inst, self._attr)
+    9: 
+   10:     def __set__(self, inst, value):
+   11:         self.assert_valid(value)
+   12:         setattr(inst, self._attr, value)
+   13: 
+   14:     # x = Field() -> Field.__set_name__(Field, 'x')
+   15:     def __set_name__(self, owner, name):
+   16:         self._attr = f'_{owner.__name__}_{name}'
+   17: 
+   18:     @abstractmethod
+   19:     def assert_valid(self, value):
+   20:         ...
+   21: 
+In [52]: vars(t)                                                                               
+Out[52]: {'_Trade_symbol': 'BRK-A', '_Trade_price': 310132.41, '_Trade_volume': 3}
+
+In [53]:

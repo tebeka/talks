@@ -1,9 +1,0 @@
-%alias md glow %l
-
-from IPython.core.magic import register_line_magic
-
-@register_line_magic
-def fin(line):
-    ipy = get_ipython()
-    ipy.run_cell(f'%md fin.md')
-    ipy.run_cell(f'!kitty icat --align left books.png')

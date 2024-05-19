@@ -1,0 +1,8 @@
+- Writing IPython magic
+- IPython talk from EuroPython
+- SQLite
+    - CHECK(typeof(n) == 'integer')
+    - df where int -> float due to NaN
+- Unicode workshop
+- Faster pandas
+- 

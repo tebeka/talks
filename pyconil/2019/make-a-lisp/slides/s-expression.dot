@@ -1,0 +1,9 @@
+// s-expression for: (+ (* n 3) 1)
+
+digraph sexpr {
+    graph[bgcolor="transparent"];
+    "+" -> "*";
+    "+" -> 1;
+    "*" -> "n";
+    "*" -> "3";
+}

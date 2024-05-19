@@ -16,13 +16,13 @@ def next_teaser():
         current_teaser = 0
 
     if current_teaser >= len(quiz['teasers']):
-        print('Done! (more at https://gum.co/iIQT ;)')
+        print('Done! (more at  https://pragprog.com/titles/d-pybrain/python-brain-teasers ;)')
         return
 
     src = quiz['teasers'][current_teaser]
     num_teasers = len(quiz['teasers'])
     timeout = quiz['timeout']
-    print(f'<{current_teaser + 1}/{num_teasers}>', end=' ', flush=True)
+    print(f'[{current_teaser + 1:02d}/{num_teasers}]', end=' ', flush=True)
     !source-highlight  -n -f esc -s python -i $src
     print('')
     %run timer.py $timeout

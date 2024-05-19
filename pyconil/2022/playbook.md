@@ -1,0 +1,25 @@
+- terminator + logger (font)
+- ipython + CTRL-L
+- 
+
+- Slides
+    - Serialization overhead
+    - edges
+    - Explain JSON acronym
+    - JSON over XML, YAML ...
+    - Mention other json libs (ujson, orjson)
+    - API objects vs internal
+- users.py 
+    - to_json
+    - from_json
+    - First w/o `asdict`
+- default for time -> default.py
+    - external schema
+- from_json
+    - read back from data - time is str
+- `obj_hook` -> obj_hook.py
+- m.py data -> validate.py
+- add image -> icon.py
+    - Binary data no best practice inside JSON
+- streaming -> q.py
+    - start w/o close
