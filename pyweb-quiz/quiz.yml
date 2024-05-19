@@ -1,5 +1,5 @@
 # %run setup.ipy
-timeout: 4 #0
+timeout: 40
 teasers:
   - teasers/eval.py
   - teasers/identity.py
