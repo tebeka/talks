@@ -1,0 +1,130 @@
+# The Range Over Function Experiment
+
+Miki Tebeka
+miki@353solutions.com
+@tebeka
+
+## 
+
+.image me.png
+
+## What?
+
+The range-over function is defining a standard way to write iterators in Go.
+
+To run the.code -numbers currently (Go 1.22) you'll need to `export GOEXPERIMENT=rangefunc`.
+In 1.23 it should work [out of the box](https://go.dev/doc/go1.23#go-command).
+
+## Example Container - Stack
+
+.code -numbers stack.go /^type node/,/^}/
+.code -numbers stack.go /^type Stack/,/^}/
+
+## Example Container - Stack Methods
+
+.code -numbers stack.go /Push/,/^}/
+.code -numbers stack.go /var ErrEmpty/,/^}/
+
+The stack we'll use throughout:
+
+.code -numbers stack.go /START_S OMIT/,/END_S OMIT/
+
+## Before We Start
+
+- Seperating iteration from the container
+- Inversion of control
+
+## Seperating iteration from the container
+
+We don't want the `Stack` type to keep track of all iteration location.
+We are going to define an iterator that is responsible for a single iteration at a time.
+
+.code -numbers stack.go /Items/,/^}/
+.code -numbers stack.go /type StackIterator/,/^}/
+
+## StackIterator Next
+
+.code -numbers stack.go /Next/,/^}/
+
+Using the iterator:
+
+.code -numbers stack.go /START_ITER OMIT/,/END_ITER OMIT/
+
+## Inversion of Control
+
+Pass a function to the iterator that will be called on every item in the container.
+
+Instead of
+
+.code -numbers stack.go /PrintItems/,/^}/
+
+Do
+
+.code -numbers stack.go /Do/,/^}/
+.code -numbers stack.go /START_DO OMIT/,/END_DO OMIT/
+
+## Seq & Seq2
+
+Once you set `GOEXPERIMENT` environment variable to `rangefunc`,
+you will see a new `iter` packge that defines two new types:
+
+.code -numbers iter.go /START_SEQ OMIT/,/END_SEQ OMIT/
+
+Remember a slide before?
+
+.code -numbers stack.go /Do/,/^}/
+
+## Stack Iter Method
+
+.code -numbers stack.go /Iter\(\)/,/^}/
+
+`Iter` returns a `Seq` and now you can use a `for` loop:
+
+.code -numbers stack.go /START_FOR OMIT/,/END_FOR OMIT/
+
+## Seq2
+
+What about `Seq2`?
+
+.code -numbers iter.go /START_SEQ OMIT/,/END_SEQ OMIT/
+
+`Seq2` is used when you want a for loop with two variables on the left side.
+For example:
+
+.code -numbers stack.go /START_2 OMIT/,/END_2 OMIT/
+
+## Iter2
+
+.code -numbers stack.go /Iter2\(\)/,/^}/
+
+.code -numbers stack.go /START_ITER2 OMIT/,/END_ITER2 OMIT/
+
+## Pulling Values
+
+Another interesting piece of functionality included in the new `iter` package are the pull functions.
+
+.code -numbers iter.go /START_PULL OMIT/,/END_PULL OMIT/
+
+The `next` function is used to pull the next value from `Seq` and `stop` is used to force the iteration to stop.
+`stop` will cause the `yield` function to return `false` in the next iteration.
+
+## The Case for Pulling
+
+When you write a `Max` or `Min` of a container you need an initial value.
+Since we're dealing with generics there's no sane default to start with.
+
+
+## Max
+
+.code -numbers stack.go /func Max/,/^}/
+
+Note: If you use a `for` loop on `seq` (line 100), it'll restart the iteration from start.
+
+
+## Using Max
+
+.code -numbers stack.go /START_MAX OMIT/,/END_MAX OMIT/
+
+## Questions?
+
+.image questions.png
