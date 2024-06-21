@@ -1,4 +1,4 @@
-# The Range Over Function Experiment
+# Range-Over Functions
 
 Miki Tebeka
 miki@353solutions.com
@@ -12,7 +12,10 @@ miki@353solutions.com
 
 The range-over function is defining a standard way to write iterators in Go.
 
-To run the.code -numbers currently (Go 1.22) you'll need to `export GOEXPERIMENT=rangefunc`.
+To run the currently (Go 1.22) you'll need to:
+
+	export GOEXPERIMENT=rangefunc
+
 In 1.23 it should work [out of the box](https://go.dev/doc/go1.23#go-command).
 
 ## Example Container - Stack
@@ -125,6 +128,22 @@ Note: If you use a `for` loop on `seq` (line 100), it'll restart the iteration f
 
 .code -numbers stack.go /START_MAX OMIT/,/END_MAX OMIT/
 
+## More Info
+
+- [Go Wiki: Rangefunc Experiment](https://tip.golang.org/wiki/RangefuncExperiment)
+- [Range Over Functions in Go](https://www.ardanlabs.com/blog/2024/04/range-over-functions-in-go.html) on Ardan Labs Blog
+- [Preview: ranging over functions in Go](https://eli.thegreenplace.net/2023/preview-ranging-over-functions-in-go/) by Eli Bendersky
+- [discussion: standard iterator interface](https://github.com/golang/go/discussions/54245)
+- [user-defined iteration using range over func values](https://github.com/golang/go/discussions/56413)
+
 ## Questions?
 
 .image questions.png
+
+## A Shameless Promotion
+
+.image go-recipes.png
+
+<p style="text-align: center;">
+Use <b>GopherCon_Europe_2024</b> to get 35% discount.
+</p>
