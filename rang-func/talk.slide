@@ -8,6 +8,11 @@ miki@353solutions.com
 
 .image me.png
 
+## 
+
+.image gcil.png
+.image gcil-qr.png
+
 ## What?
 
 The range-over function is defining a standard way to write iterators in Go.
