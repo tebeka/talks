@@ -23,6 +23,15 @@ To run the currently (Go 1.22) you'll need to:
 
 In 1.23 it should work [out of the box](https://go.dev/doc/go1.23#go-command).
 
+## The Good Old "for" Loop
+
+.code -numbers for.go /START_FOR OMIT/,/END_FOR OMIT/
+
+## Other Iterations
+
+.code -numbers for.go /START_SCAN OMIT/,/END_SCAN OMIT/
+.code -numbers for.go /START_WALK OMIT/,/END_WALK OMIT/
+
 ## Example Container - Stack
 
 .code -numbers stack.go /^type node/,/^}/
@@ -135,11 +144,14 @@ Note: If you use a `for` loop on `seq` (line 100), it'll restart the iteration f
 
 ## More Info
 
+
 - [Go Wiki: Rangefunc Experiment](https://tip.golang.org/wiki/RangefuncExperiment)
+- [Coroutines for Go](https://research.swtch.com/coro) by Russ Cox
+- [Storing Data in Control Flow](https://research.swtch.com/pcdata) by Russ Cox
 - [Range Over Functions in Go](https://www.ardanlabs.com/blog/2024/04/range-over-functions-in-go.html) on Ardan Labs Blog
 - [Preview: ranging over functions in Go](https://eli.thegreenplace.net/2023/preview-ranging-over-functions-in-go/) by Eli Bendersky
 - [discussion: standard iterator interface](https://github.com/golang/go/discussions/54245)
-- [user-defined iteration using range over func values](https://github.com/golang/go/discussions/56413)
+- [user-defined iteration using range over func values](https://github.com/golang/go/discussions/56413) discussion
 
 ## Questions?
 
