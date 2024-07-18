@@ -1,5 +1,7 @@
 //go:build ignore
 
+// Data source https://unicode.org/Public/emoji/15.1/emoji-sequences.txt
+
 package main
 
 import (
