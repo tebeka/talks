@@ -1,0 +1,6 @@
+import os
+
+!kitty +icat book-covers.png
+width = os.get_terminal_size().columns
+url = 'https://pragprog.com/search/?q=miki+tebeka'
+print(f'{url:^{width}}')

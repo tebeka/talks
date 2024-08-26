@@ -1,0 +1,39 @@
+current = 'current.txt'
+
+try:
+    with open(current) as fp:
+        i = int(fp.read())
+except OSError:
+    i = 0
+
+!clear
+if i == 0:
+    !glow caching.md
+elif i == 1:
+    !source-highlight  -n -f esc -s python -i user.py
+    %run user.py
+elif i == 2:
+    !source-highlight  -n -f esc -s python -i cache.py
+elif i == 3:
+    !source-highlight  -n -f esc -s python -i user_cached.py
+    %run user_cached.py
+elif i == 4:
+    !glow two.md
+elif i == 5:
+    !glow three.md
+elif i == 6:
+    !glow four.md
+elif i == 7:
+    !glow libs.md
+elif i == 8:
+    !source-highlight  -n -f esc -s python -i user_lru.py
+    %run user_lru.py
+elif i == 9:
+    !source-highlight  -n -f esc -s python -i user_mem.py
+    %run user_mem.py
+else:
+    echo 'Thank You!' | cowsay | lolcat -a -d 3
+
+
+with open(current, 'w') as out:
+    print(i+1, file=out, end='')

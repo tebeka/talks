@@ -1,0 +1,5 @@
+%alias_magic -p next.ipy next %run
+%alias_magic -p end.ipy end %run
+!rm -f current.txt
+!clear
+!glow header.md
