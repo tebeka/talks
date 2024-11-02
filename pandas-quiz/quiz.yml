@@ -1,17 +1,17 @@
-timeout: 30
+timeout: 40
 puzzles:
   - code/simpsons.py
   - code/round.py
   - code/relu.py
-#  - code/divsum.py
+  - code/divsum.py
   - code/empty.py
-#  - code/fillna.py
-#  - code/mul.py
+  - code/fillna.py
+  - code/mul.py
   - code/future.py
   - code/not_nan.py
   - code/heros.py
-  - code/date_range.py
-#  - code/points.py
-#  - code/archer.py
+  #  - code/date_range.py
+  - code/points.py
+  - code/archer.py
   - code/hits.py
   - code/discount.py

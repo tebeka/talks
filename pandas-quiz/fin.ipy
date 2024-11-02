@@ -1,15 +1,7 @@
 import os
-import pyqrcode
+import webbrowser
 
 
 !clear
+webbrowser.open('https://pragprog.com/titles/d-pandas/pandas-brain-teasers/')
 
-url = 'https://t.ly/pdBT'
-qr = pyqrcode.create(url)
-data = qr.terminal(quiet_zone=1, background='blue')
-lines = data.splitlines()
-i = len(lines)//2
-lines[i-1] +=   '           Pandas Brain Teasers'
-lines[i] +=     '             25 Brain Teasers'
-lines[i+1] += '             ' + url
-print('\n'.join(lines))

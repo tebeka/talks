@@ -1,6 +1,6 @@
-# Y3K
+# Y10K
 
 import pandas as pd
 
-y3k = pd.Timestamp(3000, 1, 1)
-print(f'They arrived on {y3k:%B %d}.')
+y10k = pd.Timestamp(10_000, 1, 1)
+print(f'They arrived on {y10k:%A}.')

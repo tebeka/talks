@@ -1,6 +1,6 @@
 # Pandas Quiz
 
-A backup talk for [PyData Tel Aviv 2023](pydata.org/telaviv2023/).
+A backup talk for [PyData Tel Aviv 2024](pydata.org/telaviv2023/).
 
 Selected questions from 
 

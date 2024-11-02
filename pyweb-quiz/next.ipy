@@ -22,7 +22,7 @@ def next_teaser():
     src = quiz['teasers'][current_teaser]
     num_teasers = len(quiz['teasers'])
     timeout = quiz['timeout']
-    print(f'[{current_teaser + 1:02d}/{num_teasers}]', end=' ', flush=True)
+    print(f'[{current_teaser + 1:02d}/{num_teasers}]', flush=True)
     !source-highlight  -n -f esc -s python -i $src
     print('')
     %run timer.py $timeout

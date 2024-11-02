@@ -7,5 +7,5 @@ start = (
     .fromtimestamp(0, 'UTC')
     .strftime('%Y-%m-%dT%H:%M:%S')
 )
-times = pd.date_range(start=start, freq='M', periods=2)
+times = pd.date_range(start=start, freq='ME', periods=2)
 print(times)

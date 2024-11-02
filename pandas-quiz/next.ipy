@@ -16,14 +16,16 @@ def next_puzzle():
         current_puzzle = 0
 
     !clear
-    if current_puzzle >= len(quiz['puzzles']):
+    count = len(quiz['puzzles'])
+    if current_puzzle >= count:
         print('Done!')
         return
 
     src = quiz['puzzles'][current_puzzle]
     num_puzzles = len(quiz['puzzles'])
     timeout = quiz['timeout']
-    print(f'[{current_puzzle + 1}/{num_puzzles}]', flush=True)
+    name = Path(src).name
+    print(f'[{current_puzzle + 1}/{num_puzzles}] {name}', flush=True)
     !source-highlight  -n -f esc -s python -i $src
 #    %source $src
     print('')
