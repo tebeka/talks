@@ -10,8 +10,8 @@ puzzles:
   - code/future.py
   - code/not_nan.py
   - code/heros.py
-  #  - code/date_range.py
   - code/points.py
-  - code/archer.py
   - code/hits.py
   - code/discount.py
+  #  - code/date_range.py
+  # - code/archer.py
