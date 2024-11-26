@@ -9,6 +9,17 @@ def code(line):
 	!clear
 	!source-highlight -n -f esc -s python -i $file_name
 
+@register_line_magic
+def fin(line):
+	!clear
+	!glow fin.md
+
+@register_line_magic
+def show(line):
+	file_name = line.strip()
+	!clear
+	!wezterm imgcat $file_name
+
 
 !clear
 !glow intro.md

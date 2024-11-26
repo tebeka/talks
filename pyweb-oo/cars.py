@@ -5,7 +5,7 @@ class Car:
     def __init__(self, lat, lng):
         self.lat = lat
         self.lng = lng
-        
+
 
 tracemalloc.start()
 snap1 = tracemalloc.take_snapshot()

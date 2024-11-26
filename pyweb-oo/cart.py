@@ -4,6 +4,7 @@ class Item:
         self.price = price
         self.amount = amount
 
+
 class Cart:
     def __init__(self, items):
         self._items = items[:]
