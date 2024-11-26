@@ -1,0 +1,14 @@
+#vim: ft=python
+
+from IPython.core.magic import register_line_magic
+from subprocess import run
+
+@register_line_magic
+def code(line):
+	file_name = line.strip()
+	!clear
+	!source-highlight -n -f esc -s python -i $file_name
+
+
+!clear
+!glow intro.md
