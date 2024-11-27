@@ -51,6 +51,11 @@ classmethod
 %show cost.png
 Add ABC
 
+%code plugin_protocol.py
+!mypy plugin_protocol.py
+edit shutdown
+add call to log in shutdown
+!mypy plugin_protocol.py
 
 ## Emulating Built-In Types
 
