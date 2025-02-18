@@ -10,13 +10,13 @@ class LoggingPlugin(Plugin):
 
 
 class SecurityPlugin(Plugin):
-    def shutdwon(self):
+    def shutdown(self):
         print('security shutting down')
 
 
 def shutdown(plugins: list[Plugin]):
     for plugin in plugins:
-        plugin.shutdown()
+        plugin.shutdown(None)
 
 
 

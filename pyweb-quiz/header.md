@@ -7,4 +7,4 @@ Rules:
     - Some output (e.g. `[1 2 3]`)
     - Exception
 
-I'm using Python 3.12
+I'm using Python 3.13

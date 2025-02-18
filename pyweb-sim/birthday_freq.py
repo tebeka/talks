@@ -1,7 +1,6 @@
 # data from https://github.com/fivethirtyeight/data/tree/master/births
 import pandas as pd
 import numpy as np
-from tqdm import tqdm
 
 
 def load_birthdays(csv_file):
@@ -26,7 +25,7 @@ def dup_in_group(size, days, probs):
 
 days, probs = load_birthdays('US_births_2000-2014_SSA.csv')
 n, group_size, dups = 100_000, 23, 0
-for _ in tqdm(range(n)):
+for _ in range(n):
     if dup_in_group(group_size, days, probs):
         dups += 1
 

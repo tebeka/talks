@@ -7,7 +7,7 @@ class Player:
 
     def __init__(self, name):
         self.name = name
-        self.count += 1
+        Player.count += 1
 
 
 p1 = Player('Parzival')

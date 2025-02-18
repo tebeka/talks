@@ -20,5 +20,6 @@ class VM:
         self.id = self.new_id()
         self.status = Status.STARTING
 
-    def new_id(self):
+    @staticmethod
+    def new_id():
         return uuid4().hex

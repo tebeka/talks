@@ -6,6 +6,11 @@ class User:
         self.name = login
         self.groups = groups
 
+    @classmethod
+    def from_json(cls, data):
+        attrs = json.loads(data)
+        return cls(**attrs)
+
 
 class Admin(User):
     pass

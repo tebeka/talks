@@ -12,7 +12,7 @@ def random_door():
 
 
 def stay_win_game():
-    """Simulate a game and returns True if the say policy wins."""
+    """Simulate a game and returns True if the stay policy wins."""
     car_door = random_door()
     player_door = random_door()
     return car_door == player_door  # True if stay wins

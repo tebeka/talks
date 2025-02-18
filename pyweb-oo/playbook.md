@@ -3,7 +3,8 @@
 ## Attribute access
 
 %code player.py
-%run player.py %code find_attr.py
+%run player.py
+%code find_attr.py
 %run find_attr.py
 find_attr(p1, 'name')
 find_attr(p1, 'count')
@@ -13,6 +14,8 @@ find_attr(p1, 'count')
 
 instance knows only attributes + class. All the smart is in the class
 mention properties, descriptors
+
+%code proxy.py
 
 ## Slots
 %code cars.py

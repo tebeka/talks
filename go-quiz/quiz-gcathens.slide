@@ -1,0 +1,119 @@
+# Go Quiz
+Guess the Output
+
+Miki Tebeka
+miki@ardanlabs.com
+@tebeka
+
+## 
+
+.html quiz.html
+.image me.png
+
+## Quiz Rules
+
+- I'll show a short program and ask what will happen when I run it.
+- You have 30 seconds to find out the output (multiple selection).
+- After that, I'll run the program and then explain *why* we got such output.
+    - The idea is to learn, not show WATs.
+- There are 10 questions total.
+
+## 
+
+<p style="font-size: 7em; margin-top: 30%; text-align: center;">
+Let's Go!
+</p>
+
+## [1] In Scope
+
+.play -edit -numbers scope.go
+
+- A: Won't compile
+- B: 2 2
+- C: 2 1
+- D: 1 1
+
+
+## [2] A Piece of π
+
+.play -edit -numbers pi.go
+
+- A: 3
+- B: 3.1415929203539825
+- C: Won't compile
+- D: 4
+
+## [3] Such Emptiness
+
+.play -edit -numbers empty_map_ok.go
+
+- A: 1
+- B: panic
+- C: ""
+- D: 0
+
+## [4] Not Your Type
+
+.play -edit -numbers stridx.go
+
+- A: int8
+- B: uint8
+- C: byte
+- D: rune
+
+## [5] Something New
+
+.play -edit -numbers vars2.go
+
+- A: 1 2 3
+- B: Won't compile
+- C: 1 3 4
+- D: 1 1 3
+
+## [6] Are We There Yet?
+
+.play -edit -numbers time.go
+
+- A: before
+- B: before after
+- C: Won't compile
+- D: Deadlock
+
+## [7] Power To the Gophers
+
+.play -edit -numbers xor.go
+
+- A: Won't compile
+- B: 1024
+- C: 512
+- D: 8
+
+## [8] Shaken, Not Stirred
+
+.code -edit -numbers loc.go /^type Loc/,/^}/
+.play -edit -numbers loc.go /^func main/,/^}/
+
+- A: Won't compile
+- B: [Q]
+- C: [007 M]
+- D: panic
+
+## [9] Exact Much?
+
+.play -edit -numbers float.go
+
+- A: true
+- B: false
+- C: Won't compile
+- D: panic
+
+
+## [10] Nothing For Me
+
+.code -edit -numbers nilwtr.go /^func Open/,/^}/
+.play -edit -numbers nilwtr.go /^func main/,/^}/
+
+- A: true
+- B: panic
+- C: false
+- D: Won't compile
