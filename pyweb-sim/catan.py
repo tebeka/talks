@@ -1,4 +1,4 @@
-"""Simulate frequencies of two-dice rolls"""
+"""Simulate frequencies of two-dice rolls."""
 
 from random import randint
 from collections import Counter

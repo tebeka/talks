@@ -1,4 +1,5 @@
 """Calculate π using simulation"""
+
 from random import uniform
 from math import sqrt
 

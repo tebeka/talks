@@ -1,10 +1,17 @@
-# data from https://github.com/fivethirtyeight/data/tree/master/births
+"""Simulation of the "Birthday problem"
+
+See https://en.wikipedia.org/wiki/Birthday_problem for a description of the
+problem.
+
+Data from https://github.com/fivethirtyeight/data/tree/master/births
+"""
+
 import pandas as pd
 import numpy as np
 
 
 def load_birthdays(csv_file):
-    """"Load probability of birthdays from csv_file. Return days,
+    """ "Load probability of birthdays from csv_file. Return days,
     probabilities."""
     df = pd.read_csv(csv_file)
     df.rename(columns={'date_of_month': 'day'}, inplace=True)
