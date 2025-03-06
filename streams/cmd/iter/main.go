@@ -2,20 +2,18 @@ package main
 
 import (
 	"bufio"
-	"errors"
 	"fmt"
 	"iter"
+	"log/slog"
 	"os"
 	"path/filepath"
-	"time"
+	"runtime"
 
 	"logs/parser"
 )
 
-var ErrStop = errors.New("stop")
-
-func iterLogs(root string) iter.Seq2[parser.Log, error] {
-	fn := func(yield func(parser.Log, error) bool) {
+func iterLogs(root string) iter.Seq[parser.Log] {
+	fn := func(yield func(parser.Log) bool) {
 		walkFn := func(path string, info os.FileInfo, err error) error {
 			if err != nil {
 				return err
@@ -27,21 +25,25 @@ func iterLogs(root string) iter.Seq2[parser.Log, error] {
 
 			file, err := os.Open(path)
 			if err != nil {
-				yield(parser.Log{}, err)
-				return err
+				slog.Warn("open", "path", path, "error", err)
+				return nil
 			}
 			defer file.Close()
 
 			s := bufio.NewScanner(file)
 			for s.Scan() {
 				log, err := parser.ParseLine(s.Text())
-				if !yield(log, err) {
-					return ErrStop
+				if err != nil {
+					slog.Warn("parse", "path", path, "text", s.Text(), "error", err)
+					continue
+				}
+				if !yield(log) {
+					return fmt.Errorf("stop")
 				}
 			}
 			if err := s.Err(); err != nil {
-				yield(parser.Log{}, err)
-				return err
+				slog.Warn("scan", "error", err)
+				return nil
 			}
 
 			return nil
@@ -54,19 +56,16 @@ func iterLogs(root string) iter.Seq2[parser.Log, error] {
 }
 
 func main() {
-	var logs []parser.Log
-	nErr := 0
 
-	start := time.Now()
-	for log, err := range iterLogs("logs") {
-		if err != nil {
-			nErr++
-			continue
-		}
-
-		logs = append(logs, log)
+	n := 0
+	for log := range iterLogs("logs") {
+		_ = log
+		n++
 	}
 
-	duration := time.Since(start)
-	fmt.Printf("%d logs (%d errors) in %v\n", len(logs), nErr, duration)
+	var mem runtime.MemStats
+	runtime.ReadMemStats(&mem)
+	alloc_mb := mem.Alloc / (1 << 20)
+
+	fmt.Printf("%d logs (%dmb)\n", n, alloc_mb)
 }
