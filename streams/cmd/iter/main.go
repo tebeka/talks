@@ -56,7 +56,6 @@ func iterLogs(root string) iter.Seq[parser.Log] {
 }
 
 func main() {
-
 	n := 0
 	for log := range iterLogs("logs") {
 		_ = log
