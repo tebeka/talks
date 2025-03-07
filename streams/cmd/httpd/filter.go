@@ -11,6 +11,7 @@ var (
 )
 
 func init() {
+	// Initialize log environment.
 	var err error
 	env, err = cel.NewEnv(
 		cel.Variable("Host", cel.StringType),
@@ -25,6 +26,7 @@ func init() {
 	}
 }
 
+// logMap converts a Log to a map.
 func logMap(log parser.Log) map[string]any {
 	return map[string]any{
 		"Host":    log.Host,
@@ -35,6 +37,7 @@ func logMap(log parser.Log) map[string]any {
 	}
 }
 
+// createFilter creates a filter from logs from expr.
 func createFilter(expr string) (func(parser.Log) bool, error) {
 	ast, issues := env.Compile(expr)
 	if issues != nil && issues.Err() != nil {

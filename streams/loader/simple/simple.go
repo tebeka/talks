@@ -9,6 +9,7 @@ import (
 	"logs/parser"
 )
 
+// LoadLogs return a slice of logs from all files under root.
 func LoadLogs(root string) ([]parser.Log, error) {
 	var logs []parser.Log
 

@@ -16,6 +16,7 @@ import (
 	"logs/parser"
 )
 
+// loadSimple returns a sequence of logs using simple.LoadLogs.
 func loadSimple(root string) (iter.Seq[parser.Log], error) {
 	logs, err := simple.LoadLogs(root)
 	if err != nil {
@@ -23,6 +24,16 @@ func loadSimple(root string) (iter.Seq[parser.Log], error) {
 	}
 
 	return slices.Values(logs), nil
+}
+
+func setupLogging() {
+	h := slog.NewTextHandler(
+		os.Stderr,
+		&slog.HandlerOptions{Level: slog.LevelError},
+	)
+	logger := slog.New(h)
+	slog.SetDefault(logger)
+
 }
 
 func main() {
@@ -46,12 +57,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	h := slog.NewTextHandler(
-		os.Stderr,
-		&slog.HandlerOptions{Level: slog.LevelError},
-	)
-	logger := slog.New(h)
-	slog.SetDefault(logger)
+	setupLogging()
 
 	start := time.Now()
 
@@ -67,6 +73,7 @@ func main() {
 	}
 
 	duration := time.Since(start)
+
 	var mem runtime.MemStats
 	runtime.ReadMemStats(&mem)
 	alloc_mb := mem.Alloc / (1 << 20)

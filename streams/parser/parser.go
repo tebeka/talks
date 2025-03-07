@@ -20,10 +20,11 @@ type Log struct {
 	Bytes   int
 }
 
+// ParseLine parses HTTP server log line
 func ParseLine(line string) (Log, error) {
 	matches := logRegexp.FindStringSubmatch(line)
 	if matches == nil {
-		return Log{}, fmt.Errorf("Could not parse line: %s\n", line)
+		return Log{}, fmt.Errorf("parse line: %q", line)
 	}
 
 	log := Log{

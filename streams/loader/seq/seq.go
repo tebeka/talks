@@ -11,6 +11,7 @@ import (
 	"logs/parser"
 )
 
+// LoadLogs return a sequence of logs from all files under root.
 func LoadLogs(root string) (iter.Seq[parser.Log], error) {
 	fn := func(yield func(parser.Log) bool) {
 		walkFn := func(path string, info os.FileInfo, err error) error {

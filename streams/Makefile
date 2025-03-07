@@ -1,6 +1,7 @@
 all:
 	$(error pick a target)
 
+
 .PHONY: logs
 logs:
 	rm -rf logs
@@ -10,3 +11,4 @@ logs:
 	mv x0{0,1,2,3} logs/1
 	mv x0{4,5,6,7} logs/2
 	mv x* logs/3
+	./_data/multiply.sh

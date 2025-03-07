@@ -11,6 +11,7 @@ import (
 	"strconv"
 )
 
+// Limit returns a sequence of up to "n" items from seq.
 func Limit[T any](seq iter.Seq[T], n int) iter.Seq[T] {
 	fn := func(yield func(T) bool) {
 		i := 0
@@ -58,7 +59,7 @@ func logsHandler(w http.ResponseWriter, r *http.Request) {
 		logs = Limit(logs, limit)
 	}
 
-	w.Header().Set("content-type", "application/json")
+	w.Header().Set("content-type", "application/jsonlines")
 	ctrl := http.NewResponseController(w)
 	enc := json.NewEncoder(w)
 	for log := range logs {
