@@ -1,4 +1,4 @@
-package main
+package mapper
 
 import (
 	"bufio"
@@ -7,12 +7,11 @@ import (
 	"log/slog"
 	"os"
 	"path/filepath"
-	"runtime"
 
 	"logs/parser"
 )
 
-func iterLines(root string) iter.Seq[string] {
+func IterLines(root string) iter.Seq[string] {
 	fn := func(yield func(string) bool) {
 		walkFn := func(path string, info os.FileInfo, err error) error {
 			if err != nil {
@@ -89,25 +88,11 @@ func Filter[T any](seq iter.Seq[T], pred func(T) bool) iter.Seq[T] {
 	return fn
 }
 
-func iterLogs(root string) iter.Seq[parser.Log] {
-	seq := Map(iterLines(root), parseLine)
+func LoadLogs(root string) (iter.Seq[parser.Log], error) {
+	seq := Map(IterLines(root), parseLine)
 	seq = Filter(seq, func(log parser.Log) bool {
 		return !log.Time.IsZero()
 	})
 
-	return seq
-}
-
-func main() {
-	n := 0
-	for log := range iterLogs("logs") {
-		_ = log
-		n++
-	}
-
-	var mem runtime.MemStats
-	runtime.ReadMemStats(&mem)
-	alloc_mb := mem.Alloc / (1 << 20)
-
-	fmt.Printf("%d logs (%dmb)\n", n, alloc_mb)
+	return seq, nil
 }

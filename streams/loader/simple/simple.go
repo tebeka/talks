@@ -1,17 +1,15 @@
-package main
+package simple
 
 import (
 	"bufio"
-	"fmt"
 	"log/slog"
 	"os"
 	"path/filepath"
-	"runtime"
 
 	"logs/parser"
 )
 
-func main() {
+func LoadLogs(root string) ([]parser.Log, error) {
 	var logs []parser.Log
 
 	walkFn := func(path string, info os.FileInfo, err error) error {
@@ -47,14 +45,9 @@ func main() {
 		return nil
 	}
 
-	if err := filepath.Walk("logs", walkFn); err != nil {
-		fmt.Fprintf(os.Stderr, "error: %v\n", err)
-		os.Exit(1)
+	if err := filepath.Walk(root, walkFn); err != nil {
+		return nil, err
 	}
 
-	var mem runtime.MemStats
-	runtime.ReadMemStats(&mem)
-	alloc_mb := mem.Alloc / (1 << 20)
-
-	fmt.Printf("%d logs (%dmb)\n", len(logs), alloc_mb)
+	return logs, nil
 }

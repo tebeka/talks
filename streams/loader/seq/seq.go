@@ -1,4 +1,4 @@
-package main
+package seq
 
 import (
 	"bufio"
@@ -7,12 +7,11 @@ import (
 	"log/slog"
 	"os"
 	"path/filepath"
-	"runtime"
 
 	"logs/parser"
 )
 
-func iterLogs(root string) iter.Seq[parser.Log] {
+func LoadLogs(root string) (iter.Seq[parser.Log], error) {
 	fn := func(yield func(parser.Log) bool) {
 		walkFn := func(path string, info os.FileInfo, err error) error {
 			if err != nil {
@@ -49,22 +48,10 @@ func iterLogs(root string) iter.Seq[parser.Log] {
 			return nil
 		}
 
-		filepath.Walk(root, walkFn)
+		if err := filepath.Walk(root, walkFn); err != nil {
+			slog.Error("walk", "root", root, "error", err)
+		}
 	}
 
-	return fn
-}
-
-func main() {
-	n := 0
-	for log := range iterLogs("logs") {
-		_ = log
-		n++
-	}
-
-	var mem runtime.MemStats
-	runtime.ReadMemStats(&mem)
-	alloc_mb := mem.Alloc / (1 << 20)
-
-	fmt.Printf("%d logs (%dmb)\n", n, alloc_mb)
+	return fn, nil
 }
