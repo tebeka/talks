@@ -12,3 +12,6 @@ logs:
 	mv x0{4,5,6,7} logs/2
 	mv x* logs/3
 	./_data/multiply.sh
+
+query:
+	curl -i --raw 'http://localhost:8080/logs?limit=10&filter=Status>200'
