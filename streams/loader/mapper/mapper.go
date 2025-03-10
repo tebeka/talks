@@ -11,6 +11,37 @@ import (
 	"logs/parser"
 )
 
+// Map transforms sequence of F to sequence of T.
+func Map[F any, T any](seq iter.Seq[F], mapper func(F) T) iter.Seq[T] {
+	fn := func(yield func(T) bool) {
+		for v := range seq {
+			t := mapper(v)
+			if !yield(t) {
+				return
+			}
+		}
+	}
+
+	return fn
+}
+
+// Filter return a sequence of items in seq that pred returned true.
+func Filter[T any](seq iter.Seq[T], pred func(T) bool) iter.Seq[T] {
+	fn := func(yield func(T) bool) {
+		for v := range seq {
+			if !pred(v) {
+				continue
+			}
+
+			if !yield(v) {
+				return
+			}
+		}
+	}
+
+	return fn
+}
+
 // IterLines return a sequence of lines from all files found in root.
 func IterLines(root string) iter.Seq[string] {
 	fn := func(yield func(string) bool) {
@@ -51,20 +82,6 @@ func IterLines(root string) iter.Seq[string] {
 	return fn
 }
 
-// Map transforms sequence of F to sequence of T.
-func Map[F any, T any](seq iter.Seq[F], mapper func(F) T) iter.Seq[T] {
-	fn := func(yield func(T) bool) {
-		for v := range seq {
-			t := mapper(v)
-			if !yield(t) {
-				return
-			}
-		}
-	}
-
-	return fn
-}
-
 // parseLine parser a log line, on error it'll return empty log.
 func parseLine(line string) parser.Log {
 	log, err := parser.ParseLine(line)
@@ -73,23 +90,6 @@ func parseLine(line string) parser.Log {
 	}
 
 	return log
-}
-
-// Filter return a sequence of items in seq that pred returned true.
-func Filter[T any](seq iter.Seq[T], pred func(T) bool) iter.Seq[T] {
-	fn := func(yield func(T) bool) {
-		for v := range seq {
-			if !pred(v) {
-				continue
-			}
-
-			if !yield(v) {
-				return
-			}
-		}
-	}
-
-	return fn
 }
 
 // LoadLogs return a sequence of logs from all files under root.
