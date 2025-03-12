@@ -14,11 +14,11 @@ func init() {
 	// Initialize log environment.
 	var err error
 	env, err = cel.NewEnv(
-		cel.Variable("Host", cel.StringType),
-		cel.Variable("Time", cel.TimestampType),
-		cel.Variable("Request", cel.StringType),
-		cel.Variable("Status", cel.IntType),
-		cel.Variable("Bytes", cel.IntType),
+		cel.Variable("host", cel.StringType),
+		cel.Variable("time", cel.TimestampType),
+		cel.Variable("request", cel.StringType),
+		cel.Variable("status", cel.IntType),
+		cel.Variable("length", cel.IntType),
 	)
 
 	if err != nil {
@@ -29,11 +29,11 @@ func init() {
 // logMap converts a Log to a map.
 func logMap(log parser.Log) map[string]any {
 	return map[string]any{
-		"Host":    log.Host,
-		"Time":    log.Time,
-		"Request": log.Request,
-		"Status":  log.Status,
-		"Bytes":   log.Bytes,
+		"host":    log.Host,
+		"time":    log.Time,
+		"request": log.Request,
+		"status":  log.Status,
+		"length":  log.Bytes,
 	}
 }
 

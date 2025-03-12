@@ -1,1 +1,0 @@
-GET http://localhost:8080/logs?filer=Status>200&limit=10

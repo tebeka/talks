@@ -14,4 +14,4 @@ logs:
 	./_data/multiply.sh
 
 query:
-	curl -i --raw 'http://localhost:8080/logs?limit=10&filter=Status>200'
+	curl -i --raw 'http://localhost:8080/logs?limit=10&filter=status>400'
