@@ -6,6 +6,7 @@ import (
 	"iter"
 	"log/slog"
 	"os"
+	"path"
 	"runtime"
 	"slices"
 	"time"
@@ -17,7 +18,6 @@ import (
 
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
-	"golang.org/x/text/number"
 )
 
 // loadSimple returns a sequence of logs using simple.LoadLogs.
@@ -41,6 +41,12 @@ func setupLogging() {
 }
 
 func main() {
+	flag.Usage = func() {
+		name := path.Base(os.Args[0])
+		fmt.Fprintf(os.Stderr, "Usage: %s simple|seq|mapper\n", name)
+		flag.PrintDefaults()
+	}
+
 	flag.Parse()
 	if flag.NArg() != 1 {
 		fmt.Fprintln(os.Stderr, "error: missing method")
@@ -83,5 +89,5 @@ func main() {
 	alloc_mb := mem.Alloc / (1 << 20)
 
 	p := message.NewPrinter(language.English)
-	p.Printf("%d logs (%.2f %dmb)\n", number.Decimal(count), duration.Seconds(), alloc_mb)
+	p.Printf("%d logs (%.2f %dmb)\n", count, duration.Seconds(), alloc_mb)
 }
