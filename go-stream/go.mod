@@ -2,7 +2,10 @@ module logs
 
 go 1.24
 
-require github.com/google/cel-go v0.24.1
+require (
+	github.com/google/cel-go v0.24.1
+	golang.org/x/text v0.16.0
+)
 
 require (
 	cel.dev/expr v0.19.1 // indirect

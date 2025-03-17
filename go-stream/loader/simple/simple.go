@@ -31,13 +31,15 @@ func LoadLogs(root string) ([]parser.Log, error) {
 
 		s := bufio.NewScanner(file)
 		for s.Scan() {
-			if log, err := parser.ParseLine(s.Text()); err != nil {
+			log, err := parser.ParseLine(s.Text())
+			if err != nil {
 				slog.Warn("parse", "path", path, "text", s.Text(), "error", err)
 				continue
-			} else {
-				logs = append(logs, log)
 			}
+
+			logs = append(logs, log)
 		}
+
 		if err := s.Err(); err != nil {
 			slog.Warn("scan", "error", err)
 			return nil

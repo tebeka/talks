@@ -43,6 +43,7 @@ func createFilter(expr string) (func(parser.Log) bool, error) {
 	if issues != nil && issues.Err() != nil {
 		return nil, issues.Err()
 	}
+
 	prog, err := env.Program(ast)
 	if err != nil {
 		return nil, err

@@ -14,6 +14,10 @@ import (
 	"logs/loader/seq"
 	"logs/loader/simple"
 	"logs/parser"
+
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
+	"golang.org/x/text/number"
 )
 
 // loadSimple returns a sequence of logs using simple.LoadLogs.
@@ -78,5 +82,6 @@ func main() {
 	runtime.ReadMemStats(&mem)
 	alloc_mb := mem.Alloc / (1 << 20)
 
-	fmt.Printf("%d logs (%v %dmb)\n", count, duration, alloc_mb)
+	p := message.NewPrinter(language.English)
+	p.Printf("%d logs (%.2f %dmb)\n", number.Decimal(count), duration.Seconds(), alloc_mb)
 }

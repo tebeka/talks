@@ -37,10 +37,12 @@ func LoadLogs(root string) (iter.Seq[parser.Log], error) {
 					slog.Warn("parse", "path", path, "text", s.Text(), "error", err)
 					continue
 				}
+
 				if !yield(log) {
 					return fmt.Errorf("stop")
 				}
 			}
+
 			if err := s.Err(); err != nil {
 				slog.Warn("scan", "error", err)
 				return nil
