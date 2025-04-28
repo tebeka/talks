@@ -31,7 +31,7 @@ func Limit[T any](seq iter.Seq[T], n int) iter.Seq[T] {
 }
 
 func logsHandler(w http.ResponseWriter, r *http.Request) {
-	slog.Info("logsHandler", "query", r.URL.RawQuery)
+	slog.Info("logsHandler", "query", r.URL.Query())
 	logs, err := mapper.LoadLogs("logs")
 	if err != nil {
 		slog.Error("load logs", "error", err)

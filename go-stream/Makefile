@@ -12,6 +12,7 @@ logs:
 	mv x0{4,5,6,7} logs/2
 	mv x* logs/3
 	./_data/multiply.sh
+	du -sh logs
 
 query:
-	curl -i --raw 'http://localhost:8080/logs?limit=10&filter=status>400'
+	curl -i --raw 'http://localhost:8080/logs?limit=10&filter=status%3E%3D400'

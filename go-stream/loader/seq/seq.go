@@ -2,7 +2,7 @@ package seq
 
 import (
 	"bufio"
-	"fmt"
+	"io"
 	"iter"
 	"log/slog"
 	"os"
@@ -10,6 +10,24 @@ import (
 
 	"logs/parser"
 )
+
+func Lines(r io.Reader) iter.Seq[string] {
+	fn := func(yield func(string) bool) {
+		s := bufio.NewScanner(r)
+		for s.Scan() {
+			if !yield(s.Text()) {
+				return
+			}
+		}
+
+		if err := s.Err(); err != nil {
+			slog.Error("scan", "error", err)
+			return
+		}
+	}
+
+	return fn
+}
 
 // LoadLogs return a sequence of logs from all files under root.
 func LoadLogs(root string) (iter.Seq[parser.Log], error) {
@@ -30,22 +48,16 @@ func LoadLogs(root string) (iter.Seq[parser.Log], error) {
 			}
 			defer file.Close()
 
-			s := bufio.NewScanner(file)
-			for s.Scan() {
-				log, err := parser.ParseLine(s.Text())
+			for line := range Lines(file) {
+				log, err := parser.ParseLine(line)
 				if err != nil {
-					slog.Warn("parse", "path", path, "text", s.Text(), "error", err)
+					slog.Warn("parse", "path", path, "text", line, "error", err)
 					continue
 				}
 
 				if !yield(log) {
-					return fmt.Errorf("stop")
+					return filepath.SkipAll
 				}
-			}
-
-			if err := s.Err(); err != nil {
-				slog.Warn("scan", "error", err)
-				return nil
 			}
 
 			return nil

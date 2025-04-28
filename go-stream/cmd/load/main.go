@@ -89,5 +89,5 @@ func main() {
 	alloc_mb := mem.Alloc / (1 << 20)
 
 	p := message.NewPrinter(language.English)
-	p.Printf("%d logs (%.2f %dmb)\n", count, duration.Seconds(), alloc_mb)
+	p.Printf("%d logs (%.2fsec %dmb)\n", count, duration.Seconds(), alloc_mb)
 }
