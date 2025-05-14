@@ -16,3 +16,6 @@ logs:
 
 query:
 	curl -i --raw 'http://localhost:8080/logs?limit=10&filter=status%3E%3D400'
+
+query1:
+	curl 'http://localhost:8080/logs?limit=10&filter=status%3E%3D400'

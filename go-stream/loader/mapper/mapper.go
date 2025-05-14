@@ -74,7 +74,8 @@ func parseLine(line string) parser.Log {
 
 // LoadLogs return a sequence of logs from all files under root.
 func LoadLogs(root string) (iter.Seq[parser.Log], error) {
-	seq := Map(LogLines(root), parseLine)
+	lines := LogLines(root)
+	seq := Map(lines, parseLine)
 	seq = Filter(seq, func(log parser.Log) bool {
 		return !log.Time.IsZero()
 	})
