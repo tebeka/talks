@@ -6,10 +6,11 @@ import (
 	"time"
 )
 
+// Ticks returns a iterator that yields the current time at "d" intervals.
 func Tick(d time.Duration) iter.Seq[time.Time] {
 	fn := func(yield func(time.Time) bool) {
 		for {
-			if !yield(time.Now()) {
+			if !yield(time.Now().UTC()) {
 				return
 			}
 			time.Sleep(d)

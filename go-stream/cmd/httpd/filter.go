@@ -50,7 +50,8 @@ func createFilter(expr string) (func(parser.Log) bool, error) {
 	}
 
 	fn := func(log parser.Log) bool {
-		out, _, err := prog.Eval(logMap(log))
+		record := logMap(log)
+		out, _, err := prog.Eval(record)
 		if err != nil {
 			return false
 		}
@@ -59,6 +60,7 @@ func createFilter(expr string) (func(parser.Log) bool, error) {
 		if !ok {
 			return false
 		}
+
 		return v
 	}
 

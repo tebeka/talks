@@ -1,13 +1,11 @@
 package mapper
 
 import (
-	"bufio"
-	"io"
 	"iter"
 	"log/slog"
 	"os"
-	"path/filepath"
 
+	"logs/loader/seq"
 	"logs/parser"
 )
 
@@ -42,54 +40,22 @@ func Filter[T any](seq iter.Seq[T], pred func(T) bool) iter.Seq[T] {
 	return fn
 }
 
-func Lines(r io.Reader) iter.Seq[string] {
-	fn := func(yield func(string) bool) {
-		s := bufio.NewScanner(r)
-		for s.Scan() {
-			if !yield(s.Text()) {
-				return
-			}
-		}
-
-		if err := s.Err(); err != nil {
-			slog.Error("scan", "error", err)
-			return
-		}
-	}
-
-	return fn
-}
-
 // LogLines return a sequence of lines from all files found in root.
 func LogLines(root string) iter.Seq[string] {
 	fn := func(yield func(string) bool) {
-		walkFn := func(path string, info os.FileInfo, err error) error {
+		for fileName := range seq.IterFiles(root) {
+			file, err := os.Open(fileName)
 			if err != nil {
-				return err
-			}
-
-			if info.IsDir() {
-				return nil
-			}
-
-			file, err := os.Open(path)
-			if err != nil {
-				slog.Warn("open", "path", path, "error", err)
-				return nil
+				slog.Warn("open", "path", fileName, "error", err)
+				continue
 			}
 			defer file.Close()
 
-			for line := range Lines(file) {
+			for line := range seq.IterLines(file) {
 				if !yield(line) {
-					return filepath.SkipAll
+					return
 				}
 			}
-
-			return nil
-		}
-
-		if err := filepath.Walk(root, walkFn); err != nil {
-			slog.Error("walk", "path", root, "error", err)
 		}
 	}
 

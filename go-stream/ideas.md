@@ -1,0 +1,9 @@
+- fixture (state)
+- tick
+- compose like gz reader
+- pull data
+- errors
+    - open resource outside fn
+    - ignoring yield return value
+    - use when not (range)
+- itertools
