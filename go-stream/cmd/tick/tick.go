@@ -13,6 +13,7 @@ func Tick(d time.Duration) iter.Seq[time.Time] {
 			if !yield(time.Now().UTC()) {
 				return
 			}
+
 			time.Sleep(d)
 		}
 	}
