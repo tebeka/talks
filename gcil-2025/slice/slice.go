@@ -6,62 +6,49 @@ import (
 	"io"
 	"log/slog"
 	"os"
-	"path/filepath"
 
 	"mordor/log"
 )
 
-// LoadLogs return a slice of logs from all files under root.
-func LoadLogs(root string) ([]log.Log, error) {
-	var logs []log.Log
-
-	walkFn := func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-
-		if info.IsDir() {
-			return nil
-		}
-
-		file, err := os.Open(path)
-		if err != nil {
-			slog.Warn("open", "path", path, "error", err)
-			return nil
-		}
-		defer file.Close()
-
-		gz, err := gzip.NewReader(file)
-		if err != nil {
-			slog.Warn("gzip", "path", path, "error", err)
-			return nil
-		}
-		defer gz.Close()
-
-		dec := json.NewDecoder(gz)
-		lnum := 0
-		for {
-			lnum++
-			var log log.Log
-			err := dec.Decode(&log)
-
-			if err == io.EOF {
-				break
-			}
-
-			if err != nil {
-				slog.Warn("decode", "path", path, "line", lnum, "error", err)
-				return nil
-			}
-
-			logs = append(logs, log)
-		}
-
-		return nil
-	}
-
-	if err := filepath.Walk(root, walkFn); err != nil {
+// LoadLogs return a slice of logs from file.
+func LoadLogs(fileName string) ([]log.Log, error) {
+	file, err := os.Open(fileName)
+	if err != nil {
+		slog.Warn("open", "path", fileName, "error", err)
 		return nil, err
+	}
+	defer file.Close()
+
+	gz, err := gzip.NewReader(file)
+	if err != nil {
+		slog.Warn("gzip", "path", fileName, "error", err)
+		return nil, err
+	}
+	defer gz.Close()
+
+	var logs []log.Log
+	dec := json.NewDecoder(gz)
+	lnum := 0
+
+	for {
+		lnum++
+		var record log.Log
+		err := dec.Decode(&record)
+
+		if err == io.EOF {
+			break
+		}
+
+		if err != nil {
+			slog.Warn("decode", "path", fileName, "line", lnum, "error", err)
+			return nil, err
+		}
+
+		if !log.IsValid(record) {
+			continue
+		}
+
+		logs = append(logs, record)
 	}
 
 	return logs, nil

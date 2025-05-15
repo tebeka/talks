@@ -10,8 +10,8 @@ import (
 	"slices"
 )
 
-// Limit returns a sequence of up to "n" items from seq.
-func Limit[T any](seq iter.Seq[T], n int) iter.Seq[T] {
+// Head returns a sequence of up to "n" items from seq.
+func Head[T any](seq iter.Seq[T], n int) iter.Seq[T] {
 	fn := func(yield func(T) bool) {
 		i := 0
 		for v := range seq {
@@ -40,7 +40,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	logs = Limit(logs, 1000)
+	logs = Head(logs, 1000)
 	logs = lazy.Filter(logs, isError)
 
 	fmt.Println(len(slices.Collect(logs)))
