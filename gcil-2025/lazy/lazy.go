@@ -41,8 +41,8 @@ func Filter[T any](seq iter.Seq[T], pred func(T) bool) iter.Seq[T] {
 	return fn
 }
 
-// LogLines return a sequence of lines file.
-func LogLines(fileName string) iter.Seq[string] {
+// Lines return a sequence of lines file.
+func Lines(fileName string) iter.Seq[string] {
 	fn := func(yield func(string) bool) {
 		file, err := os.Open(fileName)
 		if err != nil {
@@ -86,7 +86,7 @@ func parseLine(line string) log.Log {
 
 // LoadLogs return a sequence of logs from file.
 func LoadLogs(fileName string) (iter.Seq[log.Log], error) {
-	lines := LogLines(fileName)
+	lines := Lines(fileName)
 	logs := Map(lines, parseLine)
 	logs = Filter(logs, log.IsValid)
 

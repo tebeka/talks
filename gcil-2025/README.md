@@ -1,5 +1,3 @@
-# Steaming Data - One Record at a Time
+# One Does Not Simply Iterate over Mordor
 
-Go's new range-over function introduces a way to lazy load and manipulate data.
-We'll see how to process large amounts of data without using too much memory.
-Along the way, we'll break the code to small reusable parts.
+Talk at [GopherCon Israel 2025](https://gophercon-israel-2025.sessionize.com/session/860547)
