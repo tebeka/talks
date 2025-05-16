@@ -1,8 +1,10 @@
 package main
 
 import (
+	"compress/gzip"
 	"flag"
 	"fmt"
+	"io"
 	"iter"
 	"log/slog"
 	"os"
@@ -20,13 +22,15 @@ import (
 )
 
 // loadSlice returns a sequence of logs using simple.LoadLogs.
-func loadSlice(root string) (iter.Seq[log.Log], error) {
-	logs, err := slice.LoadLogs(root)
+// It converts the signature of slice.LoadLogs to loadFn in main.
+func loadSlice(r io.Reader) iter.Seq[log.Log] {
+	logs, err := slice.LoadLogs(r)
 	if err != nil {
-		return nil, err
+		return func(func(log.Log) bool) {
+		}
 	}
 
-	return slices.Values(logs), nil
+	return slices.Values(logs)
 }
 
 func setupLogging() {
@@ -52,7 +56,24 @@ func main() {
 		os.Exit(1)
 	}
 
-	var loadFn func(string) (iter.Seq[log.Log], error)
+	setupLogging()
+
+	const fileName = "logs.json.gz"
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err)
+		os.Exit(1)
+	}
+	defer file.Close()
+
+	gz, err := gzip.NewReader(file)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err)
+		os.Exit(1)
+	}
+	defer gz.Close()
+
+	var loadFn func(r io.Reader) iter.Seq[log.Log]
 
 	switch flag.Arg(0) {
 	case "slice":
@@ -64,15 +85,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	setupLogging()
-
 	start := time.Now()
 
-	logs, err := loadFn("logs.json.gz")
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", err)
-		os.Exit(1)
-	}
+	logs := loadFn(gz)
 
 	count := 0
 	for range logs {

@@ -1,33 +1,17 @@
 package slice
 
 import (
-	"compress/gzip"
 	"encoding/json"
 	"io"
 	"log/slog"
-	"os"
 
 	"mordor/log"
 )
 
-// LoadLogs return a slice of logs from file.
-func LoadLogs(fileName string) ([]log.Log, error) {
-	file, err := os.Open(fileName)
-	if err != nil {
-		slog.Warn("open", "path", fileName, "error", err)
-		return nil, err
-	}
-	defer file.Close()
-
-	gz, err := gzip.NewReader(file)
-	if err != nil {
-		slog.Warn("gzip", "path", fileName, "error", err)
-		return nil, err
-	}
-	defer gz.Close()
-
+// LoadLogs return a slice of logs from r.
+func LoadLogs(r io.Reader) ([]log.Log, error) {
 	var logs []log.Log
-	dec := json.NewDecoder(gz)
+	dec := json.NewDecoder(r)
 	lnum := 0
 
 	for {
@@ -40,7 +24,7 @@ func LoadLogs(fileName string) ([]log.Log, error) {
 		}
 
 		if err != nil {
-			slog.Warn("decode", "path", fileName, "line", lnum, "error", err)
+			slog.Error("decode", "line", lnum, "error", err)
 			return nil, err
 		}
 

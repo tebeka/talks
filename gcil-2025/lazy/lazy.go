@@ -2,12 +2,11 @@ package lazy
 
 import (
 	"bufio"
-	"compress/gzip"
 	"encoding/json"
+	"io"
 	"iter"
 	"log/slog"
 	"mordor/log"
-	"os"
 )
 
 // Map transforms sequence of F to sequence of T.
@@ -41,24 +40,10 @@ func Filter[T any](seq iter.Seq[T], pred func(T) bool) iter.Seq[T] {
 	return fn
 }
 
-// Lines return a sequence of lines file.
-func Lines(fileName string) iter.Seq[string] {
+// Lines return a sequence of lines in r.
+func Lines(r io.Reader) iter.Seq[string] {
 	fn := func(yield func(string) bool) {
-		file, err := os.Open(fileName)
-		if err != nil {
-			slog.Warn("open", "path", fileName, "error", err)
-			return
-		}
-		defer file.Close()
-
-		gz, err := gzip.NewReader(file)
-		if err != nil {
-			slog.Warn("gzip", "path", fileName, "error", err)
-			return
-		}
-		defer gz.Close()
-
-		s := bufio.NewScanner(gz)
+		s := bufio.NewScanner(r)
 		for s.Scan() {
 			line := s.Text()
 			if !yield(line) {
@@ -66,7 +51,7 @@ func Lines(fileName string) iter.Seq[string] {
 			}
 		}
 		if err := s.Err(); err != nil {
-			slog.Warn("scan", "path", fileName, "error", err)
+			slog.Warn("scan", "error", err)
 			return
 		}
 	}
@@ -85,10 +70,10 @@ func parseLine(line string) log.Log {
 }
 
 // LoadLogs return a sequence of logs from file.
-func LoadLogs(fileName string) (iter.Seq[log.Log], error) {
-	lines := Lines(fileName)
+func LoadLogs(r io.Reader) iter.Seq[log.Log] {
+	lines := Lines(r)
 	logs := Map(lines, parseLine)
 	logs = Filter(logs, log.IsValid)
 
-	return logs, nil
+	return logs
 }

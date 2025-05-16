@@ -2,6 +2,7 @@
 package main
 
 import (
+	"compress/gzip"
 	"fmt"
 	"iter"
 	"mordor/lazy"
@@ -34,14 +35,26 @@ func isError(log log.Log) bool {
 }
 
 func main() {
-	logs, error := lazy.LoadLogs("logs.json.gz")
-	if error != nil {
-		fmt.Fprintf(os.Stderr, "error: %v\n", error)
+	const fileName = "logs.json.gz"
+	file, err := os.Open(fileName)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err)
 		os.Exit(1)
 	}
+	defer file.Close()
+
+	gz, err := gzip.NewReader(file)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err)
+		os.Exit(1)
+	}
+	defer gz.Close()
+
+	logs := lazy.LoadLogs(gz)
 
 	logs = Head(logs, 1000)
 	logs = lazy.Filter(logs, isError)
 
-	fmt.Println(len(slices.Collect(logs)))
+	count := len(slices.Collect(logs))
+	fmt.Println(count)
 }
