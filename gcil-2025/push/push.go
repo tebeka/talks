@@ -32,6 +32,7 @@ func (t *Transaction) Add(record []any) error {
 	if err != nil {
 		t.tx.Rollback()
 	}
+
 	return err
 }
 

@@ -50,6 +50,7 @@ func Lines(r io.Reader) iter.Seq[string] {
 				return
 			}
 		}
+
 		if err := s.Err(); err != nil {
 			slog.Warn("scan", "error", err)
 			return

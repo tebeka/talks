@@ -46,7 +46,7 @@ func setupLogging() {
 func main() {
 	flag.Usage = func() {
 		name := path.Base(os.Args[0])
-		fmt.Fprintf(os.Stderr, "Usage: %s simple|seq|mapper\n", name)
+		fmt.Fprintf(os.Stderr, "Usage: %s slice|lazy\n", name)
 		flag.PrintDefaults()
 	}
 
