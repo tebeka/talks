@@ -10,7 +10,8 @@ import (
 func Tick(d time.Duration) iter.Seq[time.Time] {
 	fn := func(yield func(time.Time) bool) {
 		for {
-			if !yield(time.Now().UTC()) {
+			t := time.Now().UTC()
+			if !yield(t) {
 				return
 			}
 
