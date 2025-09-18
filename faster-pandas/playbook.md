@@ -1,10 +1,11 @@
+!viu -x 30 -w 60 -h 20 means.png
 ## Rules
 `!glow rules.md`
 - first performance goals
 - percentile
 - talk on same hardware & data
 
-    !lscpu
+    !lscpu | head
     !free -g
 
 ## Code
