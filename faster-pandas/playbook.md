@@ -54,6 +54,9 @@ joke on warm you at winter
 
 pytest-benchmark
 
+!pygmentize test_logs.py
+!python -m pytest -v
+
 
 %prun?
 

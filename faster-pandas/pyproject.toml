@@ -9,4 +9,8 @@ dependencies = [
 	'numba',
 	'pandas',
 	'pyarrow',
+	'pytest-benchmark',
 ]
+
+[tool.ruff.format]
+quote-style = "single"
