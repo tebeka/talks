@@ -1,0 +1,10 @@
+# Optimization Flow
+
+1. Get performance metrics (e.g. query should return in 100ms 99.9% of the time)
+2. Get real data for benchmarks
+3. Benchmark
+4. If you hit performance goals, GOTO 8
+5. Profile
+6. Optimize
+7. GOTO 3
+8. Coffee

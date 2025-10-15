@@ -9,4 +9,4 @@
 7. Testing will go on as long as it has to.
 8. If this is your first night at Optimization Club, you have to write a test case.
 
-[https://wiki.c2.com/?RulesOfOptimizationClub](https://wiki.c2.com/?RulesOfOptimizationClub)
+https://wiki.c2.com/?RulesOfOptimizationClub

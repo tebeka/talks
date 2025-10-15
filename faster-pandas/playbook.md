@@ -1,157 +1,108 @@
-!viu -x 30 -w 60 -h 20 means.png
-## Rules
-`!glow rules.md`
-- first performance goals
-- percentile
-- talk on same hardware & data
+!clear
+!glow welcome.md
+!glow means.md
 
-    !lscpu | head
-    !free -g
+!glow rules.md
 
-## Code
+why not, why yes
 
-```python
-# %%
+!glow fool.md
 
-import pandas as pd
-import numpy as np
+story on getting right data for benchmarks
 
-pd.__version__
+!pygmentize imports.py
+%run imports.py
 
-df = pd.read_parquet('yellow_tripdata_2022-04.parquet')
-len(df)
-format(len(df), ',')
-df.columns
+!cowsay CPU
 
-# %%
-%cow CPU
+%time df = pd.read_csv('yellow_tripdata_2020-03.csv.gz')
+%time df = pd.read_csv('yellow_tripdata_2020-03.csv.gz', engine='pyarrow')
+%time df = pd.read_csv('yellow_tripdata_2020-03.csv.gz', engine='pyarrow', dtype_backend='pyarrow')
+%time df = pd.read_parquet('yellow_tripdata_2020-03.parquet')
+%time df = pd.read_parquet('yellow_tripdata_2020-03.parquet', dtype_backend='pyarrow')
 
+!viu burn.png
 
-%time _ = pd.read_parquet('yellow_tripdata_2022-04.parquet')
-%time _ = pd.read_csv('yellow_tripdata_2022-04.csv.gz')
-%time _ = pd.read_csv('yellow_tripdata_2022-04.csv.gz', engine='pyarrow')
-%time _ = pd.read_csv('yellow_tripdata_2022-04.csv.gz', engine='pyarrow', dtype_backend='pyarrow')
-
-# %%
-
-%time df['total_amount'].sum()
-%timeit df['total_amount'].sum()
-
-# %%
+%timeit?
 
 %%timeit
 totals = {}
 for vid in df['VendorID'].unique():
     totals[vid] = df[df['VendorID'] == vid]['total_amount'].sum()
 
-# %%
 
-%%prun
+joke on warm winter
+
+
+%prun?
+
+%%prun -s cumulative
 totals = {}
 for vid in df['VendorID'].unique():
     totals[vid] = df[df['VendorID'] == vid]['total_amount'].sum()
 
-# line_profiler, snakeviz, py-spy, ...
+!glow profs.md
 
-# %%
 %timeit df.groupby('VendorID')['total_amount'].sum()
 
-# %%
-df10k = df[:10_000]
-
-%%timeit
-total = 0
-for _, row in df10k.iterrows():
-    if row['VendorID'] == 2:
-        total += row['total_amount']
-
-# %%
-%timeit total = df10k[df10k['VendorID'] == 2]['total_amount'].sum()
-
-# note units
-
-# %%
+calculate time diff
 
 %timeit max(df['total_amount'])
 %timeit df['total_amount'].max()
-%timeit df['total_amount'].values.max()
 
-# %%
+arr = df['total_amount'].to_numpy()
+%timeit arr.max()
+
+calculate time diff
+
 
 s = pd.Series([1, np.nan, 3])
-s.sum()
-s.values.sum()
+s.max()
+s.values.max()
 
-# pd has many nan's
-
-%timeit df[(df['VendorID'] == 2) & (df['passenger_count'] > 1) & (df['trip_distance'] > 2)]
-%timeit df.query('VendorID == 2 & passenger_count > 1')
+!glow -w0 vendor.md
+df['VendorID'].unique()
 
 
-# %%
-## Memory
-
-%cow Memory
-
-memory slide
-
-mb = 1<<20
-df.memory_usage().sum() / mb
-
-# %%
-amt_df = pd.read_parquet('yellow_tripdata_2022-04.parquet', columns=['VendorID', 'total_amount'])
-amt_df.memory_usage().sum() / md;lijb
-
-# %%
-df['total_amount'].memory_usage() / mb
-df['total_amount'].describe()
-np.finfo(np.float32)
-df['total_amount'].astype(np.float32).memory_usage() / mb
-
-# %%
 names = {
     1: 'Creative',
-    2: 'VeriFone',
+    2: 'Curb',
+    6: 'Myle',
+    5: 'Helix',  # 7 in schema
 }
 
 %timeit df['vendor'] = df['VendorID'].apply(lambda vid: names.get(vid))
 %timeit df['vendor'] = df['VendorID'].apply(names.get)
 %timeit df['vendor'] = df['VendorID'].map(names)
 
+!cowsay Memory
 
-# %%
-df['VendorID'].memory_usage()
-df['vendor'].memory_usage()
-df['vendor'].memory_usage(deep=True)
 
-# %%
+mb = 1<<20
+df.memory_usage(deep=True).sum() / mb
+
+from pathlib import Path
+Path('yellow_tripdata_2020-03.parquet').stat().st_size / mb
+
+amt_df = pd.read_parquet(
+    'yellow_tripdata_2020-03.parquet', 
+    columns=['VendorID', 'total_amount'],
+    dtype_backend='pyarrow',
+)
+amt_df.memory_usage(deep=True).sum() / mb
+
+
+df['vendor'].memory_usage(deep=True) / mb
+df.dtypes
 
 s = df['vendor'].astype('string[pyarrow]')
-s.memory_usage(deep=True)/df['vendor'].memory_usage(deep=True)
+s.memory_usage(deep=True) / mb
 
-# %%
-df['vendor'] = df['vendor'].astype('category')
-df['vendor'].memory_usage(deep=True)
+c = df['vendor'].astype('category')
+c.memory_usage(deep=True) / mb
 
-# Slides - Talk on process
-# pytest-benchmark
+!glow -w0 flow.md
 
+!figlet big -c 'Culture >> Process'
 
----
-Backup
-
-numba & Cython
-
-python -m cProfile bench_tokenize.py
-python -m cProfile -s cumulative bench_tokenize.py
-python -m cProfile -o tokenize.pprof bench_tokenize.py
-
-# %%
-import nlp
-text = 'In the face of ambiguity, refuse the temptation to guess.'
-
-%timeit nlp.tokenize(text)
-
-nlp_opt.py
-
-%timeit nlp_opt.tokenize(text)
+!viu promo.png
