@@ -1,9 +1,0 @@
-[30m1:[m [01;34mimport[m pandas as pd
-[30m2:[m [01;34mimport[m numpy as np
-[30m3:[m [01;34mimport[m sys
-[30m4:[m 
-[30m5:[m [01;34mprint[m[31m([m[31m'\nPython:'[m[31m,[m sys[31m.[mversion[31m)[m
-[30m6:[m [01;34mprint[m[31m([m[31m'Pandas:'[m[31m,[m pd[31m.[m__version__[31m)[m
-[30m7:[m 
-[30m8:[m [31m# Also have pyarrow installed[m
-[30m9:[m 
