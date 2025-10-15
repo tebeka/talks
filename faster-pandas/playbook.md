@@ -57,7 +57,6 @@ pytest-benchmark
 !pygmentize test_logs.py
 !python -m pytest -v
 
-
 %prun?
 
 %%prun -s cumulative
@@ -68,7 +67,6 @@ for line in lines:
     df = pd.concat([df, ldf], ignore_index=True)
 
 !glow profs.md
-
 
 %%timeit
 dfs = []
@@ -82,8 +80,10 @@ df = pd.concat(dfs, ignore_index=True)
 %%timeit
 df = pd.DataFrame.from_records(parse_line(line) for line in lines)
 
-
 calculate time diff
+
+if you're 1% better every day, year
+    1.01**365
 
 
 %timeit max(df['total_amount'])
@@ -201,4 +201,5 @@ c.memory_usage(deep=True) / mb
 
 !figlet -f big -c 'Culture >> Process'
 
+!glow -w0 links.md
 !viu promo.png
