@@ -1,0 +1,28 @@
+- Talk on env (not jupyter) ✓
+    - Commands
+- Not going over the whole list ✓
+- Example of optimization requirements ✓
+- Say we'll talk about CPU & Memory in front ✓
+- How to get to optimization ✓
+    - Optimization checklist
+- Talk about need to know a lot ✓
+- What is the data (Taxi) ✓
+- Python way too long (remove), emit Go (in refactor) ✓
+- No Rust joke
+- Talk more on rules
+    - Why maintainability
+- More on why not
+- Why not CSV ✓
+    , in text first
+- Save stats to disk & snakeviz ✓
+    - Viz challenged joke
+    - screenshot?
+- timeit decides on number of iterations ✓
+    - show more than once
+- Drop vendor scheme ✓
+- Don't highlight row ✓
+    - Different color scheme
+- 2 CPU & 2 Memory
+- Talk more about cost
+     - Saved you 20¢
+     - Calc EC2 costs

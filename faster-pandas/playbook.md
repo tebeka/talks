@@ -1,20 +1,33 @@
 activate venv
 maximize terminal
+bigger font
 
 !clear
 !glow welcome.md
+
+mention using ipython (like jupyer) and several command line
+
 !glow means.md
+
+We'll talk about CPU & Memory
 
 !glow rules.md
 
-Why not
+!figlet -k 'Why Not?'
+
 - 350M instructions per blink (times 12 cores = 4.2B)
 - hard to maintain
 - bugs
+- precision
 
-Why yes
+!figlet -k 'Why Yes?'
 - $$$ (backend, users 100ms)
 - No need to move to new tech
+- Fun, need to know alow
+
+Talk on requirements
+
+# A request should return in less than 100ms 99.9% of the time
 
 !glow fool.md
 
@@ -23,8 +36,10 @@ story on getting right data for benchmarks
 !pygmentize imports.py
 %run imports.py
 
+
 !cowsay CPU
 
+NYC Taxi data
 %time df = pd.read_csv('yellow_tripdata_2020-03.csv.gz')
 %time df = pd.read_csv('yellow_tripdata_2020-03.csv.gz', engine='pyarrow')
 %time df = pd.read_csv('yellow_tripdata_2020-03.csv.gz', engine='pyarrow', dtype_backend='pyarrow')
@@ -32,6 +47,7 @@ story on getting right data for benchmarks
 %time df = pd.read_parquet('yellow_tripdata_2020-03.parquet', dtype_backend='pyarrow')
 
 !viu burn.png
+no spec, comma in data, everything is string, can't jump to middle
 
 %timeit?
 
@@ -42,6 +58,9 @@ import lzma
 with lzma.open('log.txt.xz', 'rt') as fp:
     lines = fp.readlines()
 
+len(lines)
+lines[7]
+
 %%timeit
 df = pd.DataFrame()
 for line in lines:
@@ -50,9 +69,11 @@ for line in lines:
     df = pd.concat([df, ldf], ignore_index=True)
 
 
+Say it ran once, can tweak
+
 joke on warm you at winter
 
-pytest-benchmark
+# pytest-benchmark
 
 !pygmentize test_logs.py
 !python -m pytest -v
@@ -66,7 +87,20 @@ for line in lines:
     ldf = pd.DataFrame(log, index=[0])
     df = pd.concat([df, ldf], ignore_index=True)
 
+
 !glow profs.md
+!viu snakeviz.png
+
+OR
+
+%%prun -D parse.pprof
+df = pd.DataFrame()
+for line in lines:
+    log = parse_line(line)
+    ldf = pd.DataFrame(log, index=[0])
+    df = pd.concat([df, ldf], ignore_index=True)
+!snakeviz parse.pprof
+
 
 %%timeit
 dfs = []
@@ -77,15 +111,11 @@ for line in lines:
 df = pd.concat(dfs, ignore_index=True)
 
 
-%%timeit
-df = pd.DataFrame.from_records(parse_line(line) for line in lines)
+%timeit df = pd.DataFrame.from_records(parse_line(line) for line in lines)
 
 calculate time diff
 
-if you're 1% better every day, year
-    1.01**365
-
-
+df = pd.read_parquet('yellow_tripdata_2020-03.parquet', dtype_backend='pyarrow')
 %timeit max(df['total_amount'])
 %timeit df['total_amount'].max()
 
@@ -99,20 +129,24 @@ s = pd.Series([1, np.nan, 3])
 s.max()
 s.values.max()
 
-!glow -w0 vendor.md
-df['VendorID'].unique()
+No?
+    df['VendorID'].sample(5)
+    !glow -w0 vendor.md
+    df['VendorID'].unique()
 
 names = {
     1: 'Creative',
     2: 'Curb',
     6: 'Myle',
-    5: 'Helix',  # 7 in schema
+    5: 'Helix',
 }
 
 %timeit df['vendor'] = df['VendorID'].apply(lambda vid: names.get(vid))
 %timeit df['vendor'] = df['VendorID'].apply(names.get)
 %timeit df['vendor'] = df['VendorID'].map(names)
 
+if you're 1% better every day, year
+    1.01**365
 
 size = 50_000
 bids = pd.DataFrame({
@@ -158,6 +192,9 @@ why is memory important
 !viu virtual-memory.png
 !glow latency.md
 
+!glow rules.md
+    show 3
+
 mb = 1<<20
 df.memory_usage(deep=True).sum() / mb
 
@@ -175,6 +212,7 @@ pd.read_parquet? (filters)
 SQL
 
 df['total_amount'].max()
+f'{Out[68]:,}
 
 import pyarrow.parquet as pq
 max_amount = 0
@@ -198,6 +236,7 @@ c = df['vendor'].astype('category')
 c.memory_usage(deep=True) / mb
 
 !glow -w0 flow.md
+!glow mantras.md
 
 !figlet -f big -c 'Culture >> Process'
 

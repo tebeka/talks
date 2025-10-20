@@ -10,6 +10,7 @@ dependencies = [
 	'pandas',
 	'pyarrow',
 	'pytest-benchmark',
+	"snakeviz>=2.2.2",
 ]
 
 [tool.ruff.format]
