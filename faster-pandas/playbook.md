@@ -236,7 +236,7 @@ c = df['vendor'].astype('category')
 c.memory_usage(deep=True) / mb
 
 !glow -w0 flow.md
-!glow mantras.md
+!glow guide.md
 
 !figlet -f big -c 'Culture >> Process'
 
