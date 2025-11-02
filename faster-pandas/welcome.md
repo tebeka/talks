@@ -4,7 +4,7 @@
 Miki Tebeka
 `miki@353solutions.com`, @tebeka
 
-- Using Python since 1.5.1
+- Using Python since 1.5.2
 - Teaching & talking all over the world
 - Writer
     - Doing my best work avoiding writing books

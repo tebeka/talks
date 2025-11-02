@@ -11,7 +11,7 @@ mention using ipython (like jupyer) and several command line
 
 We'll talk about CPU & Memory
 
-!glow rules.md
+!glow -w0 rules.md
 
 !figlet -k 'Why Not?'
 
@@ -51,15 +51,16 @@ no spec, comma in data, everything is string, can't jump to middle
 
 %timeit?
 
-!pygmentize parse_log.py
-%run parse_log.py
-
 import lzma
 with lzma.open('log.txt.xz', 'rt') as fp:
     lines = fp.readlines()
 
 len(lines)
 lines[7]
+
+!pygmentize parse_log.py
+%run parse_log.py
+
 
 %%timeit
 df = pd.DataFrame()
@@ -115,12 +116,11 @@ df = pd.concat(dfs, ignore_index=True)
 
 calculate time diff
 
-df = pd.read_parquet('yellow_tripdata_2020-03.parquet', dtype_backend='pyarrow')
+df = pd.read_parquet('yellow_tripdata_2020-03.parquet')
 %timeit max(df['total_amount'])
 %timeit df['total_amount'].max()
+%timeif df['total_amount'].values.max()
 
-arr = df['total_amount'].to_numpy()
-%timeit arr.max()
 
 calculate time diff
 
@@ -157,12 +157,12 @@ bids = pd.DataFrame({
 
 %%timeit
 total = 0
-for _, row in df.iterrows():
+for _, row in bids.iterrows():
     total += row.max()
 
 
-%timeit df.apply(np.max, axis=1).sum()
-%timeit df.apply(np.max, axis=1, raw=True).sum()
+%timeit bids.apply(np.max, axis=1).sum()
+%timeit bids.apply(np.max, axis=1, raw=True).sum()
 
 def relu(v):
     if v < 0:
@@ -192,7 +192,7 @@ why is memory important
 !viu virtual-memory.png
 !glow latency.md
 
-!glow rules.md
+!glow -w0 rules.md
     show 3
 
 mb = 1<<20
@@ -208,8 +208,9 @@ amt_df = pd.read_parquet(
 )
 amt_df.memory_usage(deep=True).sum() / mb
 
-pd.read_parquet? (filters)
-SQL
+pd.read_parquet?
+    (filters)
+    SQL
 
 df['total_amount'].max()
 f'{Out[68]:,}
