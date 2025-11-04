@@ -1,0 +1,6 @@
+import IPython
+terminal = IPython.get_ipython()
+terminal.pt_app.auto_suggest = None
+
+!clear
+!glow welcome.md
