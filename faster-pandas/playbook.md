@@ -19,11 +19,12 @@ We'll talk about CPU & Memory
 - hard to maintain
 - bugs
 - precision
+- development effort 
 
 !figlet -k 'Why Yes?'
 - $$$ (backend, users 100ms)
 - No need to move to new tech
-- Fun, need to know alow
+- Fun, need to know alot
 
 Talk on requirements
 
