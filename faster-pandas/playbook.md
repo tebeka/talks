@@ -18,7 +18,7 @@ We'll talk about CPU & Memory
 - hard to maintain
     - bugs
 - precision
-- development time
+- development effort
 - risk
 
 !figlet -k 'Why Yes?'
@@ -26,7 +26,7 @@ We'll talk about CPU & Memory
     - cloud cost
     - happy users (100ms)
     - No need to move to new tech
-- Fun
+- Fun, need to know a lot
 
 Talk on requirements
 
