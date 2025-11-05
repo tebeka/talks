@@ -2,8 +2,7 @@ activate venv
 maximize terminal
 bigger font
 
-!clear
-!glow welcome.md
+%run setup.ipy
 
 mention using ipython (like jupyer) and several command line
 
@@ -17,13 +16,17 @@ We'll talk about CPU & Memory
 
 - 350M instructions per blink (times 12 cores = 4.2B)
 - hard to maintain
-- bugs
+    - bugs
 - precision
+- development time
+- risk
 
 !figlet -k 'Why Yes?'
-- $$$ (backend, users 100ms)
-- No need to move to new tech
-- Fun, need to know alow
+- $$$
+    - cloud cost
+    - happy users (100ms)
+    - No need to move to new tech
+- Fun
 
 Talk on requirements
 
