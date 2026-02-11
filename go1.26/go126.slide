@@ -1,0 +1,138 @@
+# What New in Go 1.26
+(and before)
+
+Miki Tebeka
+miki@353solutions.com
+@tebeka
+
+## Faster
+
+- [Green Tea GC](https://go.dev/blog/greenteagc) was experimental in 1.25, now default.
+    - ...somewhere between a **10–40% reduction in garbage collection overhead**...
+- Faster CGO calls
+    - ...runtime overhead of cgo calls has been reduced by **~30%**...
+- Faster memory allocations
+    - ...reduces the cost of small object memory allocations by up to **30%**... 
+    - ... The Go team expects the overall improvement to be **~1%** in real allocation-heavy programs...
+- Experimental [SIMD](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data)
+    - Enable `simd/archsimd` by setting `GOEXPERIMENT=simd`
+
+## new new
+
+> The built-in **new function**, which creates a new variable, 
+> **now allows its operand to be an expression**, specifying the initial value of the variable.
+
+## new: problem
+
+.play -edit -numbers new/problem/main.go /START OMIT/,/END OMIT/
+
+## new: ptr
+
+.play -edit -numbers new/ptr/main.go /START OMIT/,/END OMIT/
+
+## new: new
+
+.play -edit -numbers new/new/main.go /START OMIT/,/END OMIT/
+
+## errors.AsType
+
+.play -edit -numbers astype/main.go /START OMIT/,/END OMIT/
+
+## os.Process.WithHandle
+
+.play -edit -numbers withhandle/main.go /START OMIT/,/END OMIT/
+
+Why?
+
+Process ID can be reused. 
+The handle is guaranteed to refer to the process until the callback function returns.
+
+## Signal Cause
+
+.play -edit -numbers signal/main.go /START OMIT/,/END OMIT/
+
+Quiz
+
+- What signal does CTRL-C send?
+- What signal does `kill` send?
+
+Hint: [POSIX signals](https://en.wikipedia.org/wiki/Signal_(IPC)#POSIX_signals)
+
+## Faster fmt.Errorf
+
+> For unformatted strings, `fmt.Errorf("x")` now allocates less and generally matches the allocations for errors.New("x").
+
+No need to mix `errors.New` and `fmt.Errorf`
+
+## Test Artifacts
+
+.code -edit -numbers artifact/main_test.go /START OMIT/,/END OMIT/
+
+    $ go test -v -artifacts
+
+or
+
+    $ go test -v -artifacts -outputdir /tmp/tests
+
+Without the `-artifacts` flags, artifacts are deleted.
+
+
+## Go < 1.26
+
+Some other new-ish changes.
+
+## json/v2 (1.25)
+
+Still experimental, use `GOEXPERIMENT=jsonv2` to enable.
+
+> We expect the design of encoding/json/v2 to continue to evolve...
+
+Should be faster, see detailed benchmarks [here](https://github.com/go-json-experiment/jsonbench).
+
+
+## sync.WaitGroup (1.25)
+
+.play -edit -numbers wg/main.go /START OMIT/,/END OMIT/
+
+No need for `wg.Add` and `defer wg.Done()`
+
+## Container Aware GOMAXPROCS (1.25)
+
+> 1. On Linux, the runtime considers the CPU bandwidth limit of the cgroup containing the process...
+> 2. On all OSes, the runtime periodically updates GOMAXPROCS if the number of logical CPUs available or the cgroup CPU bandwidth limit change.
+
+> Both of these behaviors are automatically disabled if GOMAXPROCS is set manually...
+
+No need to import `go.uber.org/automaxprocs` anymore ☺
+
+## `json:"omitzero"` (1.24)
+
+
+.play -edit -numbers omitzero/main.go /START OMIT/,/END OMIT/
+
+You can add `IsZero() bool` method to your types.
+
+## Iterators (aka range-over function) (1.23)
+
+.play -edit -numbers iter/main.go /START OMIT/,/END OMIT/
+
+## Telemetry (1.23)
+
+> The Go toolchain can collect telemetry — usage and breakage statistics to
+> help the Go team understand how the toolchain is being used.
+
+> **Telemetry is opt-in**, controlled by the go telemetry command. By default,
+> the toolchain only collects statistics in local files (go telemetry local).
+
+
+## Further Reading
+
+- [Go 1.26 Release Notes](https://go.dev/doc/go1.26)
+- [Go 1.26 interactive tour](https://antonz.org/go-1-26)
+
+Also for 1.25, 1.24, 1.23 ... 
+
+## What's Your Favorite New Feature?
+
+.image gopher.png
+
