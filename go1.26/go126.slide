@@ -14,6 +14,7 @@ miki@353solutions.com
 - Faster memory allocations
     - ...reduces the cost of small object memory allocations by up to **30%**... 
     - ... The Go team expects the overall improvement to be **~1%** in real allocation-heavy programs...
+- The compiler can now **allocate the backing store for slices on the stack in more situations**, which improves performance.
 - Experimental [SIMD](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data)
     - Enable `simd/archsimd` by setting `GOEXPERIMENT=simd`
 
@@ -26,7 +27,7 @@ miki@353solutions.com
 
 .play -edit -numbers new/problem/main.go /START OMIT/,/END OMIT/
 
-## new: ptr
+## new: Ptr
 
 .play -edit -numbers new/ptr/main.go /START OMIT/,/END OMIT/
 
@@ -37,6 +38,8 @@ miki@353solutions.com
 ## errors.AsType
 
 .play -edit -numbers astype/main.go /START OMIT/,/END OMIT/
+
+Nicer than `errors.As` :)
 
 ## os.Process.WithHandle
 
@@ -105,8 +108,7 @@ No need for `wg.Add` and `defer wg.Done()`
 
 No need to import `go.uber.org/automaxprocs` anymore ☺
 
-## `json:"omitzero"` (1.24)
-
+## encoding/json omitzero (1.24)
 
 .play -edit -numbers omitzero/main.go /START OMIT/,/END OMIT/
 

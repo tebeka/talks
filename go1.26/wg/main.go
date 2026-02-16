@@ -15,5 +15,7 @@ func main() {
 		})
 	}
 	wg.Wait()
+
+	fmt.Println("Done")
 	// END OMIT
 }
