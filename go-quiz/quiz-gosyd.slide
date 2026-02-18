@@ -1,0 +1,114 @@
+# A Go Quiz
+Guess the Output
+
+Miki Tebeka
+miki@ardanlabs.com
+@tebeka
+
+## Miki Tebeka
+
+.image ardan.svg 500 500
+.html quiz.html
+
+## Rules
+
+- I'll show a short Go program
+- You have 30 seconds to guess the output (countdown on bottom left)
+- Possible answers are: 
+	- Some output
+	- Won't compile
+	- Panic
+- There are 20 questions total
+
+Speical thanks to [Dave Cheney](https://twitter.com/davecheney), [Brad Fitzpatrick](https://twitter.com/bradfitz) & others
+
+##  
+
+.image picard-why.jpg 550 850
+
+##  Chars
+
+.play -edit -numbers stridx.go
+
+##  Map
+
+.play -edit -numbers empty_map_ok.go
+
+##  City
+
+.play -edit -numbers unicode.go
+
+##  Vars
+
+.play -edit -numbers vars2.go
+
+## Time
+
+.play -edit -numbers time_eq.go
+
+##  Map
+
+.play -edit -numbers empty_map.go
+
+##  Rune
+
+.play -edit -numbers rune.go
+
+##  Sleep
+
+.play -edit -numbers time.go
+
+
+##  Slices
+
+.play -edit -numbers slice.go
+ 
+##  Init
+
+.play -edit -numbers init.go
+
+## Count
+
+.play -edit -numbers ptr2.go
+
+##  π
+
+.play -edit -numbers pi.go
+
+##  Append
+
+.play -edit -numbers sliceappend.go
+
+##  For
+
+.play -edit -numbers for.go
+
+##  Channel
+
+.play -edit -numbers ch.go
+
+##  Print
+
+.play -edit -numbers print_char.go
+
+##  Defer
+
+.play -edit -numbers defer.go
+
+##  String
+
+.play -edit -numbers raw.go
+
+##  Float
+
+.play -edit -numbers float.go
+
+## Bonus
+
+.play -edit -numbers bonus.go
+
+##  The End
+
+How many did you get right?
+
+.image cover.png

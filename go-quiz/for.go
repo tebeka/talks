@@ -3,9 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	nums := "sup?"
-	for range nums {
-		fmt.Printf("c ")
+	greeting := "sup?"
+	for range greeting {
+		fmt.Printf("x")
 	}
+
 	fmt.Println()
 }

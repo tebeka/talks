@@ -3,6 +3,6 @@ package main
 import "fmt"
 
 func main() {
-	city := "London"
+	city := "Sydney"
 	fmt.Printf("%T\n", city[0])
 }

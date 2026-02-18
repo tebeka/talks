@@ -8,13 +8,10 @@ import (
 
 func main() {
 	t1 := time.Now()
-	data, err := json.Marshal(t1)
-	if err != nil {
-		panic(err)
-	}
+	data, _ := json.Marshal(t1)
+
 	var t2 time.Time
-	if err := json.Unmarshal(data, &t2); err != nil {
-		panic(err)
-	}
+	_ = json.Unmarshal(data, &t2)
+
 	fmt.Println(t1 == t2)
 }
