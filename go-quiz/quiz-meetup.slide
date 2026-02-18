@@ -132,7 +132,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 
 * Ints & Floats
 
-.play -edit -numbers float-int.go
+.play -edit -numbers float_int.go
 
 *A:* 36
 *B:* 33
@@ -159,7 +159,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 
 # * Ints & Floats
 # 
-# .play -edit -numbers float-int2.go
+# .play -edit -numbers float_int2.go
 # 
 # *A:* 36
 # *B:* 33
@@ -204,7 +204,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 
 * Sleep Sort
 
-.play -edit -numbers sleep-sort.go /^func main/,/^}/
+.play -edit -numbers sleep_sort.go /^func main/,/^}/
 
 *A:* 1 2 3
 *B:* 1 1 1

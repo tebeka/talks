@@ -74,7 +74,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]], [[https://twi
 
 * Sleep Sort
 
-.play -edit -numbers sleep-sort.go /^func main/,/^}/
+.play -edit -numbers sleep_sort.go /^func main/,/^}/
 
 * π
 
