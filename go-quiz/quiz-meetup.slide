@@ -33,7 +33,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 
 # * Map
 # 
-# .play -edit -numbers empty-map-ok.go
+# .play -edit -numbers empty_map_ok.go
 # 
 # *A:* 1
 # *B:* panic
@@ -60,7 +60,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 
 # * Map
 # 
-# .play -edit -numbers empty-map.go
+# .play -edit -numbers empty_map.go
 # 
 # *A:* 1
 # *B:* 0
@@ -249,7 +249,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]] & [[https://tw
 
 # * Print
 # 
-# .play -edit -numbers print-char.go
+# .play -edit -numbers print_char.go
 # 
 # *A:* 65
 # *B:* a

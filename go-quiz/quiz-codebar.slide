@@ -30,7 +30,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]], [[https://twi
 
 * Map
 
-.play -edit -numbers empty-map-ok.go
+.play -edit -numbers empty_map_ok.go
 
 * Chars
 
@@ -50,7 +50,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]], [[https://twi
 
 * Map
 
-.play -edit -numbers empty-map.go
+.play -edit -numbers empty_map.go
 
 * Rune
 
@@ -94,7 +94,7 @@ Speical thanks to [[https://twitter.com/davecheney][Dave Cheney]], [[https://twi
 
 * Print
 
-.play -edit -numbers print-char.go
+.play -edit -numbers print_char.go
 
 
 * Defer
