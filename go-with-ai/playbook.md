@@ -1,5 +1,7 @@
 # Using AI Agents to write Go code, the Good, the Bad and the Ugly
 
+- About
+    - GopherCon Israel sponsors
 - What is LLM?
     - Predict next word, not reasoning
     - Randomness and hallucination built in
@@ -10,6 +12,7 @@
     - codex
     - opencode
     - amp
+- Story on read-only access
 - Go is great
 - Code
     - concat.go
@@ -19,10 +22,10 @@
 - Objective, Technical Requirements, Data Models, Edge Cases
     - What, not how
     - Make it testable
-    - What, not how
 - CLAUDE.md/AGENTS.md
     - project, local, system
     - Will not follow it at times
+    - Show mine
 - Skills
     - LGTM: Looks good to Miki
 - Context engineering: Providing the right data to your agent
