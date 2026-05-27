@@ -15,6 +15,7 @@
 - Story on read-only access
 - Go is great
 - Code
+    - We are builders (modern world is about trust - don't know car)
     - concat.go
     - show codex solve it
 - Plan mode vs edit mode
