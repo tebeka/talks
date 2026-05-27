@@ -7,7 +7,7 @@ import (
 	"outliers"
 )
 
-func Example() {
+func ExampleOutliers_Detect() {
 	o, err := outliers.New()
 	if err != nil {
 		fmt.Printf("ERROR: %s\n", err)
@@ -30,7 +30,7 @@ func Example() {
 func genData() []float64 {
 	const size = 1000
 	data := make([]float64, size)
-	for i := 0; i < size; i++ {
+	for i := range size {
 		data[i] = rand.Float64()
 	}
 
