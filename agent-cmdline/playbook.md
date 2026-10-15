@@ -17,16 +17,20 @@
 - 
     go run ./schema schema
     go run ./schema schema trips
-
+- 
+    go run ./errors query typo.sql
+    go run ./errors query bad_column.sql
+    go run ./errors -format=json query typo.sql
+- security: read only user
 
 ##  TBD
 
 - For a later enhancement, show a query estimate or progress for long-running queries.
 - Keep query results on stdout. Send progress, warnings, and diagnostics to stderr.
 - Never make a partial result look complete. Say whether the result is complete, limited, sampled, or stopped early. Report counts when known.
-- Avoid returning every row from a large table by default.
-- Use a stable machine-readable error form in agent mode. Include a short message, a stable error code, and a useful correction hint when possible.
 - Approximate row counts or query plans can be later enhancements.
+
+---
 
 ## DuckDB Agent Mode lessons
 
