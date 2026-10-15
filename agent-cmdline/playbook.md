@@ -1,12 +1,16 @@
+- https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
+- make psql
 - Show command line usage
-    go run ./initial query 3.sql
-    go run ./initial query 3.sql | cat -v
+    go run ./initial query sample.sql
+    go run ./initial query sample.sql | cat -v
 - 
-    go run ./tty query 3.sql
-    go run ./tty query 3.sql | cat -v
+    go run ./tty query sample.sql
+    go run ./tty query sample.sql | cat -v
+
+    mention spinners ...
 - 
-    go run ./json query 3.sql
-    go run ./json query -format=json 3.sql
+    go run ./json query sample.sql
+    go run ./json query -format=json sample.sql
 - 
     go run ./yes query count.sql
     go run ./yes query -yes count.sql
@@ -17,13 +21,11 @@
 
 ##  TBD
 
-- Give the caller a way to list tables and inspect columns and types.
 - For a later enhancement, show a query estimate or progress for long-running queries.
 - Keep query results on stdout. Send progress, warnings, and diagnostics to stderr.
 - Never make a partial result look complete. Say whether the result is complete, limited, sampled, or stopped early. Report counts when known.
 - Avoid returning every row from a large table by default.
 - Use a stable machine-readable error form in agent mode. Include a short message, a stable error code, and a useful correction hint when possible.
-- This helps an agent learn the database before it writes a query.
 - Approximate row counts or query plans can be later enhancements.
 
 ## DuckDB Agent Mode lessons
