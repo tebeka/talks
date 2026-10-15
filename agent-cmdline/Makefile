@@ -5,9 +5,9 @@ NAME = taxi-db
 
 db-start:
 	docker run -d --name $(NAME) -p 127.0.0.1:5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust \
-		-v $(CURDIR)/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro $(IMAGE)
+		-v $(CURDIR)/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro $(IMAGE)
 	until docker exec $(NAME) pg_isready -h localhost -q; do sleep 1; done
-	duckdb < seed.sql
+	duckdb < db/seed.sql
 
 db-stop:
 	docker rm -f $(NAME)
