@@ -50,7 +50,7 @@ func main() {
 	}
 
 	if err := cmd.Run(context.Background(), os.Args); err != nil {
-		fmt.Fprintln(os.Stderr, "taxi:", err)
+		fmt.Fprintln(os.Stderr, "error:", err)
 		os.Exit(1)
 	}
 }
@@ -102,6 +102,16 @@ func highlight(s string) string {
 	return "\033[33m" + s + "\033[0m"
 }
 
+func formatRow(columns []string, values []any) error {
+	for i, col := range columns {
+		val := display(values[i])
+		fmt.Printf("%s: %v\n", col, val)
+	}
+	fmt.Println()
+
+	return nil
+}
+
 func query(ctx context.Context, db *sql.DB, statement string) error {
 	rows, err := db.QueryContext(ctx, statement)
 	if err != nil {
@@ -125,13 +135,8 @@ func query(ctx context.Context, db *sql.DB, statement string) error {
 			return err
 		}
 
-		for i, col := range columns {
-			val := display(values[i])
-			fmt.Printf("%s: %v\n", col, val)
-		}
-
-		if count > 0 {
-			fmt.Println()
+		if err := formatRow(columns, values); err != nil {
+			return err
 		}
 
 		count++
