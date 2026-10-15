@@ -44,6 +44,7 @@ func main() {
 				switch format {
 				case "json":
 					formatRow = formatRowJSON
+					formatTotal = formatTotalJSON
 				case "", "text":
 				default:
 					return fmt.Errorf("format must be text or json")
@@ -117,6 +118,7 @@ func hasLimit(statement string) bool {
 var isTTY = term.IsTerminal(int(os.Stdout.Fd()))
 
 var formatRow = formatRowText
+var formatTotal = formatTotalText
 
 func highlight(s string) string {
 	if !isTTY {
@@ -144,6 +146,17 @@ func formatRowText(columns []string, values []any) error {
 		fmt.Printf("%s: %v\n", col, val)
 	}
 	fmt.Println()
+
+	return nil
+}
+
+func formatTotalJSON(count int) error {
+	return json.NewEncoder(os.Stdout).Encode(map[string]int{"count": count})
+}
+
+func formatTotalText(count int) error {
+	total := fmt.Sprintf("%d row(s)", count)
+	fmt.Println(highlight(total))
 
 	return nil
 }
@@ -182,8 +195,5 @@ func query(ctx context.Context, db *sql.DB, statement string) error {
 		return err
 	}
 
-	total := fmt.Sprintf("%d row(s)", count)
-	fmt.Println(highlight(total))
-
-	return nil
+	return formatTotal(count)
 }
