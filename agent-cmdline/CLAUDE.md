@@ -8,7 +8,7 @@ This is demo code, simplicity the brevity are the main goals.
 
 Each talk step is a standalone `main` package in its own directory. Each step is a full copy of the previous one plus one small change, so the diff between neighbors is what the talk shows:
 
-`initial/` → `tty/` (color only when stdout is a TTY) → `json/` (`-format text|json`) → `yes/` (`-yes` skips the confirmation prompt)
+`initial/` → `tty/` (color only when stdout is a TTY) → `json/` (`-format text|json`) → `yes/` (`-yes` skips the confirmation prompt) → `schema/` (`schema [TABLE]` lists tables or columns)
 
 To add a step, `cp -r` the latest directory, make only the new change, and leave earlier steps alone. Then add the demo commands to the list at the top of `playbook.md` (above the `---`). Keep each step small so `diff prev/main.go next/main.go` stays readable on a slide. It's OK to change previous stages in order to arrange the code so the diffs will be small.
 
