@@ -67,7 +67,7 @@ func isYes(answer string) bool {
 }
 
 func confirm() error {
-	fmt.Println("Query has no WHERE or LIMIT clause. Run it? [y/N] ")
+	fmt.Fprint(os.Stderr, "Query has no WHERE or LIMIT clause. Run it? [y/N] ")
 	var answer string
 
 	if _, err := fmt.Fscanln(os.Stdin, &answer); err != nil || (!isYes(answer)) {
@@ -80,10 +80,6 @@ func confirm() error {
 func display(val any) any {
 	if val == nil {
 		return "NULL"
-	}
-
-	if data, ok := val.([]byte); ok {
-		return string(data)
 	}
 
 	return val
@@ -140,6 +136,11 @@ func query(ctx context.Context, db *sql.DB, statement string) error {
 		}
 		if err := rows.Scan(dest...); err != nil {
 			return err
+		}
+		for i, val := range values {
+			if data, ok := val.([]byte); ok {
+				values[i] = string(data)
+			}
 		}
 
 		if err := formatRow(columns, values); err != nil {

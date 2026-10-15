@@ -1,7 +1,7 @@
 IMAGE = postgres:18.6
 NAME = taxi-db
 
-.PHONY: db-start db-stop
+.PHONY: db-start db-stop psql
 
 db-start:
 	docker run -d --name $(NAME) -p 127.0.0.1:5432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust \

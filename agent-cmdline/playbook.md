@@ -18,7 +18,7 @@
         - agent cat do "cmd 2>/tmp/err.txt"
 - 
     go run ./json query sql/sample.sql
-    go run ./json query -format=json sql/sample.sql
+    go run ./json -format=json query sql/sample.sql
 - 
     go run ./yes query sql/count.sql
     go run ./yes query -yes sql/count.sql

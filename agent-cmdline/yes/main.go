@@ -18,15 +18,30 @@ func main() {
 	cmd := &cli.Command{
 		Name:  "taxi",
 		Usage: "query the local taxi-trip database",
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:  "format",
+				Usage: "output format: text or json",
+				Value: "text",
+			},
+		},
+		Before: func(ctx context.Context, c *cli.Command) (context.Context, error) {
+			switch c.String("format") {
+			case "json":
+				formatRow = formatRowJSON
+				formatTotal = formatTotalJSON
+			case "text":
+			default:
+				return ctx, fmt.Errorf("format must be text or json")
+			}
+
+			return ctx, nil
+		},
 		Commands: []*cli.Command{{
 			Name:      "query",
 			Usage:     "run a read-only SQL query from a file",
 			ArgsUsage: "FILE",
 			Flags: []cli.Flag{
-				&cli.StringFlag{
-					Name:  "format",
-					Usage: "output format: text or json (default: based on stdout)",
-				},
 				&cli.BoolFlag{
 					Name:  "yes",
 					Usage: "run without asking for confirmation",
@@ -43,17 +58,6 @@ func main() {
 				statement := strings.TrimSpace(string(input))
 				if statement == "" {
 					return fmt.Errorf("SQL file is empty")
-				}
-
-				format := c.String("format")
-
-				switch format {
-				case "json":
-					formatRow = formatRowJSON
-					formatTotal = formatTotalJSON
-				case "", "text":
-				default:
-					return fmt.Errorf("format must be text or json")
 				}
 
 				if !c.Bool("yes") && !hasLimit(statement) {
@@ -89,7 +93,11 @@ func isYes(answer string) bool {
 }
 
 func confirm() error {
-	fmt.Println("Query has no WHERE or LIMIT clause. Run it? [y/N] ")
+	if !term.IsTerminal(int(os.Stdin.Fd())) {
+		return errors.New("query has no WHERE or LIMIT clause, use -yes to run it")
+	}
+
+	fmt.Fprint(os.Stderr, "Query has no WHERE or LIMIT clause. Run it? [y/N] ")
 	var answer string
 
 	if _, err := fmt.Fscanln(os.Stdin, &answer); err != nil || (!isYes(answer)) {
@@ -102,10 +110,6 @@ func confirm() error {
 func display(val any) any {
 	if val == nil {
 		return "NULL"
-	}
-
-	if data, ok := val.([]byte); ok {
-		return string(data)
 	}
 
 	return val
@@ -138,9 +142,6 @@ func formatRowJSON(columns []string, values []any) error {
 	row := make(map[string]any, len(columns))
 	for i, col := range columns {
 		row[col] = values[i]
-		if data, ok := values[i].([]byte); ok {
-			row[col] = string(data)
-		}
 	}
 
 	return json.NewEncoder(os.Stdout).Encode(row)
@@ -157,7 +158,7 @@ func formatRowText(columns []string, values []any) error {
 }
 
 func formatTotalJSON(count int) error {
-	return json.NewEncoder(os.Stdout).Encode(map[string]int{"count": count})
+	return json.NewEncoder(os.Stdout).Encode(map[string]any{"_meta": map[string]int{"count": count}})
 }
 
 func formatTotalText(count int) error {
@@ -188,6 +189,11 @@ func query(ctx context.Context, db *sql.DB, statement string) error {
 		}
 		if err := rows.Scan(dest...); err != nil {
 			return err
+		}
+		for i, val := range values {
+			if data, ok := val.([]byte); ok {
+				values[i] = string(data)
+			}
 		}
 
 		if err := formatRow(columns, values); err != nil {
