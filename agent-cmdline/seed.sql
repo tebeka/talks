@@ -1,7 +1,7 @@
 INSTALL postgres;
 LOAD postgres;
 
-ATTACH 'host=localhost port=5432 user=postgres password=postgres dbname=postgres' AS pg (TYPE postgres);
+ATTACH 'host=localhost port=5432 user=postgres dbname=postgres' AS pg (TYPE postgres);
 
 INSERT INTO pg.public.trips
 SELECT

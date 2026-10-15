@@ -1,3 +1,6 @@
+- Show command line usage
+    echo 'SELECT * FROM trips LIMIT 3' | go run . query 
+---
 # Talk playbook: CLI Design for Humans and AI
 
 ## Goal
@@ -130,4 +133,5 @@ Keep query-cost estimates, progress reporting, result hashes, and advanced agent
 
 ---
 https://duckdb.org/2026/10/09/agent-mode
-- 
+- y when there's no where clause
+- security: read only user
