@@ -4,6 +4,13 @@
 - 
     go run ./tty query 3.sql
     go run ./tty query 3.sql | cat -v
+- 
+    go run ./json query 3.sql
+    go run ./json query -format=json 3.sql
+- 
+    go run ./yes query count.sql
+    go run ./yes query -yes count.sql
+
 ---
 # Talk playbook: CLI Design for Humans and AI
 
