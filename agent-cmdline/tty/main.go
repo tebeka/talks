@@ -10,6 +10,7 @@ import (
 
 	_ "github.com/lib/pq"
 	"github.com/urfave/cli/v3"
+	"golang.org/x/term"
 )
 
 func main() {
@@ -98,6 +99,16 @@ func hasLimit(statement string) bool {
 	return false
 }
 
+var isTTY = term.IsTerminal(int(os.Stdout.Fd()))
+
+func highlight(s string) string {
+	if !isTTY {
+		return s
+	}
+
+	return "\033[33m" + s + "\033[0m"
+}
+
 func query(ctx context.Context, db *sql.DB, statement string) error {
 	rows, err := db.QueryContext(ctx, statement)
 	if err != nil {
@@ -137,6 +148,7 @@ func query(ctx context.Context, db *sql.DB, statement string) error {
 		return err
 	}
 
-	fmt.Printf("\033[33m%d row(s)\033[0m\n", count)
+	total := fmt.Sprintf("%d row(s)", count)
+	fmt.Println(highlight(total))
 	return nil
 }

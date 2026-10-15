@@ -1,5 +1,9 @@
 - Show command line usage
-    echo 'SELECT * FROM trips LIMIT 3' | go run . query 
+    go run ./initial query 3.sql
+    go run ./initial query 3.sql | cat -v
+- 
+    go run ./tty query 3.sql
+    go run ./tty query 3.sql | cat -v
 ---
 # Talk playbook: CLI Design for Humans and AI
 

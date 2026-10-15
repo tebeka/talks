@@ -11,3 +11,7 @@ db-start:
 
 db-stop:
 	docker rm -f $(NAME)
+
+
+psql:
+	docker exec -it $(NAME) psql -U postgres

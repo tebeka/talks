@@ -10,13 +10,12 @@ make db-start
 cat > /tmp/taxi.sql <<'SQL'
 SELECT vendor_id, trip_distance FROM trips WHERE vendor_id = 1 LIMIT 5
 SQL
-go run . query /tmp/taxi.sql
+go run ./tty query /tmp/taxi.sql
 ```
 
-The CLI prints each row as `column: value` lines. It prints the row count in
-bold. Errors go to stderr. If the SQL text has no `WHERE`, the CLI asks on the
-terminal. Type `y` or `yes` to continue. Without a terminal, it stops with an
-error.
+The initial version is in `initial/`. The `tty/` version colors the row count
+only when stdout is a terminal. It prints plain text when output is piped.
+Both versions print each row as `column: value` lines and send errors to stderr.
 
 The database uses trust authentication for this local demo. The port is bound
 to loopback. Do not use this setup on a shared network.
