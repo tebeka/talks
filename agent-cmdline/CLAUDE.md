@@ -22,8 +22,8 @@ The confirmation prompt is triggered by `hasLimit`, a naive substring check for 
 make db-start          # Postgres 18.6 in docker (taxi-db) + load the parquet file via duckdb
 make db-stop
 make psql              # psql shell inside the container
-go run ./<step> query 3.sql          # e.g. ./yes, ./json
-go run ./yes query -yes count.sql    # count.sql has no WHERE/LIMIT, so it triggers the prompt
+go run ./<step> query sql/sample.sql          # e.g. ./yes, ./json
+go run ./yes query -yes sql/count.sql    # count.sql has no WHERE/LIMIT, so it triggers the prompt
 go vet ./...
 ```
 

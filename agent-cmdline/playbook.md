@@ -1,26 +1,26 @@
 - https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 - make psql
 - Show command line usage
-    go run ./initial query sample.sql
-    go run ./initial query sample.sql | cat -v
+    go run ./initial query sql/sample.sql
+    go run ./initial query sql/sample.sql | cat -v
 - 
-    go run ./tty query sample.sql
-    go run ./tty query sample.sql | cat -v
+    go run ./tty query sql/sample.sql
+    go run ./tty query sql/sample.sql | cat -v
 
     mention spinners ...
 - 
-    go run ./json query sample.sql
-    go run ./json query -format=json sample.sql
+    go run ./json query sql/sample.sql
+    go run ./json query -format=json sql/sample.sql
 - 
-    go run ./yes query count.sql
-    go run ./yes query -yes count.sql
+    go run ./yes query sql/count.sql
+    go run ./yes query -yes sql/count.sql
 - 
     go run ./schema schema
     go run ./schema schema trips
 - 
-    go run ./errors query typo.sql
-    go run ./errors query bad_column.sql
-    go run ./errors -format=json query typo.sql
+    go run ./errors query sql/typo.sql
+    go run ./errors query sql/bad_column.sql
+    go run ./errors -format=json query sql/typo.sql
 - security: read only user
 
 ##  TBD
