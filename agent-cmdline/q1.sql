@@ -1,0 +1,4 @@
+SELECT *
+FROM trips
+LIMIT 3
+;

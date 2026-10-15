@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"io"
 	"os"
 	"strings"
 
@@ -18,19 +17,26 @@ func main() {
 		Name:  "taxi",
 		Usage: "query the local taxi-trip database",
 		Commands: []*cli.Command{{
-			Name:  "query",
-			Usage: "run a read-only SQL query from stdin",
+			Name:      "query",
+			Usage:     "run a read-only SQL query from a file",
+			ArgsUsage: "FILE",
 			Action: func(ctx context.Context, c *cli.Command) error {
-				if c.NArg() != 0 {
-					return fmt.Errorf("read SQL from stdin, not from an argument")
+				if c.NArg() != 1 {
+					return fmt.Errorf("expected one SQL file")
 				}
-				input, err := io.ReadAll(c.Reader)
+				input, err := os.ReadFile(c.Args().First())
 				if err != nil {
 					return err
 				}
 				statement := strings.TrimSpace(string(input))
 				if statement == "" {
-					return fmt.Errorf("no SQL provided on stdin")
+					return fmt.Errorf("SQL file is empty")
+				}
+
+				if !hasLimit(statement) {
+					if err := confirm(); err != nil {
+						return err
+					}
 				}
 
 				db, err := sql.Open("postgres", "host=localhost port=5432 user=postgres dbname=postgres sslmode=disable")
@@ -48,7 +54,28 @@ func main() {
 	}
 }
 
-func normalize(val any) any {
+func isYes(answer string) bool {
+	for _, n := range []string{"y", "yes"} {
+		if strings.EqualFold(answer, n) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func confirm() error {
+	fmt.Println("Query has no WHERE or LIMIT clause. Run it? [y/N] ")
+	var answer string
+
+	if _, err := fmt.Fscanln(os.Stdin, &answer); err != nil || (!isYes(answer)) {
+		return errors.New("query canceled")
+	}
+
+	return nil
+}
+
+func display(val any) any {
 	if val == nil {
 		return "NULL"
 	}
@@ -84,7 +111,7 @@ func query(ctx context.Context, db *sql.DB, statement string) error {
 		}
 
 		for i, col := range columns {
-			val := normalize(values[i])
+			val := display(values[i])
 			fmt.Printf("%s: %v\n", col, val)
 		}
 
@@ -99,6 +126,16 @@ func query(ctx context.Context, db *sql.DB, statement string) error {
 		return err
 	}
 
-	fmt.Printf("\033[1m%d row(s)\033[0m\n", count)
+	fmt.Printf("\033[33m%d row(s)\033[0m\n", count)
 	return nil
+}
+
+func hasLimit(statement string) bool {
+	for _, name := range []string{"WHERE", "LIMIT"} {
+		if strings.Contains(statement, name) {
+			return true
+		}
+	}
+
+	return false
 }
