@@ -48,6 +48,7 @@ func main() {
 			},
 		}},
 	}
+
 	if err := cmd.Run(context.Background(), os.Args); err != nil {
 		fmt.Fprintln(os.Stderr, "taxi:", err)
 		os.Exit(1)
@@ -85,6 +86,16 @@ func display(val any) any {
 	}
 
 	return val
+}
+
+func hasLimit(statement string) bool {
+	for _, name := range []string{"WHERE", "LIMIT"} {
+		if strings.Contains(statement, name) {
+			return true
+		}
+	}
+
+	return false
 }
 
 func query(ctx context.Context, db *sql.DB, statement string) error {
@@ -128,14 +139,4 @@ func query(ctx context.Context, db *sql.DB, statement string) error {
 
 	fmt.Printf("\033[33m%d row(s)\033[0m\n", count)
 	return nil
-}
-
-func hasLimit(statement string) bool {
-	for _, name := range []string{"WHERE", "LIMIT"} {
-		if strings.Contains(statement, name) {
-			return true
-		}
-	}
-
-	return false
 }
