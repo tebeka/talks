@@ -1,5 +1,9 @@
+- knuth vs mcilroy
+- basics of unix philosopy vs xkcd tar
+- A lot of rules aren't new, but agents make it matter.
 - https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 - make psql
+- agents run a command without a terminal and read only captured output
 - Show command line usage
     go run ./initial query sql/sample.sql
     go run ./initial query sql/sample.sql | cat -v
@@ -8,6 +12,10 @@
     go run ./tty query sql/sample.sql | cat -v
 
     mention spinners ...
+
+    errors/progress go to stderr
+        - agent will try to parse "connecting to database", human will gloss over
+        - agent cat do "cmd 2>/tmp/err.txt"
 - 
     go run ./json query sql/sample.sql
     go run ./json query -format=json sql/sample.sql
@@ -21,7 +29,16 @@
     go run ./errors query sql/typo.sql
     go run ./errors query sql/bad_column.sql
     go run ./errors -format=json query sql/typo.sql
+- 
+    go run ./bounded query sql/big.sql
+    go run ./bounded query -limit 3 sql/big.sql
+    go run ./bounded -format=json query -limit 3 sql/big.sql
+    go run ./bounded query -limit 0 sql/big.sql | tail -1
 - security: read only user
+    - if coffee doesn't help you ... joke
+    - the db enforces permissions, the cli can't
+
+- https://duckdb.org/2026/10/09/agent-mode
 
 ##  TBD
 
@@ -46,71 +63,4 @@ The DuckDB post describes agent mode for its CLI. Useful ideas for this talk are
 
 The post reports 59% fewer output tokens in its experiment, with all answers correct. It also reports no reduction in total cost or runtime. Use this as evidence that compact output can reduce output tokens, not as a claim that it always makes agent work cheaper or faster.
 
-## Initial 45-minute flow
-
-### 0–4 min: Set up the problem
-
-- Introduce the taxi-trip database and the query task.
-- State the goal: one CLI should work for people and agents.
-- Explain that agents often run a command without a terminal and read only captured output.
-
-### 4–10 min: Build the basic query flow
-
-- Run a useful query against the trips data.
-- Show the starting human-oriented output.
-- Include a way to inspect tables and columns so the query is not based on guesswork.
-
-### 10–16 min: Define the non-interactive and write-safety rules
-
-- Run a read-only query with no confirmation prompt.
-- Show confirmation only for a state-changing operation in interactive use.
-- Show that a non-interactive state-changing operation stops with a clear approval-required error.
-- Explain that database permissions enforce write safety.
-
-### 16–23 min: Adapt output to the caller
-
-- Detect terminal versus piped output.
-- Show a human-readable terminal view and a compact agent view.
-- Show that an explicit output-format option takes precedence.
-
-### 23–28 min: Separate output streams
-
-- Keep query data on stdout.
-- Send progress and diagnostics to stderr.
-- Pipe or capture the command output to show that status text does not corrupt the result.
-
-### 28–34 min: Bound results
-
-- Add row or output limits.
-- Show a large result and make its truncation explicit.
-- Explain how the caller can request more data safely.
-
-### 34–40 min: Make errors recoverable
-
-- Cause a query error, such as using an unknown column.
-- Show the exit status and structured error on stderr.
-- Use the error hint to correct and rerun the query.
-
-### 40–45 min: Run an end-to-end agent task
-
-- Ask an agent a question about taxi trips.
-- Have it inspect the schema, run a query, and explain the result.
-- Include one recoverable query error or one limited result.
-- Recap the design rules: no blocking prompts, clear output, visible limits, useful errors, and safe write controls.
-
-## First implementation priorities
-
-1. Query the local database and inspect its schema.
-2. Make read-only use non-interactive.
-3. Separate stdout and stderr.
-4. Add compact output and an explicit format option.
-5. Add result limits with clear truncation details.
-6. Add structured, actionable errors.
-7. Add safe behavior for state-changing SQL if write support is part of the demo.
-
-Keep query-cost estimates, progress reporting, result hashes, and advanced agent detection as optional follow-up work. Do not let them displace the core demo.
-
 ---
-https://duckdb.org/2026/10/09/agent-mode
-- y when there's no where clause
-- security: read only user
