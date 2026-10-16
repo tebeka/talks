@@ -60,6 +60,11 @@
 
 ---
 
+slides
+https://docs.google.com/presentation/d/1vzzbhxhZQMXw7ZcIWkf0935Bf15uViCDsfn52hhZMoM/
+
+---
+
 ## DuckDB Agent Mode lessons
 
 The DuckDB post describes agent mode for its CLI. Useful ideas for this talk are:
