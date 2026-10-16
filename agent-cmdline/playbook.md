@@ -1,6 +1,16 @@
+- CLI (and MCPs) is what your agent use to interact with the world
+- Why Go?
+    - No need for runtime
+    - Easy to cross compile
+    - Static executable
+- What's the difference
+    - A lot of rules aren't new, but agents make it matter.
+    - Agent
+        - Tokens 
+        - Structured output
+        - Non interactive
 - knuth vs mcilroy
 - basics of unix philosopy vs xkcd tar
-- A lot of rules aren't new, but agents make it matter.
 - https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 - make psql
 - agents run a command without a terminal and read only captured output
@@ -36,8 +46,7 @@
     go run ./bounded -format=json query -limit 3 sql/big.sql
     go run ./bounded query -limit 0 sql/big.sql | tail -1
     - does not limit query on db
-- security: read only user
-    - if coffee doesn't help you ... joke
+- security: read only user (joke slide)
     - the db enforces permissions, the cli can't
 
 - https://duckdb.org/2026/10/09/agent-mode
@@ -64,5 +73,3 @@ The DuckDB post describes agent mode for its CLI. Useful ideas for this talk are
 - Give one short startup notice. Keep full instructions in help instead of repeating them on every call.
 
 The post reports 59% fewer output tokens in its experiment, with all answers correct. It also reports no reduction in total cost or runtime. Use this as evidence that compact output can reduce output tokens, not as a claim that it always makes agent work cheaper or faster.
-
----
