@@ -23,8 +23,6 @@
     mention spinners ...
     comma in numbers
 
-NOTE: json count out of
-
     errors/progress go to stderr
         - agent will try to parse "connecting to database", human will gloss over
         - agent cat do "cmd 2>/tmp/err.txt"
@@ -55,10 +53,7 @@ NOTE: json count out of
 
 ##  TBD
 
-- For a later enhancement, show a query estimate or progress for long-running queries.
 - Keep query results on stdout. Send progress, warnings, and diagnostics to stderr.
-- Never make a partial result look complete. Say whether the result is complete, limited, sampled, or stopped early. Report counts when known.
-- Approximate row counts or query plans can be later enhancements.
 
 ---
 
