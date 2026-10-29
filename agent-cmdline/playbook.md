@@ -3,14 +3,13 @@
     - No need for runtime
     - Easy to cross compile
     - Static executable
+- basics of unix philosopy vs xkcd tar
 - What's the difference
     - A lot of rules aren't new, but agents make it matter.
     - Agent
         - Tokens 
         - Structured output
         - Non interactive
-- knuth vs mcilroy
-- basics of unix philosopy vs xkcd tar
 - https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 - make psql
 - agents run a command without a terminal and read only captured output
@@ -22,6 +21,9 @@
     go run ./tty query sql/sample.sql | cat -v
 
     mention spinners ...
+    comma in numbers
+
+NOTE: json count out of
 
     errors/progress go to stderr
         - agent will try to parse "connecting to database", human will gloss over

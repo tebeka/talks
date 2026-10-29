@@ -25,4 +25,4 @@ SELECT
     congestion_surcharge,
     Airport_fee,
     cbd_congestion_fee
-FROM 'yellow_tripdata_2026-05.parquet';
+FROM 'db/yellow_tripdata_2026-05.parquet';

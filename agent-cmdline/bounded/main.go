@@ -19,6 +19,8 @@ const dsn = "host=localhost port=5432 user=postgres dbname=postgres sslmode=disa
 
 const maxRows = 1000
 
+var limit = 0 // maximum rows to print, 0 for all
+
 func main() {
 	cmd := &cli.Command{
 		Name:  "taxi",
@@ -83,6 +85,7 @@ func main() {
 				}
 				defer db.Close()
 
+				limit = int(c.Int("limit"))
 				if !c.IsSet("limit") {
 					n, err := estimateRows(ctx, db, statement)
 					if err != nil {
@@ -93,7 +96,7 @@ func main() {
 					}
 				}
 
-				return query(ctx, db, int(c.Int("limit")), statement)
+				return query(ctx, db, statement)
 			},
 		}, {
 			Name:      "schema",
@@ -107,10 +110,10 @@ func main() {
 				defer db.Close()
 
 				if c.NArg() == 0 {
-					return query(ctx, db, 0, tablesSQL)
+					return query(ctx, db, tablesSQL)
 				}
 
-				return query(ctx, db, 0, columnsSQL, c.Args().First())
+				return query(ctx, db, columnsSQL, c.Args().First())
 			},
 		}},
 	}
@@ -197,14 +200,14 @@ func formatRowText(columns []string, values []any) error {
 	return nil
 }
 
-func formatTotalJSON(count int, truncated bool) error {
-	return json.NewEncoder(os.Stdout).Encode(map[string]any{"_meta": map[string]any{"count": count, "truncated": truncated}})
+func formatTotalJSON(count, all int) error {
+	return json.NewEncoder(os.Stdout).Encode(map[string]any{"_meta": map[string]any{"count": count, "total": all, "truncated": count < all}})
 }
 
-func formatTotalText(count int, truncated bool) error {
+func formatTotalText(count, all int) error {
 	total := fmt.Sprintf("%d row(s)", count)
-	if truncated {
-		total += ", truncated (use -limit 0 for all)"
+	if count < all {
+		total = fmt.Sprintf("%d of %d row(s), truncated (use -limit 0 for all)", count, all)
 	}
 	fmt.Println(highlight(total))
 
@@ -271,7 +274,7 @@ func estimateRows(ctx context.Context, db *sql.DB, statement string) (int, error
 	return plans[0].Plan.Rows, nil
 }
 
-func query(ctx context.Context, db *sql.DB, limit int, statement string, args ...any) error {
+func query(ctx context.Context, db *sql.DB, statement string, args ...any) error {
 	rows, err := db.QueryContext(ctx, statement, args...)
 	if err != nil {
 		return err
@@ -283,11 +286,11 @@ func query(ctx context.Context, db *sql.DB, limit int, statement string, args ..
 		return err
 	}
 
-	count, truncated := 0, false
+	count, all := 0, 0
 	for rows.Next() {
+		all++
 		if limit > 0 && count == limit {
-			truncated = true
-			break
+			continue
 		}
 
 		values := make([]any, len(columns))
@@ -315,5 +318,5 @@ func query(ctx context.Context, db *sql.DB, limit int, statement string, args ..
 		return err
 	}
 
-	return formatTotal(count, truncated)
+	return formatTotal(count, all)
 }
