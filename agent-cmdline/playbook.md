@@ -16,12 +16,12 @@
 - Usage & color issue
     go run ./0-initial query sql/sample.sql
     go run ./0-initial query sql/sample.sql | cat -v
-- TTY
-    go run ./1-tty query sql/sample.sql
-    go run ./1-tty query sql/sample.sql | cat -v
 
     mention spinners ...
     comma in numbers
+- TTY
+    go run ./1-tty query sql/sample.sql
+    go run ./1-tty query sql/sample.sql | cat -v
 
     errors/progress go to stderr
         - agent will try to parse "connecting to database", human will gloss over
@@ -29,16 +29,20 @@
 -  JSON
     go run ./2-json query sql/sample.sql
     go run ./2-json -format=json query sql/sample.sql
+
 -  Interactive
     go run ./3-yes query sql/count.sql
     go run ./3-yes query -yes sql/count.sql
+
 -  Schema to help agent
     go run ./4-schema schema
     go run ./4-schema schema trips
+
 -  What to do next
     go run ./5-errors query sql/typo.sql
     go run ./5-errors query sql/bad_column.sql
     go run ./5-errors -format=json query sql/typo.sql
+
 -  Bounded
     - kills context
     go run ./6-bounded query sql/big.sql
@@ -46,6 +50,7 @@
     go run ./6-bounded -format=json query -limit 3 sql/big.sql
     go run ./6-bounded query -limit 0 sql/big.sql | tail -1
     - does not limit query on db
+
 - security: read only user (joke slide)
     - the db enforces permissions, the cli can't
 
