@@ -1,4 +1,3 @@
 SELECT fare_amont
 FROM trips
-LIMIT 3
-;
+LIMIT 3;

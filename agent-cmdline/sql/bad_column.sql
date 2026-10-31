@@ -1,4 +1,3 @@
 SELECT fare
 FROM trips
-LIMIT 3
-;
+LIMIT 3;

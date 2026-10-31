@@ -1,5 +1,4 @@
 SELECT *
 FROM trips
-ORDER BY random()
-LIMIT 3
-;
+ORDER BY RANDOM()
+LIMIT 3;

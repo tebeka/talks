@@ -1,4 +1,3 @@
 SELECT *
 FROM trips
-WHERE passenger_count > 3
-;
+WHERE passenger_count > 3;
