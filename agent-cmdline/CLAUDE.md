@@ -8,7 +8,7 @@ This is demo code, simplicity the brevity are the main goals.
 
 Each talk step is a standalone `main` package in its own directory. Each step is a full copy of the previous one plus one small change, so the diff between neighbors is what the talk shows:
 
-`initial/` → `tty/` (color only when stdout is a TTY) → `json/` (`-format text|json`) → `yes/` (`-yes` skips the confirmation prompt) → `schema/` (`schema [TABLE]` lists tables or columns) → `errors/` (errors with hints, JSON errors on stderr) → `bounded/` (`-limit` caps rows, marks truncated output)
+`0-initial/` → `1-tty/` (color only when stdout is a TTY) → `2-json/` (`-format text|json`) → `3-yes/` (`-yes` skips the confirmation prompt) → `4-schema/` (`schema [TABLE]` lists tables or columns) → `5-errors/` (errors with hints, JSON errors on stderr) → `6-bounded/` (`-limit` caps rows, marks truncated output)
 
 To add a step, `cp -r` the latest directory, make only the new change, and leave earlier steps alone. Then add the demo commands to the list at the top of `playbook.md` (above the `---`). Keep each step small so `diff prev/main.go next/main.go` stays readable on a slide. It's OK to change previous stages in order to arrange the code so the diffs will be small.
 
@@ -22,8 +22,8 @@ The confirmation prompt is triggered by `hasLimit`, a naive substring check for 
 make db-start          # Postgres 18.6 in docker (taxi-db) + load the parquet file via duckdb
 make db-stop
 make psql              # psql shell inside the container
-go run ./<step> query sql/sample.sql          # e.g. ./yes, ./json
-go run ./yes query -yes sql/count.sql    # count.sql has no WHERE/LIMIT, so it triggers the prompt
+go run ./<step> query sql/sample.sql          # e.g. ./3-yes, ./2-json
+go run ./3-yes query -yes sql/count.sql    # count.sql has no WHERE/LIMIT, so it triggers the prompt
 go vet ./...
 ```
 

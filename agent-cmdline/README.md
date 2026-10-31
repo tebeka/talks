@@ -17,8 +17,8 @@ Each step is in it's own directory. See [playbook.md][pl] for the order and how 
 You can also diff each step, for example    
 
 ```
-$ diff tty initial 
-diff --color tty/main.go initial/main.go
+$ diff 1-tty 0-initial 
+diff --color 1-tty/main.go 0-initial/main.go
 13d12
 < 	"golang.org/x/term"
 98,99d96
