@@ -157,7 +157,7 @@ func highlight(s string) string {
 		return s
 	}
 
-	return "\033[33m" + s + "\033[0m"
+	return "\033[1;35m" + s + "\033[0m"
 }
 
 func formatRowJSON(columns []string, values []any) error {
