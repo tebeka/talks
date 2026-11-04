@@ -5,8 +5,10 @@ SELECT
     COUNT(*) AS trips,
     PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY fare_amount) AS median_fare,
     PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY tip_amount) AS median_tip,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY trip_distance) AS median_distance,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY dropoff_time - pickup_time) AS median_duration,
+    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY trip_distance)
+        AS median_distance,
+    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY dropoff_time - pickup_time)
+        AS median_duration,
     COUNT(DISTINCT do_location_id) AS destinations
 FROM trips
 GROUP BY pu_location_id

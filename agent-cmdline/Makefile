@@ -20,3 +20,6 @@ db-stop:
 
 psql:
 	docker exec -it $(NAME) psql -U postgres
+
+lint-sql:
+	sqlfluff lint

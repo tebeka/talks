@@ -1,0 +1,7 @@
+[sqlfluff]
+dialect = postgres
+# Demo queries are deliberately SELECT *, unordered LIMIT, or have bad columns
+exclude_rules = AM04, AM09, RF04
+
+[sqlfluff:rules:layout.long_lines]
+ignore_comment_lines = True
