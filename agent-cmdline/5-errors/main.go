@@ -174,7 +174,9 @@ func formatRowText(columns []string, values []any) error {
 		val := display(values[i])
 		fmt.Printf("%s: %v\n", col, val)
 	}
-	fmt.Println()
+	if len(columns) > 1 {
+		fmt.Println()
+	}
 
 	return nil
 }
