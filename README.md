@@ -6,8 +6,6 @@ Various talks given by [Miki Tebeka](mailto:miki@353solutions.com).
 Below is a list of talks you can view, others are more interactive. You can
 view the "code" on [GitHub](https://github.com/tebeka/talks).
 
-You can view this as HTML page [here](https://tebeka.github.io/talks/).
-
 - [CLI Design for Humans and AI](./agent-cmdline/slides.pdf) (2026) - Building dual-audience command line tools in Go.
 - [Get Skilled: Enhancing Your Agentic Workflow with Skills](./skills/desc.md) (2026) - Webinar on writing custom agent skills, from zero-code to a Go-backed skill that safely queries a database.
 - [Practical Go Development with AI Agents](./go-with-ai/slides-ardan-webinar.pdf) (2026) - The good, the bad and the ugly of using AI agents to write Go code. Also given at Go Israel as [Using AI Agents to write Go Code](./go-with-ai/slides-go-israel-meetup.pdf).
