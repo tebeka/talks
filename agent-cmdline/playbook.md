@@ -29,6 +29,7 @@
 -  JSON
     go run ./2-json query sql/sample.sql
     go run ./2-json -format=json query sql/sample.sql
+    go run ./2-json -format=json query sql/typo.sql
 
 -  Interactive
     go run ./3-yes query sql/count.sql

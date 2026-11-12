@@ -8,9 +8,11 @@ This is demo code, simplicity the brevity are the main goals.
 
 Each talk step is a standalone `main` package in its own directory. Each step is a full copy of the previous one plus one small change, so the diff between neighbors is what the talk shows:
 
-`0-initial/` → `1-tty/` (color only when stdout is a TTY) → `2-json/` (`-format text|json`) → `3-yes/` (`-yes` skips the confirmation prompt) → `4-schema/` (`schema [TABLE]` lists tables or columns) → `5-errors/` (errors with hints, JSON errors on stderr) → `6-bounded/` (`-limit` caps rows, marks truncated output)
+`0-initial/` → `1-tty/` (color only when stdout is a TTY) → `2-json/` (`-format text|json`, JSON errors on stderr) → `3-yes/` (`-yes` skips the confirmation prompt) → `4-schema/` (`schema [TABLE]` lists tables or columns) → `5-errors/` (errors with hints) → `6-bounded/` (`-limit` caps rows, marks truncated output)
 
-To add a step, `cp -r` the latest directory, make only the new change, and leave earlier steps alone. Then add the demo commands to the list at the top of `playbook.md` (above the `---`). Keep each step small so `diff prev/main.go next/main.go` stays readable on a slide. It's OK to change previous stages in order to arrange the code so the diffs will be small.
+From `2-json/` on, output goes through a `formatter` interface in `format.go` (`Row`, `Total`, `Error`) with `textFormatter` and `jsonFormatter` implementations, picked by `-format` in the `Before` hook. A step that changes output adds or changes a method on both.
+
+To add a step, `cp -r` the latest directory, make only the new change, and leave earlier steps alone. Then add the demo commands to the list at the top of `playbook.md` (above the `---`). Keep each step small so `diff prev/main.go next/main.go` (and `format.go`) stays readable on a slide. It's OK to change previous stages in order to arrange the code so the diffs will be small.
 
 All steps share one `go.mod` (module `taxi`, using `urfave/cli/v3`, `lib/pq`, `x/term`). The connection string is hard-coded: `localhost:5432`, user `postgres`, trust auth, no password.
 

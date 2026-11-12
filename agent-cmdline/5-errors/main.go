@@ -4,7 +4,6 @@ import (
 	"context"
 	"database/sql"
 	_ "embed"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"os"
@@ -31,9 +30,7 @@ func main() {
 		Before: func(ctx context.Context, c *cli.Command) (context.Context, error) {
 			switch c.String("format") {
 			case "json":
-				formatRow = formatRowJSON
-				formatTotal = formatTotalJSON
-				formatError = formatErrorJSON
+				format = jsonFormatter{}
 			case "text":
 			default:
 				return ctx, fmt.Errorf("format must be text or json")
@@ -98,7 +95,7 @@ func main() {
 	}
 
 	if err := cmd.Run(context.Background(), os.Args); err != nil {
-		formatError(err)
+		format.Error(err, errorHint(err))
 		os.Exit(1)
 	}
 }
@@ -148,48 +145,12 @@ func hasLimit(statement string) bool {
 
 var isTTY = term.IsTerminal(int(os.Stdout.Fd()))
 
-var formatRow = formatRowText
-var formatTotal = formatTotalText
-var formatError = formatErrorText
-
 func highlight(s string) string {
 	if !isTTY {
 		return s
 	}
 
 	return "\033[1;35m" + s + "\033[0m"
-}
-
-func formatRowJSON(columns []string, values []any) error {
-	row := make(map[string]any, len(columns))
-	for i, col := range columns {
-		row[col] = values[i]
-	}
-
-	return json.NewEncoder(os.Stdout).Encode(row)
-}
-
-func formatRowText(columns []string, values []any) error {
-	for i, col := range columns {
-		val := display(values[i])
-		fmt.Printf("%s: %v\n", col, val)
-	}
-	if len(columns) > 1 {
-		fmt.Println()
-	}
-
-	return nil
-}
-
-func formatTotalJSON(count int) error {
-	return json.NewEncoder(os.Stdout).Encode(map[string]any{"_meta": map[string]int{"count": count}})
-}
-
-func formatTotalText(count int) error {
-	total := fmt.Sprintf("%d row(s)", count)
-	fmt.Println(highlight(total))
-
-	return nil
 }
 
 func errorHint(err error) string {
@@ -208,22 +169,6 @@ func errorHint(err error) string {
 	}
 
 	return ""
-}
-
-func formatErrorJSON(err error) {
-	out := map[string]string{"error": err.Error()}
-	if hint := errorHint(err); hint != "" {
-		out["hint"] = hint
-	}
-
-	json.NewEncoder(os.Stderr).Encode(out)
-}
-
-func formatErrorText(err error) {
-	fmt.Fprintln(os.Stderr, "error:", err)
-	if hint := errorHint(err); hint != "" {
-		fmt.Fprintln(os.Stderr, "hint:", hint)
-	}
 }
 
 var (
@@ -262,7 +207,7 @@ func query(ctx context.Context, db *sql.DB, statement string, args ...any) error
 			}
 		}
 
-		if err := formatRow(columns, values); err != nil {
+		if err := format.Row(columns, values); err != nil {
 			return err
 		}
 
@@ -273,5 +218,5 @@ func query(ctx context.Context, db *sql.DB, statement string, args ...any) error
 		return err
 	}
 
-	return formatTotal(count)
+	return format.Total(count)
 }
